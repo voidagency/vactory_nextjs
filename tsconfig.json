@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "paths": {
+      "@vactory/next": ["packages/next/index.ts"],
+      "@vactory/next-page": ["packages/next-page/index.ts"],
+      "@vactory/next-news": ["packages/next-news/index.ts"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
