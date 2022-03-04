@@ -1,31 +1,18 @@
-const { promisify } = require("util")
-const g = require("glob")
-const glob = promisify(g)
 const path = require("path")
 const fs = require("fs")
 const Log = require("next/dist/build/output/log")
-const { exit } = require("process")
 
-const convertPathToAbsolute = (filePath) => {
-  return path.resolve(filePath)
-}
+const generateModulesIndex = async (options) => {
+  const modules = options?.enabledModules || []
+  const packagesFolder = path.resolve("../../packages")
+  const modulesInfo = modules
+    .map((m) => `${packagesFolder}/${m}/module.js`)
+    .map((filePath) => require(filePath))
 
-const readTemplateAnnotation = (filePath) => {
-  const code = fs.readFileSync(filePath).toString()
-  const contentType = /@NodeTemplateFor\('([^)]+)'\)/gm.exec(code)[1]
-  const templateName = /@NodeTemplateUniqueName\('([^)]+)'\)/gm.exec(code)[1]
-  const packageName = /@NodeTemplatePackage\('([^)]+)'\)/gm.exec(code)[1]
+  await generateNodeTemplatesIndex(modulesInfo)
+  await generateApiRoutesIndex(modulesInfo)
 
-  return {
-    package: packageName,
-    nodeType: contentType,
-    templateName: templateName,
-  }
-}
-
-const loadModuleInfo = (filePath) => {
-  const raw = fs.readFileSync(filePath)
-  return JSON.parse(raw)
+  Log.info("Compiled successfully templates")
 }
 
 const generateNodeTemplatesIndex = async (modules) => {
@@ -98,22 +85,6 @@ const generateApiRoutesIndex = async (modules) => {
   Log.info("Successfully compiled api routes")
 }
 
-const generateModulesIndex = async (options) => {
-  const modules = options?.enabledModules || []
-  const packagesFolder = path.resolve("../../packages")
-  const modulesInfo = modules
-    .map((m) => `${packagesFolder}/${m}/module.json`)
-    .map(loadModuleInfo)
-
-  await generateNodeTemplatesIndex(modulesInfo)
-  await generateApiRoutesIndex(modulesInfo)
-
-  // console.log(modulesInfo)
-  // process.exit(1)
-
-  Log.info("Compiled successfully templates")
-}
-
 class VactoryModulesPlugin {
   constructor(options) {
     this.options = options
@@ -122,7 +93,6 @@ class VactoryModulesPlugin {
   getChangedFiles(compiler) {
     const { watchFileSystem } = compiler
     const watcher = watchFileSystem.watcher || watchFileSystem.wfs.watcher
-    // console.log(watcher)
 
     return Object.keys(watcher.mtimes)
   }

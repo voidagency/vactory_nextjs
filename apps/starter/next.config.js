@@ -4,10 +4,7 @@ const withPlugins = require("next-compose-plugins")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
-const {
-  withNodeTemplatePlugin,
-  withModulesPlugin,
-} = require("@vactory/next-server")
+const { withModulesPlugin } = require("@vactory/next-server")
 
 const nextConfig = {
   // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
