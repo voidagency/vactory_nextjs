@@ -18,7 +18,7 @@ const nextConfig = {
   //   localeDetection: false,
   // },
   trailingSlash: false,
-  swcMinify: false,
+  swcMinify: true,
   async redirects() {
     // @todo: download redirections
     return [
