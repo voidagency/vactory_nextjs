@@ -1,15 +1,12 @@
 import { AppProps } from "next/app"
-import { NextIntlProvider } from "next-intl"
+import { AppHandler } from "@vactory/next"
 
 import "styles/globals.css"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <NextIntlProvider
-      messages={pageProps?.i18n || {}}
-      locale={pageProps?.locale || "fr"}
-    >
+    <AppHandler pageProps={pageProps}>
       <Component {...pageProps} />
-    </NextIntlProvider>
+    </AppHandler>
   )
 }

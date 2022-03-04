@@ -1,13 +1,20 @@
 // const nextTranslate = require("next-translate")
+const withPlugins = require("next-compose-plugins")
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
-const { withNodeTemplatePlugin } = require("@vactory/next-server")
+const {
+  withNodeTemplatePlugin,
+  withModulesPlugin,
+} = require("@vactory/next-server")
+
 const nextConfig = {
-  // webpack(config) {
-  //   config.plugins.push(new NodesTemplatePlugin())
+  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  //   console.log(config)
   //   return config
   // },
+  poweredByHeader: false,
   // i18n: {
   //   locales: ["en", "fr", "ar"],
   //   defaultLocale: "fr",
@@ -47,4 +54,15 @@ const nextConfig = {
 
 // module.exports = nextConfig
 // module.exports = withBundleAnalyzer(nextConfig)
-module.exports = withNodeTemplatePlugin(nextConfig)
+module.exports = withPlugins(
+  [
+    [
+      withModulesPlugin,
+      {
+        enabledModules: ["next-page", "next-news"],
+      },
+    ],
+  ],
+  nextConfig
+)
+// module.exports = withNodeTemplatePlugin(nextConfig)

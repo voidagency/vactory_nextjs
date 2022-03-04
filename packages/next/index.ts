@@ -1,2 +1,3 @@
 export * from "./src"
-// export * from "./.tmp/templates"
+export * from "./.tmp/node-templates"
+export * from "./.tmp/api-routes"

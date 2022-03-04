@@ -1,11 +1,6 @@
 import React from "react"
 
-/*
-  @NodeTemplatePackage('@vactory/next-news')
-  @NodeTemplateFor('node--vactory_news')
-  @NodeTemplateUniqueName('VactoryNodeNews')
-*/
-export const VactoryNodeNews = ({ node }) => {
+export const Node = ({ node }) => {
   return (
     <div className="relative px-4 sm:px-6 lg:px-8">
       <div className="text-lg max-w-prose mx-auto">

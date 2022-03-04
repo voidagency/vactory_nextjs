@@ -3,13 +3,13 @@ import Head from "next/head"
 import { deserialise } from "kitsu-core"
 // import dynamic from "next/dynamic"
 
-import { TemplatesMapping } from "../../.tmp/templates"
+import { TemplatesMapping } from "../../.tmp/node-templates"
 // import { Node } from "@vactory/next-news"
 // import { Node } from "@vactory/next-page"
 
 // const DynamicComponent = dynamic(() => import("./NodeController"))
 
-export const NodeController = ({ node, params }) => {
+export const NodeHandler = ({ node, params }) => {
   const Component = TemplatesMapping[node.type]
   return (
     <React.Fragment>
