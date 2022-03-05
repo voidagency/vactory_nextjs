@@ -11,6 +11,7 @@ const generateModulesIndex = async (options) => {
 
   await generateNodeTemplatesIndex(modulesInfo)
   await generateApiRoutesIndex(modulesInfo)
+  await generateNodeRouteIndex(modulesInfo)
 
   Log.info("Compiled successfully templates")
 }
@@ -43,6 +44,28 @@ const generateNodeTemplatesIndex = async (modules) => {
   )
 
   Log.info("Successfully compiled nodes templates")
+}
+
+const generateNodeRouteIndex = async (modules) => {
+  let mappings = []
+
+  modules.forEach((module) => {
+    const node = module.node
+
+    mappings.push(`  "${node.id}": ${JSON.stringify(node.params)}`)
+  })
+
+  // @TODO: ensure file exist.
+  const exportPath = path.resolve(
+    __dirname + "/../../../next/.tmp/node-api-routes.ts"
+  )
+
+  fs.writeFileSync(
+    exportPath,
+    `export const NodeApiRoutesMapping = {\n${mappings.join(",\n")},\n}\n`
+  )
+
+  Log.info("Successfully compiled nodes api routes")
 }
 
 const generateApiRoutesIndex = async (modules) => {
