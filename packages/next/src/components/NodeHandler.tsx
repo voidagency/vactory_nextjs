@@ -3,14 +3,11 @@ import Head from "next/head"
 import { fetcher } from "../jsonapi"
 import { TemplatesMapping } from "../../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
-
-// import { Node } from "@vactory/next-news"
-// import { Node } from "@vactory/next-page"
-
-// const DynamicComponent = dynamic(() => import("./NodeController"))
+import NodeDefault from "./NodeDefault"
+import logger from "../logger/logger"
 
 export const NodeHandler = ({ node, params }) => {
-  const Component = TemplatesMapping[node.type]
+  const Component = TemplatesMapping[node.type] || NodeDefault
   return (
     <React.Fragment>
       <Head>
@@ -20,11 +17,7 @@ export const NodeHandler = ({ node, params }) => {
           content="A Next.js site powered by a Drupal backend."
         />
       </Head>
-
       <Component node={node} params={params} />
-
-      {/* {node.type === "node--page" && <NodeBasicPage node={node} />} */}
-      {/* {node.type === "node--article" && <NodeArticle node={node} />} */}
     </React.Fragment>
   )
 }
@@ -42,13 +35,13 @@ export async function getServerSideProps(context) {
   slug = Array.isArray(slug) ? slug.join("/") : slug
 
   // Router stuff
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/router/translate-path?path=${slug}`
-  )
-  const router = await res.json()
-
-  // Fetch data from external API
   try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/router/translate-path?path=${slug}`
+    )
+    const router = await res.json()
+
+    // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
     const node = await fetcher(
       `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/api/node/${router.entity.bundle}/${router.entity.uuid}`,
@@ -69,7 +62,7 @@ export async function getServerSideProps(context) {
       },
     }
   } catch (err) {
-    console.log(err)
+    logger.info(err)
   }
 
   return {

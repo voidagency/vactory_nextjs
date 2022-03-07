@@ -7,6 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const { withModulesPlugin } = require("@vactory/next-server")
 
 const nextConfig = {
+  reactStrictMode: true,
   // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
   //   console.log(config)
   //   return config
@@ -20,7 +21,7 @@ const nextConfig = {
   trailingSlash: false,
   swcMinify: true,
   async redirects() {
-    // @todo: download redirections
+    // @todo: Move to node handler getServerSideProps
     return [
       {
         source: "/",
@@ -53,10 +54,11 @@ const nextConfig = {
 // module.exports = withBundleAnalyzer(nextConfig)
 module.exports = withPlugins(
   [
+    [withBundleAnalyzer],
     [
       withModulesPlugin,
       {
-        enabledModules: ["next-page", "next-news"],
+        enabledModules: ["next-page"],
       },
     ],
   ],
