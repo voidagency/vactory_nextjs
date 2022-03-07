@@ -33,7 +33,6 @@ const UserInfo = () => {
 }
 
 export function Layout({ children }) {
-  const t = useTranslations()
   const locale = useLocale()
 
   return (
