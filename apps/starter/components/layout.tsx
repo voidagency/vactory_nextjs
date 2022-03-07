@@ -1,6 +1,5 @@
 import Link from "next/link"
-// import { useRouter } from "next/router"
-// import useTranslation from 'next-translate/useTranslation'
+import { useSession } from "next-auth/react"
 import { useTranslations, useLocale } from "next-intl"
 
 // import { PreviewAlert } from "@/components/preview-alert"
@@ -11,6 +10,27 @@ const navigation = [
   { name: "404", href: "/fr/toto" },
   { name: "Article", href: "/fr/news/news-9" },
 ]
+
+const UserInfo = () => {
+  const { data, status } = useSession()
+  const t = useTranslations()
+
+  if (status === "loading") {
+    return <></>
+  }
+
+  if (status === "authenticated") {
+    return <p>Signed in as {data.user.email}</p>
+  }
+
+  return (
+    <Link href="/api/auth/signin" passHref>
+      <a className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
+        Sign in {t("title")}
+      </a>
+    </Link>
+  )
+}
 
 export function Layout({ children }) {
   const t = useTranslations()
@@ -52,12 +72,7 @@ export function Layout({ children }) {
               >
                 {locale}
               </a>
-              <a
-                href="#"
-                className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
-              >
-                {t("title")}
-              </a>
+              <UserInfo />
             </div>
           </div>
           <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
