@@ -3,5 +3,18 @@
   "private": true,
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./src"
+  },
+  "scripts": {
+    "dev": "start-storybook -p 6006 --no-manager-cache",
+    "build": "build-storybook",
+    "build:icons": "svg-spreact ./src/icon/icons --optimize true --tidy true > ./public/icons.svg"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  }
 }
