@@ -9,7 +9,8 @@
     "start": "next start",
     "analyze": "cross-env ANALYZE=true yarn build",
     "preview": "next build && next start",
-    "serve": "serve .next/analyze"
+    "serve": "serve .next/analyze",
+    "lint": "next lint"
   },
   "peerDependencies": {
     "next": "*",

@@ -52,6 +52,11 @@ export async function getServerSideProps(context) {
 
     const langcode = node.langcode
 
+    context.res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=10, stale-while-revalidate=59"
+    )
+
     // Pass data to the page via props
     return {
       props: {

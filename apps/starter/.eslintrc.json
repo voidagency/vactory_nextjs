@@ -4,7 +4,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:@next/next/recommended"
+    "next/core-web-vitals"
   ],
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -31,19 +31,5 @@
     "react": {
       "version": "detect"
     }
-  },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint/eslint-plugin"],
-      "extends": [
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
-      ],
-      "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": "off"
-      }
-    }
-  ]
+  }
 }

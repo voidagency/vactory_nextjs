@@ -33,7 +33,7 @@ const generateNodeTemplatesIndex = async (modules) => {
 
   // @TODO: ensure file exist.
   const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/node-templates.ts"
+    __dirname + "/../../../next/.tmp/node-templates.js"
   )
 
   fs.writeFileSync(
@@ -57,7 +57,7 @@ const generateNodeRouteIndex = async (modules) => {
 
   // @TODO: ensure file exist.
   const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/node-api-routes.ts"
+    __dirname + "/../../../next/.tmp/node-api-routes.js"
   )
 
   fs.writeFileSync(
@@ -95,7 +95,7 @@ const generateApiRoutesIndex = async (modules) => {
 
   // @TODO: ensure file exist.
   const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/api-routes.ts"
+    __dirname + "/../../../next/.tmp/api-routes.js"
   )
 
   fs.writeFileSync(

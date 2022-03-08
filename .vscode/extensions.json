@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
     "dbaeumer.vscode-eslint",
-    "redhat.vscode-xml"
+    "redhat.vscode-xml",
+    "wix.vscode-import-cost"
   ]
 }

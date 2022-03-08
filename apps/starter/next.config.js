@@ -1,3 +1,5 @@
+// @ts-check
+
 // const nextTranslate = require("next-translate")
 const withPlugins = require("next-compose-plugins")
 
@@ -6,6 +8,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 const { withModulesPlugin } = require("@vactory/next-server")
 
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
   reactStrictMode: true,
   // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -58,7 +63,7 @@ module.exports = withPlugins(
     [
       withModulesPlugin,
       {
-        enabledModules: ["next-page"],
+        enabledModules: ["next-page", "next-news"],
       },
     ],
   ],
