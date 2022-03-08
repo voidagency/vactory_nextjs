@@ -13,7 +13,6 @@
     "lint": "next lint"
   },
   "peerDependencies": {
-    "next": "*",
-    "@vactory/next": "*"
+    "next": "*"
   }
 }
