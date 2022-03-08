@@ -12,6 +12,7 @@ const generateModulesIndex = async (options) => {
   await generateNodeTemplatesIndex(modulesInfo)
   await generateApiRoutesIndex(modulesInfo)
   await generateNodeRouteIndex(modulesInfo)
+  await generateDynamicFieldTemplatesIndex(modulesInfo)
 
   Log.info("Compiled successfully templates")
 }
@@ -78,7 +79,7 @@ const generateApiRoutesIndex = async (modules) => {
     const prefix = module.namedExportPrefix
     const api = module.api
     const apiPrefix = api.prefix
-    const apiRoutes = api.routes
+    const apiRoutes = api.routes || []
 
     apiRoutes.forEach((route) => {
       const namedRoute = `${prefix}${route.namedExport}`
@@ -106,6 +107,38 @@ const generateApiRoutesIndex = async (modules) => {
   )
 
   Log.info("Successfully compiled api routes")
+}
+
+const generateDynamicFieldTemplatesIndex = async (modules) => {
+  let imports = [],
+    mappings = []
+
+  modules.forEach((module) => {
+    const name = module.name
+    const prefix = module.namedExportPrefix
+    const widgets = module?.widgets || []
+
+    widgets.forEach((widget) => {
+      imports.push(
+        `import { ${widget.namedExport} as ${prefix}${widget.namedExport} } from "${name}"`
+      )
+      mappings.push(`  "${widget.id}":${prefix}${widget.namedExport}`)
+    })
+  })
+
+  // @TODO: ensure file exist.
+  const exportPath = path.resolve(
+    __dirname + "/../../../next/.tmp/df-templates.js"
+  )
+
+  fs.writeFileSync(
+    exportPath,
+    `${imports.join("\n")}\nexport const Widgets = {\n${mappings.join(
+      ",\n"
+    )},\n}\n`
+  )
+
+  Log.info("Successfully compiled dynamic field templates")
 }
 
 class VactoryModulesPlugin {

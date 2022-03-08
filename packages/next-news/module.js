@@ -63,12 +63,8 @@ module.exports = {
   },
   widgets: [
     {
-      id: "vactory_news:example",
-      namedExport: "ExampleWidget",
-    },
-    {
-      id: "vactory_news:content",
-      namedExport: "ContentWidget",
+      id: "vactory_news:three-columns",
+      namedExport: "ThreeColumnsContainer",
     },
   ],
 }

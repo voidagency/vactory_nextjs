@@ -7,6 +7,7 @@ import "nprogress/nprogress.css"
 import "styles/globals.css"
 
 export default function App({ Component, pageProps }) {
+  // @todo: pageProps extract node && pass it to pageview
   const router = useRouter()
   useEffect(() => {
     router.events.on("routeChangeComplete", pageview)

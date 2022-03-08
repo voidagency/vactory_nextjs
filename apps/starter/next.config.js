@@ -14,7 +14,7 @@ const path = require("path")
  **/
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config) => {
     config.resolve = {
       ...config.resolve,
       alias: {
@@ -34,7 +34,7 @@ const nextConfig = {
   //   localeDetection: false,
   // },
   trailingSlash: false,
-  swcMinify: true,
+  // swcMinify: true,
   async redirects() {
     // @todo: Move to node handler getServerSideProps
     return [
@@ -58,7 +58,11 @@ const nextConfig = {
   images: {
     domains: ["localhost", "tailwindui.com"],
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ["image/webp"],
+    minimumCacheTTL: 60,
   },
   experimental: {
     externalDir: true,

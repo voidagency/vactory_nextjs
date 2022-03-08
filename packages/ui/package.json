@@ -9,7 +9,7 @@
     "./*": "./src"
   },
   "scripts": {
-    "dev": "start-storybook -p 6006 --no-manager-cache",
+    "dev": "start-storybook -p 6006",
     "build": "build-storybook",
     "build:icons": "svg-spreact ./src/icon/icons --optimize true --tidy true > ./public/icons.svg"
   },

@@ -85,10 +85,7 @@ export function Layout({ children }) {
           </div>
         </nav>
       </header>
-      {/* <PreviewAlert /> */}
-      <div className="max-w-screen-md px-6 mx-auto">
-        <main className="container py-10 mx-auto">{children}</main>
-      </div>
+      <main>{children}</main>
     </>
   )
 }

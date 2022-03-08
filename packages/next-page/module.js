@@ -61,14 +61,14 @@ module.exports = {
       },
     ],
   },
-  widgets: [
-    {
-      id: "vactory_page:example",
-      namedExport: "ExampleWidget",
-    },
-    {
-      id: "vactory_page:content",
-      namedExport: "ContentWidget",
-    },
-  ],
+  // widgets: [
+  //   {
+  //     id: "vactory_page:example",
+  //     namedExport: "ExampleWidget",
+  //   },
+  //   {
+  //     id: "vactory_page:content",
+  //     namedExport: "ContentWidget",
+  //   },
+  // ],
 }
