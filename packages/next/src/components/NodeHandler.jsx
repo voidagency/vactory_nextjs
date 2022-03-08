@@ -23,7 +23,6 @@ export const NodeHandler = ({ node, params }) => {
 }
 
 export async function getServerSideProps(context) {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   // const path = require("path")
   // const React = require("react")
   // const createElement = React.createElement
@@ -43,6 +42,7 @@ export async function getServerSideProps(context) {
 
     // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
+    // @todo: send params to Drupal JSON:API
     const node = await fetcher(
       `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/api/node/${router.entity.bundle}/${router.entity.uuid}`,
       {
