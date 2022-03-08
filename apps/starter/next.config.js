@@ -7,16 +7,26 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
 const { withModulesPlugin } = require("@vactory/next-server")
+const path = require("path")
 
 /**
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
   reactStrictMode: true,
-  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-  //   console.log(config)
-  //   return config
-  // },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        "@vactory/ui/button": path.resolve(
+          __dirname,
+          "components/button/button.js"
+        ),
+      },
+    }
+    return config
+  },
   poweredByHeader: false,
   // i18n: {
   //   locales: ["en", "fr", "ar"],
