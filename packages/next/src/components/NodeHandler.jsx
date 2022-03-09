@@ -11,7 +11,8 @@ export const NodeHandler = ({ node, params }) => {
   return (
     <React.Fragment>
       <Head>
-        {/* <title>{node.title}</title> */}
+        <link rel="preload" as="image/svg+xml" href="/icons.svg" />
+        <title>{node?.title}</title>
         <meta
           name="description"
           content="A Next.js site powered by a Drupal backend."

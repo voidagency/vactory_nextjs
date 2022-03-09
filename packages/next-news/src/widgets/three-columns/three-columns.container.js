@@ -1,7 +1,8 @@
 import React from "react"
 import get from "lodash.get"
 // import { Wysiwyg } from "@gatsby/ui"
-// import { Link } from "@gatsby/ui"
+import Link from "next/link"
+import { Button } from "@vactory/ui/button"
 import { NewsCard, normalizeDFNodes } from "@vactory/next-news"
 
 export const ThreeColumnsContainer = ({ data }) => {
@@ -14,10 +15,9 @@ export const ThreeColumnsContainer = ({ data }) => {
   )
   //   const description = <Wysiwyg html={raw_description} />
   const description = "Hello description"
-  //   const link = get(data, "components.0.link.url", null)
-  //   const link_label = get(data, "components.0.link.title", "")
+  const link = get(data, "components.0.link.url", null)
+  const link_label = get(data, "components.0.link.title", "")
   const posts = normalizeDFNodes(nodes)
-  // const posts = nodes
 
   return (
     <div className="relative bg-gray-50 dark:bg-gray-900 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
@@ -45,12 +45,9 @@ export const ThreeColumnsContainer = ({ data }) => {
           ))}
         </div>
         <div className="flex justify-center mt-12">
-          {/* <Link
-            href={link}
-            className="inline-flex items-center border border-gray-300 shadow-sm px-6 py-3 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            {link_label}
-          </Link> */}
+          <Link href={link} passHref>
+            <Button>{link_label}</Button>
+          </Link>
         </div>
       </div>
     </div>

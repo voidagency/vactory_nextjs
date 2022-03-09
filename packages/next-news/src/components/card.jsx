@@ -4,15 +4,7 @@ import Image from "next/image"
 const CardImage = ({ image, imageSettings, alt = "", ...rest }) => {
   return (
     <div style={{ position: "relative", height: "250px" }}>
-      <Image
-        src={image?._default}
-        alt={alt}
-        height={500}
-        //   layout="responsive"
-        layout="fill"
-        //   className="h-48 w-full object-cover"
-        {...rest}
-      />
+      <Image src={image?._default} alt={alt} layout="fill" {...rest} />
     </div>
   )
 }

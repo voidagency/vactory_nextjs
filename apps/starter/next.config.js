@@ -1,37 +1,37 @@
-// const nextTranslate = require("next-translate")
 const withPlugins = require("next-compose-plugins")
-
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
 const { withModulesPlugin } = require("@vactory/next-server")
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
+
 const path = require("path")
 
-/**
- * @type {import('next').NextConfig}
- **/
 const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
-    config.resolve = {
-      ...config.resolve,
-      alias: {
-        ...config.resolve.alias,
-        classnames: "clsx",
-        "@vactory/ui/button": path.resolve(
-          __dirname,
-          "components/button/button.js"
-        ),
-      },
-    }
+    config.resolve.alias["@vactory/ui/button"] = "@/components/button/button.js"
+    config.resolve.alias["classnames"] = "clsx"
+
+    // Bundle size tweaks.
+    config.resolve.alias["regenerator-runtime"] = path.resolve(
+      __dirname,
+      "../..",
+      "node_modules",
+      "next/dist/compiled/regenerator-runtime/runtime.js"
+    )
+
+    config.resolve.alias["react-is"] = path.resolve(
+      __dirname,
+      "../..",
+      "node_modules",
+      "next/dist/compiled/react-is"
+    )
+
+    config.plugins.push(new DuplicatePackageCheckerPlugin())
     return config
   },
   poweredByHeader: false,
-  // i18n: {
-  //   locales: ["en", "fr", "ar"],
-  //   defaultLocale: "fr",
-  //   localeDetection: false,
-  // },
   trailingSlash: false,
   // swcMinify: true,
   async redirects() {
@@ -55,10 +55,10 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ["localhost", "tailwindui.com"],
+    domains: ["localhost"],
     dangerouslyAllowSVG: true,
     // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ["image/webp"],
     minimumCacheTTL: 60,
@@ -68,8 +68,6 @@ const nextConfig = {
   },
 }
 
-// module.exports = nextConfig
-// module.exports = withBundleAnalyzer(nextConfig)
 module.exports = withPlugins(
   [
     [withBundleAnalyzer],
@@ -82,4 +80,3 @@ module.exports = withPlugins(
   ],
   nextConfig
 )
-// module.exports = withNodeTemplatePlugin(nextConfig)

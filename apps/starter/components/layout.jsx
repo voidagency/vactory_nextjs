@@ -5,9 +5,11 @@ import { useTranslations, useLocale } from "next-intl"
 // import { PreviewAlert } from "@/components/preview-alert"
 const navigation = [
   { name: "Home", href: "/fr" },
+  { name: "Arabic", href: "/ar" },
   { name: "News", href: "/fr/actualites" },
   { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
   { name: "404", href: "/fr/toto" },
+  { name: "Actus blocs", href: "/fr/actualites-blocs" },
   { name: "Article", href: "/fr/news/news-9" },
 ]
 
@@ -15,9 +17,9 @@ const UserInfo = () => {
   const { data, status } = useSession()
   const t = useTranslations()
 
-  if (status === "loading") {
-    return <></>
-  }
+  // if (status === "loading") {
+  //   return <></>
+  // }
 
   if (status === "authenticated") {
     return <p>Signed in as {data.user.email}</p>
@@ -45,13 +47,14 @@ export function Layout({ children }) {
           <div className="w-full py-6 flex items-center justify-between border-b border-indigo-500 lg:border-none">
             <div className="flex items-center">
               <a href="#">
-                <span className="sr-only">Workflow</span>
+                <span className="sr-only">Factory</span>
                 <img
                   className="h-10 w-auto"
                   height="40"
                   width="43"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
-                  alt=""
+                  src="/logo.png"
+                  alt="Factory"
+                  priority="high"
                 />
               </a>
               <div className="hidden ml-10 space-x-8 lg:block">

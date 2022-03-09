@@ -31,6 +31,7 @@ const Button = forwardRef(
       size = "normal",
       pill,
       disabled = false,
+      onClick = () => ()
       ...props
     },
     ref
@@ -39,6 +40,7 @@ const Button = forwardRef(
       ref={ref}
       disabled={disabled}
       type={type}
+      onClick={onClick}
       className={clsx(`
                 ${classes.base}
                 ${classes.size[size]}
