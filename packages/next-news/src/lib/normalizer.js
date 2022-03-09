@@ -1,5 +1,5 @@
 import get from "lodash.get"
-import { stripHtml } from "string-strip-html"
+import { stripHtml } from "@vactory/next"
 import truncate from "truncate"
 
 export const normalizeNodes = (nodes) => {
@@ -8,7 +8,7 @@ export const normalizeNodes = (nodes) => {
     title: post.title,
     url: get(post, "path.alias", "#."),
     excerpt: truncate(
-      stripHtml(get(post, "field_vactory_excerpt.processed", "")).result,
+      stripHtml(get(post, "field_vactory_excerpt.processed", "")),
       100
     ),
     category: get(post, "field_vactory_taxonomy_1.name", null),
@@ -21,7 +21,7 @@ export const normalizeDFNodes = (nodes, excerptLimit = 100) => {
     id: post.id,
     title: post.title,
     url: get(post, "url", "#."),
-    excerpt: truncate(stripHtml(get(post, "excerpt", "")).result, excerptLimit),
+    excerpt: truncate(stripHtml(get(post, "excerpt", "")), excerptLimit),
     category: get(post, "category.label", null),
     image: get(post, "image", null),
   }))

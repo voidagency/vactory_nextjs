@@ -1,5 +1,6 @@
 import React from "react"
-import { Icon, BackToTop } from "@vactory/ui"
+import { BackToTop } from "./back-to-top.container"
+import { Icon } from "../icon"
 import { PlaceholderSections } from "../_helpers/section"
 
 export const Default = () => {

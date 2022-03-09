@@ -1,4 +1,4 @@
-import { Card } from "@vactory/ui"
+import { Card } from "@vactory/ui/card"
 import Image from "next/image"
 
 const CardImage = ({ image, imageSettings, alt = "", ...rest }) => {

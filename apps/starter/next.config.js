@@ -1,5 +1,3 @@
-// @ts-check
-
 // const nextTranslate = require("next-translate")
 const withPlugins = require("next-compose-plugins")
 
@@ -19,6 +17,7 @@ const nextConfig = {
       ...config.resolve,
       alias: {
         ...config.resolve.alias,
+        classnames: "clsx",
         "@vactory/ui/button": path.resolve(
           __dirname,
           "components/button/button.js"

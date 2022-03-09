@@ -1,6 +1,6 @@
 import React from "react"
 import { Widgets } from "@vactory/next"
-import { Icon } from "@vactory/ui"
+import { Icon } from "@vactory/ui/icon"
 
 const Alert = ({ children }) => (
   <div className="max-w-4xl mx-auto bg-yellow-50 ltr:border-l-4 rtl:border-r-4 border-yellow-400 p-4 my-2.5">

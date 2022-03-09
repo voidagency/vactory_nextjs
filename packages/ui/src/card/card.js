@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "@vactory/ui"
+import { Link } from "../link"
 
 export const Card = ({ title, excerpt, image, url, category }) => {
   return (
