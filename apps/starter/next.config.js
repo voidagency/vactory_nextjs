@@ -35,7 +35,7 @@ const nextConfig = {
   trailingSlash: false,
   // swcMinify: true,
   async redirects() {
-    // @todo: Move to node handler getServerSideProps
+    // All redirections are handled by Drupal redirect module except for this one.
     return [
       {
         source: "/",

@@ -23,33 +23,54 @@ export const NodeHandler = ({ node, params }) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  // const path = require("path")
-  // const React = require("react")
-  // const createElement = React.createElement
+const getLocal = (slug) => {
+  const match = slug.match(/^([\w]{2})\//)
+  if (!match) {
+    return ""
+  }
 
+  return match[1]
+}
+
+export async function getServerSideProps(context) {
   let { slug } = context.params
   const params = context.query
   delete params.slug
-  const langprefix = slug[0]
   slug = Array.isArray(slug) ? slug.join("/") : slug
+  const langprefix = getLocal(slug)
+  const locale = langprefix ? `${langprefix}/` : ``
 
   // Router stuff
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/router/translate-path?path=${slug}`
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}router/translate-path?path=${slug}`
     )
-    const router = await res.json()
+
+    if (!response.ok) {
+      return {
+        notFound: true,
+      }
+    }
+
+    const router = await response.json()
+
+    // Check for redirect.
+    if (router.redirect?.length) {
+      const [redirect] = router.redirect
+      return {
+        redirect: {
+          destination: redirect.to,
+          permanent: redirect.status === "301",
+        },
+      }
+    }
 
     // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
     // @todo: send params to Drupal JSON:API
-    const node = await fetcher(
-      `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}/api/node/${router.entity.bundle}/${router.entity.uuid}`,
-      {
-        params: nodeParams,
-      }
-    )
+    const node = await fetcher(router.jsonapi.individual, {
+      params: nodeParams,
+    })
 
     const langcode = node.langcode
 

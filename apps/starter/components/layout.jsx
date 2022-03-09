@@ -10,7 +10,7 @@ const navigation = [
   { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
   { name: "404", href: "/fr/toto" },
   { name: "Actus blocs", href: "/fr/actualites-blocs" },
-  { name: "Article", href: "/fr/news/news-9" },
+  { name: "Redirect", href: "/fr/test-hamza" },
 ]
 
 const UserInfo = () => {
