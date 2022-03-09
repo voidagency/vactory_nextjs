@@ -7,6 +7,7 @@ import NodeDefault from "./NodeDefault"
 import logger from "../logger/logger"
 import LRUCache from "lru-cache"
 
+// @todo: disable dev ? used only in routing ?
 const ssrCache = new LRUCache({
   max: 100,
   ttl: 1000 * 60 * 60, // 1 hour
@@ -30,7 +31,7 @@ export const NodeHandler = ({ node, params }) => {
 }
 
 const getLocal = (slug) => {
-  const match = slug.match(/^([\w]{2})\//)
+  const match = slug.match(/^([\w]{2})/)
   if (!match) {
     return ""
   }
