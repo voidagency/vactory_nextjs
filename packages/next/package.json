@@ -3,5 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./wysiwyg": "./src/components/Wysiwyg.jsx"
+  }
 }

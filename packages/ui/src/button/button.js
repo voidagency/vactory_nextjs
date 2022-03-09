@@ -31,7 +31,7 @@ const Button = forwardRef(
       size = "normal",
       pill,
       disabled = false,
-      onClick = () => ()
+      onClick = null,
       ...props
     },
     ref

@@ -1,6 +1,6 @@
 import React from "react"
 import get from "lodash.get"
-// import { Wysiwyg } from "@gatsby/ui"
+import { Wysiwyg } from "@vactory/next/wysiwyg"
 import Link from "next/link"
 import { Button } from "@vactory/ui/button"
 import { NewsCard, normalizeDFNodes } from "@vactory/next-news"
@@ -13,8 +13,7 @@ export const ThreeColumnsContainer = ({ data }) => {
     "components.0.description.value.#text",
     null
   )
-  //   const description = <Wysiwyg html={raw_description} />
-  const description = "Hello description"
+  const description = <Wysiwyg html={raw_description} />
   const link = get(data, "components.0.link.url", null)
   const link_label = get(data, "components.0.link.title", "")
   const posts = normalizeDFNodes(nodes)
