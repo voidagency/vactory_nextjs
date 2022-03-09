@@ -5,6 +5,12 @@ import { TemplatesMapping } from "../../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
 import NodeDefault from "./NodeDefault"
 import logger from "../logger/logger"
+import LRUCache from "lru-cache"
+
+const ssrCache = new LRUCache({
+  max: 100,
+  ttl: 1000 * 60 * 60, // 1 hour
+})
 
 export const NodeHandler = ({ node, params }) => {
   const Component = TemplatesMapping[node.type] || NodeDefault
@@ -42,17 +48,25 @@ export async function getServerSideProps(context) {
 
   // Router stuff
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}router/translate-path?path=${slug}`
-    )
+    const cacheRouterKey = `${locale}-${slug}`
+    let router
 
-    if (!response.ok) {
-      return {
-        notFound: true,
+    if (!ssrCache.has(cacheRouterKey)) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}router/translate-path?path=${slug}`
+      )
+
+      if (!response.ok) {
+        return {
+          notFound: true,
+        }
       }
-    }
 
-    const router = await response.json()
+      router = await response.json()
+      ssrCache.set(cacheRouterKey, router)
+    } else {
+      router = ssrCache.get(cacheRouterKey)
+    }
 
     // Check for redirect.
     if (router.redirect?.length) {
