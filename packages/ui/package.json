@@ -5,7 +5,12 @@
   "main": "index.js",
   "license": "MIT",
   "exports": {
-    "./*": "./src"
+    "./back-to-top": "./src/back-to-top",
+    "./button": "./src/button",
+    "./card": "./src/card",
+    "./icon": "./src/icon",
+    "./link": "./src/link",
+    "./offline": "./src/offline"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
