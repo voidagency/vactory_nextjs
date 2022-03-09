@@ -6,7 +6,7 @@ import Toast from "cogo-toast"
 let hideToast = () => {}
 let wasOffline = false
 
-const Offline = (text) => {
+const Offline = ({ text }) => {
   useEffect(() => {
     const { hide } = Toast.warn(text, {
       position: "bottom-center",
@@ -22,7 +22,7 @@ const Offline = (text) => {
   return null
 }
 
-const Online = (text) => {
+const Online = ({ text }) => {
   useEffect(() => {
     hideToast()
 
