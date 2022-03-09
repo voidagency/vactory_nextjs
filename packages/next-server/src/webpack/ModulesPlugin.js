@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 const Log = require("next/dist/build/output/log")
+const fse = require("fs-extra")
 
 const generateModulesIndex = async (options) => {
   const modules = options?.enabledModules || []
@@ -33,9 +34,11 @@ const generateNodeTemplatesIndex = async (modules) => {
   })
 
   // @TODO: ensure file exist.
+
   const exportPath = path.resolve(
     __dirname + "/../../../next/.tmp/node-templates.js"
   )
+  await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
     exportPath,
@@ -60,6 +63,7 @@ const generateNodeRouteIndex = async (modules) => {
   const exportPath = path.resolve(
     __dirname + "/../../../next/.tmp/node-api-routes.js"
   )
+  await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
     exportPath,
@@ -98,6 +102,7 @@ const generateApiRoutesIndex = async (modules) => {
   const exportPath = path.resolve(
     __dirname + "/../../../next/.tmp/api-routes.js"
   )
+  await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
     exportPath,
@@ -130,6 +135,7 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
   const exportPath = path.resolve(
     __dirname + "/../../../next/.tmp/df-templates.js"
   )
+  await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
     exportPath,
