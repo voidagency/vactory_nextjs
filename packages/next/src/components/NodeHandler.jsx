@@ -31,30 +31,35 @@ export const NodeHandler = ({ node, params }) => {
 }
 
 const getLocal = (slug) => {
-  const match = slug.match(/^([\w]{2})/)
-  if (!match) {
+  if (Array.isArray(slug)) {
+    if (["ar", "en", "fr"].includes(slug[0])) return slug[0]
     return ""
+  } else {
+    const match = slug.match(/^([\w]{2})/)
+    if (!match) {
+      return ""
+    }
+    return match[1]
   }
-
-  return match[1]
 }
 
 export async function getServerSideProps(context) {
-  let { slug } = context.params
-  const params = context.query
-  delete params.slug
-  slug = Array.isArray(slug) ? slug.join("/") : slug
-  const langprefix = getLocal(slug)
-  const locale = langprefix ? `${langprefix}/` : ``
+  const { slug, ...query } = context.query
+  // delete query.slug
+  const joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
+  const locale = getLocal(slug)
+  const langprefix = locale ? `${locale}/` : ``
 
   // Router stuff
   try {
-    const cacheRouterKey = `${locale}-${slug}`
+    const cacheRouterKey = `${locale}-${joinedSlug}`
     let router
 
-    if (!ssrCache.has(cacheRouterKey)) {
+    if (ssrCache.has(cacheRouterKey)) {
+      router = ssrCache.get(cacheRouterKey)
+    } else {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}router/translate-path?path=${slug}`
+        `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}router/translate-path?path=${joinedSlug}`
       )
 
       if (!response.ok) {
@@ -65,8 +70,6 @@ export async function getServerSideProps(context) {
 
       router = await response.json()
       ssrCache.set(cacheRouterKey, router)
-    } else {
-      router = ssrCache.get(cacheRouterKey)
     }
 
     // Check for redirect.
@@ -98,7 +101,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         node: node,
-        params: params && Object.keys(params).length > 0 ? params : null,
+        params: Object.keys(query).length > 0 ? query : null,
         i18n: (await import(`translations/${langcode}.json`)).default,
         locale: langcode,
       },
