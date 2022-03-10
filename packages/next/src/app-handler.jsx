@@ -1,17 +1,13 @@
 import { NextIntlProvider } from "next-intl"
 import { SessionProvider } from "next-auth/react"
-// import Router from "next/router"
 import dynamic from "next/dynamic"
-// import NProgress from "nprogress"
+import getConfig from "next/config"
 
-// Router.events.on("routeChangeStart", function () {
-//   NProgress.start()
-// })
-// Router.events.on("routeChangeComplete", () => NProgress.done())
-// Router.events.on("routeChangeError", () => NProgress.done())
+const { publicRuntimeConfig } = getConfig()
+
 const TopProgressBar = dynamic(
   () => {
-    return import("./TopProgressBar")
+    return import("./top-progress-bar")
   },
   { ssr: false }
 )
@@ -26,7 +22,7 @@ export const AppHandler = ({
       <SessionProvider session={session}>
         <NextIntlProvider
           messages={pageProps?.i18n || {}}
-          locale={pageProps?.locale || "fr"}
+          locale={pageProps?.locale || publicRuntimeConfig.i18n.defaultLanguage}
         >
           {children}
         </NextIntlProvider>

@@ -9,6 +9,6 @@
   },
   "exports": {
     ".": "./index.js",
-    "./wysiwyg": "./src/components/Wysiwyg.jsx"
+    "./wysiwyg": "./src/wysiwyg.jsx"
   }
 }
