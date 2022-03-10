@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "exports": {
     ".": "./index.js",
     "./wysiwyg": "./src/components/Wysiwyg.jsx"

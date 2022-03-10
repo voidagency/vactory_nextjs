@@ -9,6 +9,17 @@ const path = require("path")
 
 const nextConfig = {
   reactStrictMode: true,
+  // distDir: "build",
+  publicRuntimeConfig: {
+    i18n: {
+      defaultLanguage: "fr",
+      availableLanguages: ["fr", "ar"],
+      languageLabels: [
+        { code: "fr", label: "Français" },
+        { code: "ar", label: "العربية" },
+      ],
+    },
+  },
   webpack: (config) => {
     config.resolve.alias["@vactory/ui/button"] = "@/components/button/button.js"
     config.resolve.alias["classnames"] = "clsx"

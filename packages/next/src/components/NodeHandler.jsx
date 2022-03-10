@@ -5,6 +5,9 @@ import { TemplatesMapping } from "../../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
 import NodeDefault from "./NodeDefault"
 import logger from "../logger/logger"
+import { getLocaleFromPath } from "../utils"
+import getConfig from "next/config"
+
 import LRUCache from "lru-cache"
 
 // @todo: disable dev ? used only in routing ?
@@ -30,21 +33,16 @@ export const NodeHandler = ({ node, params }) => {
   )
 }
 
-const getLocal = (slug) => {
-  const match = slug.match(/^([\w]{2})/)
-  if (!match) {
-    return ""
-  }
-
-  return match[1]
-}
-
 export async function getServerSideProps(context) {
+  const { publicRuntimeConfig } = getConfig()
   let { slug } = context.params
   const params = context.query
   delete params.slug
   slug = Array.isArray(slug) ? slug.join("/") : slug
-  const langprefix = getLocal(slug)
+  const langprefix = getLocaleFromPath(
+    slug,
+    publicRuntimeConfig.i18n.availableLanguages
+  )
   const locale = langprefix ? `${langprefix}/` : ``
 
   // Router stuff
