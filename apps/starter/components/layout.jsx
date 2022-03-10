@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useTranslations, useLocale } from "next-intl"
+import { useMenu } from "@vactory/next"
 
 // import { PreviewAlert } from "@/components/preview-alert"
 const navigation = [
@@ -36,6 +37,7 @@ const UserInfo = () => {
 
 export function Layout({ children }) {
   const locale = useLocale()
+  const navigation = useMenu("main")
 
   return (
     <>
@@ -59,9 +61,9 @@ export function Layout({ children }) {
               </a>
               <div className="hidden ml-10 space-x-8 lg:block">
                 {navigation.map((link) => (
-                  <Link key={link.name} href={link.href} passHref>
+                  <Link key={link.id} href={link.url} passHref>
                     <a className="text-base font-medium text-white hover:text-indigo-50">
-                      {link.name}
+                      {link.title}
                     </a>
                   </Link>
                 ))}
@@ -79,9 +81,9 @@ export function Layout({ children }) {
           </div>
           <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
             {navigation.map((link) => (
-              <Link key={link.name} href={link.href} passHref>
+              <Link key={link.id} href={link.url} passHref>
                 <a className="text-base font-medium text-white hover:text-indigo-50">
-                  {link.name}
+                  {link.title}
                 </a>
               </Link>
             ))}

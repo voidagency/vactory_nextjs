@@ -1,6 +1,7 @@
 import { NextIntlProvider } from "next-intl"
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
+import { MenuProvider } from "./menus"
 import { getDefaultLanguage } from "./utils"
 
 const TopProgressBar = dynamic(
@@ -24,7 +25,7 @@ export const AppHandler = ({
           messages={pageProps?.i18n || {}}
           locale={pageProps?.locale || defaultLanguage}
         >
-          {children}
+          <MenuProvider menus={pageProps?.menus || []}>{children}</MenuProvider>
         </NextIntlProvider>
       </SessionProvider>
     </>
