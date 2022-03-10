@@ -3,9 +3,11 @@ const fs = require("fs")
 const Log = require("next/dist/build/output/log")
 const fse = require("fs-extra")
 
+const tmpFolderPath = path.resolve(__dirname, "../", ".tmp")
+
 const generateModulesIndex = async (options) => {
   const modules = options?.enabledModules || []
-  const packagesFolder = path.resolve("../../packages")
+  const packagesFolder = path.resolve(__dirname, "../../")
   const modulesInfo = modules
     .map((m) => `${packagesFolder}/${m}/module.js`)
     .map((filePath) => require(filePath))
@@ -33,11 +35,7 @@ const generateNodeTemplatesIndex = async (modules) => {
     mappings.push(`  "${node.id}":${prefix}${node.namedExport}`)
   })
 
-  // @TODO: ensure file exist.
-
-  const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/node-templates.js"
-  )
+  const exportPath = path.resolve(tmpFolderPath, "node-templates.js")
   await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
@@ -59,10 +57,7 @@ const generateNodeRouteIndex = async (modules) => {
     mappings.push(`  "${node.id}": ${JSON.stringify(node.params)}`)
   })
 
-  // @TODO: ensure file exist.
-  const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/node-api-routes.js"
-  )
+  const exportPath = path.resolve(tmpFolderPath, "node-api-routes.js")
   await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
@@ -98,10 +93,7 @@ const generateApiRoutesIndex = async (modules) => {
     })
   })
 
-  // @TODO: ensure file exist.
-  const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/api-routes.js"
-  )
+  const exportPath = path.resolve(tmpFolderPath, "api-routes.js")
   await fse.ensureFile(exportPath)
 
   fs.writeFileSync(
@@ -131,10 +123,7 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
     })
   })
 
-  // @TODO: ensure file exist.
-  const exportPath = path.resolve(
-    __dirname + "/../../../next/.tmp/df-templates.js"
-  )
+  const exportPath = path.resolve(tmpFolderPath, "df-templates.js")
   await fse.ensureFile(exportPath)
 
   fs.writeFileSync(

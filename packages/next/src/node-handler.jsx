@@ -1,11 +1,15 @@
 import React from "react"
 import Head from "next/head"
-import { fetcher } from "../jsonapi"
-import { TemplatesMapping } from "../../.tmp/node-templates"
-import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
-import NodeDefault from "./NodeDefault"
-import logger from "../logger/logger"
+import { fetcher } from "./api-client"
+import { TemplatesMapping } from "../.tmp/node-templates"
+import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
+import NodeDefault from "./node-default"
+import logger from "./logger/logger"
+import { getLocaleFromPath, getEnabledLanguages } from "./utils"
+import { getTranslations } from "./get-translations"
 import LRUCache from "lru-cache"
+
+const enabledLanguages = getEnabledLanguages()
 
 // @todo: disable dev ? used only in routing ?
 const ssrCache = new LRUCache({
@@ -30,24 +34,11 @@ export const NodeHandler = ({ node, params }) => {
   )
 }
 
-const getLocal = (slug) => {
-  if (Array.isArray(slug)) {
-    if (["ar", "en", "fr"].includes(slug[0])) return slug[0]
-    return ""
-  } else {
-    const match = slug.match(/^([\w]{2})/)
-    if (!match) {
-      return ""
-    }
-    return match[1]
-  }
-}
-
 export async function getServerSideProps(context) {
   const { slug, ...query } = context.query
   // delete query.slug
   const joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
-  const locale = getLocal(slug)
+  const locale = getLocaleFromPath(joinedSlug, enabledLanguages)
   const langprefix = locale ? `${locale}/` : ``
 
   // Router stuff
@@ -85,7 +76,6 @@ export async function getServerSideProps(context) {
 
     // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
-    // @todo: send params to Drupal JSON:API
     const node = await fetcher(router.jsonapi.individual, {
       params: nodeParams,
     })
@@ -102,7 +92,7 @@ export async function getServerSideProps(context) {
       props: {
         node: node,
         params: Object.keys(query).length > 0 ? query : null,
-        i18n: (await import(`translations/${langcode}.json`)).default,
+        i18n: await getTranslations(langcode), // @todo: cache this
         locale: langcode,
       },
     }
