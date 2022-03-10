@@ -6,6 +6,7 @@ import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
 import NodeDefault from "./node-default"
 import logger from "./logger/logger"
 import { getLocaleFromPath, getEnabledLanguages } from "./utils"
+import { getTranslations } from "./get-translations"
 import LRUCache from "lru-cache"
 
 const enabledLanguages = getEnabledLanguages()
@@ -76,7 +77,6 @@ export async function getServerSideProps(context) {
 
     // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
-    // @todo: send params to Drupal JSON:API
     const node = await fetcher(router.jsonapi.individual, {
       params: nodeParams,
     })
@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
       props: {
         node: node,
         params: params && Object.keys(params).length > 0 ? params : null,
-        i18n: (await import(`translations/${langcode}.json`)).default,
+        i18n: await getTranslations(langcode), // @todo: cache this
         locale: langcode,
       },
     }

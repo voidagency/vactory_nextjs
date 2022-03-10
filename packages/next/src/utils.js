@@ -4,6 +4,8 @@ const { publicRuntimeConfig } = getConfig()
 
 export const stripHtml = (inputStr) => inputStr.replace(/(<([^>]+)>)/gi, "")
 
+export const isEmpty = (value) => value == null || value.length === 0
+
 /**
  * Formats a single URL query
  *
