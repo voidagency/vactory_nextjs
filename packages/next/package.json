@@ -9,6 +9,7 @@
   },
   "exports": {
     ".": "./index.js",
-    "./wysiwyg": "./src/wysiwyg.jsx"
+    "./wysiwyg": "./src/wysiwyg.jsx",
+    "./webpack-modules-loader": "./src/webpack-modules-loader.js"
   }
 }

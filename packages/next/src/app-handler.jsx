@@ -1,9 +1,7 @@
 import { NextIntlProvider } from "next-intl"
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
-import getConfig from "next/config"
-
-const { publicRuntimeConfig } = getConfig()
+import { getDefaultLanguage } from "./utils"
 
 const TopProgressBar = dynamic(
   () => {
@@ -11,6 +9,8 @@ const TopProgressBar = dynamic(
   },
   { ssr: false }
 )
+
+const defaultLanguage = getDefaultLanguage()
 
 export const AppHandler = ({
   children,
@@ -22,7 +22,7 @@ export const AppHandler = ({
       <SessionProvider session={session}>
         <NextIntlProvider
           messages={pageProps?.i18n || {}}
-          locale={pageProps?.locale || publicRuntimeConfig.i18n.defaultLanguage}
+          locale={pageProps?.locale || defaultLanguage}
         >
           {children}
         </NextIntlProvider>

@@ -5,10 +5,10 @@ import { TemplatesMapping } from "../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
 import NodeDefault from "./node-default"
 import logger from "./logger/logger"
-import { getLocaleFromPath } from "./utils"
-import getConfig from "next/config"
-
+import { getLocaleFromPath, getEnabledLanguages } from "./utils"
 import LRUCache from "lru-cache"
+
+const enabledLanguages = getEnabledLanguages()
 
 // @todo: disable dev ? used only in routing ?
 const ssrCache = new LRUCache({
@@ -34,15 +34,11 @@ export const NodeHandler = ({ node, params }) => {
 }
 
 export async function getServerSideProps(context) {
-  const { publicRuntimeConfig } = getConfig()
   let { slug } = context.params
   const params = context.query
   delete params.slug
   slug = Array.isArray(slug) ? slug.join("/") : slug
-  const langprefix = getLocaleFromPath(
-    slug,
-    publicRuntimeConfig.i18n.availableLanguages
-  )
+  const langprefix = getLocaleFromPath(slug, enabledLanguages)
   const locale = langprefix ? `${langprefix}/` : ``
 
   // Router stuff

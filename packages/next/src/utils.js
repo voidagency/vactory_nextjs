@@ -1,3 +1,7 @@
+import getConfig from "next/config"
+
+const { publicRuntimeConfig } = getConfig()
+
 export const stripHtml = (inputStr) => inputStr.replace(/(<([^>]+)>)/gi, "")
 
 /**
@@ -102,4 +106,16 @@ export const cleanup = (json) => {
   delete json.data?.internal_user?.revision_uid
 
   return json.data
+}
+
+export const getI18nConfig = () => {
+  return publicRuntimeConfig.i18n
+}
+
+export const getEnabledLanguages = () => {
+  return getI18nConfig().enabled
+}
+
+export const getDefaultLanguage = () => {
+  return getI18nConfig().default
 }

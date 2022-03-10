@@ -2,26 +2,44 @@ const withPlugins = require("next-compose-plugins")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
-const { withModulesPlugin } = require("@vactory/next-server")
+const withModulesPlugin = require("@vactory/next/webpack-modules-loader")
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
-
 const path = require("path")
 
+const i18n = {
+  default: "fr",
+  enabled: ["fr", "ar"],
+  labels: [
+    { code: "fr", label: "Français" },
+    { code: "ar", label: "العربية" },
+  ],
+}
+
+const overrides = (alias) => {
+  alias["@vactory/ui/button"] = "@/components/button/button.js"
+  return alias
+}
+
 const nextConfig = {
+  images: {
+    domains: ["localhost"],
+    dangerouslyAllowSVG: true,
+    // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ["image/webp"],
+    minimumCacheTTL: 60,
+  },
+  publicRuntimeConfig: {
+    i18n: i18n,
+  },
   reactStrictMode: true,
   // distDir: "build",
-  publicRuntimeConfig: {
-    i18n: {
-      defaultLanguage: "fr",
-      availableLanguages: ["fr", "ar"],
-      languageLabels: [
-        { code: "fr", label: "Français" },
-        { code: "ar", label: "العربية" },
-      ],
-    },
-  },
+  // swcMinify: true,
+  poweredByHeader: false,
+  trailingSlash: false,
   webpack: (config) => {
-    config.resolve.alias["@vactory/ui/button"] = "@/components/button/button.js"
+    config.resolve.alias = overrides(config.resolve.alias)
     config.resolve.alias["classnames"] = "clsx"
 
     // Bundle size tweaks.
@@ -42,15 +60,12 @@ const nextConfig = {
     config.plugins.push(new DuplicatePackageCheckerPlugin())
     return config
   },
-  poweredByHeader: false,
-  trailingSlash: false,
-  // swcMinify: true,
   async redirects() {
     // All redirections are handled by Drupal redirect module except for this one.
     return [
       {
         source: "/",
-        destination: "/fr",
+        destination: "/" + i18n.default,
         permanent: true,
       },
     ]
@@ -64,15 +79,6 @@ const nextConfig = {
         locale: false,
       },
     ]
-  },
-  images: {
-    domains: ["localhost"],
-    dangerouslyAllowSVG: true,
-    // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ["image/webp"],
-    minimumCacheTTL: 60,
   },
   experimental: {
     externalDir: true,
