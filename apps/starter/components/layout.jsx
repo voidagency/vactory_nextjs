@@ -4,15 +4,15 @@ import { useTranslations, useLocale } from "next-intl"
 import { useMenu } from "@vactory/next"
 
 // import { PreviewAlert } from "@/components/preview-alert"
-const navigation = [
-  { name: "Home", href: "/fr" },
-  { name: "Arabic", href: "/ar" },
-  { name: "News", href: "/fr/actualites" },
-  { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
-  { name: "404", href: "/fr/toto" },
-  { name: "Actus blocs", href: "/fr/actualites-blocs" },
-  { name: "Redirect", href: "/fr/test-hamza" },
-]
+// const navigation = [
+//   { name: "Home", href: "/fr" },
+//   { name: "Arabic", href: "/ar" },
+//   { name: "News", href: "/fr/actualites" },
+//   { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
+//   { name: "404", href: "/fr/toto" },
+//   { name: "Actus blocs", href: "/fr/actualites-blocs" },
+//   { name: "Redirect", href: "/fr/test-hamza" },
+// ]
 
 const UserInfo = () => {
   const { data, status } = useSession()
