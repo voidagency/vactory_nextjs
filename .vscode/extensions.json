@@ -1,9 +1,23 @@
 {
   "recommendations": [
+    "aaron-bond.better-comments",
+    "balmacefa.linehighlightbookmarkvscode",
+    "bibhasdn.unique-lines",
+    "bradlc.vscode-tailwindcss",
+    "cipchk.cssrem",
     "esbenp.prettier-vscode",
+    "firefox-devtools.vscode-firefox-debug",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint",
-    "redhat.vscode-xml",
-    "wix.vscode-import-cost"
+    "mgm793.react-functional-snippet",
+    "mhutchie.git-graph",
+    "riazxrazor.html-to-jsx",
+    "stevencl.addDocComments",
+    // "oouo-diogo-perdigao.docthis",
+    "TedisAgolli.hex-to-tailwind",
+    "tlevesque2.duplicate-finder",
+    "Wattenberger.footsteps",
+    "wix.glean",
+    "wix.vscode-import-cost",
+    "wmaurer.change-case"
   ]
 }

@@ -25,15 +25,25 @@ const ssrCache = new LRUCache({
 
 export const NodeHandler = ({ node, params }) => {
   const Component = TemplatesMapping[node.type] || NodeDefault
+  const metatags = node.metatag_normalized || []
   return (
     <React.Fragment>
       <Head>
         <link rel="preload" as="image/svg+xml" href="/icons.svg" />
         <title>{node?.title}</title>
-        <meta
-          name="description"
-          content="A Next.js site powered by a Drupal backend."
-        />
+        {/* // TODO: create a MetaTags component */}
+        {metatags.map((tag, key) => {
+          const Tag = tag.tag
+          const backendBase = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL
+          const frontendBase = process.env.NEXT_PUBLIC_BASE_URL
+
+          if (tag.attributes?.href?.startsWith(backendBase))
+            tag.attributes.href = tag.attributes.href.replace(
+              backendBase,
+              frontendBase
+            )
+          return <Tag key={key} {...tag.attributes} />
+        })}
       </Head>
       <Component node={node} params={params} />
     </React.Fragment>
@@ -41,21 +51,22 @@ export const NodeHandler = ({ node, params }) => {
 }
 
 export async function getServerSideProps(context) {
-  let { slug } = context.params
-  const params = context.query
-  delete params.slug
-  slug = Array.isArray(slug) ? slug.join("/") : slug
-  const langprefix = getLocaleFromPath(slug, enabledLanguages)
-  const locale = langprefix ? `${langprefix}/` : ``
+  const { slug, ...query } = context.query
+  // delete query.slug
+  const joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
+  const locale = getLocaleFromPath(joinedSlug, enabledLanguages)
+  const langprefix = locale ? `${locale}/` : ``
 
   // Router stuff
   try {
-    const cacheRouterKey = `${locale}-${slug}`
+    const cacheRouterKey = `${locale}-${joinedSlug}`
     let router
 
-    if (!ssrCache.has(cacheRouterKey)) {
+    if (ssrCache.has(cacheRouterKey)) {
+      router = ssrCache.get(cacheRouterKey)
+    } else {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}router/translate-path?path=${slug}`
+        `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}router/translate-path?path=${joinedSlug}`
       )
 
       if (!response.ok) {
@@ -66,8 +77,6 @@ export async function getServerSideProps(context) {
 
       router = await response.json()
       ssrCache.set(cacheRouterKey, router)
-    } else {
-      router = ssrCache.get(cacheRouterKey)
     }
 
     // Check for redirect.
@@ -99,7 +108,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         node: node,
-        params: params && Object.keys(params).length > 0 ? params : null,
+        params: Object.keys(query).length > 0 ? query : null,
         i18n: await getTranslations(langcode), // @todo: cache this
         menus: await getMenus(enabledMenus, langcode), // @todo: cache this
         locale: langcode,
