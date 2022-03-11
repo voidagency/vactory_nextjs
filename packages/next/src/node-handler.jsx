@@ -19,15 +19,25 @@ const ssrCache = new LRUCache({
 
 export const NodeHandler = ({ node, params }) => {
   const Component = TemplatesMapping[node.type] || NodeDefault
+  const metatags = node.metatag_normalized || []
   return (
     <React.Fragment>
       <Head>
         <link rel="preload" as="image/svg+xml" href="/icons.svg" />
         <title>{node?.title}</title>
-        <meta
-          name="description"
-          content="A Next.js site powered by a Drupal backend."
-        />
+        {/* // TODO: create a MetaTags component */}
+        {metatags.map((tag, key) => {
+          const Tag = tag.tag
+          const backendBase = process.env.NEXT_PUBLIC_DRUPAL_BASE_URL
+          const frontendBase = process.env.NEXT_PUBLIC_BASE_URL
+
+          if (tag.attributes?.href?.startsWith(backendBase))
+            tag.attributes.href = tag.attributes.href.replace(
+              backendBase,
+              frontendBase
+            )
+          return <Tag key={key} {...tag.attributes} />
+        })}
       </Head>
       <Component node={node} params={params} />
     </React.Fragment>
