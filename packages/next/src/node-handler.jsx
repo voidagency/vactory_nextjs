@@ -110,7 +110,7 @@ export async function getServerSideProps(context) {
         node: node,
         params: Object.keys(query).length > 0 ? query : null,
         i18n: await getTranslations(langcode), // @todo: cache this
-        menus: await getMenus(enabledMenus, langprefix), // @todo: cache this
+        menus: await getMenus(enabledMenus, locale), // @todo: cache this
         locale: langcode,
       },
     }

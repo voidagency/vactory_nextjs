@@ -46,6 +46,7 @@ const fetchMenu = async ({ name, locale }) => {
   }
 
   const data = await response.json()
+  console.log(`fetching ${name}`, data)
   return data
 }
 
@@ -61,6 +62,7 @@ export const getMenu = async (name, locale) => {
 }
 
 export const getMenus = async (names = [], locale) => {
+  console.log("getMenus", locale)
   const requests = names.map((name) =>
     fetchMenu({ name, locale }).then((res) => formatMenu(name, res))
   )
