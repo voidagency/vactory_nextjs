@@ -1,7 +1,5 @@
 const withPlugins = require("next-compose-plugins");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-	enabled: process.env.ANALYZE === "true",
-});
+const withBundleAnalyzer = require("@next/bundle-analyzer");
 const withModulesPlugin = require("@vactory/next/webpack-modules-loader");
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const path = require("path");
@@ -78,7 +76,11 @@ const nextConfig = {
 
 module.exports = withPlugins(
 	[
-		[withBundleAnalyzer],
+		[
+			withBundleAnalyzer({
+				enabled: process.env.ANALYZE === "true",
+			}),
+		],
 		[
 			withModulesPlugin,
 			{
