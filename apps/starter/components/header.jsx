@@ -1,17 +1,18 @@
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useTranslations, useLocale } from "next-intl"
+import { useMenu } from "@vactory/next"
 
 // import { PreviewAlert } from "@/components/preview-alert"
-const navigation = [
-  { name: "Home", href: "/fr" },
-  { name: "Arabic", href: "/ar" },
-  { name: "News", href: "/fr/actualites" },
-  { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
-  { name: "404", href: "/fr/toto" },
-  { name: "Actus blocs", href: "/fr/actualites-blocs" },
-  { name: "Redirect", href: "/fr/test-hamza" },
-]
+// const navigation = [
+//   { name: "Home", href: "/fr" },
+//   { name: "Arabic", href: "/ar" },
+//   { name: "News", href: "/fr/actualites" },
+//   { name: "News - Pretty URL", href: "/fr/actualites/maroc/immobilier" },
+//   { name: "404", href: "/fr/toto" },
+//   { name: "Actus blocs", href: "/fr/actualites-blocs" },
+//   { name: "Redirect", href: "/fr/test-hamza" },
+// ]
 
 const UserInfo = () => {
   const { data, status } = useSession()
@@ -36,6 +37,7 @@ const UserInfo = () => {
 
 export const Header = ({}) => {
   const locale = useLocale()
+  const navigation = useMenu("main")
   return (
     <header className="bg-indigo-600">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -54,9 +56,9 @@ export const Header = ({}) => {
             </a>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
-                <Link key={link.name} href={link.href} passHref>
+                <Link key={link.id} href={link.url} passHref>
                   <a className="text-base font-medium text-white hover:text-indigo-50">
-                    {link.name}
+                    {link.title}
                   </a>
                 </Link>
               ))}
@@ -74,9 +76,9 @@ export const Header = ({}) => {
         </div>
         <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
           {navigation.map((link) => (
-            <Link key={link.name} href={link.href} passHref>
+            <Link key={link.id} href={link.url} passHref>
               <a className="text-base font-medium text-white hover:text-indigo-50">
-                {link.name}
+                {link.title}
               </a>
             </Link>
           ))}

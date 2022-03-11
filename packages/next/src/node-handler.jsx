@@ -5,11 +5,17 @@ import { TemplatesMapping } from "../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
 import NodeDefault from "./node-default"
 import logger from "./logger/logger"
-import { getLocaleFromPath, getEnabledLanguages } from "./utils"
+import {
+  getLocaleFromPath,
+  getEnabledLanguages,
+  getEnabledMenus,
+} from "./utils"
 import { getTranslations } from "./get-translations"
+import { getMenus } from "./menus"
 import LRUCache from "lru-cache"
 
 const enabledLanguages = getEnabledLanguages()
+const enabledMenus = getEnabledMenus()
 
 // @todo: disable dev ? used only in routing ?
 const ssrCache = new LRUCache({
@@ -86,6 +92,7 @@ export async function getServerSideProps(context) {
 
     // Fetch data from external API.
     const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
+    // @todo: server not responding > 500
     const node = await fetcher(router.jsonapi.individual, {
       params: nodeParams,
     })
@@ -103,6 +110,7 @@ export async function getServerSideProps(context) {
         node: node,
         params: Object.keys(query).length > 0 ? query : null,
         i18n: await getTranslations(langcode), // @todo: cache this
+        menus: await getMenus(enabledMenus, langprefix), // @todo: cache this
         locale: langcode,
       },
     }

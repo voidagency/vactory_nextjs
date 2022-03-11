@@ -6,6 +6,7 @@ const withModulesPlugin = require("@vactory/next/webpack-modules-loader")
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
 const path = require("path")
 
+// @todo: move this outside ? no need to reload dev server
 const i18n = {
   default: "fr",
   enabled: ["fr", "ar"],
@@ -14,6 +15,8 @@ const i18n = {
     { code: "ar", label: "العربية" },
   ],
 }
+// @todo: move this outside ? no need to reload dev server
+const menus = ["main", "footer"]
 
 const overrides = (alias) => {
   alias["@vactory/ui/button"] = "@/components/button/button.js"
@@ -32,6 +35,7 @@ const nextConfig = {
   },
   publicRuntimeConfig: {
     i18n: i18n,
+    menus: menus,
   },
   reactStrictMode: true,
   // distDir: "build",

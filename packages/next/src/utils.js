@@ -121,3 +121,7 @@ export const getEnabledLanguages = () => {
 export const getDefaultLanguage = () => {
   return getI18nConfig().default
 }
+
+export const getEnabledMenus = () => {
+  return publicRuntimeConfig.menus
+}
