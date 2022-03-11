@@ -12,10 +12,12 @@ const generateModulesIndex = async (options) => {
 		.map((m) => `${packagesFolder}/${m}/module.config.js`)
 		.map((filePath) => require(filePath));
 
-	await generateNodeTemplatesIndex(modulesConfig);
-	await generateApiRoutesIndex(modulesConfig);
-	await generateNodeRouteIndex(modulesConfig);
-	await generateDynamicFieldTemplatesIndex(modulesConfig);
+	await Promise.all([
+		generateNodeTemplatesIndex(modulesConfig),
+		generateApiRoutesIndex(modulesConfig),
+		generateNodeRouteIndex(modulesConfig),
+		generateDynamicFieldTemplatesIndex(modulesConfig),
+	]);
 
 	Log.info("Compiled successfully templates");
 };
