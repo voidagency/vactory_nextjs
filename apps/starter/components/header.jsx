@@ -35,7 +35,7 @@ const UserInfo = () => {
   )
 }
 
-export const Header = ({}) => {
+export const Header = () => {
   const locale = useLocale()
   const navigation = useMenu("main")
   return (

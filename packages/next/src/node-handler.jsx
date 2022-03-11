@@ -104,13 +104,33 @@ export async function getServerSideProps(context) {
       "public, s-maxage=10, stale-while-revalidate=59"
     )
 
+    // @todo: find a better way to handle such cases.
+    const cacheI18nKey = langcode
+    const cacheMenusKey = `${enabledMenus.join("_")}-${langcode}`
+    let i18n = {}
+    let menus = []
+
+    if (ssrCache.has(cacheI18nKey)) {
+      i18n = ssrCache.get(cacheI18nKey)
+    } else {
+      i18n = await getTranslations(langcode)
+      ssrCache.set(cacheI18nKey, i18n)
+    }
+
+    if (ssrCache.has(cacheMenusKey)) {
+      menus = ssrCache.get(cacheMenusKey)
+    } else {
+      menus = await getMenus(enabledMenus, langcode)
+      ssrCache.set(cacheMenusKey, menus)
+    }
+
     // Pass data to the page via props
     return {
       props: {
         node: node,
         params: Object.keys(query).length > 0 ? query : null,
-        i18n: await getTranslations(langcode), // @todo: cache this
-        menus: await getMenus(enabledMenus, locale), // @todo: cache this
+        i18n: i18n,
+        menus: menus,
         locale: langcode,
       },
     }
