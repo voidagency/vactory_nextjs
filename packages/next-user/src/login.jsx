@@ -1,9 +1,20 @@
 import React from "react"
 import { useTranslations } from "next-intl"
+import { useSession } from "next-auth/react"
 
 export const LoginPage = ({ node }) => {
   const t = useTranslations()
+  const { data: session, status } = useSession()
+  const loading = status === "loading"
   const { csrfToken } = node
+
+  // When rendering client side don't display anything until loading is complete
+  if (typeof window !== "undefined" && loading) return null
+
+  if (session) {
+    return <h1>Already logged in</h1>
+  }
+
   return (
     <div className="relative px-4 sm:px-6 lg:px-8">
       <div className="text-lg max-w-prose mx-auto">
