@@ -1,11 +1,12 @@
 import { Fragment } from "react"
 
 import Link from "next/link"
-import { useSession, signOut, signIn } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { useLocale } from "next-intl"
 import { useMenu } from "@vactory/next"
 import { Menu, Transition } from "@headlessui/react"
 import classNames from "clsx"
+import { useRouter } from "next/router"
 
 const user = {
   name: "Chelsea Hagon",
@@ -22,6 +23,13 @@ const userNavigation = [
 
 const UserInfo = () => {
   const { data, status } = useSession()
+  const router = useRouter()
+
+  const signIn = () => {
+    router.push(
+      `/${router.locale}/user/login?callbackUrl=${process.env.NEXT_PUBLIC_BASE_URL}/${router.locale}${router.asPath}`
+    )
+  }
 
   if (status === "authenticated") {
     return (
