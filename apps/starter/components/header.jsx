@@ -2,7 +2,7 @@ import { Fragment } from "react"
 
 import Link from "next/link"
 import { useSession, signOut, signIn } from "next-auth/react"
-import { useTranslations, useLocale } from "next-intl"
+import { useLocale } from "next-intl"
 import { useMenu } from "@vactory/next"
 import { Menu, Transition } from "@headlessui/react"
 import classNames from "clsx"
@@ -22,7 +22,6 @@ const userNavigation = [
 
 const UserInfo = () => {
   const { data, status } = useSession()
-  const t = useTranslations()
 
   if (status === "authenticated") {
     return (
@@ -85,7 +84,7 @@ const UserInfo = () => {
       onClick={() => signIn()}
       className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
     >
-      Sign in {t("webform:Submit")}
+      Sign in
     </a>
   )
 }

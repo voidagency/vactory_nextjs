@@ -5,17 +5,11 @@ import { TemplatesMapping } from "../.tmp/node-templates"
 import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
 import NodeDefault from "./node-default"
 import logger from "./logger/logger"
-import {
-  // getLocaleFromPath,
-  // getEnabledLanguages,
-  getEnabledMenus,
-} from "./utils"
+import { getEnabledMenus } from "./utils"
 import { getTranslations } from "./get-translations"
 import { getMenus } from "./menus"
 import LRUCache from "lru-cache"
-import { getProviders, getCsrfToken } from "next-auth/react"
 
-// const enabledLanguages = getEnabledLanguages()
 const enabledMenus = getEnabledMenus()
 
 // @todo: disable dev ? used only in routing ?
@@ -79,24 +73,6 @@ export async function getServerSideProps(context) {
   } else {
     menus = await getMenus(enabledMenus, locale)
     ssrCache.set(cacheMenusKey, menus)
-  }
-
-  // @todo: move this to next-user.
-  if ("user/login" === joinedSlug) {
-    return {
-      props: {
-        node: {
-          title: "Login page",
-          type: "login",
-          providers: await getProviders(),
-          csrfToken: await getCsrfToken(context),
-        },
-        params: Object.keys(query).length > 0 ? query : null,
-        i18n: i18n,
-        menus: menus,
-        locale: locale,
-      },
-    }
   }
 
   // const locale = getLocaleFromPath(joinedSlug, enabledLanguages)

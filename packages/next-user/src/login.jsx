@@ -1,8 +1,9 @@
 import React from "react"
-import { signIn } from "next-auth/react"
+import { useTranslations } from "next-intl"
 
 export const LoginPage = ({ node }) => {
-  const { providers, csrfToken } = node
+  const t = useTranslations()
+  const { csrfToken } = node
   return (
     <div className="relative px-4 sm:px-6 lg:px-8">
       <div className="text-lg max-w-prose mx-auto">
@@ -53,7 +54,7 @@ export const LoginPage = ({ node }) => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Sign In
+            {t("webform:Submit")}
           </button>
           <a
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
