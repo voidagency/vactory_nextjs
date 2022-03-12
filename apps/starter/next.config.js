@@ -20,10 +20,16 @@ const menus = ["main", "footer"]
 
 const overrides = (alias) => {
   alias["@vactory/ui/button"] = "@/components/button/button.js"
+  alias["@vactory/ui/link"] = "@/components/link/link.js"
   return alias
 }
 
 const nextConfig = {
+  i18n: {
+    locales: [...i18n.enabled, "default"],
+    defaultLocale: "default",
+    localeDetection: true,
+  },
   images: {
     domains: ["localhost"],
     dangerouslyAllowSVG: true,
@@ -64,16 +70,16 @@ const nextConfig = {
     config.plugins.push(new DuplicatePackageCheckerPlugin())
     return config
   },
-  async redirects() {
-    // All redirections are handled by Drupal redirect module except for this one.
-    return [
-      {
-        source: "/",
-        destination: "/" + i18n.default,
-        permanent: true,
-      },
-    ]
-  },
+  // async redirects() {
+  //   // All redirections are handled by Drupal redirect module except for this one.
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "/" + i18n.default,
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
   async rewrites() {
     // @todo: download rewrites
     return [
@@ -95,7 +101,7 @@ module.exports = withPlugins(
     [
       withModulesPlugin,
       {
-        enabledModules: ["next-page", "next-news"],
+        enabledModules: ["next-page", "next-news", "next-user"],
       },
     ],
   ],
