@@ -52,7 +52,7 @@ const fetchMenu = async ({ name, locale }) => {
 const formatMenu = (name, data) => {
   return {
     name,
-    items: data.items,
+    items: data?.items || [],
   }
 }
 

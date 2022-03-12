@@ -77,8 +77,8 @@ const generateApiRoutesIndex = async (modules) => {
     const name = module.name
     const prefix = module.namedExportPrefix
     const api = module.api
-    const apiPrefix = api.prefix
-    const apiRoutes = api.routes || []
+    const apiPrefix = api?.prefix || ""
+    const apiRoutes = api?.routes || []
 
     apiRoutes.forEach((route) => {
       const namedRoute = `${prefix}${route.namedExport}`

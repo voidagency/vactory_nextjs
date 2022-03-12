@@ -14,10 +14,12 @@ const fetchTranslations = async () => {
 }
 
 const getTranslationsByLocale = (resources, locale) => {
-  return resources.find((resource) => resource.locale === locale).translations
+  return (
+    resources.find((resource) => resource.locale === locale)?.translations || []
+  )
 }
 
-const formatTranslationsForNextIntlProvider = (resources) => {
+const formatTranslationsForNextIntlProvider = (resources = []) => {
   const obj = {}
   resources.forEach((element) => {
     obj[element.source] = element.translation
