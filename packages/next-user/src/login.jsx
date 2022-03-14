@@ -1,9 +1,9 @@
 import React from "react"
-import { useTranslations } from "next-intl"
+import { useI18n } from "@vactory/next"
 import { useSession } from "next-auth/react"
 
 export const LoginPage = ({ node }) => {
-  const t = useTranslations()
+  const { t } = useI18n()
   const { data: session, status } = useSession()
   const loading = status === "loading"
   const { csrfToken } = node

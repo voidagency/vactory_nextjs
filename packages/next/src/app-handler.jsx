@@ -1,8 +1,9 @@
-import { NextIntlProvider } from "next-intl"
+// import { NextIntlProvider } from "next-intl"
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
 import { MenuProvider } from "./menus"
 import { getDefaultLanguage } from "./utils"
+import { I18n } from "./i18n"
 
 const TopProgressBar = dynamic(
   () => {
@@ -21,12 +22,12 @@ export const AppHandler = ({
     <>
       <TopProgressBar />
       <SessionProvider session={session}>
-        <NextIntlProvider
-          messages={pageProps?.i18n || {}}
+        <I18n
+          lngDict={pageProps?.i18n || {}}
           locale={pageProps?.locale || defaultLanguage}
         >
           <MenuProvider menus={pageProps?.menus || []}>{children}</MenuProvider>
-        </NextIntlProvider>
+        </I18n>
       </SessionProvider>
     </>
   )

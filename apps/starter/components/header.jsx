@@ -2,7 +2,7 @@ import { Fragment } from "react"
 
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
-import { useLocale } from "next-intl"
+// import { useLocale } from "next-intl"
 import { useMenu } from "@vactory/next"
 import { Menu, Transition } from "@headlessui/react"
 import classNames from "clsx"
@@ -98,7 +98,8 @@ const UserInfo = () => {
 }
 
 export const Header = () => {
-  const locale = useLocale()
+  const router = useRouter()
+  const locale = router.locale
   const navigation = useMenu("main")
   return (
     <header className="bg-indigo-600">
