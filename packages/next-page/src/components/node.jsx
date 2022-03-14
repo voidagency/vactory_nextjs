@@ -1,7 +1,7 @@
 import React from "react"
 import { ParagraphsController } from "@vactory/next"
 
-export const Node = ({ node }) => {
+export default function Node({ node }) {
   return (
     <React.Fragment>
       {node.field_vactory_paragraphs &&

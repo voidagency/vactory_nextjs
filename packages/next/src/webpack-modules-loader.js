@@ -5,11 +5,25 @@ const fse = require("fs-extra")
 
 const tmpFolderPath = path.resolve(__dirname, "../", ".tmp")
 
+const resolveModulePath = (name) => {
+  return `../../${name}`
+}
+
 const generateModulesIndex = async (options) => {
   const modules = options?.enabledModules || []
   const packagesFolder = path.resolve(__dirname, "../../")
   const modulesInfo = modules
     .map((m) => `${packagesFolder}/${m}/module.js`)
+    .filter((filePath) => {
+      let ret = false
+      try {
+        fse.statSync(filePath)
+        ret = true
+      } catch {
+        ret = false
+      }
+      return ret
+    })
     .map((filePath) => require(filePath))
 
   await generateNodeTemplatesIndex(modulesInfo)
@@ -21,18 +35,15 @@ const generateModulesIndex = async (options) => {
 }
 
 const generateNodeTemplatesIndex = async (modules) => {
-  let imports = [],
-    mappings = []
+  let mappings = []
 
   modules.forEach((module) => {
-    const name = module.name
-    const prefix = module.namedExportPrefix
+    const modulePath = resolveModulePath(module.packageName)
     const node = module.node
 
-    imports.push(
-      `import { ${node.namedExport} as ${prefix}${node.namedExport} } from "${name}"`
-    )
-    mappings.push(`  "${node.id}":${prefix}${node.namedExport}`)
+    mappings.push(`  "${node.id}":dynamic(() =>
+    import("${modulePath}/${node.file}")
+  )`)
   })
 
   const exportPath = path.resolve(tmpFolderPath, "node-templates.js")
@@ -40,9 +51,9 @@ const generateNodeTemplatesIndex = async (modules) => {
 
   fs.writeFileSync(
     exportPath,
-    `${imports.join("\n")}\nexport const TemplatesMapping = {\n${mappings.join(
-      ",\n"
-    )},\n}\n`
+    `
+    import dynamic from "next/dynamic"\n
+    export const TemplatesMapping = {\n${mappings.join(",\n")},\n}\n`
   )
 
   Log.info("Successfully compiled nodes templates")
@@ -107,19 +118,16 @@ const generateApiRoutesIndex = async (modules) => {
 }
 
 const generateDynamicFieldTemplatesIndex = async (modules) => {
-  let imports = [],
-    mappings = []
+  let mappings = []
 
   modules.forEach((module) => {
-    const name = module.name
-    const prefix = module.namedExportPrefix
+    const modulePath = resolveModulePath(module.packageName)
     const widgets = module?.widgets || []
 
     widgets.forEach((widget) => {
-      imports.push(
-        `import { ${widget.namedExport} as ${prefix}${widget.namedExport} } from "${name}"`
-      )
-      mappings.push(`  "${widget.id}":${prefix}${widget.namedExport}`)
+      mappings.push(`  "${widget.id}":dynamic(() =>
+      import("${modulePath}/${widget.file}")
+    )`)
     })
   })
 
@@ -128,9 +136,8 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
 
   fs.writeFileSync(
     exportPath,
-    `${imports.join("\n")}\nexport const Widgets = {\n${mappings.join(
-      ",\n"
-    )},\n}\n`
+    `import dynamic from "next/dynamic"\n
+     export const Widgets = {\n${mappings.join(",\n")},\n}\n`
   )
 
   Log.info("Successfully compiled dynamic field templates")

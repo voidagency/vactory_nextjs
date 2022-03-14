@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@vactory/ui/button"
 import { NewsCard, normalizeDFNodes } from "@vactory/next-news"
 
-export const ThreeColumnsContainer = ({ data }) => {
+export default function ThreeColumnsContainer({ data }) {
   const nodes = get(data, "components.0.views.data.nodes", [])
   const title = get(data, "components.0.title", "")
   const raw_description = get(

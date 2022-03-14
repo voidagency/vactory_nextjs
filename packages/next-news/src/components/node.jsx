@@ -1,6 +1,6 @@
 import React from "react"
 
-export const Node = ({ node }) => {
+export default function Node({ node }) {
   return (
     <div className="relative px-4 sm:px-6 lg:px-8">
       <div className="text-lg max-w-prose mx-auto">
