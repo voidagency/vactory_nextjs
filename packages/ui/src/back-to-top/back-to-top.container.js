@@ -1,6 +1,6 @@
 import React from "react"
 import { BaseBackToTop } from "./back-to-top"
-import { Icon } from "../icon"
+import { Icon } from "@vactory/ui/icon"
 
 export const BackToTop = ({ icon, ...rest }) => {
   let buttonIcon = <Icon id="chevron-up-arrow" width="36" height="36" />
