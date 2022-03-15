@@ -38,10 +38,11 @@ const nodeParams = {
 
 module.exports = {
   name: "@vactory/next-news",
+  packageName: "next-news",
   namedExportPrefix: "VactoryNews",
   node: {
     id: "node--vactory_news",
-    namedExport: "Node",
+    file: "src/components/node.jsx",
     params: nodeParams,
   },
   api: {
@@ -64,7 +65,7 @@ module.exports = {
   widgets: [
     {
       id: "vactory_news:three-columns",
-      namedExport: "ThreeColumnsContainer",
+      file: "src/widgets/three-columns/three-columns.container.js",
     },
   ],
 }

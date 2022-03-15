@@ -46,10 +46,11 @@ const nodeParams = {
 
 module.exports = {
   name: "@vactory/next-page",
+  packageName: "next-page",
   namedExportPrefix: "VactoryPage",
   node: {
     id: "node--vactory_page",
-    namedExport: "Node",
+    file: "src/components/node.jsx",
     params: nodeParams,
   },
   api: {
