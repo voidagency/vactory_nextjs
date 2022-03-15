@@ -5,12 +5,11 @@ import { TemplatesMapping } from "../.tmp/node-templates";
 import { NodeApiRoutesMapping } from "../.tmp/node-api-routes";
 import NodeDefault from "./node-default";
 import logger from "./logger/logger";
-import { getLocaleFromPath, getEnabledLanguages, getEnabledMenus } from "./utils";
+import { getEnabledMenus } from "./utils";
 import { getTranslations } from "./get-translations";
 import { getMenus } from "./menus";
 import LRUCache from "lru-cache";
 
-const enabledLanguages = getEnabledLanguages();
 const enabledMenus = getEnabledMenus();
 
 // @todo: disable dev ? used only in routing ?
@@ -45,11 +44,36 @@ export const NodeHandler = ({ node, params }) => {
 
 export async function getServerSideProps(context) {
 	const { slug, ...query } = context.query;
-	// delete query.slug
-	const joinedSlug = Array.isArray(slug) ? slug.join("/") : slug;
-	const locale = getLocaleFromPath(joinedSlug, enabledLanguages);
-	const langprefix = locale ? `${locale}/` : ``;
+	const { locale } = context;
+	let joinedSlug = Array.isArray(slug) ? slug.join("/") : slug;
 
+	// Drupal router doesn't accept empty slug.
+	if (!joinedSlug) {
+		joinedSlug = "/";
+	}
+
+	// @todo: find a better way to handle such cases.
+	const cacheI18nKey = locale;
+	const cacheMenusKey = `${enabledMenus.join("_")}-${locale}`;
+	let i18n = {};
+	let menus = [];
+
+	if (ssrCache.has(cacheI18nKey)) {
+		i18n = ssrCache.get(cacheI18nKey);
+	} else {
+		i18n = await getTranslations(locale);
+		ssrCache.set(cacheI18nKey, i18n);
+	}
+
+	if (ssrCache.has(cacheMenusKey)) {
+		menus = ssrCache.get(cacheMenusKey);
+	} else {
+		menus = await getMenus(enabledMenus, locale);
+		ssrCache.set(cacheMenusKey, menus);
+	}
+
+	// const locale = getLocaleFromPath(joinedSlug, enabledLanguages)
+	const langprefix = locale ? `${locale}/` : ``;
 	// Router stuff
 	try {
 		const cacheRouterKey = `${locale}-${joinedSlug}`;
@@ -97,26 +121,6 @@ export async function getServerSideProps(context) {
 			"public, s-maxage=10, stale-while-revalidate=59"
 		);
 
-		// @todo: find a better way to handle such cases.
-		const cacheI18nKey = langcode;
-		const cacheMenusKey = `${enabledMenus.join("_")}-${langcode}`;
-		let i18n = {};
-		let menus = [];
-
-		if (ssrCache.has(cacheI18nKey)) {
-			i18n = ssrCache.get(cacheI18nKey);
-		} else {
-			i18n = await getTranslations(langcode);
-			ssrCache.set(cacheI18nKey, i18n);
-		}
-
-		if (ssrCache.has(cacheMenusKey)) {
-			menus = ssrCache.get(cacheMenusKey);
-		} else {
-			menus = await getMenus(enabledMenus, langcode);
-			ssrCache.set(cacheMenusKey, menus);
-		}
-
 		// Pass data to the page via props
 		return {
 			props: {
@@ -124,7 +128,7 @@ export async function getServerSideProps(context) {
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
 				menus: menus,
-				locale: langcode,
+				locale: locale,
 			},
 		};
 	} catch (err) {
