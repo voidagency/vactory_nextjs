@@ -6,9 +6,9 @@ import { Layout } from "@/components/layout"
 export const config = { amp: "hybrid" }
 
 export default function IndexPage(props) {
-  return (
-    <Layout>
-      <NodeHandler {...props} />
-    </Layout>
-  )
+	return (
+		<Layout>
+			<NodeHandler {...props} />
+		</Layout>
+	)
 }
