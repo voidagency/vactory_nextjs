@@ -3,6 +3,7 @@ import Head from "next/head"
 import { getProviders, getCsrfToken } from "next-auth/react"
 import { getTranslations, getMenus, getEnabledMenus } from "@vactory/next"
 import { LoginPage } from "./login"
+import { RegisterPage } from "./register"
 
 export const UserPageHandler = ({ node, params }) => {
   if (!node) return null
@@ -13,6 +14,7 @@ export const UserPageHandler = ({ node, params }) => {
         <title>{node?.title}</title>
       </Head>
       {node.type === "login" && <LoginPage node={node} params={params} />}
+      {node.type === "register" && <RegisterPage node={node} params={params} />}
     </React.Fragment>
   )
 }
@@ -32,6 +34,23 @@ export async function getServerSideProps(context) {
         node: {
           title: "Login page",
           type: "login",
+          providers: await getProviders(),
+          csrfToken: await getCsrfToken(context),
+        },
+        params: Object.keys(query).length > 0 ? query : null,
+        i18n: i18n,
+        menus: menus,
+        locale: locale,
+      },
+    }
+  }
+
+  if ("register" === joinedSlug) {
+    return {
+      props: {
+        node: {
+          title: "Register page",
+          type: "register",
           providers: await getProviders(),
           csrfToken: await getCsrfToken(context),
         },

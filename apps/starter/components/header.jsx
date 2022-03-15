@@ -7,6 +7,7 @@ import { useMenu } from "@vactory/next"
 import { Menu, Transition } from "@headlessui/react"
 import classNames from "clsx"
 import { useRouter } from "next/router"
+import { useSignIn, useSignOut } from "@vactory/next-user"
 
 const user = {
   name: "Chelsea Hagon",
@@ -15,21 +16,16 @@ const user = {
     "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 }
 
-const userNavigation = [
-  { name: "Your Profile", href: "#." },
-  { name: "Settings", href: "#." },
-  { name: "Sign out", href: "#.", onClick: signOut },
-]
-
 const UserInfo = () => {
   const { data, status } = useSession()
-  const router = useRouter()
+  const signIn = useSignIn()
+  const signOut = useSignOut()
 
-  const signIn = () => {
-    router.push(
-      `/${router.locale}/user/login?callbackUrl=${process.env.NEXT_PUBLIC_BASE_URL}/${router.locale}${router.asPath}`
-    )
-  }
+  const userNavigation = [
+    { name: "Your Profile", href: "#." },
+    { name: "Settings", href: "#." },
+    { name: "Sign out", href: "#.", onClick: signOut },
+  ]
 
   if (status === "authenticated") {
     return (
