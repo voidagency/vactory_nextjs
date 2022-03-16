@@ -2,6 +2,7 @@ import { getProviders, getCsrfToken } from "next-auth/react"
 import { getMenus } from "@vactory/next/server/menus"
 import { getEnabledMenus } from "@vactory/next/utils"
 import { getTranslations } from "@vactory/next/server/translations"
+import csrf from "@vactory/next/server/csrf"
 
 export async function getUserServerSideProps(context) {
 	const enabledMenus = getEnabledMenus()
@@ -30,7 +31,6 @@ export async function getUserServerSideProps(context) {
 	}
 
 	if ("register" === joinedSlug) {
-		const csrf = (await import("../../next/src/csrf.js")).default
 		await csrf(context.req, context.res)
 		return {
 			props: {
@@ -49,15 +49,14 @@ export async function getUserServerSideProps(context) {
 	}
 
 	if ("reset-password" === joinedSlug) {
-		// const csrf = (await import("../../next/src/csrf.js")).default
-		// await csrf(context.req, context.res)
+		await csrf(context.req, context.res)
 		return {
 			props: {
 				node: {
 					title: "Reset password page",
 					type: "reset-password",
 					providers: await getProviders(),
-					// csrfToken: context.req.csrfToken(),
+					csrfToken: context.req.csrfToken(),
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,

@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-// import { csrf } from "@vactory/next"
+import csrf from "@vactory/next/server/csrf"
 
 // @todo: validate upfront > reduce overhead on drupal.
 // @todo: test: upload picture & docs + other fields
@@ -52,7 +52,6 @@ const normalizeErrors = (errors) => {
 
 // POST /api/user/signup
 export const signUpHandler = async (req, res) => {
-	const csrf = (await import("../../../next/src/csrf.js")).default
 	try {
 		await csrf(req, res)
 	} catch (err) {

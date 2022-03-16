@@ -53,15 +53,6 @@ module.exports = {
 		file: "src/components/node.jsx",
 		params: nodeParams,
 	},
-	api: {
-		prefix: "/page",
-		routes: [
-			{
-				path: "/:id",
-				namedExport: "IdHandler",
-			},
-		],
-	},
 	// widgets: [
 	//   {
 	//     id: "vactory_page:example",

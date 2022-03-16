@@ -9,7 +9,7 @@ const ResetPasswordPage = dynamic(() => import("./reset-password"))
 export const UserPageHandler = ({ node, params }) => {
 	if (!node) return null
 	return (
-		<React.Fragment>
+		<>
 			<Head>
 				<link rel="preload" as="image/svg+xml" href="/icons.svg" />
 				<title>{node?.title}</title>
@@ -19,6 +19,6 @@ export const UserPageHandler = ({ node, params }) => {
 			{node.type === "reset-password" && (
 				<ResetPasswordPage node={node} params={params} />
 			)}
-		</React.Fragment>
+		</>
 	)
 }

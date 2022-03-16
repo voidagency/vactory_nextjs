@@ -153,9 +153,9 @@
 // }
 
 export const IdHandler = async (req, res) => {
-  res.status(200).json([])
+	res.status(200).json([])
 }
 
 export const ListHandler = async (req, res) => {
-  res.status(200).json([])
+	res.status(200).json([])
 }

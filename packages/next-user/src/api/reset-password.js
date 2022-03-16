@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-// import { csrf } from "@vactory/next"
+import csrf from "@vactory/next/server/csrf"
 
 const resetUserPassword = async (email) => {
 	const CREATE_USER_ENDPOINT = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/api/user/password/reset`
@@ -26,7 +26,6 @@ const normalizeErrors = (errors) => {
 
 // POST /api/user/reset-password
 export const resetPasswordHandler = async (req, res) => {
-	const csrf = (await import("../../../next/src/csrf.js")).default
 	const SECRET_KEY = process.env.RECAPTCHA_SECRETKEY
 	try {
 		await csrf(req, res)

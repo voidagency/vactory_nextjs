@@ -1,2 +1,2 @@
-// export * from "./api/signup"
-// export * from "./api/reset-password"
+export * from "./api/signup"
+export * from "./api/reset-password"

@@ -45,23 +45,6 @@ module.exports = {
 		file: "src/components/node.jsx",
 		params: nodeParams,
 	},
-	api: {
-		prefix: "/news",
-		routes: [
-			{
-				path: "/list",
-				namedExport: "ListHandler",
-			},
-			{
-				path: "/:id",
-				namedExport: "IdHandler",
-			},
-			{
-				path: "/:id/:category",
-				namedExport: "IdHandler",
-			},
-		],
-	},
 	widgets: [
 		{
 			id: "vactory_news:three-columns",

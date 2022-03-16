@@ -4,6 +4,7 @@ const Log = require("next/dist/build/output/log")
 const fse = require("fs-extra")
 
 const tmpFolderPath = path.resolve(__dirname, "../", ".tmp")
+const resolveModulePath = (name) => `../../${name}`
 
 const generateModulesIndex = async (options) => {
 	const modules = options?.enabledModules || []
@@ -30,10 +31,6 @@ const generateModulesIndex = async (options) => {
 	])
 
 	Log.info("Compiled successfully templates")
-}
-
-const resolveModulePath = (name) => {
-	return `../../${name}`
 }
 
 const generateNodeTemplatesIndex = async (modules) => {
@@ -87,25 +84,17 @@ const generateNodeRouteIndex = async (modules) => {
 }
 
 const generateApiRoutesIndex = async (modules) => {
-	let imports = [],
-		mappings = [],
-		exports = []
+	let mappings = []
 
 	modules.forEach((module) => {
-		const name = module.name
-		const prefix = module.namedExportPrefix
 		const api = module.api
 		const apiPrefix = api?.prefix || ""
 		const apiRoutes = api?.routes || []
 
 		apiRoutes.forEach((route) => {
-			const namedRoute = `${prefix}${route.namedExport}`
-			if (!exports.includes(namedRoute)) {
-				imports.push(`import { ${route.namedExport} as ${namedRoute} } from "${name}"`)
-				exports.push(namedRoute)
-			}
-
-			mappings.push(`  "${apiPrefix}${route.path}":${namedRoute}`)
+			mappings.push(
+				`  "${apiPrefix}${route.path}": { handler: "${route.handler}", file: "${module.packageName}/${route.file}" }`
+			)
 		})
 	})
 
@@ -114,9 +103,7 @@ const generateApiRoutesIndex = async (modules) => {
 
 	fs.writeFileSync(
 		exportPath,
-		`${imports.join("\n")}\nexport const ApiRoutesMapping = {\n${mappings.join(
-			",\n"
-		)},\n}\n`
+		`export const ApiRoutesMapping = {\n${mappings.join(",\n")},\n}\n`
 	)
 
 	Log.info("Successfully compiled api routes")
