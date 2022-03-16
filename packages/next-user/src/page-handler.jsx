@@ -1,68 +1,24 @@
 import React from "react"
 import Head from "next/head"
-import { getProviders, getCsrfToken } from "next-auth/react"
-import { getTranslations, getMenus, getEnabledMenus } from "@vactory/next"
-import { LoginPage } from "./login"
-import { RegisterPage } from "./register"
+import dynamic from "next/dynamic"
+
+const LoginPage = dynamic(() => import("./login"))
+const RegisterPage = dynamic(() => import("./register"))
+const ResetPasswordPage = dynamic(() => import("./reset-password"))
 
 export const UserPageHandler = ({ node, params }) => {
-  if (!node) return null
-  return (
-    <React.Fragment>
-      <Head>
-        <link rel="preload" as="image/svg+xml" href="/icons.svg" />
-        <title>{node?.title}</title>
-      </Head>
-      {node.type === "login" && <LoginPage node={node} params={params} />}
-      {node.type === "register" && <RegisterPage node={node} params={params} />}
-    </React.Fragment>
-  )
-}
-
-export async function getServerSideProps(context) {
-  const enabledMenus = getEnabledMenus()
-  const { slug, ...query } = context.query
-  const { locale } = context
-  let joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
-
-  let i18n = await getTranslations(locale)
-  let menus = await getMenus(enabledMenus, locale)
-
-  if ("login" === joinedSlug) {
-    return {
-      props: {
-        node: {
-          title: "Login page",
-          type: "login",
-          providers: await getProviders(),
-          csrfToken: await getCsrfToken(context),
-        },
-        params: Object.keys(query).length > 0 ? query : null,
-        i18n: i18n,
-        menus: menus,
-        locale: locale,
-      },
-    }
-  }
-
-  if ("register" === joinedSlug) {
-    return {
-      props: {
-        node: {
-          title: "Register page",
-          type: "register",
-          providers: await getProviders(),
-          csrfToken: await getCsrfToken(context),
-        },
-        params: Object.keys(query).length > 0 ? query : null,
-        i18n: i18n,
-        menus: menus,
-        locale: locale,
-      },
-    }
-  }
-
-  return {
-    notFound: true,
-  }
+	if (!node) return null
+	return (
+		<React.Fragment>
+			<Head>
+				<link rel="preload" as="image/svg+xml" href="/icons.svg" />
+				<title>{node?.title}</title>
+			</Head>
+			{node.type === "login" && <LoginPage node={node} params={params} />}
+			{node.type === "register" && <RegisterPage node={node} params={params} />}
+			{node.type === "reset-password" && (
+				<ResetPasswordPage node={node} params={params} />
+			)}
+		</React.Fragment>
+	)
 }

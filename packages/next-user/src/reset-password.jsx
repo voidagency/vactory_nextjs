@@ -1,20 +1,27 @@
 import React from "react"
 import { useI18n } from "@vactory/next"
 import { useSession } from "next-auth/react"
-import { useSignUp, useCreateUser } from "@vactory/next-user"
+import { useResetUserPassword } from "@vactory/next-user"
 import { useForm } from "react-hook-form"
+import dynamic from "next/dynamic"
 
-const RegisterPage = ({ node }) => {
+const ReCaptcha = dynamic(() => import("react-google-recaptcha"), {
+	ssr: false,
+})
+
+const ResetPasswordPage = ({ node }) => {
 	const { t } = useI18n()
 	const { data: session, status } = useSession()
 	const loading = status === "loading"
 	const { csrfToken } = node
-	const signUp = useSignUp()
-	const createUser = useCreateUser()
-
+	const recaptchaRef = React.createRef()
+	const resetUserPassword = useResetUserPassword()
 	const {
 		register,
 		handleSubmit,
+		setValue,
+		clearErrors,
+		setError,
 		formState: { errors },
 	} = useForm()
 
@@ -26,7 +33,8 @@ const RegisterPage = ({ node }) => {
 	}
 
 	const onSubmit = async (data) => {
-		const res = await createUser(data)
+		const res = await resetUserPassword(data)
+		// recaptchaRef.current.reset()
 		console.log(data)
 		console.log(res)
 	}
@@ -66,39 +74,38 @@ const RegisterPage = ({ node }) => {
 						<p className="text-red text-xs italic">Please choose an email.</p>
 					)}
 				</div>
-				<div className="mb-4">
-					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-						Username
-					</label>
+				<div className="relative my-4 flex flex-col items-end">
 					<input
-						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="name"
-						name="name"
-						type="text"
-						placeholder="Username"
-						{...register("name", { required: true })}
+						type="hidden"
+						name="recaptchaResponse"
+						{...register("recaptchaResponse", { required: "Robot check required" })}
 					/>
-					{errors.name && (
-						<p className="text-red text-xs italic">Please choose a username.</p>
-					)}
-				</div>
-				<div className="mb-6">
-					<label
-						className="block text-gray-700 text-sm font-bold mb-2"
-						htmlFor="password"
-					>
-						Password
-					</label>
-					<input
-						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="password"
-						type="password"
-						name="password"
-						placeholder="******************"
-						{...register("password", { required: true })}
+					<ReCaptcha
+						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
+						hl={"fr"}
+						ref={recaptchaRef}
+						onChange={(val) => {
+							setValue("recaptchaResponse", val)
+							clearErrors("recaptchaResponse")
+						}}
+						onExpired={() => {
+							setValue("recaptchaResponse", null)
+							setError("recaptchaResponse", {
+								type: "manual",
+								message: "Recaptcha Expired!",
+							})
+						}}
+						onErrored={() => {
+							setError("recaptchaResponse", {
+								type: "manual",
+								message: "Recaptcha Error!",
+							})
+						}}
 					/>
-					{errors.password && (
-						<p className="text-red text-xs italic">Please choose a password.</p>
+					{errors.recaptchaResponse && (
+						<p className="mt-2 text-sm text-red-600">
+							{errors.recaptchaResponse.message}
+						</p>
 					)}
 				</div>
 				<div className="flex items-center justify-between">
@@ -108,23 +115,10 @@ const RegisterPage = ({ node }) => {
 					>
 						{t("webform:Submit")}
 					</button>
-					<a
-						className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-						href="#"
-					>
-						Forgot Password?
-					</a>
-					<a
-						className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-						onClick={signUp}
-						href="#"
-					>
-						Register
-					</a>
 				</div>
 			</form>
 		</div>
 	)
 }
 
-export default RegisterPage
+export default ResetPasswordPage

@@ -1,5 +1,5 @@
 import React from "react"
-import { BlocksTemplate } from "@vactory/next"
+import { BlocksTemplate } from "./blocks.template"
 
 export const BlocksController = ({ blocks = [], region = "" }) => {
 	const regionBlocks = blocks.filter((block) => block.region === region)

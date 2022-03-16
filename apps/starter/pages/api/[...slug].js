@@ -1,3 +1,5 @@
-import { ApiHandler } from "@vactory/next"
+import { ApiHandler } from "@vactory/next/server/api-handler"
 
-export default ApiHandler
+export default function handler(req, res) {
+	return ApiHandler(req, res)
+}

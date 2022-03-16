@@ -1,10 +1,10 @@
 import React from "react"
 import classNames from "classnames"
-import {
-	ParagraphsContainer,
-	ParagraphsTemplate,
-	ParagraphsMultiple,
-} from "@vactory/next"
+import dynamic from "next/dynamic"
+
+const ParagraphsContainer = dynamic(() => import("./paragraphs.container"))
+const ParagraphsTemplate = dynamic(() => import("./pargaraphs.template"))
+const ParagraphsMultiple = dynamic(() => import("./pargaraphs.multiple"))
 
 export const ParagraphsController = (props) => {
 	const { hasAMP = false } = props

@@ -2,14 +2,24 @@
   "name": "@vactory/next",
   "private": true,
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest"
   },
   "exports": {
     ".": "./index.js",
+    "./client/app-handler": "./src/app-handler.jsx",
+    "./client/banner-controller": "./src/layout-blocks/banner.controller.jsx",
+    "./client/blocks-controller": "./src/layout-blocks/blocks.controller.jsx",
+    "./client/paragraphs-controller": "./src/paragraphs/paragraphs.controller.jsx",
+    "./server/csrf": "./src/csrf.js",
+    "./server/translations": "./src/get-translations.js",
+    "./server/menus": "./src/menus-server.js",
+    "./client/node-handler": "./src/node-handler.jsx",
+    "./server/node-handler-server": "./src/node-handler-server.js",
+    "./server/api-handler": "./src/api-handler.js",
     "./wysiwyg": "./src/wysiwyg.jsx",
+    "./utils": "./src/utils.js",
     "./webpack-modules-loader": "./src/webpack-modules-loader.js"
   }
 }

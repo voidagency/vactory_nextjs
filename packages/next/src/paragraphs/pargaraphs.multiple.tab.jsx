@@ -2,7 +2,7 @@ import React from "react"
 import get from "lodash.get"
 // import { Link, Wysiwyg, Tabs } from "@gatsby/ui"
 
-export const ParagraphsMultipleTab = ({ items, ...rest }) => {
+const ParagraphsMultipleTab = ({ items, ...rest }) => {
 	const { title = "", introduction = "", cta: action } = rest
 	const description = get(introduction, "processed", null)
 
@@ -49,3 +49,5 @@ export const ParagraphsMultipleTab = ({ items, ...rest }) => {
 		</div>
 	)
 }
+
+export default ParagraphsMultipleTab

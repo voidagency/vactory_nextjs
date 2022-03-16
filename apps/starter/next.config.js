@@ -1,5 +1,7 @@
 const withPlugins = require("next-compose-plugins")
-const withBundleAnalyzer = require("@next/bundle-analyzer")
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+})
 const withModulesPlugin = require("@vactory/next/webpack-modules-loader")
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
 const path = require("path")
@@ -32,24 +34,23 @@ const nextConfig = {
 	poweredByHeader: false,
 	trailingSlash: false,
 	webpack: (config) => {
-		config.resolve.alias = {
-			...config.resolve.alias,
-			...aliasOverrides,
-			classnames: "clsx",
-			// Bundle size tweaks.
-			"regenerator-runtime": path.resolve(
-				__dirname,
-				"../..",
-				"node_modules",
-				"next/dist/compiled/regenerator-runtime/runtime.js"
-			),
-			"react-is": path.resolve(
-				__dirname,
-				"../..",
-				"node_modules",
-				"next/dist/compiled/react-is"
-			),
+		for (const [key, value] of Object.entries(aliasOverrides)) {
+			config.resolve.alias[key] = value
 		}
+
+		config.resolve.alias["classnames"] = "clsx"
+		config.resolve.alias["regenerator-runtime"] = path.resolve(
+			__dirname,
+			"../..",
+			"node_modules",
+			"next/dist/compiled/regenerator-runtime/runtime.js"
+		)
+		config.resolve.alias["react-is"] = path.resolve(
+			__dirname,
+			"../..",
+			"node_modules",
+			"next/dist/compiled/react-is"
+		)
 
 		config.plugins.push(new DuplicatePackageCheckerPlugin())
 		return config
@@ -82,16 +83,12 @@ const nextConfig = {
 module.exports = withPlugins(
 	[
 		[
-			withBundleAnalyzer({
-				enabled: process.env.ANALYZE === "true",
-			}),
-		],
-		[
 			withModulesPlugin,
 			{
 				enabledModules: ["next-page", "next-news", "next-user"],
 			},
 		],
+		[withBundleAnalyzer],
 	],
 	nextConfig
 )

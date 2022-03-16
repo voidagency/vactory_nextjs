@@ -1,11 +1,13 @@
 import React from "react"
-import {
-	ParagraphsMultipleAccordion,
-	ParagraphsMultipleTab,
-	ParagraphsTemplate,
-} from "@vactory/next"
+import dynamic from "next/dynamic"
 
-export const ParagraphsMultiple = ({ type = "tab", tabs = [], hasAMP, ...rest }) => {
+const ParagraphsMultipleAccordion = dynamic(() =>
+	import("./pargaraphs.multiple.accordion")
+)
+const ParagraphsMultipleTab = dynamic(() => import("./pargaraphs.multiple.tab"))
+const ParagraphsTemplate = dynamic(() => import("./pargaraphs.template"))
+
+const ParagraphsMultiple = ({ type = "tab", tabs = [], hasAMP, ...rest }) => {
 	const Display = type === "tab" ? ParagraphsMultipleTab : ParagraphsMultipleAccordion
 	const components = tabs.map((p, key) => {
 		const { field_tab_templates, field_vactory_title, ...paragraphRest } = p
@@ -30,3 +32,5 @@ export const ParagraphsMultiple = ({ type = "tab", tabs = [], hasAMP, ...rest })
 
 	return <Display items={components} {...rest} />
 }
+
+export default ParagraphsMultiple

@@ -10,11 +10,21 @@ const generateModulesIndex = async (options) => {
 	const packagesFolder = path.resolve(__dirname, "../../")
 	const modulesConfig = modules
 		.map((m) => `${packagesFolder}/${m}/module.config.js`)
+		.filter((filePath) => {
+			let ret = false
+			try {
+				fse.statSync(filePath)
+				ret = true
+			} catch {
+				ret = false
+			}
+			return ret
+		})
 		.map((filePath) => require(filePath))
 
 	await Promise.all([
 		generateNodeTemplatesIndex(modulesConfig),
-		generateApiRoutesIndex(modulesConfig),
+		// generateApiRoutesIndex(modulesConfig),
 		generateNodeRouteIndex(modulesConfig),
 		generateDynamicFieldTemplatesIndex(modulesConfig),
 	])
@@ -22,19 +32,23 @@ const generateModulesIndex = async (options) => {
 	Log.info("Compiled successfully templates")
 }
 
+const resolveModulePath = (name) => {
+	return `../../${name}`
+}
+
 const generateNodeTemplatesIndex = async (modules) => {
-	let imports = [],
-		mappings = []
+	let mappings = []
 
 	modules.forEach((module) => {
-		const name = module.name
-		const prefix = module.namedExportPrefix
-		const node = module.node
+		const modulePath = resolveModulePath(module.packageName)
+		const node = module?.node || undefined
+		if (!node) {
+			return
+		}
 
-		imports.push(
-			`import { ${node.namedExport} as ${prefix}${node.namedExport} } from "${name}"`
-		)
-		mappings.push(`  "${node.id}":${prefix}${node.namedExport}`)
+		mappings.push(`  "${node.id}":dynamic(() =>
+    import("${modulePath}/${node.file}")
+  )`)
 	})
 
 	const exportPath = path.resolve(tmpFolderPath, "node-templates.js")
@@ -42,7 +56,7 @@ const generateNodeTemplatesIndex = async (modules) => {
 
 	fs.writeFileSync(
 		exportPath,
-		`${imports.join("\n")}\nexport const TemplatesMapping = {\n${mappings.join(
+		`import dynamic from "next/dynamic"\nexport const TemplatesMapping = {\n${mappings.join(
 			",\n"
 		)},\n}\n`
 	)
@@ -54,8 +68,10 @@ const generateNodeRouteIndex = async (modules) => {
 	let mappings = []
 
 	modules.forEach((module) => {
-		const node = module.node
-
+		const node = module?.node || undefined
+		if (!node) {
+			return
+		}
 		mappings.push(`  "${node.id}": ${JSON.stringify(node.params)}`)
 	})
 

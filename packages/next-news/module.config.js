@@ -38,10 +38,11 @@ const nodeParams = {
 
 module.exports = {
 	name: "@vactory/next-news",
+	packageName: "next-news",
 	namedExportPrefix: "VactoryNews",
 	node: {
 		id: "node--vactory_news",
-		namedExport: "Node",
+		file: "src/components/node.jsx",
 		params: nodeParams,
 	},
 	api: {

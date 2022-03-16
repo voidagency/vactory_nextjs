@@ -21,7 +21,7 @@ const layoutsMapping = {
 	no_container: NoContainer,
 }
 
-export const ParagraphsContainer = ({
+const ParagraphsContainer = ({
 	children,
 	id,
 	style,
@@ -44,3 +44,5 @@ export const ParagraphsContainer = ({
 		</section>
 	)
 }
+
+export default ParagraphsContainer

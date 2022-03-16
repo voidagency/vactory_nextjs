@@ -15,8 +15,8 @@ export const isEmpty = (value) => value == null || value.length === 0
  * @private
  */
 function queryFormat(value, key) {
-  if (value !== null && typeof value === "object") return query(value, key)
-  else return encodeURIComponent(key) + "=" + encodeURIComponent(value)
+	if (value !== null && typeof value === "object") return query(value, key)
+	else return encodeURIComponent(key) + "=" + encodeURIComponent(value)
 }
 
 /**
@@ -39,12 +39,12 @@ function queryFormat(value, key) {
  * // filter%5Bslug%5D=cowboy-bebop&filter%5Btitle%5D%5Bvalue%5D=foo&sort=-id
  */
 export function query(params, prefix = null) {
-  const str = []
+	const str = []
 
-  for (const param in params) {
-    str.push(queryFormat(params[param], prefix ? `${prefix}[${param}]` : param))
-  }
-  return str.join("&")
+	for (const param in params) {
+		str.push(queryFormat(params[param], prefix ? `${prefix}[${param}]` : param))
+	}
+	return str.join("&")
 }
 
 /**
@@ -58,70 +58,70 @@ export function query(params, prefix = null) {
  * @returns The detected locale
  */
 export const getLocaleFromPath = (pathname, locales = []) => {
-  let detectedLocale = undefined,
-    pathLocale = ""
-  const leadingSlash = pathname !== "/" ? pathname.startsWith("/") : false
-  const pathnameParts = pathname.split("/")
-  pathLocale = leadingSlash ? pathnameParts[1] : pathnameParts[0]
+	let detectedLocale = undefined,
+		pathLocale = ""
+	const leadingSlash = pathname !== "/" ? pathname.startsWith("/") : false
+	const pathnameParts = pathname.split("/")
+	pathLocale = leadingSlash ? pathnameParts[1] : pathnameParts[0]
 
-  if (locales.length === 0) {
-    throw new Error(`No locales[] passed to getLocaleFromPath`)
-  }
+	if (locales.length === 0) {
+		throw new Error(`No locales[] passed to getLocaleFromPath`)
+	}
 
-  ;(locales || []).some((locale) => {
-    if (pathLocale.toLowerCase() === locale.toLowerCase()) {
-      detectedLocale = locale
-      return true
-    }
-    return false
-  })
+	;(locales || []).some((locale) => {
+		if (pathLocale.toLowerCase() === locale.toLowerCase()) {
+			detectedLocale = locale
+			return true
+		}
+		return false
+	})
 
-  return detectedLocale
+	return detectedLocale
 }
 
 export const cleanup = (json) => {
-  if (!json) return
-  delete json.jsonapi
-  delete json.links
-  delete json.data?.node_type?.links
-  delete json.data?.uid?.links
-  delete json.data?.node_banner?.links
-  delete json.data?.field_vactory_taxonomy_1?.links
-  delete json.data?.field_vactory_media_image?.links
-  delete json.data?.field_vactory_paragraphs?.links
-  delete json.data?.links
-  delete json.data?.revision_uid
-  delete json.data?.content_translation_source
-  delete json.data?.content_translation_outdated
-  delete json.data?.field_exclude_from_search
-  delete json.data?.field_vactory_meta_tags
-  delete json.data?.revision_translation_affected
-  delete json.data?.publish_on
-  delete json.data?.unpublish_on
-  delete json.data?.promote
-  delete json.data?.sticky
-  delete json.data?.revision_log
-  delete json.data?.revision_timestamp
+	if (!json) return
+	delete json.jsonapi
+	delete json.links
+	delete json.data?.node_type?.links
+	delete json.data?.uid?.links
+	delete json.data?.node_banner?.links
+	delete json.data?.field_vactory_taxonomy_1?.links
+	delete json.data?.field_vactory_media_image?.links
+	delete json.data?.field_vactory_paragraphs?.links
+	delete json.data?.links
+	delete json.data?.revision_uid
+	delete json.data?.content_translation_source
+	delete json.data?.content_translation_outdated
+	delete json.data?.field_exclude_from_search
+	delete json.data?.field_vactory_meta_tags
+	delete json.data?.revision_translation_affected
+	delete json.data?.publish_on
+	delete json.data?.unpublish_on
+	delete json.data?.promote
+	delete json.data?.sticky
+	delete json.data?.revision_log
+	delete json.data?.revision_timestamp
 
-  // @todo: figure this out
-  delete json.data?.body?.value
-  delete json.data?.internal_user?.revision_uid
+	// @todo: figure this out
+	delete json.data?.body?.value
+	delete json.data?.internal_user?.revision_uid
 
-  return json.data
+	return json.data
 }
 
 export const getI18nConfig = () => {
-  return publicRuntimeConfig.i18n
+	return publicRuntimeConfig.i18n
 }
 
 export const getEnabledLanguages = () => {
-  return getI18nConfig().enabled
+	return getI18nConfig().enabled
 }
 
 export const getDefaultLanguage = () => {
-  return getI18nConfig().default
+	return getI18nConfig().default
 }
 
 export const getEnabledMenus = () => {
-  return publicRuntimeConfig.menus
+	return publicRuntimeConfig.menus
 }

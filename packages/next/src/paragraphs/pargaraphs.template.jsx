@@ -15,7 +15,7 @@ const Alert = ({ children }) => (
 	</div>
 )
 
-export const ParagraphsTemplate = (props) => {
+const ParagraphsTemplate = (props) => {
 	const { id, settings, hasAMP = false, ...rest } = props
 	//   let Component = hasAMP ? WidgetsAmp[id] : Widgets[id]
 	let Component = Widgets[id]
@@ -30,3 +30,5 @@ export const ParagraphsTemplate = (props) => {
 
 	return <Component data={settings} {...rest} />
 }
+
+export default ParagraphsTemplate

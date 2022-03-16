@@ -2,7 +2,7 @@ import React from "react"
 import get from "lodash.get"
 // import { Link, Wysiwyg, Accordion } from "@gatsby/ui"
 
-export const ParagraphsMultipleAccordion = ({ items, ...rest }) => {
+const ParagraphsMultipleAccordion = ({ items, ...rest }) => {
 	const { title = "", introduction = "", cta: action } = rest
 	const description = get(introduction, "processed", null)
 	const tabItems = items.map((item, index) => {
@@ -48,3 +48,5 @@ export const ParagraphsMultipleAccordion = ({ items, ...rest }) => {
 		</div>
 	)
 }
+
+export default ParagraphsMultipleAccordion
