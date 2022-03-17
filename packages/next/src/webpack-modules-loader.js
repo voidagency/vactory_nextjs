@@ -25,7 +25,7 @@ const generateModulesIndex = async (options) => {
 
 	await Promise.all([
 		generateNodeTemplatesIndex(modulesConfig),
-		// generateApiRoutesIndex(modulesConfig),
+		generateApiRoutesIndex(modulesConfig),
 		generateNodeRouteIndex(modulesConfig),
 		generateDynamicFieldTemplatesIndex(modulesConfig),
 	])
@@ -87,13 +87,14 @@ const generateApiRoutesIndex = async (modules) => {
 	let mappings = []
 
 	modules.forEach((module) => {
+		const modulePath = resolveModulePath(module.packageName)
 		const api = module.api
 		const apiPrefix = api?.prefix || ""
 		const apiRoutes = api?.routes || []
 
 		apiRoutes.forEach((route) => {
 			mappings.push(
-				`  "${apiPrefix}${route.path}": { handler: "${route.handler}", file: "${module.packageName}/${route.file}" }`
+				`  "${apiPrefix}${route.path}": { handler: "${route.handler}", loader: async () => await import("${modulePath}/${route.file}") }`
 			)
 		})
 	})
