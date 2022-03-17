@@ -1,5 +1,5 @@
 import { Header } from "./header"
-import { BlocksController } from "@vactory/next/client/blocks-controller"
+import { BlocksController } from "@vactory/next-blocks"
 
 export function Layout({ children, ...props }) {
 	const internalBlocks = props.node?.internal_blocks || []

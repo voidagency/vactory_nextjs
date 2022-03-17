@@ -129,6 +129,8 @@
         "@vactory/next-page": "*",
         "@vactory/next-user": "*",
         "@vactory/next-paragraphs": "*",
+        "@vactory/next-banners": "*",
+        "@vactory/next-blocks": "*",
         "@vactory/ui": "*",
         "animated-number-react": "^0.1.1",
         "axios": "^0.26.0",
