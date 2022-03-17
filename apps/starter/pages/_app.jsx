@@ -4,7 +4,8 @@ import { AppHandler } from "@vactory/next/app"
 import Script from "next/script"
 import { GTM_ID, pageview } from "../lib/gtm"
 import "nprogress/nprogress.css"
-import "styles/globals.css"
+// import "styles/globals.css"
+import "../styles/globals.css"
 
 export default function App({ Component, pageProps }) {
 	// @todo: pageProps extract node && pass it to pageview

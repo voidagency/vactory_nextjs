@@ -30,13 +30,13 @@ const nextConfig = {
 	},
 	reactStrictMode: true,
 	// distDir: "build",
-	// swcMinify: true,
+	swcMinify: true,
 	poweredByHeader: false,
 	trailingSlash: false,
 	webpack: (config) => {
-		for (const [key, value] of Object.entries(aliasOverrides)) {
-			config.resolve.alias[key] = value
-		}
+		// for (const [key, value] of Object.entries(aliasOverrides)) {
+		// 	config.resolve.alias[key] = value
+		// }
 
 		config.resolve.alias["classnames"] = "clsx"
 		config.resolve.alias["regenerator-runtime"] = path.resolve(

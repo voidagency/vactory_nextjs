@@ -1,0 +1,20 @@
+{
+  "name": "@vactory/headlessui",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    "./combobox": "./src/components/combobox/combobox.tsx",
+    "./dialog": "./src/components/dialog/dialog.tsx",
+    "./disclosure": "./src/components/disclosure/disclosure.tsx",
+    "./focus-trap": "./src/components/focus-trap/focus-trap.tsx",
+    "./listbox": "./src/components/listbox/listbox.tsx",
+    "./menu": "./src/components/menu/menu.tsx",
+    "./popover": "./src/components/popover/popover.tsx",
+    "./portal": "./src/components/combobox/portal.tsx",
+    "./radio-group": "./src/components/radio-group/radio-group.tsx",
+    "./switch": "./src/components/switch/switch.tsx",
+    "./tabs": "./src/components/tabs/tabs.tsx",
+    "./transition": "./src/components/transitions/transition.tsx"
+  }
+}
