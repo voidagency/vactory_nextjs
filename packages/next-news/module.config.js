@@ -70,5 +70,9 @@ module.exports = {
 			id: "vactory_news:three-columns",
 			namedExport: "ThreeColumnsContainer",
 		},
+		{
+			id: "vactory_news:two-columns",
+			namedExport: "TwoColumnsContainer",
+		},
 	],
 }
