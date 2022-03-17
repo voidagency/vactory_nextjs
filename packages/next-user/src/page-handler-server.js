@@ -1,8 +1,8 @@
 import { getProviders, getCsrfToken } from "next-auth/react"
-import { getMenus } from "@vactory/next/server/menus"
+import { getMenus } from "@vactory/next/menus/handler"
 import { getEnabledMenus } from "@vactory/next/utils"
-import { getTranslations } from "@vactory/next/server/translations"
-import csrf from "@vactory/next/server/csrf"
+import { getTranslations } from "@vactory/next/i18n/handler"
+import csrf from "@vactory/next/csrf"
 
 export async function getUserServerSideProps(context) {
 	const enabledMenus = getEnabledMenus()

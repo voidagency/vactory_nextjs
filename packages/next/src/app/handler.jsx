@@ -1,13 +1,12 @@
-// import { NextIntlProvider } from "next-intl"
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
-import { MenuProvider } from "./menus"
-import { getDefaultLanguage } from "./utils"
-import { I18n } from "./i18n"
+import { MenuProvider } from "../menus/menus"
+import { getDefaultLanguage } from "../utils"
+import { I18n } from "../i18n"
 
 const TopProgressBar = dynamic(
 	() => {
-		return import("./top-progress-bar")
+		return import("../components/top-progress-bar")
 	},
 	{ ssr: false }
 )

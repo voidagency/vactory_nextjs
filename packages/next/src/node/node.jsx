@@ -1,11 +1,11 @@
 import React from "react"
 import Head from "next/head"
-import { TemplatesMapping } from "../.tmp/node-templates"
+import { TemplatesMapping } from "../../.tmp/node-templates"
 import dynamic from "next/dynamic"
 
-const NodeDefault = dynamic(() => import("./node-default"))
+const NodeDefault = dynamic(() => import("./default"))
 
-export const NodeHandler = ({ node, params }) => {
+export const Node = ({ node, params }) => {
 	const NodeComponent = TemplatesMapping[node.type] || NodeDefault
 	const metatags = node.metatag_normalized || []
 	return (

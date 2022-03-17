@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { AppHandler } from "@vactory/next/client/app-handler"
+import { AppHandler } from "@vactory/next/app"
 import Script from "next/script"
 import { GTM_ID, pageview } from "../lib/gtm"
 import "nprogress/nprogress.css"

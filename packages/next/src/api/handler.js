@@ -1,5 +1,5 @@
 import { match } from "path-to-regexp"
-import { ApiRoutesMapping } from "../.tmp/api-routes"
+import { ApiRoutesMapping } from "../../.tmp/api-routes"
 
 export const ApiHandler = async (req, res) => {
 	const routes = ApiRoutesMapping

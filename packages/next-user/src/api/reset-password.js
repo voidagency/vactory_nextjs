@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-import csrf from "@vactory/next/server/csrf"
+import csrf from "@vactory/next/csrf"
 
 const resetUserPassword = async (email) => {
 	const CREATE_USER_ENDPOINT = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/api/user/password/reset`

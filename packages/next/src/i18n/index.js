@@ -1,7 +1,7 @@
-import { createContext, useState, useRef, useEffect } from "react"
+import { createContext, useContext, useState, useRef, useEffect } from "react"
 import rosetta from "rosetta"
 // import rosetta from 'rosetta/debug';
-import { getDefaultLanguage } from "./utils"
+import { getDefaultLanguage } from "../utils"
 
 const i18n = rosetta()
 
@@ -46,4 +46,9 @@ export const I18n = ({ children, locale, lngDict }) => {
 	}, [lngDict, locale])
 
 	return <I18nContext.Provider value={i18nWrapper}>{children}</I18nContext.Provider>
+}
+
+export const useI18n = () => {
+	const i18n = useContext(I18nContext)
+	return i18n
 }

@@ -1,4 +1,4 @@
-import { isEmpty } from "./utils"
+import { isEmpty } from "../utils"
 
 const fetchTranslations = async () => {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/_translations`)

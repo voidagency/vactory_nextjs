@@ -1,9 +1,9 @@
-import { fetcher } from "./api-client"
-import { NodeApiRoutesMapping } from "../.tmp/node-api-routes"
-import logger from "./logger/logger"
-import { getEnabledMenus } from "./utils"
-import { getTranslations } from "./get-translations"
-import { getMenus } from "./menus-server"
+import { fetcher } from "../api/client"
+import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
+import logger from "../logger/logger"
+import { getEnabledMenus } from "../utils"
+import { getTranslations } from "../i18n/handler"
+import { getMenus } from "../menus/handler"
 import LRUCache from "lru-cache"
 
 const enabledMenus = getEnabledMenus()
@@ -14,7 +14,7 @@ const ssrCache = new LRUCache({
 	ttl: 1000 * 60 * 60, // 1 hour
 })
 
-export async function getNodeServerSideProps(context) {
+export async function ssrHandler(context) {
 	const { slug, ...query } = context.query
 	const { locale } = context
 	let joinedSlug = Array.isArray(slug) ? slug.join("/") : slug

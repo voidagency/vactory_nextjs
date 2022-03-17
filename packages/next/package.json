@@ -8,15 +8,18 @@
   },
   "exports": {
     ".": "./index.js",
-    "./client/app-handler": "./src/app-handler.jsx",
-    "./server/csrf": "./src/csrf.js",
-    "./server/translations": "./src/get-translations.js",
-    "./server/menus": "./src/menus-server.js",
-    "./client/node-handler": "./src/node-handler.jsx",
-    "./server/node-handler-server": "./src/node-handler-server.js",
-    "./server/api-handler": "./src/api-handler.js",
+    "./api/client": "./src/api/client.js",
+    "./api/handler": "./src/api/handler.js",
+    "./app": "./src/app/handler.jsx",
+    "./node": "./src/node/node.jsx",
+    "./node/handler": "./src/node/handler.js",
+    "./menus": "./src/menus/menus.jsx",
+    "./menus/handler": "./src/menus/handler.js",
+    "./csrf": "./src/security/csrf.js",
+    "./i18n": "./src/i18n/index.js",
+    "./i18n/handler": "./src/i18n/handler.js",
     "./wysiwyg": "./src/wysiwyg.jsx",
-    "./utils": "./src/utils.js",
+    "./utils": "./src/utils/index.js",
     "./webpack-modules-loader": "./src/webpack-modules-loader.js"
   }
 }

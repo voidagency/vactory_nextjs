@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-import csrf from "@vactory/next/server/csrf"
+import csrf from "@vactory/next/csrf"
 
 // @todo: validate upfront > reduce overhead on drupal.
 // @todo: test: upload picture & docs + other fields
