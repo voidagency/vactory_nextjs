@@ -1,9 +1,9 @@
 import React from "react"
 
 export const Link = ({ href = "#.", children, ...rest }) => {
-  return (
-    <a href={href} {...rest}>
-      {children}
-    </a>
-  )
+	return (
+		<a href={href} {...rest}>
+			UI LINK
+		</a>
+	)
 }

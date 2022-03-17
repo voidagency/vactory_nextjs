@@ -1,26 +1,12 @@
 {
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": false,
-		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
-		"incremental": true,
-		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
 		"paths": {
 			"@/components/*": ["components/*"],
-			"@/nodes/*": ["components/nodes/*"],
-			"@/lib/*": ["lib/*"]
+			"@/lib/*": ["lib/*"],
+			"@vactory/ui/link": ["components/link/link.js"],
+			"@vactory/ui/button": ["components/button/button.js"]
 		}
-	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx"],
-	"exclude": ["node_modules"]
+	}
 }

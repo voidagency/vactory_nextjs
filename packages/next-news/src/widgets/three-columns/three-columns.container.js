@@ -1,9 +1,10 @@
 import React from "react"
 import get from "lodash.get"
 import { Wysiwyg } from "@vactory/next/wysiwyg"
-import Link from "next/link"
+import { Link } from "@vactory/ui/link"
 import { Button } from "@vactory/ui/button"
-import { NewsCard, normalizeDFNodes } from "@vactory/next-news"
+import { NewsCard } from "../../components/card"
+import { normalizeDFNodes } from "../../lib/normalizer"
 
 export const ThreeColumnsContainer = ({ data }) => {
 	const nodes = get(data, "components.0.views.data.nodes", [])
@@ -40,7 +41,7 @@ export const ThreeColumnsContainer = ({ data }) => {
 					))}
 				</div>
 				<div className="flex justify-center mt-12">
-					<Link href={link} passHref>
+					<Link href={link}>
 						<Button>{link_label}</Button>
 					</Link>
 				</div>

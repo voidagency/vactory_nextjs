@@ -5,7 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const withModulesPlugin = require("@vactory/next/webpack-modules-loader")
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
 const path = require("path")
-const aliasOverrides = require("./config/alias-overrides")
+// const aliasOverrides = require("./config/alias-overrides")
 const i18n = require("./config/languages")
 const menus = require("./config/menus")
 
@@ -33,28 +33,29 @@ const nextConfig = {
 	swcMinify: true,
 	poweredByHeader: false,
 	trailingSlash: false,
-	webpack: (config) => {
-		// for (const [key, value] of Object.entries(aliasOverrides)) {
-		// 	config.resolve.alias[key] = value
-		// }
-
-		config.resolve.alias["classnames"] = "clsx"
-		config.resolve.alias["regenerator-runtime"] = path.resolve(
-			__dirname,
-			"../..",
-			"node_modules",
-			"next/dist/compiled/regenerator-runtime/runtime.js"
-		)
-		config.resolve.alias["react-is"] = path.resolve(
-			__dirname,
-			"../..",
-			"node_modules",
-			"next/dist/compiled/react-is"
-		)
-
-		config.plugins.push(new DuplicatePackageCheckerPlugin())
-		return config
-	},
+	// webpack: (config) => {
+	// 	// config.resolve.alias["classnames"] = "clsx"
+	// 	// config.resolve.alias["regenerator-runtime"] = path.resolve(
+	// 	// 	__dirname,
+	// 	// 	"../..",
+	// 	// 	"node_modules",
+	// 	// 	"next/dist/compiled/regenerator-runtime/runtime.js"
+	// 	// )
+	// 	// config.resolve.alias["react-is"] = path.resolve(
+	// 	// 	__dirname,
+	// 	// 	"../..",
+	// 	// 	"node_modules",
+	// 	// 	"next/dist/compiled/react-is"
+	// 	// )
+	// 	// config.plugins.push(new DuplicatePackageCheckerPlugin())
+	// 	// config.resolve.plugins[0].paths["classnames"] = path.resolve(
+	// 	// 	__dirname,
+	// 	// 	"../..",
+	// 	// 	"node_modules",
+	// 	// 	"clsx/dist/clsx.min.js"
+	// 	// )
+	// 	return config
+	// },
 	// async redirects() {
 	// 	// All redirections are handled by Drupal redirect module except for this one.
 	// 	return [

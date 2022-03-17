@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@vactory/ui/link"
 import { useSession } from "next-auth/react"
 import { useMenu } from "@vactory/next/menus"
 import { useRouter } from "next/router"
@@ -51,10 +51,12 @@ export const Header = () => {
 						</a>
 						<div className="hidden ml-10 space-x-8 lg:block">
 							{navigation.map((link) => (
-								<Link key={link.id} href={link.url} passHref>
-									<a className="text-base font-medium text-white hover:text-indigo-50">
-										{link.title}
-									</a>
+								<Link
+									key={link.id}
+									href={link.url}
+									className="text-base font-medium text-white hover:text-indigo-50"
+								>
+									{link.title}
 								</Link>
 							))}
 						</div>
@@ -71,10 +73,12 @@ export const Header = () => {
 				</div>
 				<div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
 					{navigation.map((link) => (
-						<Link key={link.id} href={link.url} passHref>
-							<a className="text-base font-medium text-white hover:text-indigo-50">
-								{link.title}
-							</a>
+						<Link
+							key={link.id}
+							href={link.url}
+							className="text-base font-medium text-white hover:text-indigo-50"
+						>
+							{link.title}
 						</Link>
 					))}
 				</div>

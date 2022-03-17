@@ -1,4 +1,5 @@
 import React from "react"
+import { Button } from "@vactory/ui/button"
 
 export default function Node({ node }) {
 	return (
@@ -13,10 +14,7 @@ export default function Node({ node }) {
 					</span>
 				</h1>
 				<p className="mt-8 text-xl text-gray-500 leading-8">
-					Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit
-					dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac.
-					Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla
-					sapien.
+					<Button>News Button</Button>
 				</p>
 			</div>
 			<div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
