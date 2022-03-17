@@ -11,7 +11,6 @@
     "./client/app-handler": "./src/app-handler.jsx",
     "./client/banner-controller": "./src/layout-blocks/banner.controller.jsx",
     "./client/blocks-controller": "./src/layout-blocks/blocks.controller.jsx",
-    "./client/paragraphs-controller": "./src/paragraphs/paragraphs.controller.jsx",
     "./server/csrf": "./src/csrf.js",
     "./server/translations": "./src/get-translations.js",
     "./server/menus": "./src/menus-server.js",

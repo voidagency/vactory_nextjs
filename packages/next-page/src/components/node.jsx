@@ -1,5 +1,5 @@
 import React from "react"
-import { ParagraphsController } from "@vactory/next/client/paragraphs-controller"
+import { ParagraphsController } from "@vactory/next-paragraphs"
 
 export default function Node({ node }) {
 	return (
