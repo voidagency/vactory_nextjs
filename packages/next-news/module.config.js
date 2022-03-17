@@ -68,7 +68,7 @@ module.exports = {
 	widgets: [
 		{
 			id: "vactory_news:three-columns",
-			namedExport: "ThreeColumnsContainer",
+			file: "src/widgets/three-columns/three-columns.container.js",
 		},
 	],
 }

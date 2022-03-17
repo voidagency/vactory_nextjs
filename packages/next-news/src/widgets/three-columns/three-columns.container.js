@@ -6,7 +6,7 @@ import { Button } from "@vactory/ui/button"
 import { NewsCard } from "../../components/card"
 import { normalizeDFNodes } from "../../lib/normalizer"
 
-export const ThreeColumnsContainer = ({ data }) => {
+const ThreeColumnsContainer = ({ data }) => {
 	const nodes = get(data, "components.0.views.data.nodes", [])
 	const title = get(data, "components.0.title", "")
 	const raw_description = get(data, "components.0.description.value.#text", null)
@@ -49,3 +49,5 @@ export const ThreeColumnsContainer = ({ data }) => {
 		</div>
 	)
 }
+
+export default ThreeColumnsContainer

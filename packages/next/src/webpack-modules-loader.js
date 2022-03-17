@@ -111,19 +111,16 @@ const generateApiRoutesIndex = async (modules) => {
 }
 
 const generateDynamicFieldTemplatesIndex = async (modules) => {
-	let imports = [],
-		mappings = []
+	let mappings = []
 
 	modules.forEach((module) => {
-		const name = module.name
-		const prefix = module.namedExportPrefix
+		const modulePath = resolveModulePath(module.packageName)
 		const widgets = module?.widgets || []
 
 		widgets.forEach((widget) => {
-			imports.push(
-				`import { ${widget.namedExport} as ${prefix}${widget.namedExport} } from "${name}"`
-			)
-			mappings.push(`  "${widget.id}":${prefix}${widget.namedExport}`)
+			mappings.push(`  "${widget.id}":dynamic(() =>
+      import("${modulePath}/${widget.file}")
+    )`)
 		})
 	})
 
@@ -132,7 +129,8 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
 
 	fs.writeFileSync(
 		exportPath,
-		`${imports.join("\n")}\nexport const Widgets = {\n${mappings.join(",\n")},\n}\n`
+		`import dynamic from "next/dynamic"\n
+     export const Widgets = {\n${mappings.join(",\n")},\n}\n`
 	)
 
 	Log.info("Successfully compiled dynamic field templates")
