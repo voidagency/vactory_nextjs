@@ -19,8 +19,8 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Login page",
 					type: "login",
-					providers: await getProviders(),
-					csrfToken: await getCsrfToken(context),
+					providers: await getProviders(), // @todo: move outisde node
+					csrfToken: await getCsrfToken(context), // @todo: move outisde node
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,

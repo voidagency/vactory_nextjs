@@ -1,13 +1,13 @@
 import React from "react"
 import { useI18n } from "@vactory/next/i18n"
-import { useSession } from "next-auth/react"
+import { useSession, signIn } from "next-auth/react"
 import { useSignUp } from "@vactory/next-user"
 
 const LoginPage = ({ node }) => {
 	const { t } = useI18n()
 	const { data: session, status } = useSession()
 	const loading = status === "loading"
-	const { csrfToken } = node
+	const { csrfToken, providers } = node
 	const signUp = useSignUp()
 
 	// When rendering client side don't display anything until loading is complete
@@ -84,6 +84,16 @@ const LoginPage = ({ node }) => {
 					</a>
 				</div>
 			</form>
+			<hr />
+			<div>
+				{Object.values(providers).map((provider) => (
+					<div key={provider.name}>
+						<button onClick={() => signIn(provider.id)}>
+							Sign in with {provider.name}
+						</button>
+					</div>
+				))}
+			</div>
 		</div>
 	)
 }

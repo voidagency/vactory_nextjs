@@ -1,6 +1,31 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import KeycloakProvider from "next-auth/providers/keycloak"
 import jwt_decode from "jwt-decode"
+
+// @todo: refactor these two
+const getDrupalUserinfo = async (token) => {
+	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
+		method: "get",
+		headers: {
+			Accept: "application/vnd.api+json",
+			"Content-Type": "application/vnd.api+json",
+			Authorization: "Bearer " + token,
+		},
+	})
+}
+
+const getDrupalUserinfoByProvider = async (token, provider) => {
+	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
+		method: "get",
+		headers: {
+			Accept: "application/vnd.api+json",
+			"Content-Type": "application/vnd.api+json",
+			"x-auth-provider": provider,
+			Authorization: "Bearer " + token,
+		},
+	})
+}
 
 export default NextAuth({
 	pages: {
@@ -38,12 +63,36 @@ export default NextAuth({
 				)
 
 				const data = await response.json()
-
 				if (response.ok && data?.access_token) {
+					const userResponse = await getDrupalUserinfo(data?.access_token)
+					const profile = await userResponse.json()
+					data.profile = profile
+
 					return data
 				}
 
 				return null
+			},
+		}),
+		KeycloakProvider({
+			clientId: process.env.KEYCLOAK_ID,
+			clientSecret: process.env.KEYCLOAK_SECRET,
+			issuer: process.env.KEYCLOAK_ISSUER,
+			userinfo: {
+				url: `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`,
+				async request(ctx) {
+					let data = {}
+					try {
+						const response = await getDrupalUserinfoByProvider(
+							ctx.tokens.access_token,
+							ctx.provider.id
+						)
+						data = await response.json()
+					} catch (err) {
+						console.error(err)
+					}
+					return data
+				},
 			},
 		}),
 	],
@@ -56,10 +105,26 @@ export default NextAuth({
 		maxAge: 30 * 24 * 60 * 60,
 	},
 	callbacks: {
-		async jwt({ token, user }) {
+		async jwt({ token, user, account, profile }) {
+			// Forward profile for credentials provider
+			if (user?.profile) {
+				profile = user.profile
+			}
+			// Forward profile
+			if (profile) {
+				token.profile = profile
+			}
 			// Forward the access token
 			if (user) {
 				token.accessToken = user.access_token
+			}
+			if (account?.access_token) {
+				token.accessToken = account.access_token
+			}
+
+			// Forward the provider type
+			if (user) {
+				token.provider = account.provider
 			}
 
 			return token
@@ -74,6 +139,14 @@ export default NextAuth({
 				session.user.id = decoded.id
 				session.user.email = decoded.email
 				session.user.username = decoded.username
+			}
+
+			if (token?.profile) {
+				session.user = { ...session.user, ...token.profile }
+			}
+
+			if (token?.provider) {
+				session.provider = token.provider
 			}
 			return session
 		},
