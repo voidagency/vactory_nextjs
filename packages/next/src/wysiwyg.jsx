@@ -34,5 +34,5 @@ const options = {
 }
 
 export function Wysiwyg({ html }) {
-	return <>{parse(html, options)}</>
+	return <div className="prose">{parse(html, options)}</div>
 }
