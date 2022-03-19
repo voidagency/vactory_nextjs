@@ -13,7 +13,6 @@ const UserInfo = () => {
 	const { data, status } = useSession()
 	const signIn = useSignIn()
 	const signOut = useSignOut()
-	console.log(data)
 
 	if (status === "authenticated") {
 		return <UserMenu data={data} signOut={signOut} />
