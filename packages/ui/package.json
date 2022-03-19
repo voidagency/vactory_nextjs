@@ -2,9 +2,29 @@
   "name": "@vactory/ui",
   "private": true,
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "browser": {
+    "@vactory/headlessui/combobox": "../headlessui/src/components/combobox/combobox.tsx",
+    "@vactory/headlessui/dialog": "../headlessui/src/components/dialog/dialog.tsx",
+    "@vactory/headlessui/disclosure": "../headlessui/src/components/disclosure/disclosure.tsx",
+    "@vactory/headlessui/focus-trap": "../headlessui/src/components/focus-trap/focus-trap.tsx",
+    "@vactory/headlessui/listbox": "../headlessui/src/components/listbox/listbox.tsx",
+    "@vactory/headlessui/menu": "../headlessui/src/components/menu/menu.tsx",
+    "@vactory/headlessui/popover": "../headlessui/src/components/popover/popover.tsx",
+    "@vactory/headlessui/portal": "../headlessui/src/components/combobox/portal.tsx",
+    "@vactory/headlessui/radio-group": "../headlessui/src/components/radio-group/radio-group.tsx",
+    "@vactory/headlessui/switch": "../headlessui/src/components/switch/switch.tsx",
+    "@vactory/headlessui/tabs": "../headlessui/src/components/tabs/tabs.tsx",
+    "@vactory/headlessui/transition": "../headlessui/src/components/transitions/transition.tsx",
+    "@vactory/ui/back-to-top": "./src/back-to-top/back-to-top.js",
+    "@vactory/ui/button": "./src/button/button.js",
+    "@vactory/ui/card": "./src/card/card.js",
+    "@vactory/ui/icon": "./src/icon/icon.js",
+    "@vactory/ui/link": "./src/link/link.js",
+    "@vactory/ui/offline": "./src/offline/offline.js"
+  },
   "exports": {
+    ".": "./index.js",
     "./back-to-top": "./src/back-to-top/back-to-top.js",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
@@ -14,6 +34,7 @@
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
+    "dev:no-cache": "start-storybook -p 6006 --no-manager-cache",
     "build": "build-storybook",
     "build:icons": "svg-spreact ./src/icon/icons --optimize true --tidy true > ./public/icons.svg"
   },

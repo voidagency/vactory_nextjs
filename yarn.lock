@@ -4830,6 +4830,18 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@tailwindcss/aspect-ratio@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.4.0.tgz#c635dd7331cbcc1b111cebdc2647dd3493ebdd3e"
+  integrity sha512-WJu0I4PpqNPuutpaA9zDUq2JXR+lorZ7PbLcKNLmb6GL9/HLfC7w3CRsMhJF4BbYd/lkY6CfXOvkYpuGnZfkpQ==
+
+"@tailwindcss/forms@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.0.tgz#d4bea2560a10aac642573e72d3b4d62a88960449"
+  integrity sha512-KzWugryEBFkmoaYcBE18rs6gthWCFHHO7cAZm2/hv3hwD67AzwP7udSCa22E7R1+CEJL/FfhYsJWrc0b1aeSzw==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 "@tailwindcss/typography@^0.5.0":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.2.tgz#24b069dab24d7a2467d01aca0dd432cb4b29f0ee"
@@ -14995,6 +15007,11 @@ mini-css-extract-plugin@^2.5.3:
   integrity sha512-ndG8nxCEnAemsg4FSgS+yNyHKgkTB4nPKqCOgh65j3/30qqC5RaSQQXMm++Y6sb6E1zRSxPkztj9fqxhS1Eo6w==
   dependencies:
     schema-utils "^4.0.0"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"

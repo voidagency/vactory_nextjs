@@ -3,7 +3,7 @@ import { BaseBackToTop } from "./back-to-top"
 import { Icon } from "@vactory/ui/icon"
 
 export const BackToTop = ({ icon, ...rest }) => {
-	let buttonIcon = <Icon id="chevron-up-arrow" width="36" height="36" />
+	let buttonIcon = <Icon id="arrow-circle-up" width="36" height="36" />
 	if (icon) {
 		buttonIcon = icon
 	}

@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 module.exports = {
 	mode: "jit",
 	content: [
@@ -6,10 +8,14 @@ module.exports = {
 		"../../packages/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+			},
+		},
 	},
 	variants: {
 		extend: {},
 	},
-	plugins: [require("@tailwindcss/typography")],
+	plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 }

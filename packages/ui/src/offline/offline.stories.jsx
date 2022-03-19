@@ -1,5 +1,5 @@
 import React from "react"
-import { OfflineDetector } from "../offline"
+import { OfflineDetector } from "./offline"
 import { PlaceholderSections } from "../_helpers/section"
 
 export const Default = () => {
