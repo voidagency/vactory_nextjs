@@ -1,7 +1,7 @@
 # Icon
 
 ```
-import {Icon} from '@ui/core';
+import {Icon} from '@vactory/ui/icon';
 ```
 
 # Sources
@@ -11,7 +11,7 @@ Refer to `./icons` for a complete list of svg files.
 # Build
 
 ```
-yarn workspace @ui/core build:icons
+yarn workspace @vactory/ui build:icons
 ```
 
 This will generate an SVG Sprite at ./public/icons.svg
