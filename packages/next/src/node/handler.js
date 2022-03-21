@@ -1,5 +1,5 @@
 import { fetcher } from "../api/client"
-import { NodeApiRoutesMapping } from "../../.tmp/node-api-routes"
+import { NodeParamsMapping } from "../../.tmp/node-params"
 import logger from "../logger/logger"
 import { getEnabledMenus } from "../utils"
 import { getTranslations } from "../i18n/handler"
@@ -80,7 +80,7 @@ export async function ssrHandler(context) {
 		}
 
 		// Fetch data from external API.
-		const nodeParams = NodeApiRoutesMapping[router.jsonapi.resourceName]
+		const nodeParams = NodeParamsMapping[router.jsonapi.resourceName]
 		// @todo: server not responding > 500
 		const node = await fetcher(router.jsonapi.individual, {
 			params: nodeParams,

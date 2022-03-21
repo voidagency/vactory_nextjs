@@ -6,6 +6,64 @@ const fse = require("fs-extra")
 const tmpFolderPath = path.resolve(__dirname, "../", ".tmp")
 const resolveModulePath = (name) => `../../${name}`
 
+// const resolveOverrideFile = (packageName, fileName) => {
+// 	const modulePath = resolveModulePath(packageName)
+// 	const processCWD = process.cwd()
+// 	const packagesFolderName = "packages"
+
+// 	const fileInPackages = path.dirname(`${modulePath}/${fileName}`)
+// 	const fileInProject = `${processCWD}/${packagesFolderName}/${packageName}/${fileName}`
+// 	const file = path.relative(fileInPackages, fileInProject)
+// 	let exist
+
+// 	try {
+// 		fse.statSync(fileInProject)
+// 		exist = true
+// 	} catch {
+// 		exist = false
+// 	}
+
+// 	return {
+// 		file,
+// 		fileInPackages,
+// 		fileInProject,
+// 		exist,
+// 	}
+// }
+
+const getOverrideConfigFile = async (fileName) => {
+	const appPath = path.relative(__dirname, process.cwd())
+	const configPathInProject = `${process.cwd()}/config/${fileName}`
+	const configPath = `${appPath}/config/${fileName}`
+	let config = {}
+	try {
+		fse.statSync(configPathInProject)
+		config = (await import(configPath)).default
+	} catch {
+		config = {}
+	}
+
+	return config
+}
+
+const getOverridesImportsFromConfigFileBase = async (fileName, cb = (v) => v) => {
+	let indexes = {}
+	const config = await getOverrideConfigFile(fileName)
+
+	for (const [key, value] of Object.entries(config)) {
+		const overrideFile = cb(value)
+		indexes[key] = overrideFile
+	}
+
+	return indexes
+}
+
+const getOverridesImportsFromConfigFile = async (fileName) => {
+	return getOverridesImportsFromConfigFileBase(fileName, (value) =>
+		path.relative(__dirname, `${process.cwd()}/config/${value}`)
+	)
+}
+
 const generateModulesIndex = async (options) => {
 	const modules = options?.enabledModules || []
 	const packagesFolder = path.resolve(__dirname, "../../")
@@ -25,8 +83,8 @@ const generateModulesIndex = async (options) => {
 
 	await Promise.all([
 		generateNodeTemplatesIndex(modulesConfig),
+		generateNodeParamsIndex(modulesConfig),
 		generateApiRoutesIndex(modulesConfig),
-		generateNodeRouteIndex(modulesConfig),
 		generateDynamicFieldTemplatesIndex(modulesConfig),
 	])
 
@@ -34,7 +92,8 @@ const generateModulesIndex = async (options) => {
 }
 
 const generateNodeTemplatesIndex = async (modules) => {
-	let mappings = []
+	let mappings = [],
+		indexes = {}
 
 	modules.forEach((module) => {
 		const modulePath = resolveModulePath(module.packageName)
@@ -43,10 +102,15 @@ const generateNodeTemplatesIndex = async (modules) => {
 			return
 		}
 
-		mappings.push(`  "${node.id}":dynamic(() =>
-    import("${modulePath}/${node.file}")
-  )`)
+		indexes[node.id] = `${modulePath}/${node.file}`
 	})
+
+	const indexesOverride = await getOverridesImportsFromConfigFile("node-templates.mjs")
+	indexes = { ...indexes, ...indexesOverride }
+
+	for (const [key, value] of Object.entries(indexes)) {
+		mappings.push(`  "${key}":dynamic(() => import("${value}"))`)
+	}
 
 	const exportPath = path.resolve(tmpFolderPath, "node-templates.js")
 	await fse.ensureFile(exportPath)
@@ -61,30 +125,39 @@ const generateNodeTemplatesIndex = async (modules) => {
 	Log.info("Successfully compiled nodes templates")
 }
 
-const generateNodeRouteIndex = async (modules) => {
-	let mappings = []
+const generateNodeParamsIndex = async (modules) => {
+	let mappings = [],
+		indexes = {}
 
 	modules.forEach((module) => {
 		const node = module?.node || undefined
 		if (!node) {
 			return
 		}
-		mappings.push(`  "${node.id}": ${JSON.stringify(node.params)}`)
+		indexes[node.id] = node.params
 	})
 
-	const exportPath = path.resolve(tmpFolderPath, "node-api-routes.js")
+	const indexesOverride = await getOverridesImportsFromConfigFileBase("node-params.mjs")
+	indexes = { ...indexes, ...indexesOverride }
+
+	for (const [key, value] of Object.entries(indexes)) {
+		mappings.push(`  "${key}": ${JSON.stringify(value)}`)
+	}
+
+	const exportPath = path.resolve(tmpFolderPath, "node-params.js")
 	await fse.ensureFile(exportPath)
 
 	fs.writeFileSync(
 		exportPath,
-		`export const NodeApiRoutesMapping = {\n${mappings.join(",\n")},\n}\n`
+		`export const NodeParamsMapping = {\n${mappings.join(",\n")},\n}\n`
 	)
 
-	Log.info("Successfully compiled nodes api routes")
+	Log.info("Successfully compiled nodes params")
 }
 
 const generateApiRoutesIndex = async (modules) => {
-	let mappings = []
+	let mappings = [],
+		indexes = {}
 
 	modules.forEach((module) => {
 		const modulePath = resolveModulePath(module.packageName)
@@ -93,11 +166,28 @@ const generateApiRoutesIndex = async (modules) => {
 		const apiRoutes = api?.routes || []
 
 		apiRoutes.forEach((route) => {
-			mappings.push(
-				`  "${apiPrefix}${route.path}": { handler: "${route.handler}", loader: async () => await import("${modulePath}/${route.file}") }`
-			)
+			const id = `${apiPrefix}${route.path}`
+			indexes[id] = { handler: route.handler, loader: `${modulePath}/${route.file}` }
 		})
 	})
+
+	const indexesOverride = await getOverridesImportsFromConfigFileBase(
+		"apis.mjs",
+		(value) => {
+			return {
+				...value,
+				loader: path.relative(__dirname, `${process.cwd()}/config/${value.loader}`),
+			}
+		}
+	)
+
+	indexes = { ...indexes, ...indexesOverride }
+
+	for (const [key, value] of Object.entries(indexes)) {
+		mappings.push(
+			`  "${key}": { handler: "${value.handler}", loader: async () => await import("${value.loader}") }`
+		)
+	}
 
 	const exportPath = path.resolve(tmpFolderPath, "api-routes.js")
 	await fse.ensureFile(exportPath)
@@ -111,18 +201,24 @@ const generateApiRoutesIndex = async (modules) => {
 }
 
 const generateDynamicFieldTemplatesIndex = async (modules) => {
-	let mappings = []
+	let mappings = [],
+		indexes = {}
 
 	modules.forEach((module) => {
 		const modulePath = resolveModulePath(module.packageName)
 		const widgets = module?.widgets || []
 
 		widgets.forEach((widget) => {
-			mappings.push(`  "${widget.id}":dynamic(() =>
-      import("${modulePath}/${widget.file}")
-    )`)
+			indexes[widget.id] = `${modulePath}/${widget.file}`
 		})
 	})
+
+	const indexesOverride = await getOverridesImportsFromConfigFile("widgets.mjs")
+	indexes = { ...indexes, ...indexesOverride }
+
+	for (const [key, value] of Object.entries(indexes)) {
+		mappings.push(`  "${key}":dynamic(() => import("${value}"))`)
+	}
 
 	const exportPath = path.resolve(tmpFolderPath, "df-templates.js")
 	await fse.ensureFile(exportPath)
