@@ -1,0 +1,64 @@
+diff --git a/node_modules/svg-spreact/index.js b/node_modules/svg-spreact/index.js
+index 4d4e7f5..7d02342 100644
+--- a/node_modules/svg-spreact/index.js
++++ b/node_modules/svg-spreact/index.js
+@@ -14,6 +14,7 @@ const svgoDefaultConfig = {
+     {
+       removeAttrs: {
+         attrs: [
++          'svg:fill:none',
+           '(class|style)',
+           'svg:width',
+           'svg:height',
+@@ -24,6 +25,36 @@ const svgoDefaultConfig = {
+         ],
+       },
+     },
++    {
++      addFill: {
++        name: "addFill",
++        type: "perItem",
++        active: true,
++        fn: (item) => {
++          if (!item?.content) {
++            return
++          }
++          item.content = item.content.map((el) => {
++            if (el.elem === "path") {
++              if (el.attrs?.stroke) {
++                el.attrs.stroke.value = "currentColor"
++                el.attrs.fill = {
++                  name: 'fill',
++                  value: 'transparent',
++                  prefix: '', local: 'fill'
++                }
++              }
++              else if (el.attrs?.fill) {
++                el.attrs.fill.value = "currentColor"
++              }
++              
++            }
++
++            return el
++          })
++        },
++      },
++    }
+   ],
+   multipass: true,
+ }
+@@ -104,13 +135,12 @@ module.exports = async (
+   let icons
+   let optimized = []
+   if (optimize) {
+-    try {
+       for (const icon of input) {
+         const iconOpt = await optimizeSVG(icon, svgoConfig)
+         optimized.push(iconOpt)
+       }
+       icons = optimized
+-    } catch (err) {}
++ 
+   } else {
+     icons = input
+   }
