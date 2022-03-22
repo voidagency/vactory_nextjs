@@ -1,5 +1,6 @@
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
+import Head from "next/head"
 import { MenuProvider } from "../menus/menus"
 import { getDefaultLanguage } from "../utils"
 import { I18n } from "../i18n"
