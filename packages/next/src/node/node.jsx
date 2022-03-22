@@ -11,7 +11,6 @@ export const Node = ({ node, params }) => {
 	return (
 		<React.Fragment>
 			<Head>
-				<link rel="preload" as="image/svg+xml" href="/icons.svg" />
 				<title>{node?.title}</title>
 				{/* // TODO: create a MetaTags component */}
 				{metatags.map((tag, key) => {
