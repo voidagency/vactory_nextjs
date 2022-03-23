@@ -36,3 +36,7 @@ lerna-debug.log*
 .vercel
 
 /certificates/*
+
+public/sw.js
+public/sw.js*
+public/workbox-*
