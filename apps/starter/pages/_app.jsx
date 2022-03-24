@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 import { AppHandler } from "@vactory/next/app"
+import Head from "next/head"
 import Script from "next/script"
 import { GTM_ID, pageview } from "../lib/gtm"
 import "nprogress/nprogress.css"
@@ -33,6 +34,19 @@ export default function App({ Component, pageProps }) {
           `,
 				}}
 			/>
+			<Head>
+				<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+				<meta
+					name="viewport"
+					content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+				/>
+				<link rel="manifest" href="/manifest.json" />
+				<link href="/icons/icon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
+				<link href="/icons/icon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+				<meta name="theme-color" content="#317EFB" />
+				<link rel="apple-touch-icon" href="/apple-icon.png"></link>
+				<link rel="preload" as="image/svg+xml" href="/icons.svg" />
+			</Head>
 			<AppHandler pageProps={pageProps}>
 				<Component {...pageProps} />
 			</AppHandler>

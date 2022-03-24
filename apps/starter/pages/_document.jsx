@@ -14,7 +14,12 @@ export default class AppDocument extends Document {
 	render() {
 		return (
 			<Html dir={this.props.locale === "ar" ? "rtl" : "ltr"} lang={this.props.locale}>
-				<Head />
+				<Head>
+					<link
+						href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
+						rel="stylesheet"
+					/>
+				</Head>
 				<body>
 					<noscript>
 						<iframe
