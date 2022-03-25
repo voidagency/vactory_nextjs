@@ -64,10 +64,8 @@ export default NextAuth({
 
 				const data = await response.json()
 				if (response.ok && data?.access_token) {
-					const userResponse = await getDrupalUserinfo(data?.access_token)
-					const profile = await userResponse.json()
-					data.profile = profile
-
+					const decoded = jwt_decode(data.access_token)
+					data.profile = decoded.profile
 					return data
 				}
 
