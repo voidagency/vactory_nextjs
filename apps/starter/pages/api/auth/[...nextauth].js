@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode"
 
 // @todo: refactor these two
 const getDrupalUserinfo = async (token) => {
-	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
+	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`, {
 		method: "get",
 		headers: {
 			Accept: "application/vnd.api+json",
@@ -16,7 +16,7 @@ const getDrupalUserinfo = async (token) => {
 }
 
 const getDrupalUserinfoByProvider = async (token, provider) => {
-	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
+	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`, {
 		method: "get",
 		headers: {
 			Accept: "application/vnd.api+json",
@@ -79,7 +79,7 @@ export default NextAuth({
 			clientSecret: process.env.KEYCLOAK_SECRET,
 			issuer: process.env.KEYCLOAK_ISSUER,
 			userinfo: {
-				url: `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`,
+				url: `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`,
 				async request(ctx) {
 					let data = {}
 					try {
