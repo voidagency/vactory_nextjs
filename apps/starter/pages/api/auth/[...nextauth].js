@@ -3,18 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import KeycloakProvider from "next-auth/providers/keycloak"
 import jwt_decode from "jwt-decode"
 
-// @todo: refactor these two
-const getDrupalUserinfo = async (token) => {
-	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`, {
-		method: "get",
-		headers: {
-			Accept: "application/vnd.api+json",
-			"Content-Type": "application/vnd.api+json",
-			Authorization: "Bearer " + token,
-		},
-	})
-}
-
 const getDrupalUserinfoByProvider = async (token, provider) => {
 	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`, {
 		method: "get",
