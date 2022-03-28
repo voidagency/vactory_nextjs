@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useI18n } from "@vactory/next/i18n"
 import { useSession } from "next-auth/react"
 import { useSignUp, useCreateUser } from "@vactory/next-user"
 import { useForm } from "react-hook-form"
 import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
 
 const ReCaptcha = dynamic(() => import("react-google-recaptcha"), {
 	ssr: false,
@@ -28,13 +29,18 @@ const RegisterPage = ({ node }) => {
 		register,
 		handleSubmit,
 		setError,
-		reset,
 		setValue,
 		clearErrors,
 		formState: { errors },
 	} = useForm()
 
 	const [loading, setLoading] = useState(false)
+	const router = useRouter()
+
+	useEffect(() => {
+		// Prefetch the dashboard page
+		router.prefetch("/user/login")
+	}, [])
 
 	// When rendering client side don't display anything until loading is complete
 	if (typeof window !== "undefined" && userLoading) return null
@@ -53,10 +59,10 @@ const RegisterPage = ({ node }) => {
 			setLoading(false)
 			hide()
 			if (response.ok) {
-				console.log(input)
-				console.log(response.status)
-				reset()
-				Toast.success(t("Inscription complète."))
+				await router.push({
+					pathname: "/user/login",
+					query: { isNew: true },
+				})
 			} else {
 				const errors = data?.errors || []
 				errors.forEach((item) => {
