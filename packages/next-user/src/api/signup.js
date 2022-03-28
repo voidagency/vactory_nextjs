@@ -11,13 +11,20 @@ import csrf from "@vactory/next/csrf"
 // @todo: password check > drupal
 
 /**
+ * Get multilanguage API URL
+ * @param {*} language current language
+ * @returns String the API URL
+ */
+const apiURL = (language) => `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${language}`
+
+/**
  * Create user on Drupal
  *
  * @param {*} body request body params
  * @returns promise
  */
-const createUser = async (body) => {
-	const CREATE_USER_ENDPOINT = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/api/user/register`
+const createUser = async (lng, body) => {
+	const CREATE_USER_ENDPOINT = `${apiURL(lng)}/api/user/register`
 	return fetch(CREATE_USER_ENDPOINT, {
 		method: "post",
 		headers: {
@@ -28,12 +35,25 @@ const createUser = async (body) => {
 	})
 }
 
+/**
+ * Get unique username by email
+ *
+ * @param {*} email email adresss to generate username from.
+ * @returns promise
+ */
+const getUsernameByEmail = async (lng, email) => {
+	const CREATE_USER_ENDPOINT = `${apiURL(
+		lng
+	)}/api/get-unique-username-by-email?email=${email}`
+	return fetch(CREATE_USER_ENDPOINT)
+}
+
 const validateBodyInput = () => {
 	return true
 }
 
 const normalizeBodyInput = (body) => {
-	const { name, password, email } = body
+	const { name, password, email, first_name, last_name } = body
 	return {
 		data: {
 			type: "user--user",
@@ -41,6 +61,8 @@ const normalizeBodyInput = (body) => {
 				name: name,
 				mail: email,
 				pass: password ?? null, // Password is not required when Drupal register_pending_approval is on.
+				field_first_name: first_name,
+				field_last_name: last_name,
 			},
 		},
 	}
@@ -59,6 +81,8 @@ export const signUpHandler = async (req, res) => {
 		return
 	}
 	const { method, body } = req
+	const language = "fr"
+	const recaptchaResponse = body?.recaptchaResponse || ""
 
 	if (method !== "POST") {
 		res.setHeader("Allow", ["POST"])
@@ -66,22 +90,75 @@ export const signUpHandler = async (req, res) => {
 		return
 	}
 
+	const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRETKEY}&response=${recaptchaResponse}`
+
+	try {
+		const recaptchaRes = await fetch(verifyUrl, { method: "POST" })
+		await recaptchaRes.json()
+	} catch (e) {
+		res.status(403).json({
+			status: false,
+			errors: [
+				{
+					detail: "Invalid recpatcha",
+					source: {
+						pointer: "/data/attributes/captcha",
+					},
+				},
+			],
+		})
+		return
+	}
+
 	const isValid = await validateBodyInput(body)
 
 	if (!isValid) {
-		res.status(200).json({
+		res.status(403).json({
 			status: false,
 			errors: [],
 		})
 		return
 	}
 
-	const response = await createUser(normalizeBodyInput(body))
+	try {
+		const response = await getUsernameByEmail(language, body.email)
+		const json = await response.json()
+		if (json?.errors) {
+			res.status(403).json({
+				status: false,
+				errors: [
+					{
+						detail: "Invalid email",
+						source: {
+							pointer: "/data/attributes/mail",
+						},
+					},
+				],
+			})
+			return
+		}
+		body.name = json.username
+	} catch (err) {
+		res.status(403).json({
+			status: false,
+			errors: [
+				{
+					detail: "Invalid email",
+					source: {
+						pointer: "/data/attributes/mail",
+					},
+				},
+			],
+		})
+		return
+	}
+
+	const response = await createUser(language, normalizeBodyInput(body))
 	const json = await response.json()
 	const result = deserialise(json)
 
 	if (result.errors) {
-		res.status(200).json({
+		res.status(403).json({
 			status: false,
 			errors: normalizeErrors(result.errors),
 		})
