@@ -1,13 +1,8 @@
 import { deserialise } from "kitsu-core"
 import csrf from "@vactory/next/csrf"
 
-// @todo: validate upfront > reduce overhead on drupal.
-// @todo: test: upload picture & docs + other fields
-// @todo: case: register_pending_approval
+// @todo: test: upload picture & docs
 // @todo: case: verify_mail
-// @todo: not feeling ok with that name param, we should expose an api from email_registration module.
-// It should give an unique username based on the email
-// @todo: recaptcha > drupal
 // @todo: password check > drupal
 
 /**
