@@ -1,6 +1,6 @@
 import React from "react"
 
-import { MsgValidation } from "../msgValidation"
+import { MsgValidation } from "./msg-validation"
 
 export default {
 	title: "Primitives/MessageDeValidation",
@@ -23,6 +23,7 @@ export const Success = Template.bind({})
 Success.args = {
 	state: "success",
 	children: <ListError />,
+	showClose: true,
 }
 
 export const SuccessMessage = Template.bind({})
@@ -37,6 +38,7 @@ export const error = Template.bind({})
 error.args = {
 	state: "error",
 	children: <ListError />,
+	showClose: true,
 }
 
 export const warning = Template.bind({})
@@ -44,4 +46,5 @@ export const warning = Template.bind({})
 warning.args = {
 	state: "warning",
 	children: <ListError />,
+	showClose: true,
 }

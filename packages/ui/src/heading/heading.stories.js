@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Heading } from "../heading"
+import { Heading } from "./heading"
 
 export default {
 	title: "Primitives/Headings",

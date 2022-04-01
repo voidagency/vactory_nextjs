@@ -1,20 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-
-const texts = {
-	base: "text-base",
-	small: "text-xs",
-	large: "text-xl",
-	intro: "text-2xl text-indigo-600",
-	quote: "text-lg",
-}
+import { ThemeContext } from "../context/context"
 
 const Text = ({ variant = "base", as = "p", className = "", children, ...props }) => {
 	const Component = as
+	const { text } = useContext(ThemeContext)
 
 	return (
-		<Component className={clsx(variant in texts && texts[variant], className)} {...props}>
+		<Component className={clsx(variant in text && text[variant], className)} {...props}>
 			{children}
 		</Component>
 	)
@@ -22,9 +16,9 @@ const Text = ({ variant = "base", as = "p", className = "", children, ...props }
 
 Text.prototype = {
 	children: PropTypes.node.isRequired,
-	variant: PropTypes.oneOf(["base", "small", "large", "intro", "quote"]),
 	className: PropTypes.string,
 	as: PropTypes.string,
+	color: PropTypes.string,
 }
 
 export { Text }

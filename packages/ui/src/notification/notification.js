@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react"
 import { Transition } from "@vactory/headlessui/transition"
-import { Icon } from "@vactory/ui/icon"
+import { Icon } from "../icon/icon"
 
 export const Notification = () => {
 	const [show, setShow] = useState(true)

@@ -1,18 +1,20 @@
 import { Layout } from "@/components/layout"
-import { Card } from "@vactory/ui/card"
-import Image from "next/image"
+import { Button } from "@vactory/ui/button"
+import { AppWrapper } from "@vactory/ui/app-wrapper"
+import { theme } from "../theme/theme"
+import { Heading } from "@vactory/ui/heading"
 
 export default function Index() {
 	return (
-		<Layout>
-			<h1>Hello Playground</h1>
-			<Card
-				title="test card"
-				excerpt="test sommaire"
-				category="toto"
-				url="/about"
-				image={<Image src="/image-4.jpeg" width="500" height="500" alt="" />}
-			/>
-		</Layout>
+		<AppWrapper theme={theme}>
+			<Layout>
+				<div className="h-screen text-white py-9 bg-indigo-300 flex items-center justify-center flex-col">
+					<Heading level={2} className="mb-4 text-center">
+						This is the default heading
+					</Heading>
+					<Button>This is the button primary</Button>
+				</div>
+			</Layout>
+		</AppWrapper>
 	)
 }

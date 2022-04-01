@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Select } from "../select"
+import { Select } from "./select"
 
 export default {
 	title: "Primitives/select",

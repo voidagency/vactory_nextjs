@@ -1,24 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import clsx from "clsx"
 import PropTypes from "prop-types"
+import { ThemeContext } from "../context/context"
 
-const listItems = [
-	{
-		value: "Agadir",
-		content: "Agadir",
-	},
-	{
-		value: "Casablanca",
-		content: "Casablana",
-	},
-	{
-		value: "Paris",
-		content: "Paris",
-	},
-]
-
-const Select = ({ className, list = listItems, selected = "", ...props }) => {
+const Select = ({
+	className = "",
+	list = [],
+	variant = "default",
+	selected = "",
+	...props
+}) => {
 	const [selectedValue, handleChange] = React.useState(selected)
+	const { select } = useContext(ThemeContext)
 	React.useState(() => {
 		if (!selected) {
 			handleChange(list[0].value)
@@ -26,10 +19,7 @@ const Select = ({ className, list = listItems, selected = "", ...props }) => {
 	})
 	return (
 		<select
-			className={clsx(
-				"block w-full py-2 pl-3 pr-10 mt-1 text-base text-black border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-				className
-			)}
+			className={clsx(select[variant], className)}
 			value={selectedValue}
 			defaultValue={selectedValue}
 			{...props}
