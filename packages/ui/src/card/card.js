@@ -32,8 +32,8 @@ export const Card = ({
 				</div>
 				<Link href={url} className="block">
 					<>
-						<h3 className={card[variant].title}>{title}</h3>
-						<p className={card[variant].excerpt}>{excerpt}</p>
+						{title && <h3 className={card[variant].title}>{title}</h3>}
+						{excerpt && <p className={card[variant].excerpt}>{excerpt}</p>}
 					</>
 				</Link>
 				{url && urlContent && (

@@ -21,6 +21,15 @@ export const CustomIcon = () => {
 	)
 }
 
+export const IconVariant2 = () => {
+	return (
+		<div className="relative">
+			<PlaceholderSections />
+			<BackToTop variant="v2" />
+		</div>
+	)
+}
+
 export default {
 	title: "Components/Back To Top",
 }

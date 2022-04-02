@@ -1,7 +1,6 @@
 import React, { forwardRef, useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-//import { ThemeContext } from "@vactory/ui/context";
 import { ThemeContext } from "../context/context"
 
 const Button = forwardRef(
@@ -34,10 +33,12 @@ const Button = forwardRef(
 					!outline ? button.variant[variant] : button.outlineVariant[variant],
 					pill && button.pill,
 					disabled && button.disabled,
+					icon && button.icon,
 					className
 				)}
 				{...props}
 			>
+				{icon && icon}
 				{children}
 			</button>
 		)

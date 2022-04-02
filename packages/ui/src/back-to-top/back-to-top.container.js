@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
+import clsx from "clsx"
 import { BaseBackToTop } from "./back-to-top"
 import { Icon } from "@vactory/ui/icon"
+import { ThemeContext } from "../context/context"
 
-export const BackToTop = ({ icon, ...rest }) => {
+export const BackToTop = ({ variant = "default", className = "", icon, ...rest }) => {
+	const { backTotop } = useContext(ThemeContext)
 	let buttonIcon = <Icon id="arrow-circle-up" width="36" height="36" />
 	if (icon) {
 		buttonIcon = icon
@@ -10,10 +13,10 @@ export const BackToTop = ({ icon, ...rest }) => {
 	return (
 		<BaseBackToTop
 			showOnScrollUp={true}
-			showAt={40}
-			speed={1500}
-			easing="easeInOutQuint"
-			className=" border border-gray-50 bg-white bottom-10 fixed hover:text-blue-500 ltr:right-10 p-3 rounded-full rtl:left-10 shadow-2xl transition"
+			showAt={backTotop[variant].showAt}
+			speed={backTotop[variant].speed}
+			easing={backTotop[variant].easing}
+			className={clsx(backTotop[variant].className, className)}
 			{...rest}
 		>
 			{buttonIcon}

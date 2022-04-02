@@ -28,3 +28,10 @@ Example.args = {
 	list: listItems,
 	selected: "Paris",
 }
+
+export const V2 = Template.bind({})
+V2.args = {
+	variant: "v2",
+	list: listItems,
+	selected: "Paris",
+}

@@ -5,9 +5,9 @@ import { Transition } from "@vactory/headlessui/transition"
 
 const AccordionButton = ({ active, icon, ...props }) => {
 	return (
-		<Disclosure.Button className="flex flex-row items-center justify-between">
+		<Disclosure.Button className="f">
 			<div>{children}</div>
-			{icon && <iCon id={icon} />}
+			{icon && icon}
 		</Disclosure.Button>
 	)
 }

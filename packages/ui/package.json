@@ -37,7 +37,8 @@
     "./text": "./src/text/text.js",
     "./context": "./src/context/context.js",
     "./theme": "./src/theme/theme.js",
-    "./app-wrapper": "./src/app-wrapper/app-wrapper.js"
+    "./app-wrapper": "./src/app-wrapper/app-wrapper.js",
+    "./container": "./src/container/container.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",

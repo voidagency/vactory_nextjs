@@ -7,6 +7,8 @@ import { container } from "./container"
 import { link } from "./link"
 import { select } from "./select"
 import { msgValidation } from "./msg-validation"
+import { backTotop } from "./back-to-top"
+import { notification } from "./notification"
 
 export const theme = {
 	button,
@@ -18,4 +20,6 @@ export const theme = {
 	link,
 	select,
 	msgValidation,
+	backTotop,
+	notification,
 }

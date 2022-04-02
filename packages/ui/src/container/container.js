@@ -3,11 +3,11 @@ import PropTypes from "prop-types"
 import clsx from "clsx"
 import { ThemeContext } from "../context/context"
 
-const Container = ({ children, fluid = false, ...props }) => {
+const Container = ({ children, layout = "default", className = "", ...props }) => {
 	const { container } = useContext(ThemeContext)
 
 	return (
-		<div className={clsx(container, className)} {...props}>
+		<div className={clsx(container[layout], className)} {...props}>
 			{children}
 		</div>
 	)
@@ -15,6 +15,8 @@ const Container = ({ children, fluid = false, ...props }) => {
 
 Container.propTypes = {
 	children: PropTypes.isRequired,
+	className: PropTypes.string,
+	layout: PropTypes.string,
 }
 
-export default Container
+export { Container }

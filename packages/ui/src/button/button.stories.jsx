@@ -1,5 +1,6 @@
 import React from "react"
 import { Button } from "@vactory/ui/button"
+import { Icon } from "@vactory/ui/icon"
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -20,6 +21,7 @@ export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
 	variant: "primary",
+	size: "xlarge",
 	children: "Primary",
 }
 
@@ -56,9 +58,11 @@ Pill.args = {
 	children: "Rounded button",
 }
 
-export const Disabled = Template.bind({})
+export const ButtonWithIcon = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Disabled.args = {
-	disabled: true,
+ButtonWithIcon.args = {
+	variant: "primary",
 	children: "Disabled Button",
+	children: "En savoir plus",
+	icon: <Icon id="information-circle" width="20" height="20" />,
 }

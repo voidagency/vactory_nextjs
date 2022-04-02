@@ -2,10 +2,12 @@ export const button = {
 	base: "focus:outline-none transition ease-in-out duration-300 border border-solid",
 	disabled: "opacity-50 cursor-not-allowed",
 	pill: "rounded-full",
+	icon: "flex items-center gap-2",
 	size: {
 		small: "px-2 py-1 text-sm",
 		normal: "text-sm leading-[21px] px-[10px] py-[9px]",
 		large: "px-8 py-3 text-lg",
+		xlarge: "px-10 py-5 text-3xl",
 	},
 	variant: {
 		primary:

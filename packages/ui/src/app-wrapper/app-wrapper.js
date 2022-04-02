@@ -6,7 +6,6 @@ import { theme as uiTheme } from "../theme/theme"
 
 export const AppWrapper = ({ theme = {}, children, ...props }) => {
 	const themes = deepmerge(uiTheme, theme)
-	console.log(themes)
 	return <ThemeContext.Provider value={themes}>{children}</ThemeContext.Provider>
 }
 
