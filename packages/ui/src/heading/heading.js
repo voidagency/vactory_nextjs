@@ -14,7 +14,7 @@ const Heading = ({ children, className = "", level = 2, ...props }) => {
 	)
 }
 
-Heading.PropTypes = {
+Heading.propTypes = {
 	children: PropTypes.node.isRequired,
 	className: PropTypes.string,
 	variant: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
