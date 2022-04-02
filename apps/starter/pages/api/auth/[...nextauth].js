@@ -3,20 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import KeycloakProvider from "next-auth/providers/keycloak"
 import jwt_decode from "jwt-decode"
 
-// @todo: refactor these two
-const getDrupalUserinfo = async (token) => {
-	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
-		method: "get",
-		headers: {
-			Accept: "application/vnd.api+json",
-			"Content-Type": "application/vnd.api+json",
-			Authorization: "Bearer " + token,
-		},
-	})
-}
-
 const getDrupalUserinfoByProvider = async (token, provider) => {
-	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`, {
+	return fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`, {
 		method: "get",
 		headers: {
 			Accept: "application/vnd.api+json",
@@ -64,10 +52,8 @@ export default NextAuth({
 
 				const data = await response.json()
 				if (response.ok && data?.access_token) {
-					const userResponse = await getDrupalUserinfo(data?.access_token)
-					const profile = await userResponse.json()
-					data.profile = profile
-
+					const decoded = jwt_decode(data.access_token)
+					data.profile = decoded.profile
 					return data
 				}
 
@@ -79,7 +65,7 @@ export default NextAuth({
 			clientSecret: process.env.KEYCLOAK_SECRET,
 			issuer: process.env.KEYCLOAK_ISSUER,
 			userinfo: {
-				url: `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/userinfo`,
+				url: `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/userinfo`,
 				async request(ctx) {
 					let data = {}
 					try {
