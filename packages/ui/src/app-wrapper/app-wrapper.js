@@ -10,6 +10,6 @@ export const AppWrapper = ({ theme = {}, children, ...props }) => {
 }
 
 AppWrapper.propTypes = {
-	children: PropTypes.isRequired,
+	children: PropTypes.node.isRequired,
 	theme: PropTypes.object,
 }

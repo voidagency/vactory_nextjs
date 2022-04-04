@@ -45,7 +45,7 @@ const Button = forwardRef(
 	}
 )
 
-Button.PropTypes = {
+Button.propTypes = {
 	children: PropTypes.node.isRequired,
 	submit: PropTypes.oneOf(["submit", "button"]),
 	className: PropTypes.string,

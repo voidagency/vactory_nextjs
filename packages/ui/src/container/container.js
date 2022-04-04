@@ -14,7 +14,7 @@ const Container = ({ children, layout = "default", className = "", ...props }) =
 }
 
 Container.propTypes = {
-	children: PropTypes.isRequired,
+	children: PropTypes.node.isRequired,
 	className: PropTypes.string,
 	layout: PropTypes.string,
 }
