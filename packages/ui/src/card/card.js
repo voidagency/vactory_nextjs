@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { Link } from "../link/link"
 import { ThemeContext } from "../context/context"
 
-export const Card = ({
+const Card = ({
 	variant = "default",
 	title,
 	excerpt,
@@ -45,3 +45,5 @@ export const Card = ({
 		</div>
 	)
 }
+
+export { Card }

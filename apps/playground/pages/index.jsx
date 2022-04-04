@@ -11,7 +11,6 @@ export default function Index() {
 					This is the index page
 				</Heading>
 				<Card
-					variant="toto"
 					title="This is playground project"
 					excerpt="lorem ipsum dolor sit amet, consectetur adip"
 					image={
