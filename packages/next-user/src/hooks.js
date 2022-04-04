@@ -26,24 +26,28 @@ export const useSignUp = () => {
 }
 
 export const useCreateUser = () => {
+	const router = useRouter()
 	return async (body) =>
 		fetch("/api/user/signup", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				"x-language": router.locale,
 			},
 			body: JSON.stringify(body),
 		})
 }
 
 export const useResetUserPassword = () => {
+	const router = useRouter()
 	return async (body) =>
 		fetch("/api/user/reset-password", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				"x-language": router.locale,
 			},
 			body: JSON.stringify(body),
 		})
