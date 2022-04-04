@@ -9,6 +9,7 @@ import { select } from "./select"
 import { msgValidation } from "./msg-validation"
 import { backTotop } from "./back-to-top"
 import { notification } from "./notification"
+import { breadcrumb } from "./breadcrumb"
 
 export const theme = {
 	button,
@@ -22,4 +23,5 @@ export const theme = {
 	msgValidation,
 	backTotop,
 	notification,
+	breadcrumb,
 }

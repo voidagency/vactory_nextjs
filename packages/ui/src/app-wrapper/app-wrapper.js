@@ -9,7 +9,7 @@ export const AppWrapper = ({ theme = {}, children, ...props }) => {
 	return <ThemeContext.Provider value={themes}>{children}</ThemeContext.Provider>
 }
 
-AppWrapper.PropTypes = {
+AppWrapper.propTypes = {
 	children: PropTypes.isRequired,
 	theme: PropTypes.object,
 }
