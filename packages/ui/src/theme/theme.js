@@ -13,6 +13,9 @@ import { breadcrumb } from "./breadcrumb"
 import { tabPanel } from "./tabs"
 import { tabList } from "./tabs"
 import { tabs } from "./tabs"
+import { toggle } from "./toggle"
+import { autocomplete } from "./autocomplete"
+import { comboxOption } from "./autocomplete"
 
 export const theme = {
 	button,
@@ -20,6 +23,7 @@ export const theme = {
 	text,
 	accordionButton,
 	accordionPanel,
+	autocomplete,
 	card,
 	container,
 	link,
@@ -31,4 +35,6 @@ export const theme = {
 	tabPanel,
 	tabList,
 	tabs,
+	toggle,
+	comboxOption,
 }

@@ -58,14 +58,20 @@ export const AccordionPanel = ({
 	)
 }
 
-const Accordion = ({ title, icon, children, ...props }) => {
+export const Accordion = ({
+	title,
+	icon,
+	accordionButtonText,
+	accordionPanelText,
+	...props
+}) => {
 	return (
 		<React.Fragment>
 			<Disclosure>
 				{({ open }) => {
 					return (
 						<>
-							<AccordionButton children={"What is your refund policy ?"} />
+							<AccordionButton children={"hello"} />
 							{
 								<AccordionPanel
 									show={open}
@@ -79,5 +85,3 @@ const Accordion = ({ title, icon, children, ...props }) => {
 		</React.Fragment>
 	)
 }
-
-export { Accordion }
