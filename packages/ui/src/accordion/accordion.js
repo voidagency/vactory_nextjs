@@ -1,65 +1,83 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import { Disclosure } from "@vactory/headlessui/disclosure"
 import { Transition } from "@vactory/headlessui/transition"
+import { ThemeContext } from "../context/context"
 //import {Icon} from '@vactory/ui/icon';
+import clsx from "clsx"
 
-const AccordionButton = ({ active, icon, ...props }) => {
+export const AccordionButton = ({
+	active,
+	children,
+	icon,
+	className = "",
+	variant = "default",
+	...props
+}) => {
+	const { accordionButton } = useContext(ThemeContext)
 	return (
-		<Disclosure.Button className="f">
-			<div>{children}</div>
-			{icon && icon}
+		<Disclosure.Button className={clsx(accordionButton[variant].className, className)}>
+			<div className={accordionButton[variant].p}>
+				<span>{children}</span>
+			</div>
+			{icon && accordionButton.icon}
 		</Disclosure.Button>
 	)
 }
 
-const AccordionPanel = ({ title, active, childre, ...props }) => {
+export const AccordionPanel = ({
+	title,
+	active,
+	children,
+	show,
+	className = "",
+	variant = "default",
+	...props
+}) => {
+	const { accordionPanel } = useContext(ThemeContext)
 	return (
 		<Disclosure>
 			{title}
 			<Transition
+				className={clsx(accordionPanel[variant].className, className)}
 				show={show}
-				enter="transition duration-100 ease-out"
-				enterFrom="transform scale-95 opacity-0"
-				enterTo="transform scale-100 opacity-100"
-				leave="transition duration-75 ease-out"
-				leaveFrom="transform scale-100 opacity-100"
-				leaveTo="transform scale-95 opacity-0"
+				enter={accordionPanel[variant].transition.enter}
+				enterFrom={accordionPanel[variant].transition.enterFrom}
+				enterTo={accordionPanel[variant].transition.enterTo}
+				leave={accordionPanel[variant].transition.leave}
+				leaveFrom={accordionPanel[variant].transition.leaveFrom}
+				leaveTo={accordionPanel[variant].transition.leaveTo}
 			>
-				<Disclosure.Panel>{children}</Disclosure.Panel>
+				<Disclosure.Panel
+					static
+					className={accordionPanel[variant].disclosurePanel.className}
+				>
+					{children}
+				</Disclosure.Panel>
 			</Transition>
 		</Disclosure>
 	)
 }
 
-const Accordion = ({ title, icon, children, ...props }) => {
-	const [show, setShow] = useState(true)
-	//const show = false;
-
+export const Accordion = ({
+	title,
+	icon,
+	accordionButtonText,
+	accordionPanelText,
+	...props
+}) => {
 	return (
 		<React.Fragment>
 			<Disclosure>
-				{({ show }) => {
+				{({ open }) => {
 					return (
 						<>
-							<Disclosure.Button onClick={() => setShow(!show)}>
-								<p className="w-full flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-									<span>What is your refund policy ?</span>
-								</p>
-							</Disclosure.Button>
-							<Transition
-								show={show}
-								enter="transition duration-100 ease-out"
-								enterFrom="transform scale-95 opacity-0"
-								enterTo="transform scale-100 opacity-100"
-								leave="transition duration-75 ease-out"
-								leaveFrom="transform scale-100 opacity-100"
-								leaveTo="transform scale-95 opacity-0"
-							>
-								<Disclosure.Panel static className="px-4 pt-4 pb-2 text-sm text-gray-500">
-									If you're unhappy with your purchase for any reason, email us within 90
-									days and we'll refund you in full, no questions asked.
-								</Disclosure.Panel>
-							</Transition>
+							<AccordionButton children={"hello"} />
+							{
+								<AccordionPanel
+									show={open}
+									children={"If you're unhappy with your purchase for any reason"}
+								/>
+							}
 						</>
 					)
 				}}
@@ -67,5 +85,3 @@ const Accordion = ({ title, icon, children, ...props }) => {
 		</React.Fragment>
 	)
 }
-
-export { Accordion, AccordionButton }

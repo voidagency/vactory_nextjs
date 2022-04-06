@@ -30,10 +30,16 @@ Secondary.args = {
 	variant: "secondary",
 }
 
+export const Danger = Template.bind({})
+Danger.args = {
+	children: "Danger",
+	variant: "danger",
+}
+
 export const Large = Template.bind({})
 Large.args = {
 	size: "large",
-	children: "Danger",
+	children: "Primary",
 }
 
 export const OutlinePrimary = Template.bind({})
@@ -48,6 +54,13 @@ export const Small = Template.bind({})
 Small.args = {
 	size: "small",
 	children: "Small button",
+}
+
+export const Rounded = Template.bind({})
+Rounded.args = {
+	size: "rounded",
+	pill: true,
+	icon: <Icon id="arrow-narrow-left-solid" width="15" height="15" />,
 }
 
 export const Pill = Template.bind({})

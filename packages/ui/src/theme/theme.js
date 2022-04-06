@@ -1,7 +1,7 @@
 import { button } from "./button"
 import { heading } from "./heading"
 import { text } from "./text"
-import { accordion } from "./accordion"
+import { accordionButton, accordionPanel } from "./accordion"
 import { card } from "./card"
 import { container } from "./container"
 import { link } from "./link"
@@ -10,12 +10,20 @@ import { msgValidation } from "./msg-validation"
 import { backTotop } from "./back-to-top"
 import { notification } from "./notification"
 import { breadcrumb } from "./breadcrumb"
-import { input } from "./input"
+import { tabPanel } from "./tabs"
+import { tabList } from "./tabs"
+import { tabs } from "./tabs"
+import { toggle } from "./toggle"
+import { autocomplete } from "./autocomplete"
+import { comboxOption } from "./autocomplete"
 
 export const theme = {
 	button,
 	heading,
 	text,
+	accordionButton,
+	accordionPanel,
+	autocomplete,
 	card,
 	container,
 	link,
@@ -24,6 +32,9 @@ export const theme = {
 	backTotop,
 	notification,
 	breadcrumb,
-	accordion,
-	input,
+	tabPanel,
+	tabList,
+	tabs,
+	toggle,
+	comboxOption,
 }
