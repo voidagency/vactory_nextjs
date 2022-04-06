@@ -10,12 +10,12 @@ import { msgValidation } from "./msg-validation"
 import { backTotop } from "./back-to-top"
 import { notification } from "./notification"
 import { breadcrumb } from "./breadcrumb"
+import { input } from "./input"
 
 export const theme = {
 	button,
 	heading,
 	text,
-	accordion,
 	card,
 	container,
 	link,
@@ -24,4 +24,6 @@ export const theme = {
 	backTotop,
 	notification,
 	breadcrumb,
+	accordion,
+	input,
 }

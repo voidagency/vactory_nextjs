@@ -61,7 +61,13 @@ export const ButtonWithIcon = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 ButtonWithIcon.args = {
 	variant: "primary",
-	children: "Disabled Button",
 	children: "En savoir plus",
+	icon: <Icon id="information-circle" width="20" height="20" />,
+}
+
+export const ButtonIcon = Template.bind({})
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+ButtonIcon.args = {
+	variant: "primary",
 	icon: <Icon id="information-circle" width="20" height="20" />,
 }

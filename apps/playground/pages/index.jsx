@@ -1,3 +1,4 @@
+import Header from "../components/header/header";
 import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { theme } from "../theme/theme"
 import { Container } from "@vactory/ui/container"
@@ -6,6 +7,7 @@ import { Card } from "@vactory/ui/card"
 export default function Index() {
 	return (
 		<AppWrapper theme={theme}>
+			<Header />
 			<Container className="py-10 flex-col">
 				<Heading level={1} className="text-center mb-3">
 					This is the index page
