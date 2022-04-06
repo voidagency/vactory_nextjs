@@ -97,7 +97,7 @@ module.exports = withPlugins(
 		[
 			withModulesPlugin,
 			{
-				enabledModules: ["next-page", "next-news", "next-user"],
+				enabledModules: ["next-page", "next-news", "next-user", "next-webform"],
 			},
 		],
 		[withBundleAnalyzer],

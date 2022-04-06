@@ -1,0 +1,12 @@
+.dzu-inputLabel {
+	text-align: center;
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #212529;
+	padding: 15px;
+}
+
+.dzu-inputLabelWithFiles {
+	margin: 20px 3%;
+}

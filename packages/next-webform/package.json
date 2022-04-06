@@ -1,0 +1,10 @@
+{
+	"name": "@vactory/next-webform",
+	"private": true,
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"storybook": "start-storybook -p 6006 --no-dll"
+	}
+}
