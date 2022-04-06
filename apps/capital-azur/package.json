@@ -1,0 +1,29 @@
+{
+  "name": "capital-azur",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true yarn build",
+    "preview": "next build && next start",
+    "serve": "serve .next/analyze",
+    "lint": "next lint",
+    "storybook:dev": "start-storybook -p 6006",
+    "storybook:no-cache": "start-storybook -p 6006 --no-manager-cache",
+    "storybook:build": "build-storybook",
+    "tailwind:build": "npx tailwindcss -i ./styles/globals.css -o ./.storybook/style.css --watch"
+  },
+  "peerDependencies": {
+    "@vactory/ui": "*",
+    "next": "*"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
+  }
+}

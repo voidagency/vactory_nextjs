@@ -1,0 +1,11 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/components/*": ["components/*"],
+			"@/lib/*": ["lib/*"],
+			"@vactory/ui/link": ["components/link/link.js"]
+		}
+	}
+}
