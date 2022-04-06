@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import clsx from "clsx"
 import PropTypes from "prop-types"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Select = ({
 	className = "",

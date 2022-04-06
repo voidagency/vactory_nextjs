@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import clsx from "clsx"
-import { Link } from "../link/link"
-import { ThemeContext } from "../context/context"
+import { Link } from "@vactory/ui/link"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Card = ({
 	variant = "default",

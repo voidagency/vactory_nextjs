@@ -1,7 +1,8 @@
 import React, { forwardRef, useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-import { ThemeContext } from "../context/context"
+//import { ThemeContext } from "../context/theme-context";
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Button = forwardRef(
 	(

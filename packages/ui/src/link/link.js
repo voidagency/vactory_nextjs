@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
 
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const Link = ({
 	href = "#.",

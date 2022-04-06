@@ -2,7 +2,7 @@ import { Fragment, useState, useContext } from "react"
 import { Transition } from "@vactory/headlessui/transition"
 import { Combobox } from "@vactory/headlessui/combobox"
 import { Icon } from "@vactory/ui/icon"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 import clsx from "clsx"
 
 const ComboxOption = ({ variant = "default", filteredPeople, iconCheked }) => {

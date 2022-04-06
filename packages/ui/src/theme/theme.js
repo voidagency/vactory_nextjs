@@ -16,6 +16,7 @@ import { tabs } from "./tabs"
 import { toggle } from "./toggle"
 import { autocomplete } from "./autocomplete"
 import { comboxOption } from "./autocomplete"
+import { input } from "./input"
 
 export const theme = {
 	button,
@@ -37,4 +38,5 @@ export const theme = {
 	tabs,
 	toggle,
 	comboxOption,
+	input,
 }

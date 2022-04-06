@@ -2,8 +2,8 @@ import React, { useState, Fragment, useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
-import { Icon } from "../icon/icon"
-import { ThemeContext } from "../context/context"
+import { Icon } from "@vactory/ui/icon"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const MsgValidation = ({
 	state = "success",

@@ -1,6 +1,6 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { Tab } from "@vactory/headlessui/tabs"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 import clsx from "clsx"
 
 function classNames(...classes) {

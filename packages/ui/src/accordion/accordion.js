@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Disclosure } from "@vactory/headlessui/disclosure"
 import { Transition } from "@vactory/headlessui/transition"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 //import {Icon} from '@vactory/ui/icon';
 import clsx from "clsx"
 

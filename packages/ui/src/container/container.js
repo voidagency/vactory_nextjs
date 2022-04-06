@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Container = ({ children, layout = "default", className = "", ...props }) => {
 	const { container } = useContext(ThemeContext)

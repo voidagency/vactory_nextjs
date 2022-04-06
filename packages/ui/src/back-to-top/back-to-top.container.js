@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import clsx from "clsx"
 import { BaseBackToTop } from "./back-to-top"
 import { Icon } from "@vactory/ui/icon"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const BackToTop = ({ variant = "default", className = "", icon, ...rest }) => {
 	const { backTotop } = useContext(ThemeContext)

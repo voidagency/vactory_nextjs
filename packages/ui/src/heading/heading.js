@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-import { ThemeContext } from "../context/context"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Heading = ({ children, className = "", level = 2, ...props }) => {
 	const Component = level ? `h${level}` : "h2"

@@ -14,5 +14,8 @@ module.exports = async ({ config }) => {
 	//           { loader: require.resolve('react-svg-loader') }]
 	// });
 
+	config.resolve.alias["@vactory/ui/theme-context"] = "../context/theme-context.js"
+	config.resolve.alias["@vactory/ui/theme"] = "../theme/theme.js"
+
 	return config
 }

@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import deepmerge from "deepmerge"
-import { ThemeContext } from "../context/context"
-import { theme as uiTheme } from "../theme/theme"
+import { ThemeContext } from "@vactory/ui/theme-context"
+import { theme as uiTheme } from "@vactory/ui/theme"
 
 export const AppWrapper = ({ theme = {}, children, ...props }) => {
 	const themes = deepmerge(uiTheme, theme)

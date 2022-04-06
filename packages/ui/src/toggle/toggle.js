@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
-import { Switch } from "@vactory/headlessui/switch"
-import { ThemeContext } from "../context/context"
 import clsx from "clsx"
+import { Switch } from "@vactory/headlessui/switch"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const Toggle = ({ variant = "default", className = "" }) => {
 	const [enabled, setEnabled] = useState(false)

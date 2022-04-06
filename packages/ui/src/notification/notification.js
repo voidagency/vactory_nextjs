@@ -1,8 +1,8 @@
 import { Fragment, useState, useContext } from "react"
 import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
-import { Icon } from "../icon/icon"
-import { ThemeContext } from "../context/context"
+import { Icon } from "@vactory/ui/icon"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const Notification = ({
 	className = "",

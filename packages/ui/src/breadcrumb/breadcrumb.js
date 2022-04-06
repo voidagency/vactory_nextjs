@@ -1,9 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React, { useContext } from "react"
 import clsx from "clsx"
-import { Link } from "../link/link"
-import { ThemeContext } from "../context/context"
-import { Icon } from "../icon/icon"
+import { Link } from "@vactory/ui/link"
+import { ThemeContext } from "@vactory/ui/theme-context"
+import { Icon } from "@vactory/ui/icon"
 
 export const Breadcrumb = ({
 	homeUrl,
