@@ -1,8 +1,17 @@
 import React, { forwardRef, useContext } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
-//import { ThemeContext } from "../context/theme-context";
 import { ThemeContext } from "@vactory/ui/theme-context"
+import { Link } from "@vactory/ui/link"
+
+const CustomButton = ({ children, icon, ...props }) => {
+	return (
+		<button {...props}>
+			{icon && icon}
+			{children}
+		</button>
+	)
+}
 
 const Button = forwardRef(
 	(
@@ -17,17 +26,22 @@ const Button = forwardRef(
 			disabled = false,
 			onClick = null,
 			icon,
+			href = null,
+			target = null,
 			...props
 		},
 		ref
 	) => {
 		const { button } = useContext(ThemeContext)
+		const Button = href ? Link : CustomButton
 		return (
-			<button
+			<Button
 				ref={ref}
 				disabled={disabled}
 				type={type}
 				onClick={onClick}
+				href={href}
+				target={target}
 				className={clsx(
 					button.base,
 					button.size[size],
@@ -41,7 +55,7 @@ const Button = forwardRef(
 			>
 				{icon && icon}
 				{children}
-			</button>
+			</Button>
 		)
 	}
 )

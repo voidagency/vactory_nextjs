@@ -17,6 +17,7 @@ import { toggle } from "./toggle"
 import { autocomplete } from "./autocomplete"
 import { comboxOption } from "./autocomplete"
 import { input } from "./input"
+import { layer } from "./layer"
 
 export const theme = {
 	button,
@@ -39,4 +40,5 @@ export const theme = {
 	toggle,
 	comboxOption,
 	input,
+	layer,
 }

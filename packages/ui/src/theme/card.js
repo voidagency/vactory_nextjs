@@ -1,6 +1,7 @@
 export const card = {
 	default: {
-		card: "flex flex-col rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
+		wrapper:
+			"flex flex-col rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
 		image: "flex-shrink-0",
 		body: "px-4 py-3",
 		tag: "text-sm font-medium text-indigo-600",
@@ -9,7 +10,8 @@ export const card = {
 		link: "text-primary underline",
 	},
 	inline: {
-		card: "flex flex-row rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
+		wrapper:
+			"flex flex-row rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
 		image: "flex-shrink-0 w-1/3",
 		body: "px-4 py-3 w-2/3 flex flex-col justify-center",
 		tag: "text-sm font-medium text-indigo-600",
@@ -18,7 +20,8 @@ export const card = {
 		link: "text-primary underline",
 	},
 	inlineInversed: {
-		card: "flex flex-row-reverse rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
+		wrapper:
+			"flex flex-row-reverse rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
 		image: "w-1/2 h-full",
 		body: "px-4 py-3 w-1/2 flex flex-col justify-center",
 		tag: "text-sm font-medium text-indigo-600",

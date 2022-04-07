@@ -16,6 +16,7 @@ module.exports = async ({ config }) => {
 
 	config.resolve.alias["@vactory/ui/theme-context"] = "../context/theme-context.js"
 	config.resolve.alias["@vactory/ui/theme"] = "../theme/theme.js"
+	config.resolve.alias["@vactory/ui/icon"] = "../icon/icon.js"
 
 	return config
 }

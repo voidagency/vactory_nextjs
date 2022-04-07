@@ -18,7 +18,7 @@ const Card = ({
 }) => {
 	const { card } = useContext(ThemeContext)
 	return (
-		<div className={clsx(card[variant].card, className)} {...props}>
+		<div className={clsx(card[variant].wrapper, className)} {...props}>
 			<div className={card[variant].image}>{image}</div>
 			<div className={card[variant].body}>
 				<div>

@@ -4,7 +4,6 @@ export const button = {
 	pill: "rounded-full",
 	icon: "flex items-center gap-2",
 	size: {
-		rounded: "px-2 py-2 text-sm",
 		small: "px-2 py-1 text-sm",
 		normal: "text-sm leading-[21px] px-[10px] py-[9px]",
 		large: "px-8 py-3 text-lg",
