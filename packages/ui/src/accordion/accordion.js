@@ -1,87 +1,64 @@
 import React, { useContext } from "react"
+import clsx from "clsx"
 import { Disclosure } from "@vactory/headlessui/disclosure"
 import { Transition } from "@vactory/headlessui/transition"
+import { Icon } from "@vactory/ui/icon"
 import { ThemeContext } from "@vactory/ui/theme-context"
-//import {Icon} from '@vactory/ui/icon';
-import clsx from "clsx"
 
-export const AccordionButton = ({
-	active,
-	children,
-	icon,
-	className = "",
-	variant = "default",
-	...props
-}) => {
-	const { accordionButton } = useContext(ThemeContext)
+export const Accordion = ({ variant = "default", nodes = [] }) => {
+	const { accordion } = useContext(ThemeContext)
 	return (
-		<Disclosure.Button className={clsx(accordionButton[variant].className, className)}>
-			<div className={accordionButton[variant].p}>
-				<span>{children}</span>
-			</div>
-			{icon && accordionButton.icon}
-		</Disclosure.Button>
+		<div className={accordion[variant].wrapper}>
+			{nodes.map((item) => {
+				return (
+					<Disclosure key={item.id}>
+						{({ open }) => (
+							<div className={accordion[variant].element}>
+								<Disclosure.Button
+									className={clsx(
+										accordion[variant].button.base,
+										open
+											? accordion[variant].button.active
+											: accordion[variant].button.inactive
+									)}
+								>
+									{item.button}
+									<Icon
+										id={accordion[variant].button.icon.id}
+										className={clsx(
+											accordion[variant].button.icon.base,
+											open
+												? accordion[variant].button.icon.active
+												: accordion[variant].button.icon.inactive
+										)}
+										width={accordion[variant].button.icon.width}
+										height={accordion[variant].button.icon.height}
+									/>
+								</Disclosure.Button>
+								<Disclosure.Panel className={accordion[variant].panel}>
+									<Transition
+										show={open}
+										enter="transition duration-100 ease-out"
+										enterFrom="h-0 opacity-0"
+										enterTo="h-max opacity-100"
+										leave="transition duration-75 ease-out"
+										leaveFrom="transform scale-100 opacity-100"
+										leaveTo="transform scale-95 opacity-0"
+									>
+										{item.panel}
+									</Transition>
+								</Disclosure.Panel>
+							</div>
+						)}
+					</Disclosure>
+				)
+			})}
+		</div>
 	)
 }
 
-export const AccordionPanel = ({
-	title,
-	active,
-	children,
-	show,
-	className = "",
-	variant = "default",
-	...props
-}) => {
-	const { accordionPanel } = useContext(ThemeContext)
-	return (
-		<Disclosure>
-			{title}
-			<Transition
-				className={clsx(accordionPanel[variant].className, className)}
-				show={show}
-				enter={accordionPanel[variant].transition.enter}
-				enterFrom={accordionPanel[variant].transition.enterFrom}
-				enterTo={accordionPanel[variant].transition.enterTo}
-				leave={accordionPanel[variant].transition.leave}
-				leaveFrom={accordionPanel[variant].transition.leaveFrom}
-				leaveTo={accordionPanel[variant].transition.leaveTo}
-			>
-				<Disclosure.Panel
-					static
-					className={accordionPanel[variant].disclosurePanel.className}
-				>
-					{children}
-				</Disclosure.Panel>
-			</Transition>
-		</Disclosure>
-	)
-}
-
-export const Accordion = ({
-	title,
-	icon,
-	accordionButtonText,
-	accordionPanelText,
-	...props
-}) => {
-	return (
-		<React.Fragment>
-			<Disclosure>
-				{({ open }) => {
-					return (
-						<>
-							<AccordionButton children={"hello"} />
-							{
-								<AccordionPanel
-									show={open}
-									children={"If you're unhappy with your purchase for any reason"}
-								/>
-							}
-						</>
-					)
-				}}
-			</Disclosure>
-		</React.Fragment>
-	)
-}
+/**
+ *
+ * TODO: Ajouter l'animation
+ *
+ * */

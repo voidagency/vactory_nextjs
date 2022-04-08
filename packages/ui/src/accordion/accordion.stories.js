@@ -7,12 +7,36 @@ export default {
 	component: Accordion,
 }
 
+const accordionContent = [
+	{
+		id: "1",
+		button: <span>Element 1</span>,
+		panel: <p> element 1 lorem ipsum dolor sit amet, consectetur</p>,
+	},
+	{
+		id: "2",
+		button: <span>Element 2</span>,
+		panel: <p>Element 2lorem ipsum dolor sit amet, consectetur</p>,
+	},
+	{
+		id: "3",
+		button: <span>Element 3</span>,
+		panel: <p>Element 3 lorem ipsum dolor sit amet, consectetur</p>,
+	},
+]
+
 const Template = (args) => {
 	return <Accordion {...args} />
 }
 
 export const accordion = Template.bind({})
 accordion.args = {
-	accordionButtomText: "hello",
-	accordionPanelText: "If you're unhappy with your purchase for any reason",
+	variant: "default",
+	nodes: accordionContent,
+}
+
+export const accordionV2 = Template.bind({})
+accordionV2.args = {
+	variant: "secondary",
+	nodes: accordionContent,
 }

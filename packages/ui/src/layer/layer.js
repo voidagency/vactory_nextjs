@@ -2,26 +2,7 @@ import React, { useCallback, useEffect, useContext } from "react"
 import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
 import { ThemeContext } from "@vactory/ui/theme-context"
-
-/**
- * * overlay ( background black with opacity) + (true || false)
- * * * overlayBackground
- * * * overlayOpacity
- * * fixed (top-left, top-right, bottom, top)
- * * * top-left
- * * * top-right
- * * * bottom-left
- * * * bottom-right
- * full width
- * full height
- * * modal
- * notification
- * onClickOutside
- * * onEsc
- * layerTarget
- * showClose
- * * closeLayer
- */
+import { Icon } from "@vactory/ui/icon"
 
 const Layer = ({
 	variant = "default",
@@ -30,18 +11,18 @@ const Layer = ({
 	overlayOpacity,
 	modal = false,
 	position = "modal",
-	fullWidth = true,
-	fullHeight = true,
 	children,
-	closeLayer,
-	isShowing,
+	onClose,
+	isShow,
 	overlayClasses,
+	showCloseBtn = true,
+	closeButton,
 }) => {
 	// close on ESC press
 	const { layer } = useContext(ThemeContext)
 	const escFunction = useCallback((event) => {
 		if (event.key === "Escape") {
-			closeLayer()
+			onClose()
 		}
 	}, [])
 
@@ -60,7 +41,7 @@ const Layer = ({
 		: "fixed top-0 left-0 w-full h-full h-full z-40"
 
 	return (
-		<Transition show={isShowing}>
+		<Transition show={isShow}>
 			{overlay && (
 				<Transition.Child {...layer[variant]["opacity"].animation}>
 					<div
@@ -79,8 +60,20 @@ const Layer = ({
 					!modal && position && layer[variant][position].position
 				)}
 			>
-				<span className="text-white shadow-md shadow-black"></span>
-				<Transition.Child {...layer[variant][position].animation}>
+				<Transition.Child
+					className="relative max-w-fit"
+					{...layer[variant][position].animation}
+				>
+					{showCloseBtn && !closeButton && (
+						<button className={layer[variant].btnClose.style} onClick={onClose}>
+							<Icon
+								id={layer[variant].btnClose.icon.id}
+								width={layer[variant].btnClose.icon.width}
+								height={layer[variant].btnClose.icon.height}
+							/>
+						</button>
+					)}
+					{closeButton && closeButton}
 					{children}
 				</Transition.Child>
 			</div>

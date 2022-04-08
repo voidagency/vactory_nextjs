@@ -20,7 +20,7 @@ export const Modal = () => {
 				overlayOpacity="bg-opacity-70"
 				overlay={true}
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -50,7 +50,7 @@ export const BottomCenter = () => {
 				overlay={false}
 				position="bottom-center"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -80,7 +80,7 @@ export const TOPCenter = () => {
 				overlay={true}
 				position="top-center"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -110,7 +110,7 @@ export const BottomRight = () => {
 				overlay={true}
 				position="bottom-right"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -140,7 +140,37 @@ export const BottomLeft = () => {
 				overlay={true}
 				position="bottom-left"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
+				isShowing={showLayer}
+			>
+				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
+					This is the layer injected on App.js
+				</div>
+			</Layer>
+		</div>
+	)
+}
+
+export const BottomLeftRTL = () => {
+	const [showLayer, setShowLayer] = React.useState(false)
+	return (
+		<div className="relative" dir="rtl">
+			<Button
+				className="fixed left-5 bottom-5 z-[99] w-40"
+				variant={showLayer ? "primary" : "secondary"}
+				onClick={() => setShowLayer(!showLayer)}
+			>
+				{showLayer ? "Cacher le layer" : "Afficher le layer"}
+			</Button>
+			<Layer
+				isShow={showLayer}
+				modal={false}
+				overlayBackground="bg-blue-500"
+				overlayOpacity="bg-opacity-40"
+				overlay={true}
+				position="bottom-left"
+				onEsc={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -170,7 +200,7 @@ export const TopRight = () => {
 				overlay={true}
 				position="top-right"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
@@ -200,7 +230,7 @@ export const TopLeft = () => {
 				overlay={true}
 				position="top-left"
 				onEsc={() => setShowLayer(false)}
-				closeLayer={() => setShowLayer(false)}
+				onClose={() => setShowLayer(false)}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">
