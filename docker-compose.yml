@@ -10,10 +10,8 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.ui_vactory_http.loadbalancer.server.port=8080"
       - "traefik.http.routers.ui_vactory_http.rule=Host(`ui.vactory.k8s.lapreprod.com`)"
       - "traefik.http.routers.ui_vactory_http.entrypoints=http"
-      - "traefik.http.services.ui_vactory_https.loadbalancer.server.port=8080"
       - "traefik.http.routers.ui_vactory_https.rule=Host(`ui.vactory.k8s.lapreprod.com`)"
       - "traefik.http.routers.ui_vactory_https.entrypoints=https"
       - "traefik.http.routers.ui_vactory_https.tls=true"
@@ -28,10 +26,8 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.docs_vactory_http.loadbalancer.server.port=8080"
       - "traefik.http.routers.docs_vactory_http.rule=Host(`docs.vactory.k8s.lapreprod.com`)"
       - "traefik.http.routers.docs_vactory_http.entrypoints=http"
-      - "traefik.http.services.docs_vactory_https.loadbalancer.server.port=8080"
       - "traefik.http.routers.docs_vactory_https.rule=Host(`docs.vactory.k8s.lapreprod.com`)"
       - "traefik.http.routers.docs_vactory_https.entrypoints=https"
       - "traefik.http.routers.docs_vactory_https.tls=true"
