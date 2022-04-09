@@ -1,84 +1,62 @@
 import { Fragment, useState, useContext } from "react"
+import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
 import { Listbox } from "@vactory/headlessui/listbox"
 import { ThemeContext } from "@vactory/ui/theme-context"
-import clsx from "clsx"
+import { Icon } from "@vactory/ui/icon"
 
-export const Select = ({ list, chevronDownIcon, checkIcon, variant = "default" }) => {
+export const Select = ({ list, variant = "default" }) => {
 	const [selected, setSelected] = useState(list[0])
 	const { select } = useContext(ThemeContext)
 	return (
-		<div className={clsx(select[variant].wrapper)}>
-			<Listbox value={selected} onChange={setSelected}>
-				<div className={select[variant].listBox.wrapper}>
-					<Listbox.Button className={select[variant].listBox.button.wrapper}>
-						<span className={select[variant].listBox.button.selected}>
-							{selected.value}
-						</span>
-						<span className={select[variant].listBox.button.selectedIcon}>
-							{chevronDownIcon && chevronDownIcon}
-						</span>
-					</Listbox.Button>
-					<Transition
-						as={Fragment}
-						leave={select[variant].listBox.transition.leave}
-						leaveFrom={select[variant].listBox.transition.leaveFrom}
-						leaveTo={select[variant].listBox.transition.leaveTo}
-					>
-						<Listbox.Options
-							className={select[variant].listBox.transition.listBoxOptions.wrapper}
-						>
-							{list.map((list, index) => (
-								<Listbox.Option
-									key={index}
-									className={({ active }) =>
-										`${
-											select[variant].listBox.transition.listBoxOptions.listBoxOption
-												.wrapper
-										} ${
-											active
-												? select[variant].listBox.transition.listBoxOptions.listBoxOption
-														.active
-												: select[variant].listBox.transition.listBoxOptions.listBoxOption
-														.notActive
-										}`
-									}
-									value={list}
-								>
-									{({ selected }) => (
-										<>
-											<span
-												className={`${
-													select[variant].listBox.transition.listBoxOptions.listBoxOption
-														.content.wrapper
-												} ${
-													selected
-														? select[variant].listBox.transition.listBoxOptions
-																.listBoxOption.selectedfont
-														: select[variant].listBox.transition.listBoxOptions
-																.listBoxOption.notselectedfont
-												}`}
-											>
-												{list.value}
-											</span>
-											{selected ? (
-												<span
-													className={
-														select[variant].listBox.transition.listBoxOptions
-															.listBoxOption.content.selected
-													}
-												>
-													{checkIcon && checkIcon}
-												</span>
-											) : null}
-										</>
-									)}
-								</Listbox.Option>
-							))}
-						</Listbox.Options>
-					</Transition>
-				</div>
-			</Listbox>
-		</div>
+		<Listbox value={selected} onChange={setSelected}>
+			<div className={select[variant].wrapper}>
+				<Listbox.Button className={select[variant].button.base}>
+					{selected.content}
+					<Icon
+						id={select[variant].button.icon.id}
+						className={select[variant].button.icon.className}
+						width={select[variant].button.icon.width}
+						height={select[variant].button.icon.height}
+					/>
+				</Listbox.Button>
+				<Transition as={Fragment} {...select[variant].animation}>
+					<Listbox.Options className={select[variant].options.wrapper}>
+						{list.map((list, index) => (
+							<Listbox.Option
+								key={index}
+								className={({ active }) =>
+									clsx(
+										select[variant].options.base,
+										active
+											? select[variant].options.active
+											: select[variant].options.inactive
+									)
+								}
+								value={list}
+							>
+								{({ selected }) => (
+									<>
+										{list.content}
+										{select[variant].options.icon.id && (
+											<>
+												{selected ? (
+													<Icon
+														id={select[variant].options.icon.id}
+														width={select[variant].options.icon.width}
+														height={select[variant].options.icon.height}
+														className={select[variant].options.icon.className}
+													/>
+												) : null}
+											</>
+										)}
+									</>
+								)}
+							</Listbox.Option>
+						))}
+					</Listbox.Options>
+				</Transition>
+			</div>
+		</Listbox>
 	)
 }

@@ -9,13 +9,16 @@ export default {
 
 const listItems = [
 	{
-		value: "Agadir",
+		value: "1",
+		content: "Agadir oufla",
 	},
 	{
-		value: "Casablanca",
+		value: "2",
+		content: "Casa blanca",
 	},
 	{
-		value: "Paris",
+		value: "3",
+		content: "Paris",
 	},
 ]
 
@@ -30,7 +33,7 @@ Example.args = {
 
 export const V2 = Template.bind({})
 V2.args = {
-	variant: "v2",
+	variant: "secondary",
 	list: listItems,
 	selected: "Paris",
 }
