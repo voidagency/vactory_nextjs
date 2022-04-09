@@ -6,7 +6,15 @@ export const Default = () => {
 	return (
 		<div className="relative">
 			<PlaceholderSections />
-			<Notification />
+			<Notification></Notification>
+		</div>
+	)
+}
+export const Variant2 = () => {
+	return (
+		<div className="relative">
+			<PlaceholderSections />
+			<Notification></Notification>
 		</div>
 	)
 }

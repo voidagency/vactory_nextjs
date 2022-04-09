@@ -25,12 +25,21 @@
   },
   "exports": {
     ".": "./index.js",
-    "./back-to-top": "./src/back-to-top/back-to-top.js",
+    "./back-to-top": "./src/back-to-top",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
     "./icon": "./src/icon/icon.js",
     "./link": "./src/link/link.js",
-    "./offline": "./src/offline/offline.js"
+    "./offline": "./src/offline/offline.js",
+    "./heading": "./src/heading/heading.js",
+    "./msg-validation": "./src/msg-validation/msg-validation.js",
+    "./select": "./src/select/select.js",
+    "./text": "./src/text/text.js",
+    "./theme-context": "./src/context/theme-context.js",
+    "./theme": "./src/theme/theme.js",
+    "./app-wrapper": "./src/app-wrapper/app-wrapper.js",
+    "./container": "./src/container/container.js",
+    "./breadcrumb": "./src/breadcrumb/breadcrumb.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
@@ -41,5 +50,8 @@
   "peerDependencies": {
     "react": "*",
     "react-dom": "*"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
   }
 }

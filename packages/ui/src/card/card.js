@@ -1,23 +1,49 @@
-import React from "react"
+import React, { useContext } from "react"
+import clsx from "clsx"
 import { Link } from "@vactory/ui/link"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
-export const Card = ({ title, excerpt, image, url, category }) => {
+const Card = ({
+	variant = "default",
+	title,
+	excerpt,
+	image,
+	urlTag,
+	url,
+	urlContent,
+	icon,
+	className,
+	category,
+	...props
+}) => {
+	const { card } = useContext(ThemeContext)
 	return (
-		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
-			<div className="flex-shrink-0">{image}</div>
-			<div className="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
-				<div className="flex-1">
-					<p className="text-sm font-medium text-indigo-600">
-						<Link href="#!" className="hover:underline">
+		<div className={clsx(card[variant].wrapper, className)} {...props}>
+			<div className={card[variant].image}>{image}</div>
+			<div className={card[variant].body}>
+				<div>
+					{urlTag ? (
+						<Link href={urlTag} className={card[variant].tag}>
 							{category}
 						</Link>
-					</p>
-					<Link href={url} className="block mt-2">
-						<p className="text-xl font-semibold text-gray-900 dark:text-white">{title}</p>
-						<p className="mt-3 text-base text-gray-500 dark:text-gray-400">{excerpt}</p>
-					</Link>
+					) : (
+						<p className={card[variant].tag}>{category}</p>
+					)}
 				</div>
+				<Link href={url} className="block">
+					<>
+						{title && <h3 className={card[variant].title}>{title}</h3>}
+						{excerpt && <p className={card[variant].excerpt}>{excerpt}</p>}
+					</>
+				</Link>
+				{url && urlContent && (
+					<Link href={url} className={card[variant].link}>
+						{urlContent}
+					</Link>
+				)}
 			</div>
 		</div>
 	)
 }
+
+export { Card }
