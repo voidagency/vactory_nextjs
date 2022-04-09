@@ -5,3 +5,17 @@ npm-debug.log
 README.md
 .next
 .git
+.DS_Store
+.vscode
+.husky
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitignore
+.prettierignore
+.prettierrc.json
+.jmeter.log
+.yarn-error.log
+storybook-static
+.docusaurus
+apps/docs/build
