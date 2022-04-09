@@ -12,9 +12,9 @@ function classNames(...classes) {
 //To add in UI packages
 const ButtonWithHref = ({ item }) => {
 	return (
-		<Disclosure.Button
+		<Button
 			key={item.name}
-			as="a"
+			variant={"nav"}
 			href={item.href}
 			className={classNames(
 				item.current ? "text-blue-500 font-bold" : "text-gray-900 font-normal",
@@ -23,12 +23,12 @@ const ButtonWithHref = ({ item }) => {
 			aria-current={item.current ? "page" : undefined}
 		>
 			{item.name}
-		</Disclosure.Button>
+		</Button>
 	)
 }
 
 // this Nav list contains both mobile and desktop version
-const NavigationList = ({ navigation }) => {
+export const NavigationList = ({ navigation }) => {
 	return navigation.map((item, index) => <ButtonWithHref key={index} item={item} />)
 }
 
@@ -54,6 +54,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 			<Disclosure.Panel className="md:hidden w-64 h-full shadow-md bg-white absolute">
 				<div className="px-2 pt-2 pb-3 space-y-1">
 					<div className="flex-shrink-0 flex items-center px-2 py-6">{image}</div>
+					<hr className="my-6 border-indigo-700 sm:mx-auto dark:border-indigo-700 lg:my-8" />
 					<NavigationList navigation={navigation} />
 					<div className="block  rounded-md text-base font-medium">
 						<Button

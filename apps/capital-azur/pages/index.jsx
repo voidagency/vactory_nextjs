@@ -4,6 +4,7 @@ import { theme } from "../theme/theme"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Card } from "@vactory/ui/card"
+import { Footer } from "@/components/footer/footer"
 export default function Index() {
 	return (
 		<AppWrapper theme={theme}>
@@ -26,6 +27,7 @@ export default function Index() {
 					className="max-w-sm"
 				/>
 			</Container>
+			<Footer />
 		</AppWrapper>
 	)
 }
