@@ -10,7 +10,6 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.api-service.loadbalancer.server.port=3000"
       - "traefik.http.routers.vactory_http.rule=Host(`vactory.k8s.lapreprod.com`)"
       - "traefik.http.routers.vactory_http.entrypoints=http"
       - "traefik.http.routers.vactory_https.rule=Host(`vactory.k8s.lapreprod.com`)"
