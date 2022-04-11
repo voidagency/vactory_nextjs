@@ -14,6 +14,8 @@ FROM node:16-alpine AS builder_app
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# TODO: figure this out
+COPY apps/starter/.env.example ./apps/starter/.env
 ENV NODE_ENV production
 RUN yarn workspace starter build
 
