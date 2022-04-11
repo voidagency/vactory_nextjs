@@ -6,7 +6,8 @@ ENV YARN_CACHE_FOLDER=/tmp/yarn_cache
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY . .
-RUN --mount=type=cache,target=/tmp/yarn_cache yarn install --prefer-offline --frozen-lockfile
+# RUN --mount=type=cache,target=/tmp/yarn_cache yarn install --prefer-offline --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 # App - Rebuild the source code only when needed
 FROM node:16-alpine AS builder_app
