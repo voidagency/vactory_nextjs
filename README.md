@@ -2,6 +2,13 @@
 
 # Docker
 
+## Build & Run Starter App (project)
+
+```bash
+$ docker build -t vactory-app . --target runner_app
+$ docker run -p 3000:3000 vactory-app
+```
+
 ## Build & Run UI
 
 ```bash
