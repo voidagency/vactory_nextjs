@@ -17,6 +17,7 @@ COPY . .
 # TODO: figure this out
 COPY apps/starter/.env.example ./apps/starter/.env
 ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn workspace starter build
 
 # UI - Rebuild the source code only when needed
@@ -57,20 +58,25 @@ CMD ["pm2-runtime", "http-server", "./public"]
 FROM node:16-alpine AS runner_app
 WORKDIR /app
 ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/next.config.js ./
-COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/public ./public
-COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/package.json ./package.json
-COPY --from=builder_app --chown=nextjs:nodejs /app/node_modules ./node_modules
-# @TODO: this is causing trouble with the standalone version.
-COPY --from=builder_app --chown=nextjs:nodejs /app/packages/ui/public/icons.svg ./public/icons.svg
-# Automatically leverage output traces to reduce image size 
-# https://nextjs.org/docs/advanced-features/output-file-tracing
+
+# COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter ./
+# COPY --from=builder_app --chown=nextjs:nodejs /app/node_modules/next ./node_modules/next
+
+# COPY --from=builder_app --chown=nextjs:nodejs /app/node_modules ./node_modules
+# # Automatically leverage output traces to reduce image size 
+# # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/.next/standalone ./
-COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/.next/static ./.next/static
+COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/next.config.js ./apps/starter/next.config.js
+COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/.next/static ./apps/starter/.next/static
+COPY --from=builder_app --chown=nextjs:nodejs /app/apps/starter/public ./apps/starter/public
+# # # @TODO: this is causing trouble with the standalone version.
+COPY --from=builder_app --chown=nextjs:nodejs /app/packages/ui/public/icons.svg ./apps/starter/public/icons.svg
+
 USER nextjs
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE 8080
+ENV PORT 8080
 # ENTRYPOINT [ "tail", "-f", "/dev/null" ]
 CMD ["node", "apps/starter/server.js"]
