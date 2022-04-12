@@ -9,11 +9,7 @@ README.md
 .vscode
 .husky
 .editorconfig
-.eslintignore
-.eslintrc.json
 .gitignore
-.prettierignore
-.prettierrc.json
 .jmeter.log
 .yarn-error.log
 storybook-static
