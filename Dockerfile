@@ -12,9 +12,8 @@ RUN yarn install --frozen-lockfile
 # App - Rebuild the source code only when needed
 FROM node:16-alpine AS builder_app
 ARG CACHEBUST=2
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY . .
+COPY --from=deps /app ./
 RUN yarn install --frozen-lockfile
 # TODO: figure this out
 COPY apps/starter/.env.example ./apps/starter/.env
