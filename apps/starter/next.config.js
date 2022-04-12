@@ -34,7 +34,7 @@ const nextConfig = {
 	},
 	reactStrictMode: true,
 	// distDir: "build",
-	swcMinify: true,
+	swcMinify: false,
 	poweredByHeader: false,
 	trailingSlash: false,
 	webpack: (config) => {
