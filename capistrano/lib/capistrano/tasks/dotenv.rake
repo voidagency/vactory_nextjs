@@ -2,7 +2,7 @@ def remote_file_exists?(full_path)
     'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
 end
 
-namespace :envvars do
+namespace :dotenv do
 
     desc 'read env variables'
     task :read do
