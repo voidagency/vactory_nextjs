@@ -5,12 +5,41 @@ import { Icon } from "@vactory/ui/icon"
 import { FullImageSlider } from "./fullBackgroundSlider"
 import { Button } from "@vactory/ui/button"
 
-export const Slider = (data) => {
-	const images = [
-		"https://capital-azur.com/sites/default/files/2020-12/slider-pro.jpg",
-		"https://capital-azur.com/sites/default/files/2020-05/1.jpg",
-		"https://capital-azur.com/sites/default/files/2020-05/2.jpg",
-		"https://capital-azur.com/sites/default/files/2020-05/gerer-mon-epargne.jpg",
+export const Slider = () => {
+	const data = [
+		{
+			id: 0,
+			title: "Capital Azur, votre banque en ligne",
+			description:
+				"  Application mobile, Banque en ligne : Découvrez une nouvelle expérience de navigation au cœur de vos comptes bancaires.",
+			image: "https://capital-azur.com/sites/default/files/2020-12/slider-pro.jpg",
+			link: "#",
+		},
+		{
+			id: 1,
+			title: "COVID-19 : Capital Azur accompagne ses clients Particuliers",
+			description:
+				"  Report d’échéances, financements…nous vous proposons les solutions les plus adaptées à votre situation",
+			image: "https://capital-azur.com/sites/default/files/2020-05/1.jpg",
+			link: "#",
+		},
+
+		{
+			id: 2,
+			title: "COVID-19 : Professionnels et Entreprises : Capital Azur vous accompagne",
+			description:
+				" 5 mesures pour accompagner nos clients Professionnels et Entreprises en Afrique",
+			image: "https://capital-azur.com/sites/default/files/2020-05/3.jpg",
+			link: "#",
+		},
+
+		{
+			id: 3,
+			title: "Gérer votre épargne en toute simplicité",
+			description: " Profitez de tous les outils pour mieux gérer votre épargne",
+			image: "https://capital-azur.com/sites/default/files/2020-05/1.jpg",
+			link: "#",
+		},
 	]
 
 	const [currentSlide, setCurrentSlide] = useState(0)
@@ -18,7 +47,7 @@ export const Slider = (data) => {
 	const [sliderRef, instanceRef] = useKeenSlider({
 		loop: true,
 		defaultAnimation: {
-			duration: 3000,
+			duration: 5000,
 		},
 		slideChanged(Slider) {
 			setCurrentSlide(Slider.track.details.rel)
@@ -30,11 +59,15 @@ export const Slider = (data) => {
 
 	return (
 		<>
-			<div className="navigation-wrapper  h-128 w-full">
+			<div className="navigation-wrapper h-128 w-full ">
 				<div ref={sliderRef} className="keen-slider w=full h-full">
-					{images.map((n, index) => {
+					{data.map((item) => {
 						return (
-							<FullImageSlider key={index} item={n} isActive={currentSlide === index} />
+							<FullImageSlider
+								key={item.id}
+								item={item}
+								isActive={currentSlide === item.id}
+							/>
 						)
 					})}
 				</div>
@@ -67,30 +100,30 @@ export const Slider = (data) => {
 						/>
 					</>
 				)}
+				{loaded && instanceRef.current && (
+					<div className="dots flex items-center justify-center bottom-10 right-1/2 left-1/2 ">
+						{[...Array(instanceRef.current.track.details.slides.length).keys()].map(
+							(idx) => {
+								return (
+									<Button
+										key={idx}
+										onClick={() => {
+											instanceRef.current?.moveToIdx(idx)
+										}}
+										variant="nav"
+										className={
+											"dot w-2 h-2 bg-slate-500 md:px-20 p-2 md:p-1 cursor-pointer border-current rounded-full focus:outline-none" +
+											(currentSlide === idx
+												? " active bg-blue-700 p-2  sm:transition sm:ring-2 sm:ring-slate-50 sm:ease-in-out sm:delay-100 "
+												: "")
+										}
+									></Button>
+								)
+							}
+						)}
+					</div>
+				)}
 			</div>
-			{loaded && instanceRef.current && (
-				<div className="dots flex items-center justify-center py-2.5 -bottom-10 right-1/2 left-1/2 ">
-					{[...Array(instanceRef.current.track.details.slides.length).keys()].map(
-						(idx) => {
-							return (
-								<Button
-									key={idx}
-									onClick={() => {
-										instanceRef.current?.moveToIdx(idx)
-									}}
-									variant="nav"
-									className={
-										"dot w-2 h-2 bg-gray-400 sm:px-16 p-2 sm:p-1 cursor-pointer border-current rounded-full my-0 mx-1.5 focus:outline-none" +
-										(currentSlide === idx
-											? " active bg-indigo-700 p-2  sm:transition sm:ring-2 sm:ring-slate-50 sm:ease-in-out sm:delay-100 "
-											: "")
-									}
-								></Button>
-							)
-						}
-					)}
-				</div>
-			)}
 		</>
 	)
 }
@@ -101,7 +134,7 @@ const Arrow = (props) => {
 		<Button
 			onClick={props.onClick}
 			variant="nav"
-			className={`arrow invisible sm:visible absolute  sm:translate-y-1/2 items-center justify-center bottom-10   sm:bottom-1/2  sm:cursor-pointer py-4 px-4 sm:rounded-full  sm:transition sm:ease-in-out sm:delay-200 ${
+			className={`arrow invisible md:visible absolute  sm:translate-y-1/2 items-center justify-center bottom-10   sm:bottom-1/2  sm:cursor-pointer py-4 px-4 sm:rounded-full  sm:transition sm:ease-in-out sm:delay-200 ${
 				props.left ? "arrow--left left-12 " : "arrow--right right-12 "
 			} `}
 		>

@@ -1,9 +1,9 @@
 export const layer = {
 	default: {
 		"bottom-center": {
-			position: "flex top-16 right-1/2",
+			position: "bottom-3 top-16 right-1/2",
 			animation: {
-				enter: "transition-all delay-5000 duration-600 ease-in-out",
+				enter: "transition delay-5000 duration-300",
 				enterFrom: "translate-y-[100%] opacity-0",
 				enterTo: "translate-y-0 opacity-1 ",
 				leave: "",
