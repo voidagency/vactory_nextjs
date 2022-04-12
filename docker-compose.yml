@@ -4,6 +4,7 @@ services:
   nextjs:
     build:
       context: .
+      dockerfile: ./deploy/docker-build/starter/Dockerfile
       target: runner_app
       args:
         - NEXT_PUBLIC_DRUPAL_BASE_URL=${NEXT_PUBLIC_DRUPAL_BASE_URL}
@@ -40,6 +41,7 @@ services:
   ui:
     build:
       context: .
+      dockerfile: ./deploy/docker-build/ui/Dockerfile
       target: runner_ui
     restart: unless-stopped
     networks:
@@ -56,6 +58,7 @@ services:
   docs:
     build:
       context: .
+      dockerfile: ./deploy/docker-build/docs/Dockerfile
       target: runner_docs
     restart: unless-stopped
     networks:

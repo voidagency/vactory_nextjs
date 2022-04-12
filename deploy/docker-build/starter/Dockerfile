@@ -7,6 +7,7 @@ WORKDIR /app
 COPY . .
 # RUN --mount=type=cache,target=/tmp/yarn_cache yarn install --prefer-offline --frozen-lockfile
 RUN yarn install --frozen-lockfile
+RUN yarn cache clean
 
 # App - Rebuild the source code only when needed
 FROM node:16-alpine AS builder_app
@@ -54,41 +55,7 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn workspace starter build
 
-# UI - Rebuild the source code only when needed
-FROM node:16-alpine AS builder_ui
-WORKDIR /app
-COPY --from=deps /app ./
-ENV NODE_ENV production
-RUN yarn workspace @vactory/ui build
-
-# DOCS - Rebuild the source code only when needed
-FROM node:16-alpine AS builder_docs
-WORKDIR /app
-COPY --from=deps /app ./
-ENV NODE_ENV production
-RUN yarn workspace docs build
-
-# UI - Production image
-FROM node:16-alpine AS runner_ui
-RUN yarn global add http-server pm2
-WORKDIR /app
-ENV NODE_ENV production
-COPY --from=builder_ui /app/packages/ui/storybook-static ./public
-EXPOSE 8080
-ENV PORT 8080
-CMD ["pm2-runtime", "http-server", "./public"]
-
-# DOCS - Production image
-FROM node:16-alpine AS runner_docs
-RUN yarn global add http-server pm2
-WORKDIR /app
-ENV NODE_ENV production
-COPY --from=builder_docs /app/apps/docs/build ./public
-EXPOSE 8080
-ENV PORT 8080
-CMD ["pm2-runtime", "http-server", "./public"]
-
-# UI - Production image
+# App - Production image
 FROM node:16-alpine AS runner_app
 ARG CACHEBUST=2
 WORKDIR /app
