@@ -41,6 +41,8 @@ set :deploy_via, :remote_cache
 # set :ssh_options, verify_host_key: :secure
 
 namespace :deploy do
+    after :starting, 'dotenv:read'
+    after :starting, 'dotenv:setup'
     after :published, 'decompose:clean'
     after :published, 'decompose:build'
     after :published, 'decompose:restart'
