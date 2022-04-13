@@ -16,8 +16,12 @@ import { autocomplete } from "./autocomplete"
 import { comboxOption } from "./autocomplete"
 import { input } from "./input"
 import { layer } from "./layer"
+import { socialmediabox } from "./socialmediabox"
+import { toolbox } from "./toolbox"
 
 export const theme = {
+	socialmediabox,
+	toolbox,
 	button,
 	heading,
 	text,

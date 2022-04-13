@@ -4,6 +4,8 @@ import { heading } from "./heading"
 import { select } from "./select"
 import { layer } from "./layer"
 import { link } from "./link"
+import { toolbox } from "./toolbox"
+import { socialmediabox } from "./socialmediabox"
 
 export const theme = {
 	button,
@@ -12,4 +14,6 @@ export const theme = {
 	select,
 	layer,
 	link,
+	toolbox,
+	socialmediabox,
 }

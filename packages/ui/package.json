@@ -21,7 +21,9 @@
     "@vactory/ui/card": "./src/card/card.js",
     "@vactory/ui/icon": "./src/icon/icon.js",
     "@vactory/ui/link": "./src/link/link.js",
-    "@vactory/ui/offline": "./src/offline/offline.js"
+    "@vactory/ui/offline": "./src/offline/offline.js",
+    "@vactory/ui/toolbox": "./src/tool-box/toolBox.js",
+    "@vactory/ui/socialmediabox": "./src/socialmedia-Box/socialmediabox.js"
   },
   "exports": {
     ".": "./index.js",
@@ -30,6 +32,7 @@
     "./card": "./src/card/card.js",
     "./icon": "./src/icon/icon.js",
     "./link": "./src/link/link.js",
+    "./layer": "./src/layer/layer.js",
     "./offline": "./src/offline/offline.js",
     "./heading": "./src/heading/heading.js",
     "./msg-validation": "./src/msg-validation/msg-validation.js",
@@ -39,7 +42,9 @@
     "./theme": "./src/theme/theme.js",
     "./app-wrapper": "./src/app-wrapper/app-wrapper.js",
     "./container": "./src/container/container.js",
-    "./breadcrumb": "./src/breadcrumb/breadcrumb.js"
+    "./breadcrumb": "./src/breadcrumb/breadcrumb.js",
+    "./toolbox" : "./src/tool-Box/toolBox.js",
+    "./socialmediabox": "./src/socialmedia-box/socialmediabox.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
