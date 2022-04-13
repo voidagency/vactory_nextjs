@@ -23,7 +23,7 @@ namespace :decompose do
     task :down do
       on roles(:app) do
         within release_path do
-          docker_execute :down
+          docker_execute :down, '--remove-orphans'
         end
       end
     end
@@ -32,7 +32,7 @@ namespace :decompose do
     task :up do
       on roles(:app) do
         within release_path do
-          docker_execute :up, '-d'
+          docker_execute :up, '-d --remove-orphans'
         end
       end
     end
@@ -44,10 +44,10 @@ namespace :decompose do
           services = Array(fetch(:decompose_restart))
           if services.empty?
             docker_execute :down
-            docker_execute :up, '-d'
+            docker_execute :up, '-d --remove-orphans'
           else
             docker_execute :stop, *services
-            docker_execute :up, '-d', *services
+            docker_execute :up, '-d --remove-orphans', *services
           end
         end
       end
