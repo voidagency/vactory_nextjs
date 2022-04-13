@@ -51,7 +51,7 @@ const ButtonIcon = ({ open }) => {
 const NavPanel = ({ navigation, lang, image }) => {
 	return (
 		<>
-			<Disclosure.Panel className="md:hidden w-64 h-full shadow-md bg-white absolute">
+			<Disclosure.Panel className="md:hidden w-64 h-full shadow-md bg-white fixed z-10">
 				<div className="px-2 pt-2 pb-3 space-y-1">
 					<div className="flex-shrink-0 flex items-center px-2 py-6">{image}</div>
 					<hr className="my-6 border-indigo-700 sm:mx-auto dark:border-indigo-700 lg:my-8" />
@@ -78,7 +78,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 const HeaderMobile = ({ open, navigation, lang, image }) => {
 	return (
 		<>
-			<div className="absolute items-center md:hidden right-4 top-6 ">
+			<div className="fixed z-10 items-center md:hidden right-4 top-6 ">
 				<ButtonIcon open={open} />
 			</div>
 			<div className="absolute items-center md:hidden left-4 top-6 ">
@@ -91,8 +91,8 @@ const HeaderMobile = ({ open, navigation, lang, image }) => {
 
 const HeaderDefault = ({ navigation, lang, image }) => {
 	return (
-		<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-			<div className="hidden md:relative md:flex items-center justify-between h-24 px-6">
+		<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 h-24 ">
+			<div className="hidden md:flex items-center justify-between px-6 py-4">
 				<div className="flex justify-center md:items-stretch md:justify-start">
 					<div className="flex-shrink-0 flex items-center">
 						{image}
