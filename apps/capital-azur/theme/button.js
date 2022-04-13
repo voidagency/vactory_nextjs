@@ -18,6 +18,9 @@ export const button = {
 			"bg-red-500 border-red-500  border border-solid hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white",
 		// for the nav bar
 		nav: "",
+		// for tool box
+		toolBox:
+			"relative w-full inline-flex items-center justify-center bg-white hover:bg-indigo-500 text-indigo-500 hover:text-white text-sm font-bold rounded-md",
 	},
 	outlineVariant: {
 		primary: `bg-transparent hover:bg-indigo-500 border-indigo-500 text-indigo-500 hover:text-white`,

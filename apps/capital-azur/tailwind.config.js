@@ -9,6 +9,14 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			spacing: {
+				128: "32rem",
+			},
+			transitionDelay: {
+				0: "0ms",
+				5000: "5000ms",
+			},
+
 			fontFamily: {
 				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
 			},
