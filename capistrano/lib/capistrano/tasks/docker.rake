@@ -4,7 +4,17 @@ namespace :decompose do
     task :build do
       on roles(:app) do
         within release_path do
-          docker_execute :build
+          execute "COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose --project-name #{fetch :application} -f #{release_path}/#{fetch :decompose_compose_file} build"
+        end
+      end
+    end
+
+    desc 'copy env file'
+    task :copy_env_file do
+      on roles(:app) do
+        within release_path do
+          execute "rm -rf #{release_path}/apps/starter/.env"
+          execute "cp #{fetch :app_env_file_path} #{release_path}/apps/starter/.env"
         end
       end
     end
@@ -76,24 +86,6 @@ namespace :decompose do
         docker_execute_interactively host, command
       end
     end
-
-    desc 'read env variables'
-    task :readEnv do
-      env_file = fetch(:env_file, '.env')
-      dotenv_contents = ''
-
-      on roles(:app) do
-        fail "You must have a #{env_file} file on your server " \
-           'to be able to deploy it' unless remote_file_exists?(env_file)
-
-        within release_path do
-          dotenv_contents = capture "cat #{env_file}"
-        end
-      end
-
-      set :env_vars, dotenv_contents.split("\n").map { |var| var.split('=')[0] }
-      set :dotenv_contents, dotenv_contents
-    end
   
     namespace :load do
       desc 'set our variables if they are not yet'
@@ -114,22 +106,21 @@ namespace :decompose do
     end
   
     def docker_execute(*args)
-      env_file = fetch(:env_file, '.env')
-      execute('COMPOSE_DOCKER_CLI_BUILD=1 docker-compose', "--project-name #{fetch :application} --env-file #{env_file}  -f #{fetch :decompose_compose_file}", *args)
+      execute('docker-compose', "--project-name #{fetch :application} -f #{fetch :decompose_compose_file}", *args)
     end
   
     def docker_execute_interactively(host, command)
       user = host.user
       port = fetch(:port) || 22
       docker_run = "docker-compose --project-name #{fetch :application}  -f #{fetch :decompose_compose_file} run --rm #{fetch :decompose_web_service} #{command}"
-      exec "ssh -l #{user} #{host} -p #{port} -t 'cd #{deploy_to}/current && #{docker_run}'"
+      exec "ssh -l #{user} #{host} -p #{port} -t 'cd #{deploy_to}/www && #{docker_run}'"
     end
   
     before 'decompose:build', 'decompose:load:defaults'
     before 'decompose:run', 'decompose:load:defaults'
   
-    after 'deploy:updated', 'decompose:build'
-    after 'deploy:published', 'decompose:rake_tasks'
-    after 'deploy:published', 'decompose:restart'
-    after 'deploy:cleanup', 'decompose:clean'
+    # after 'deploy:updated', 'decompose:build'
+    # after 'deploy:published', 'decompose:rake_tasks'
+    # after 'deploy:published', 'decompose:restart'
+    # after 'deploy:cleanup', 'decompose:clean'
   end

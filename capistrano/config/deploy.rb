@@ -44,8 +44,8 @@ set :linked_files, fetch(:linked_files, []).push('apps/starter/.env')
 # set :ssh_options, verify_host_key: :secure
 
 namespace :deploy do
-    after :starting, 'decompose:readEnv'
-    after :published, 'decompose:clean'
-    after :published, 'decompose:build'
+    after :updated, 'decompose:copy_env_file'
+    after :updated, 'decompose:build'
     after :published, 'decompose:restart'
+    after :cleanup, 'decompose:clean'
 end
