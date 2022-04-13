@@ -1,9 +1,7 @@
 server 'k8s.lapreprod.com', user: 'vactory_nextjs', roles: %w{web app db}
 set :deploy_to, "/home/vactory_nextjs"
 set :tmp_dir, '/home/vactory_nextjs/tmp'
-set :current_directory, 'www'
 set :branch, 'main'
-set :env_file, '/home/vactory_nextjs/.env'
 
 # server-based syntax
 # ======================

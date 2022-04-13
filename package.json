@@ -163,7 +163,7 @@
         "react-hook-form": "^7.28.0",
         "rosetta": "^1.1.0",
         "serve": "^13.0.2",
-        "sharp": "^0.30.2",
+        "sharp": "^0.30.3",
         "string-strip-html": "^9.1.6",
         "swr": "^1.2.2",
         "truncate": "^3.0.0"

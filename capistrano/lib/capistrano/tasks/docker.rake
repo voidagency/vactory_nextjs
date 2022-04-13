@@ -115,7 +115,7 @@ namespace :decompose do
   
     def docker_execute(*args)
       env_file = fetch(:env_file, '.env')
-      execute('docker-compose', "--project-name #{fetch :application} --env-file #{env_file}  -f #{fetch :decompose_compose_file}", *args)
+      execute('COMPOSE_DOCKER_CLI_BUILD=1 docker-compose', "--project-name #{fetch :application} --env-file #{env_file}  -f #{fetch :decompose_compose_file}", *args)
     end
   
     def docker_execute_interactively(host, command)

@@ -5,6 +5,9 @@ set :application, "vactory_nextjs"
 set :repo_url, "https://github.com/voidagency/vactory_nextjs.git"
 set :app_path, '.'
 set :deploy_via, :remote_cache
+set :keep_releases, 2
+set :current_directory, 'www'
+set :linked_files, fetch(:linked_files, []).push('apps/starter/.env')
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
