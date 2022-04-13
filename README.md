@@ -30,6 +30,9 @@ $ cd capistrano
 $ bundle install
 ```
 
+- On your server, make sure you create your env file `./shared/apps/starter/.env`
+- On your server, generate an ssh key using `ssh-keygen` no-password and add it to your bitbucket repository (access keys) so that your server can successfully run git pull commands
+
 ## Command-line usage
 
 ```bash
