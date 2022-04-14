@@ -1,3 +1,4 @@
+import { arrows } from "./arrows"
 import { button } from "./button"
 import { card } from "./card"
 import { heading } from "./heading"
@@ -6,8 +7,10 @@ import { layer } from "./layer"
 import { link } from "./link"
 import { toolbox } from "./toolbox"
 import { socialmediabox } from "./socialmediabox"
+import { slider } from "./slider"
 
 export const theme = {
+	arrows,
 	button,
 	card,
 	heading,
@@ -16,4 +19,5 @@ export const theme = {
 	link,
 	toolbox,
 	socialmediabox,
+	slider,
 }

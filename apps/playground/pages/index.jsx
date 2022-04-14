@@ -1,9 +1,10 @@
-import Header from "../components/header/header";
+import Header from "../components/header/header"
 import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { theme } from "../theme/theme"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Card } from "@vactory/ui/card"
+
 export default function Index() {
 	return (
 		<AppWrapper theme={theme}>

@@ -3,12 +3,12 @@ import { theme } from "../theme/theme"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import Header from "../components/header/header"
-import { Slider } from "../components/slider/slider"
+import { Slider } from "@/components/slider/slider"
 import { Footer } from "@/components/footer/footer"
 import { ToolBox } from "@vactory/ui/toolbox"
 import { MediaBox } from "@vactory/ui/socialmediabox"
 import { Button } from "@vactory/ui/button"
-import { Arrow } from "../components/slider/arrows"
+import { Arrow } from "@/components/slider/arrows"
 import { Template } from "../components/slider/template"
 
 const tools = [
@@ -44,6 +44,7 @@ const defaultSettings = {
 	rubberband: true,
 	defaultAnimation: { duration: 5000 },
 	renderMode: "precision",
+	opacity: true,
 }
 
 const data = [
@@ -90,6 +91,7 @@ export default function Index() {
 				list={data}
 				settings={defaultSettings}
 				Arrow={Arrow}
+				variant="default"
 				Template={Template}
 			></Slider>
 			<Container className=" flex-col">
