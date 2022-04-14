@@ -4,6 +4,7 @@ namespace :decompose do
     task :build do
       on roles(:app) do
         within release_path do
+          execute "touch #{release_path}/apps/starter/docker-build-#{Time.now.strftime("%m-%d-%Y--%H-%M-%S")}.log"
           execute "COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose --project-name #{fetch :application} -f #{release_path}/#{fetch :decompose_compose_file} build"
         end
       end
