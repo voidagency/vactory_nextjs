@@ -75,6 +75,8 @@ export default NextAuth({
 						)
 						data = await response.json()
 					} catch (err) {
+						console.log("provider", ctx.provider.id)
+						console.log("token failed", ctx.tokens.access_token)
 						console.error(err)
 					}
 					return data
