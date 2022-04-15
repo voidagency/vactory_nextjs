@@ -16,15 +16,22 @@
     "@vactory/headlessui/switch": "../headlessui/src/components/switch/switch.tsx",
     "@vactory/headlessui/tabs": "../headlessui/src/components/tabs/tabs.tsx",
     "@vactory/headlessui/transition": "../headlessui/src/components/transitions/transition.tsx",
+    "@vactory/ui/arrows": "./src/arrows/arrows.js",
     "@vactory/ui/back-to-top": "./src/back-to-top/back-to-top.js",
     "@vactory/ui/button": "./src/button/button.js",
     "@vactory/ui/card": "./src/card/card.js",
     "@vactory/ui/icon": "./src/icon/icon.js",
     "@vactory/ui/link": "./src/link/link.js",
-    "@vactory/ui/offline": "./src/offline/offline.js"
+    "@vactory/ui/offline": "./src/offline/offline.js",
+    "@vactory/ui/toolbox": "./src/tool-box/toolBox.js",
+    "@vactory/ui/socialmediabox": "./src/socialmedia-Box/socialmediabox.js",
+    "@vactory/ui/layer": "./src/layer/layer.js",
+    "@vactory/ui/heading": "./src/heading/heading.js",
+    "@vactory/ui/slider": "./src/slider/slider.js"
   },
   "exports": {
     ".": "./index.js",
+    "./arrows": "./src/arrows/arrows.js",
     "./back-to-top": "./src/back-to-top",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
@@ -40,7 +47,10 @@
     "./app-wrapper": "./src/app-wrapper/app-wrapper.js",
     "./container": "./src/container/container.js",
     "./breadcrumb": "./src/breadcrumb/breadcrumb.js",
-    "./layer": "./src/layer/layer.js"
+    "./layer": "./src/layer/layer.js",
+    "./toolbox" : "./src/tool-Box/toolBox.js",
+    "./socialmediabox": "./src/socialmedia-box/socialmediabox.js",
+    "./slider": "./src/slider/slider.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",

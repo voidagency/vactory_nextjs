@@ -1,13 +1,18 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react" // import from 'keen-slider/react.es' for to get an ES module
 import { Icon } from "@vactory/ui/icon"
 import { Button } from "@vactory/ui/button"
+import clsx from "clsx"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
-export const Slider = ({ list, settings, Arrow, Template, variant }) => {
+export const Slider = ({ list, settings, Template, Arrow, variant, className = "" }) => {
+	const [opacities, setOpacities] = React.useState([])
+	const { slider } = useContext(ThemeContext)
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	const [sliderRef, instanceRef] = useKeenSlider({
+		slides: list.length,
 		loop: settings.loop,
 		rtl: settings.rtl,
 		disabled: settings.disabled,
@@ -17,24 +22,34 @@ export const Slider = ({ list, settings, Arrow, Template, variant }) => {
 			duration: settings.defaultAnimation.duration,
 		},
 
+		breakpoints: settings.breakpoints,
+
 		slideChanged(Slider) {
 			setCurrentSlide(Slider.track.details.rel)
 		},
 		created() {
 			setLoaded(true)
 		},
+
+		detailsChanged(slider) {
+			const new_opacities = slider.track.details.slides.map((slide) => slide.portion)
+			setOpacities(new_opacities)
+		},
 	})
 
 	return (
 		<>
-			<div className="navigation-wrapper h-128 w-full ">
-				<div ref={sliderRef} className="keen-slider w=full h-full">
+			<div className={clsx(slider[variant].wrapper, className)}>
+				<div ref={sliderRef} className={slider[variant].carousel}>
 					{list.map((item) => {
 						return (
 							<div
 								key={item.id}
-								className="keen-slider__slide number-slide z-0 h-full w-full  rounded-xl"
-								style={{ backgroundImage: `url(${item.image})` }}
+								className={slider[variant].slider.wrapper}
+								style={{
+									backgroundImage: `url(${item.image})`,
+									opacity: `${settings.opacity && opacities[item.id]}`,
+								}}
 							>
 								<Template item={item} isActive={currentSlide === item.id} />
 							</div>
@@ -49,7 +64,7 @@ export const Slider = ({ list, settings, Arrow, Template, variant }) => {
 							iconLeft={
 								<Icon
 									id="chevron-left"
-									className="text-indigo-700"
+									className={slider[variant].Arrows}
 									width="30"
 									height="30"
 								/>
@@ -59,10 +74,11 @@ export const Slider = ({ list, settings, Arrow, Template, variant }) => {
 
 						<Arrow
 							right
+							variant={variant}
 							iconRight={
 								<Icon
 									id="chevron-right"
-									className="text-indigo-700"
+									className={slider[variant].Arrows}
 									width="30"
 									height="30"
 								/>
@@ -73,7 +89,7 @@ export const Slider = ({ list, settings, Arrow, Template, variant }) => {
 				)}
 
 				{loaded && instanceRef.current && (
-					<div className="dots flex items-center justify-center bottom-10 right-1/2 left-1/2 ">
+					<div className={slider[variant].Dotes.wrapper}>
 						{[...Array(instanceRef.current.track.details.slides.length).keys()].map(
 							(idx) => {
 								return (
@@ -84,10 +100,8 @@ export const Slider = ({ list, settings, Arrow, Template, variant }) => {
 										}}
 										variant="nav"
 										className={
-											"dot w-2 h-2 bg-slate-500 md:px-20 p-2 md:p-1 cursor-pointer border-current rounded-full focus:outline-none" +
-											(currentSlide === idx
-												? " active bg-blue-700 p-2  sm:transition sm:ring-2 sm:ring-slate-50 sm:ease-in-out sm:delay-100 "
-												: "")
+											slider[variant].Dotes.dot +
+											(currentSlide === idx ? slider[variant].Dotes.dotActive : "")
 										}
 									></Button>
 								)
