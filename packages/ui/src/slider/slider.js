@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react"
-import "keen-slider/keen-slider.min.css"
+//import "keen-slider/keen-slider.min.css" //comment this to run it in apps
 import { useKeenSlider } from "keen-slider/react" // import from 'keen-slider/react.es' for to get an ES module
 import { Icon } from "@vactory/ui/icon"
 import { Button } from "@vactory/ui/button"
 import clsx from "clsx"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
-export const Slider = ({ list, settings, Template, Arrow, variant, className = "" }) => {
+export const Slider = ({ list, settings, Template, Arrow, variant }) => {
 	const [opacities, setOpacities] = React.useState([])
 	const { slider } = useContext(ThemeContext)
 	const [currentSlide, setCurrentSlide] = useState(0)
@@ -39,7 +39,7 @@ export const Slider = ({ list, settings, Template, Arrow, variant, className = "
 
 	return (
 		<>
-			<div className={clsx(slider[variant].wrapper, className)}>
+			<div className={clsx(slider[variant].wrapper)}>
 				<div ref={sliderRef} className={slider[variant].carousel}>
 					{list.map((item) => {
 						return (
