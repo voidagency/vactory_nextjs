@@ -15,7 +15,7 @@ export const cards = [
 		urlContent: <Icon id="arrow-circle-right" width="25" height="25" />,
 	},
 	{
-		id: 1,
+		id: 2,
 		title: "Nissan quashqai Accenta...",
 		excerpt: "2017",
 		image: <img src={nissan.src} className="mx-auto" />,
@@ -23,7 +23,7 @@ export const cards = [
 		urlContent: <Icon id="arrow-circle-right" width="25" height="25" />,
 	},
 	{
-		id: 1,
+		id: 3,
 		title: "RENAULT Mégane Sedan EXP...",
 		excerpt: "2017",
 		image: <img src={renault.src} className="mx-auto" />,
@@ -31,7 +31,7 @@ export const cards = [
 		urlContent: <Icon id="arrow-circle-right" width="25" height="25" />,
 	},
 	{
-		id: 1,
+		id: 4,
 		title: "CITROEN Berlingo Attraction...",
 		excerpt: "2017",
 		image: <img src={citroen.src} className="mx-auto" />,

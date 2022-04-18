@@ -1,12 +1,12 @@
 export const card = {
 	chaibi: {
 		wrapper:
-			"flex flex-col items-center rounded-lg shadow-lg overflow-hidden text-black text-center pt-20 pb-8 px-10",
-		image: "mb-6",
+			"bg-white flex flex-col items-center text-center pt-[77px] pb-6 px-9 shadow ",
+		image: "h-20 mx-auto mb-5",
 		body: "",
 		tag: "text-xl leading-8 font-semibold",
-		title: "text-xl font-semibold text-gray-900 mb-6 text-black",
-		excerpt: "text-base leading-6 text-gray-400",
+		title: "text-black text-xl leading-[30px] font-semibold mb-5",
+		excerpt: "text-[#667085] text-base leading-6",
 		link: "text-primary underline",
 	},
 	marque: {
@@ -20,5 +20,3 @@ export const card = {
 		link: "absolute bottom-6 right-4",
 	},
 }
-
-const span = () => <span className="text-white right-4"></span>

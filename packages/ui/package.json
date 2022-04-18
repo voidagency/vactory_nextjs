@@ -63,6 +63,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2"
+    "deepmerge": "^4.2.2",
+    "keen-slider": "^6.6.7"
   }
 }
