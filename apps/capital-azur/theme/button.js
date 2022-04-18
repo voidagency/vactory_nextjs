@@ -25,7 +25,7 @@ export const button = {
 			"relative w-full inline-flex items-center justify-center bg-white hover:bg-indigo-500 text-indigo-500 hover:text-white text-sm font-bold rounded-md",
 	},
 	outlineVariant: {
-		primary: `bg-transparent hover:bg-indigo-500 border-indigo-500 text-indigo-500 hover:text-white`,
+		primary: `bg-white hover:bg-indigo-500 border border-solid border-indigo-500 text-indigo-500 hover:text-white rounded-md text-bold`,
 		secondary: `bg-transparent border-gray-200 text-gray-600 hover:text-white hover:bg-gray-200`,
 		danger: `bg-transparent border-red-500 text-red-500 hover:text-white hover:bg-red-500`,
 	},

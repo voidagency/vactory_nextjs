@@ -11,6 +11,8 @@ import { Button } from "@vactory/ui/button"
 import { Arrow } from "@vactory/ui/arrows"
 import { Template } from "../components/slider/template"
 import { Template1 } from "../components/slider/template1"
+import { Card } from "@vactory/ui/card"
+import { Link } from "@vactory/ui/link"
 
 const tools = [
 	{
@@ -141,6 +143,56 @@ const data = [
 	},
 ]
 
+const cardData = [
+	{
+		title: "What Blockchain Could Mean for Your Health Data",
+		escerpt: "LIRE PLUS",
+		image: (
+			<img
+				className="w-full h-52 object-cover transition ease-in-out delay-100 group-hover:scale-110 duration-200"
+				src="https://capital-azur.com/sites/default/files/styles/vactory_two_cols_x1/public/2020-06/blockchain-data.jpg?h=cd72da00%201x,%20/sites/default/files/styles/vactory_two_cols_x2/public/2020-06/blockchain-data.jpg"
+			/>
+		),
+		urlTag: "/about",
+		url: "/about",
+		urlContent: "LIRE PLUS",
+		category: "ACTUALITE",
+		className: "max-w-sm",
+	},
+	{
+		title:
+			"Crise du Coronavirus : En Afrique, le mobile money pour endiguer la propagation",
+		escerpt: "LIRE PLUS",
+		image: (
+			<img
+				className="w-full h-52 object-cover transition ease-in-out delay-100 group-hover:scale-110 duration-200"
+				src="https://capital-azur.com/sites/default/files/styles/vactory_two_cols_x1/public/2020-05/10.jpg?h=7ba75ed5%201x,%20/sites/default/files/styles/vactory_two_cols_x2/public/2020-05/10.jpg"
+			/>
+		),
+		urlTag: "/about",
+		url: "/about",
+		urlContent: "LIRE PLUS",
+		category: "ANALYSE",
+		className: "max-w-sm",
+	},
+	{
+		title:
+			"Crise du Coronavirus : En Afrique, le mobile money pour endiguer la propagation",
+		escerpt: "LIRE PLUS",
+		image: (
+			<img
+				className="w-full h-52 object-cover transition ease-in-out delay-100 group-hover:scale-110 duration-200"
+				src="https://capital-azur.com/sites/default/files/styles/vactory_two_cols_x1/public/2020-05/10.jpg?h=7ba75ed5%201x,%20/sites/default/files/styles/vactory_two_cols_x2/public/2020-05/10.jpg"
+			/>
+		),
+		urlTag: "/about",
+		url: "/about",
+		urlContent: "LIRE PLUS",
+		category: "ANALYSE",
+		className: "max-w-sm",
+	},
+]
+
 export default function Index() {
 	return (
 		<AppWrapper theme={theme}>
@@ -152,15 +204,15 @@ export default function Index() {
 				variant="default"
 				Template={Template}
 			></Slider>
-			<Container className="flex-col">
-				<div className="Container py-16 ml-auto mr-auto">
+			<Container layout="full" className="flex-col">
+				<div className="Container px-4 lg:px-32 py-16 ml-auto mr-auto">
 					<Heading
 						level={2}
 						className="text-left mb-6 mt-10 before:content-['-__'] before:text-indigo-500 "
 					>
 						VOTRE SATISFACTION, NOTRE PASSION
 					</Heading>
-					<p className="px-24 antialiased">
+					<p className=" mx-auto lg:mx-32 tracking-wide antialiased text-xl font-sans">
 						Découvrez Capital Azur, la première banque 100% Digitale en Afrique et oubliez
 						la paperasse et les frais cachés. Avec tous nos outils dédiés aux besoins de
 						tous nos clients (Particuliers, Entreprises, Corporate), Nous vous
@@ -172,16 +224,16 @@ export default function Index() {
 				</div>
 			</Container>
 			<Container layout="full" className="bg-sky-700">
-				<div className="Container">
+				<div className="Container px-4 lg:px-32">
 					<div className="grid md:grid-cols-2">
-						<div className="md:order-last py-8">
+						<div className="md:order-last mt-16">
 							<Heading
 								level={2}
 								className="text-left text-white mb-12 mt-10 before:content-['-__'] before:text-white"
 							>
 								LES FINTECHS AU SERVICE DE LA CROISSANCE EN AFRIQUE
 							</Heading>
-							<p className="text-white antialiased mb-8">
+							<p className="text-white tracking-wide antialiased mb-8 text-xl font-sans ">
 								La raison d’être de Capital Azur : Favoriser financière en Afrique afin
 								d’accompagner le continent dans sa croissl’inclusionance. C’est pour cela
 								que nous nous reposons sur le State Of The Art de la technologie.
@@ -193,7 +245,7 @@ export default function Index() {
 								<Button variant="container">EN SAVOIR PLUS</Button>
 							</div>
 						</div>
-						<div className="">
+						<div className="image mt-16">
 							<img
 								className=""
 								src="https://capital-azur.com/sites/default/files/2020-05/Group%2035.png"
@@ -205,29 +257,99 @@ export default function Index() {
 					</div>
 				</div>
 			</Container>
-			<Container className="flex-col">
-				<div className="Container py-16 ml-auto mr-auto">
+			<Container layout="full" className="flex-col bg-gray-1000">
+				<div className="Container px-4 lg:px-32  py-16 ml-auto mr-auto">
+					<Heading
+						level={2}
+						className="text-left mb-10 mt-10 tracking-wide before:content-['-__'] before:text-indigo-500 "
+					>
+						DES SERVICES INNOVANTS POUR UN QUOTIDIEN SIMPLIFIÉ.
+					</Heading>
+					<p className="mx-auto lg:mx-32 mb-16 tracking-wide antialiased text-xl font-sans">
+						Capital Azur accompagne l’ensemble de sa clientèle dans leurs projets à toutes
+						les étapes de leurs vie.
+					</p>
+					<div className="">
+						<Slider
+							list={DataSlider2}
+							settings={v1Settings}
+							Arrow={Arrow}
+							variant="iconSlider"
+							Template={Template1}
+						></Slider>
+					</div>
+				</div>
+			</Container>
+			<Container layout="full" className="">
+				<div className="Container px-4 lg:px-32 py-16 ml-auto mr-auto">
 					<Heading
 						level={2}
 						className="text-left mb-10 mt-10 before:content-['-__'] before:text-indigo-500 "
 					>
-						DES SERVICES INNOVANTS POUR UN QUOTIDIEN SIMPLIFIÉ.
+						Insights
 					</Heading>
-					<div className="">
-						<div className="flex mx-24 mb-12">
-							<p>
-								Capital Azur accompagne l’ensemble de sa clientèle dans leurs projets à
-								toutes les étapes de leurs vie.
+					<p className="mx-auto lg:mx-32 mb-16 tracking-wide antialiased text-xl font-sans">
+						Découvrez nos actualités, nos analyses et les points de vue de nos experts
+					</p>
+					<div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+						{cardData.map((item, index) => {
+							return (
+								<a href={item.url} className="group block px-4 py-4" key={index}>
+									<Card
+										title={
+											<a href={item.url}>
+												<span className="group-hover:text-indigo-600">{item.title}</span>
+											</a>
+										}
+										urlContent={item.urlContent}
+										image={item.image}
+										url={item.url}
+										category={
+											<a href={item.url}>
+												<span className="bg-blue-900 rounded-md px-2 py-1">
+													{item.category}
+												</span>
+											</a>
+										}
+										className="max-w-sm"
+									/>
+								</a>
+							)
+						})}
+					</div>
+					<div className="flex items-center justify-center mt-16">
+						<Button outline="true" Variant="primary" size="large">
+							VOIR PLUS D'ACTUALITES
+						</Button>
+					</div>
+				</div>
+			</Container>
+			<Container layout="full" className="bg-gray-1000">
+				<div className="Container px-4 lg:px-32">
+					<div className="grid md:grid-cols-2 py-16">
+						<div className="my-10">
+							<Heading
+								level={2}
+								className="text-left text-black mb-12 mt-10 before:content-['-__'] before:text-blue-400"
+							>
+								ACCÉDEZ À NOS SERVICES, OÙ QUE VOUS SOYEZ.
+							</Heading>
+							<p className="text-black tracking-wide antialiased mb-8 text-xl font-sans ">
+								Nos services sont accessibles au niveau de 13 pays en Afrique, et bien
+								plus dans les prochains mois !
 							</p>
+							<div className="flex items-start py-6">
+								<Button outline="true">EN SAVOIR PLUS</Button>
+							</div>
 						</div>
-						<div className="">
-							<Slider
-								list={DataSlider2}
-								settings={v1Settings}
-								Arrow={Arrow}
-								variant="iconSlider"
-								Template={Template1}
-							></Slider>
+						<div className="image my-10">
+							<img
+								className=""
+								src="https://capital-azur.com/sites/default/files/2020-05/carte.png"
+								alt="Workflow"
+								height="540px"
+								width="515px"
+							/>
 						</div>
 					</div>
 				</div>
