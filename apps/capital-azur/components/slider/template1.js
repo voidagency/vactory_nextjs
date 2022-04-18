@@ -1,6 +1,6 @@
 export const Template1 = ({ item, isActive }) => {
 	return (
-		<div className="flex items-center justify-center">
+		<div className="flex items-center justify-around bg-white">
 			<div className="mb-10">
 				<img
 					className="mt-10 mb-10"
