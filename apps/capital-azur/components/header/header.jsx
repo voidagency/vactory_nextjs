@@ -97,8 +97,8 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					<div className="flex-shrink-0 flex items-center">
 						{image}
 						<img
-							className="hidden lg:block h-8 w-auto"
-							src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+							className="hidden lg:block h-16  w-auto"
+							src="https://capital-azur.com/themes/capital_azur/logo.png"
 							alt="Workflow"
 						/>
 					</div>
@@ -126,7 +126,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 	)
 }
 
-export default function Header() {
+export const Header = () => {
 	const navigation = [
 		{ name: "NOS PRODUITS", href: "#", current: false },
 		{ name: "NOUS CONNAITRE", href: "#", current: false },
@@ -151,8 +151,8 @@ export default function Header() {
 
 	const Image = (
 		<img
-			className="block lg:hidden h-8 w-auto"
-			src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+			className="block lg:hidden h-16 w-auto"
+			src="https://capital-azur.com/themes/capital_azur/logo.png"
 			alt="Workflow"
 		/>
 	)

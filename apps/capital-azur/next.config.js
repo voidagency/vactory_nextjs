@@ -5,7 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
 	webpack: (config) => {
-		//config.resolve.alias["@vactory/ui/card"] = "@/components/card/card.js" // Example overide
+		config.resolve.alias["@vactory/ui/card"] = "@/components/card/card.js" // Example overide
 		return config
 	},
 	experimental: {
