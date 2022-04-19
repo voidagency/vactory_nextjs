@@ -17,7 +17,7 @@ export async function getUserServerSideProps(context) {
 
 	if (
 		session &&
-		["login", "resgiter", "reset-password", "one-time-login"].includes(joinedSlug)
+		["login", "register", "reset-password", "one-time-login"].includes(joinedSlug)
 	) {
 		return {
 			redirect: {
@@ -100,15 +100,23 @@ export async function getUserServerSideProps(context) {
 		}
 	}
 
-	if ("profile" === joinedSlug) {
+	if ("profile" === joinedSlug || "profile-password" === joinedSlug) {
+		if (!session) {
+			return {
+				redirect: {
+					destination: `/${locale}/user/login`,
+					permanent: false,
+				},
+			}
+		}
+
 		await csrf(context.req, context.res)
 		return {
 			props: {
 				node: {
 					title: "Profile page",
 					type: "profile",
-					providers: await getProviders(),
-					csrfToken: context.req.csrfToken(),
+					session: session,
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
