@@ -60,6 +60,45 @@ export default NextAuth({
 				return null
 			},
 		}),
+		CredentialsProvider({
+			id: "one-time-login",
+			name: "One-time-login",
+			credentials: {
+				uid: { label: "Uid", type: "text" },
+				timestamp: { label: "Timestamp", type: "text" },
+				hash: { label: "Hash", type: "text" },
+			},
+			async authorize(credentials) {
+				const formData = new URLSearchParams()
+				formData.append("client_id", process.env.OAUTH_CLIENT_ID)
+				formData.append("client_secret", process.env.OAUTH_CLIENT_SECRET)
+				formData.append("uid", credentials.uid)
+				formData.append("timestamp", credentials.timestamp)
+				formData.append("hash", credentials.hash)
+
+				// Get access token from Drupal.
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/oauth/one-time-token`,
+					{
+						method: "POST",
+						body: formData,
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded",
+						},
+					}
+				)
+
+				const data = await response.json()
+				console.log(data)
+				if (response.ok && data?.access_token) {
+					const decoded = jwt_decode(data.access_token)
+					data.profile = decoded.profile
+					return data
+				}
+
+				return null
+			},
+		}),
 		KeycloakProvider({
 			clientId: process.env.KEYCLOAK_ID,
 			clientSecret: process.env.KEYCLOAK_SECRET,
@@ -75,8 +114,6 @@ export default NextAuth({
 						)
 						data = await response.json()
 					} catch (err) {
-						console.log("provider", ctx.provider.id)
-						console.log("token failed", ctx.tokens.access_token)
 						console.error(err)
 					}
 					return data
