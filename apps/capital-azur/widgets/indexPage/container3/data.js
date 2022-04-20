@@ -1,4 +1,4 @@
-export const DataSlider2 = [
+export const DataSlider = [
 	{
 		id: 0,
 		title: "Comptes & Cartes",
@@ -27,14 +27,14 @@ export const SliderIconSettings = {
 	rtl: false,
 	breakpoints: {
 		"(min-width: 200px)": {
-			slides: { perView: 1, spacing: 25, origin: "center" },
+			slides: { perView: 1 },
 		},
 		"(min-width: 900px)": {
 			slides: { perView: 4, spacing: 10 },
 		},
 	},
 	defaultAnimation: {
-		duration: 2000,
+		duration: 500,
 	},
 	opacity: false,
 }

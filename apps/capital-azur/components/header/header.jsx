@@ -39,7 +39,7 @@ const ButtonIcon = ({ open }) => {
 	return (
 		<>
 			{/**/}
-			<Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+			<Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-blue-1000 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 				<span className="sr-only">Open main menu</span>
 				{open ? IconX : IconMenu}
 			</Disclosure.Button>
@@ -59,7 +59,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 					<div className="block  rounded-md text-base font-medium">
 						<Button
 							variant={"primary"}
-							icon={<Icon id="information-circle" width="30" height="30" />}
+							icon={<Icon id="lock-closed-solid" width="30" height="30" />}
 						>
 							BANQUE DIGITAL
 						</Button>
@@ -111,7 +111,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 				<div className="hidden py-0 inset-y-0 md:flex sm:items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-2">
 					<Button
 						variant={"primary"}
-						icon={<Icon id="information-circle" width="15" height="15" />}
+						icon={<Icon id="lock-closed-solid" width="30" height="30" />}
 					>
 						BANQUE DIGITAL
 					</Button>

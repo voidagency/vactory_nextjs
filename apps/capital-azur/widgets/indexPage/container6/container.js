@@ -5,7 +5,7 @@ import { Button } from "@vactory/ui/button"
 export const Container6 = ({}) => {
 	return (
 		<Container layout="full" className="bg-gray-1000">
-			<Container className="">
+			<div className="Container px-4 lg:px-32">
 				<div className="grid md:grid-cols-2 py-16">
 					<div className="my-10">
 						<Heading
@@ -32,7 +32,7 @@ export const Container6 = ({}) => {
 						/>
 					</div>
 				</div>
-			</Container>
+			</div>
 		</Container>
 	)
 }

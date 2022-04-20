@@ -1,8 +1,7 @@
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Slider } from "@vactory/ui/slider"
-import { Arrow } from "@vactory/ui/arrows"
-import { DataSlider2 } from "./data"
+import { DataSlider } from "./data"
 import { SliderIconSettings } from "./data"
 import { Template1 } from "./Template"
 import Slide from "@vactory/ui/slide"
@@ -23,8 +22,7 @@ export const Container3 = ({}) => {
 				</p>
 				<div className="">
 					<Slider settings={SliderIconSettings} variant="iconSlider">
-						{DataSlider2.map((item, index) => {
-							console.log("ITEM IMAGE", item)
+						{DataSlider.map((item, index) => {
 							return (
 								<Slide key={index} variant="iconSlider" className="py-8">
 									<Template1 {...item} />

@@ -19,10 +19,10 @@ export const Container5 = ({}) => {
 				</Heading>
 				<div className="">
 					<Slider settings={SliderCardSettings} variant="cardSlider">
-						{cardSliderData.map((item) => {
+						{cardSliderData.map((item, index) => {
 							return (
-								<Slide variant="cardSlider">
-									<CardTemplate item={item} variant="cardSlider" />
+								<Slide key={index} variant="cardSlider">
+									<CardTemplate item={item} variant="cardSlider" key={index} />
 								</Slide>
 							)
 						})}
