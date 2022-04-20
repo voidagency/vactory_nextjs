@@ -112,6 +112,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					<Button
 						variant={"primary"}
 						icon={<Icon id="information-circle" width="15" height="15" />}
+						className={"mr-3"}
 					>
 						BANQUE DIGITAL
 					</Button>

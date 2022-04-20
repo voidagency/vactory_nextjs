@@ -39,7 +39,8 @@
     "./theme": "./src/theme/theme.js",
     "./app-wrapper": "./src/app-wrapper/app-wrapper.js",
     "./container": "./src/container/container.js",
-    "./breadcrumb": "./src/breadcrumb/breadcrumb.js"
+    "./breadcrumb": "./src/breadcrumb/breadcrumb.js",
+    "./accordion" :"./src/accordion/accordion.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
