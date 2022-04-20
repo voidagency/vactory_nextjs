@@ -35,7 +35,7 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 	const fileUploadHandler = (e) => {
 		const file = e.target.files[0]
 		const filename = file?.name
-		if (filename.length <= 0) {
+		if (!filename || filename.length <= 0) {
 			return
 		}
 		const reader = new FileReader()

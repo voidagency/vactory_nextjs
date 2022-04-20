@@ -204,6 +204,7 @@ export default async function handler(req, res) {
 						accessTokenExpires: Date.now() + user.expires_in * 1000,
 						provider: account.provider,
 						profile: user.profile,
+						expires_in: user.expires_in,
 					}
 				}
 
@@ -222,13 +223,18 @@ export default async function handler(req, res) {
 				// Refresh access token on expire.
 				return await redlock.using(
 					[token.profile, "jwt-refresh"],
-					30 * 1000,
+					token.expires_in * 1000,
 					async () => {
 						console.log("lock & refresh")
 						const redisToken = await redis.get(token.refreshToken)
 						const oldToken = redisToken ? await JSON.parse(redisToken) : token
 						const newToken = await refreshAccessTokenForDrupal(oldToken)
-						await redis.set(token.refreshToken, await JSON.stringify(newToken), "ex", 300)
+						await redis.set(
+							token.refreshToken,
+							await JSON.stringify(newToken),
+							"ex",
+							token.expires_in + 10
+						)
 						return newToken
 					}
 				)
