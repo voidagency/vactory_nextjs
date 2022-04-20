@@ -1,7 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
+import clsx from "clsx"
 import { Link } from "@vactory/ui/link"
+import { ThemeContext } from "@vactory/ui/theme-context"
 
-const Card = ({ title, excerpt, image, urlTag, url, urlContent, category, ...props }) => {
+const Card = ({
+	variant = "default",
+	title,
+	excerpt,
+	image,
+	urlTag,
+	url,
+	urlContent,
+	icon,
+	className,
+	category,
+	...props
+}) => {
+	const { card } = useContext(ThemeContext)
 	return (
 		<div
 			className="flex flex-row h-80 rounded-lg shadow-lg overflow-hidden bg-white text-black lrt:text-left rtl:text-right"
