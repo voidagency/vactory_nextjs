@@ -5,7 +5,7 @@ import { Button } from "@vactory/ui/button"
 export const Container1 = ({}) => {
 	return (
 		<Container layout="full" className="flex-col">
-			<div className="Container px-4 lg:px-32 py-24 ml-auto mr-auto">
+			<Container className="py-24">
 				<Heading
 					level={2}
 					className="text-left mb-6 mt-10 before:content-['-__'] before:text-blue-1000 "
@@ -21,7 +21,7 @@ export const Container1 = ({}) => {
 				<div className="flex items-center justify-center py-6">
 					<Button size="large">A PROPOS DE NOUS</Button>
 				</div>
-			</div>
+			</Container>
 		</Container>
 	)
 }

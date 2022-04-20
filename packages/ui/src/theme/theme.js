@@ -1,4 +1,3 @@
-import { arrows } from "./arrows"
 import { button } from "./button"
 import { heading } from "./heading"
 import { text } from "./text"
@@ -22,7 +21,6 @@ import { toolbox } from "./toolbox"
 import { slider } from "./slider"
 
 export const theme = {
-	arrows,
 	socialmediabox,
 	toolbox,
 	button,

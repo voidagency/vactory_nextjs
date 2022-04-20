@@ -1,6 +1,7 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport"
 import { initializeRTL } from "storybook-addon-rtl"
 import "keen-slider/keen-slider.min.css" //comment this to run it in apps
+import "../src/slider/style.css"
 
 initializeRTL()
 

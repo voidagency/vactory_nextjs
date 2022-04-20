@@ -16,7 +16,6 @@
     "@vactory/headlessui/switch": "../headlessui/src/components/switch/switch.tsx",
     "@vactory/headlessui/tabs": "../headlessui/src/components/tabs/tabs.tsx",
     "@vactory/headlessui/transition": "../headlessui/src/components/transitions/transition.tsx",
-    "@vactory/ui/arrows": "./src/arrows/arrows.js",
     "@vactory/ui/back-to-top": "./src/back-to-top/back-to-top.container.js",
     "@vactory/ui/button": "./src/button/button.js",
     "@vactory/ui/card": "./src/card/card.js",

@@ -3,6 +3,9 @@ import { Card } from "@vactory/ui/card"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 
+import { Slider } from "@vactory/ui/slider"
+import slide from "@vactory/ui/slide"
+
 import { cards } from "./data"
 
 export const MarqueSlider = ({}) => {

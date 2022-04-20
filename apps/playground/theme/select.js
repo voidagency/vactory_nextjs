@@ -1,22 +1,23 @@
+const span = () => <span className="text-white"></span>
 export const select = {
 	default: {
 		wrapper: "w-full relative",
 		button: {
-			base: "relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
+			base: "relative w-full py-[11px] pl-[14px] pr-[30px] text-base leading-6 text-gray-500 text-left rtl:text-right bg-white cursor-default border boder-gray-300 border-solid focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
 			icon: {
 				id: "chevron-down",
-				width: "30",
-				height: "30",
+				width: "16",
+				height: "16",
 				className:
-					"absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none",
+					"absolute top-1/2 -translate-y-1/2 right-[19px] rtl:right-auto rtl:left-[19px] flex items-center pointer-events-none",
 			},
 		},
 		options: {
 			wrapper:
-				"z-10 absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm",
-			base: "cursor-default truncate select-none relative py-2 pl-10 pr-4 relative",
-			active: "font-medium text-amber-900 bg-amber-100",
-			inactive: "font-normal text-gray-900",
+				"z-10 absolute w-full py-1 mt-1 overflow-auto text-base bg-white border boder-gray-300 border-solid shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm",
+			base: "cursor-default truncate select-none relative py-2 pl-10 pr-4 relative transition transition-all ease-in-out duration-500",
+			active: "font-medium text-gray-300 bg-primary-500/30",
+			inactive: "font-normal text-gray-500",
 			icon: {
 				id: "check-solid",
 				width: "15",

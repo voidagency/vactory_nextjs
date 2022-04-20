@@ -7,7 +7,7 @@ import { cardData } from "./data"
 export const Container4 = ({}) => {
 	return (
 		<Container layout="full" className="">
-			<div className="Container px-4 lg:px-32 py-16 ml-auto mr-auto">
+			<Container className="py-16">
 				<Heading
 					level={2}
 					className="text-left mb-10 mt-10 before:content-['-__'] before:text-blue-1000 "
@@ -48,7 +48,7 @@ export const Container4 = ({}) => {
 						VOIR PLUS D'ACTUALITES
 					</Button>
 				</div>
-			</div>
+			</Container>
 		</Container>
 	)
 }
