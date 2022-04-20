@@ -5,6 +5,8 @@ module.exports = {
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx}",
 		"./components/**/*.{js,ts,jsx,tsx}",
+		"./widgets/**/*.{js,ts,jsx,tsx}",
+		"./theme/**/*.{js,ts,jsx,tsx}",
 		"../../packages/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
@@ -16,7 +18,6 @@ module.exports = {
 				0: "0ms",
 				5000: "5000ms",
 			},
-
 			fontFamily: {
 				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
 			},
@@ -49,7 +50,7 @@ module.exports = {
 					700: "#181A1C",
 					800: "#101213",
 					900: "#080909",
-					1000: "#F2F2F2",
+					1000: "#f4f8f8",
 				},
 				error: {
 					25: "#FCE8EA",

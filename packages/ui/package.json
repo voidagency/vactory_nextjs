@@ -17,7 +17,7 @@
     "@vactory/headlessui/tabs": "../headlessui/src/components/tabs/tabs.tsx",
     "@vactory/headlessui/transition": "../headlessui/src/components/transitions/transition.tsx",
     "@vactory/ui/arrows": "./src/arrows/arrows.js",
-    "@vactory/ui/back-to-top": "./src/back-to-top/back-to-top.js",
+    "@vactory/ui/back-to-top": "./src/back-to-top/back-to-top.container.js",
     "@vactory/ui/button": "./src/button/button.js",
     "@vactory/ui/card": "./src/card/card.js",
     "@vactory/ui/icon": "./src/icon/icon.js",
@@ -32,7 +32,7 @@
   "exports": {
     ".": "./index.js",
     "./arrows": "./src/arrows/arrows.js",
-    "./back-to-top": "./src/back-to-top",
+    "./back-to-top": "./src/back-to-top/back-to-top.container.js",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
     "./icon": "./src/icon/icon.js",

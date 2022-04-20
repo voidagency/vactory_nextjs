@@ -1,5 +1,6 @@
 import { arrows } from "./arrows"
 import { button } from "./button"
+import { backTotop } from "./back-to-top"
 import { card } from "./card"
 import { heading } from "./heading"
 import { select } from "./select"
@@ -11,6 +12,7 @@ import { slider } from "./slider"
 
 export const theme = {
 	arrows,
+	backTotop,
 	button,
 	card,
 	heading,
