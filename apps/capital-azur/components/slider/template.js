@@ -2,17 +2,11 @@ import React from "react"
 import { Heading } from "@vactory/ui/heading"
 import { Link } from "@vactory/ui/link"
 import { Layer } from "@vactory/ui/layer"
+import { Container } from "@vactory/ui/container"
 
-export const Template = ({ item, isActive }) => {
+export const Template = ({ item }) => {
 	return (
-		<Layer
-			isShow={isActive}
-			modal={false}
-			overlayBackground="bg-blue-500"
-			overlayOpacity="bg-opacity-40"
-			overlay={false}
-			position="bottom-center"
-		>
+		<Container className="h-full flex items-center">
 			<div className="bg-white  px-8 py-10 w-[450px] h-[300px]">
 				<Heading
 					level={2}
@@ -25,6 +19,6 @@ export const Template = ({ item, isActive }) => {
 					En savoir plus
 				</Link>
 			</div>
-		</Layer>
+		</Container>
 	)
 }

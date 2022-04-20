@@ -1,7 +1,9 @@
 import React from "react"
 import { Slider } from "./slider"
 import { Template } from "./template"
-import { Arrow } from "@vactory/ui/arrows"
+import Slide from "./slide"
+
+import { Card } from "@vactory/ui/card"
 
 const data = [
 	{
@@ -45,7 +47,7 @@ const defaultSettings = {
 	disabled: false,
 	mode: "snap",
 	rubberband: true,
-	defaultAnimation: { duration: 5000 },
+	defaultAnimation: { duration: 500 },
 	renderMode: "precision",
 	breakpoints: {
 		"(min-width: 200px)": {
@@ -70,7 +72,7 @@ const v1Settings = {
 		},
 	},
 	defaultAnimation: {
-		duration: 2000,
+		duration: 500,
 	},
 	opacity: false,
 }
@@ -79,8 +81,47 @@ export default {
 	title: "Components/Slider",
 }
 
-const Templatee = (args) => <Slider {...args} />
+export const Default = () => {
+	return (
+		<Slider settings={defaultSettings} variant="default">
+			<Slide bgImage="https://loremflickr.com/640/360">
+				<h1 class="text-white text-4xl md:text-4xl font-bold mb-2">
+					This is th etitle of this slider
+				</h1>
+				<p className="text-white text-base md:text-lg font-semibold">
+					lorem ipsum dolor sit amet, consectetur
+				</p>
+			</Slide>
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+		</Slider>
+	)
+}
 
+export const BackgroundYoutubeSlider = () => {
+	return (
+		<Slider list={data} settings={defaultSettings} variant="default">
+			<Slide bgVideoId="hZjtSdcsuhc" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+		</Slider>
+	)
+}
+
+export const VideoYoutube = () => {
+	return (
+		<Slider list={data} length={4} settings={defaultSettings} variant="default">
+			<Slide videoId="hZjtSdcsuhc" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+		</Slider>
+	)
+}
+
+/*
 export const Default = Templatee.bind({})
 Default.args = {
 	list: data,
@@ -88,13 +129,15 @@ Default.args = {
 	Arrow: Arrow,
 	Template: Template,
 	variant: "default",
-}
+}*/
 
-export const v1 = Templatee.bind({})
-v1.args = {
-	list: data,
-	settings: v1Settings,
-	Arrow: Arrow,
-	Template: Template,
-	variant: "v1",
+export const V1 = () => {
+	return (
+		<Slider list={data} length={4} settings={v1Settings} variant="v1">
+			<Slide videoId="hZjtSdcsuhc" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+			<Slide bgImage="https://loremflickr.com/640/360" />
+		</Slider>
+	)
 }

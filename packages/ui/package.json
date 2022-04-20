@@ -31,7 +31,6 @@
   },
   "exports": {
     ".": "./index.js",
-    "./arrows": "./src/arrows/arrows.js",
     "./back-to-top": "./src/back-to-top/back-to-top.container.js",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
@@ -48,9 +47,11 @@
     "./container": "./src/container/container.js",
     "./breadcrumb": "./src/breadcrumb/breadcrumb.js",
     "./layer": "./src/layer/layer.js",
-    "./toolbox" : "./src/tool-Box/toolBox.js",
+    "./toolbox": "./src/tool-Box/toolBox.js",
     "./socialmediabox": "./src/socialmedia-box/socialmediabox.js",
-    "./slider": "./src/slider/slider.js"
+    "./slider": "./src/slider/slider.js",
+    "./slide": "./src/slider/slide.js",
+    "./arrows": "./src/slider/arrows.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
@@ -64,6 +65,8 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "keen-slider": "^6.6.7"
+    "keen-slider": "^6.6.7",
+    "react-youtube": "^8.2.1",
+    "react-youtube-background": "^1.0.0"
   }
 }

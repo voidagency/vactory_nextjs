@@ -1,15 +1,23 @@
-export const Template1 = ({ item }) => {
+import clsx from "clsx"
+
+export const Template1 = ({ imageforTemplate, title, isActive }) => {
 	return (
-		<div className="flex items-center justify-around bg-white">
-			<div className="mb-10">
+		<div
+			className={clsx(
+				"flex items-center justify-center text-center flex-col justify-around bg-white w-full text-white pt-11 pb-9 px-8 hover:-translate-y-10 shadow hover:shadow-[0_10px_60px_0_rgba(31,121,230,0.2)] transition-all duration-300 ease-in-out",
+				isActive && "shadow-[0_10px_60px_0_rgba(31,121,230,0.2)] -translate-y-10"
+			)}
+		>
+			<div>
 				<img
-					className="mt-10 mb-10 h-24 object-cover "
-					src={item.imageforTemplate}
+					className="mx-auto mb-10 h-16"
+					src={imageforTemplate}
 					alt="Workflow"
 					height="222px"
 					width="138px"
 				/>
 			</div>
+			<h3 className="text-black">{title}</h3>
 		</div>
 	)
 }

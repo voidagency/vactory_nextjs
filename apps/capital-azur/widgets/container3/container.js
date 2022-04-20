@@ -5,14 +5,15 @@ import { Arrow } from "@vactory/ui/arrows"
 import { DataSlider2 } from "./data"
 import { SliderIconSettings } from "./data"
 import { Template1 } from "./Template"
+import Slide from "@vactory/ui/slide"
 
 export const Container3 = ({}) => {
 	return (
 		<Container layout="full" className="flex-col bg-gray-1000">
-			<div className="Container px-4 lg:px-32  py-16 ml-auto mr-auto">
+			<Container className="py-16">
 				<Heading
 					level={2}
-					className="text-left mb-10 mt-10 tracking-wide before:content-['-__'] before:text-blue-1000 "
+					className="text-left mb-10 mt-10 tracking-wide before:content-['-__'] before:text-indigo-500 "
 				>
 					DES SERVICES INNOVANTS POUR UN QUOTIDIEN SIMPLIFIÉ.
 				</Heading>
@@ -21,15 +22,18 @@ export const Container3 = ({}) => {
 					les étapes de leurs vie.
 				</p>
 				<div className="">
-					<Slider
-						list={DataSlider2}
-						settings={SliderIconSettings}
-						Arrow={Arrow}
-						variant="iconSlider"
-						Template={Template1}
-					></Slider>
+					<Slider settings={SliderIconSettings} variant="iconSlider">
+						{DataSlider2.map((item, index) => {
+							console.log("ITEM IMAGE", item)
+							return (
+								<Slide key={index} variant="iconSlider" className="py-8">
+									<Template1 {...item} />
+								</Slide>
+							)
+						})}
+					</Slider>
 				</div>
-			</div>
+			</Container>
 		</Container>
 	)
 }
