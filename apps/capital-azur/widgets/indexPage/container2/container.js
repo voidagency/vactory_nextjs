@@ -22,7 +22,7 @@ export const Container2 = ({}) => {
 							mettons en oeuvre pour répondre à vos besoins, qui que vous soyez, où que
 							vous voyez..
 						</p>
-						<div className="flex items-start py-6 mb-10">
+						<div className="flex items-start py-6">
 							<Button outline="true" size="large">
 								EN SAVOIR PLUS
 							</Button>
@@ -30,7 +30,7 @@ export const Container2 = ({}) => {
 					</div>
 					<div className="image mt-16">
 						<img
-							className="object-contain h-full scale-110"
+							className=""
 							src="https://capital-azur.com/sites/default/files/2020-05/Group%2035.png"
 							alt="Workflow"
 							height="540px"

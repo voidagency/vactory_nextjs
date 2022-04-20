@@ -10,7 +10,7 @@ export const Container4 = ({}) => {
 			<Container className="py-16">
 				<Heading
 					level={2}
-					className="text-left mb-10 mt-10 before:content-['-__'] before:text-blue-1000 "
+					className="text-left mb-10 mt-10 before:content-['-__'] before:text-indigo-500 "
 				>
 					Insights
 				</Heading>
@@ -24,7 +24,7 @@ export const Container4 = ({}) => {
 								<Card
 									title={
 										<a href={item.url}>
-											<span className="group-hover:text-blue-1000">{item.title}</span>
+											<span className="group-hover:text-blue-1000 ">{item.title}</span>
 										</a>
 									}
 									urlContent={item.urlContent}

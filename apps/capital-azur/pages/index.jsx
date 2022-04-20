@@ -3,13 +3,13 @@ import { Footer } from "@/components/footer/footer"
 import { ToolBox } from "@vactory/ui/toolbox"
 import { MediaBox } from "@vactory/ui/socialmediabox"
 import { BackToTop } from "@vactory/ui/back-to-top"
-import { ScreenSlider } from "../widgets/sreen-slider/screen-slider"
-import { Container1 } from "../widgets/container1/container"
-import { Container2 } from "../widgets/container2/container"
-import { Container3 } from "../widgets/container3/container"
-import { Container4 } from "../widgets/container4/container"
-import { Container5 } from "../widgets/container5/container"
-import { Container6 } from "../widgets/container6/container"
+import { ScreenSlider } from "../widgets/indexPage/sreen-slider/screen-slider"
+import { Container1 } from "../widgets/indexPage/container1/container"
+import { Container2 } from "../widgets/indexPage/container2/container"
+import { Container3 } from "../widgets/indexPage/container3/container"
+import { Container4 } from "../widgets/indexPage/container4/container"
+import { Container5 } from "../widgets/indexPage/container5/container"
+import { Container6 } from "../widgets/indexPage/container6/container"
 
 const tools = [
 	{
@@ -48,7 +48,6 @@ export default function Index() {
 			<Container4 />
 			<Container5 />
 			<Container6 />
-
 			<Footer />
 			<MediaBox list={socialmedia} />
 			<ToolBox list={tools} />
