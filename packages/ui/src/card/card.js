@@ -21,17 +21,15 @@ const Card = ({
 		<div className={clsx(card[variant].wrapper, className)} {...props}>
 			<div className={card[variant].image}>{image}</div>
 			<div className={card[variant].body}>
-				{category && (
-					<div>
-						{urlTag ? (
-							<Link href={urlTag} className={card[variant].tag}>
-								{category}
-							</Link>
-						) : (
-							<p className={card[variant].tag}>{category}</p>
-						)}
-					</div>
-				)}
+				<div>
+					{urlTag ? (
+						<Link href={urlTag} className={card[variant].tag}>
+							{category}
+						</Link>
+					) : (
+						<p className={card[variant].tag}>{category}</p>
+					)}
+				</div>
 				<Link href={url} className="block">
 					<>
 						{title && <h3 className={card[variant].title}>{title}</h3>}
