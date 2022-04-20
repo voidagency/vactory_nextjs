@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form"
 import Image from "next/image"
 import axios from "axios"
 import { useRouter } from "next/router"
+import { getSession } from "next-auth/react"
 
-const EditProfilePage = ({ node }) => {
-	const currentUser = node.session.user
+const EditProfilePage = ({ node, user, accessToken }) => {
+	const currentUser = user
 	const router = useRouter()
 	const locale = router.locale
-	const accessToken = node.session.accessToken
 	const [loading, setLoading] = useState(false)
 	const {
 		register,
@@ -19,9 +19,9 @@ const EditProfilePage = ({ node }) => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			email: currentUser.email,
-			first_name: currentUser.first_name,
-			last_name: currentUser.last_name,
+			email: currentUser?.email || "",
+			first_name: currentUser?.first_name || "",
+			last_name: currentUser?.last_name || "",
 		},
 	})
 
@@ -60,6 +60,14 @@ const EditProfilePage = ({ node }) => {
 				)
 				.then(({ data }) => {
 					console.log(data.data.attributes.uri.value._default)
+					// Now we cause the jwt callback handler to retrieve the new user data and save it in the session
+					fetch("/api/auth/session?update", {
+						method: "GET",
+						credentials: "include",
+					}).then(() => {
+						const event = new Event("visibilitychange")
+						document.dispatchEvent(event)
+					})
 				})
 		}
 	}
@@ -142,7 +150,7 @@ const EditProfilePage = ({ node }) => {
 							<label className="block text-sm font-medium text-gray-700">Photo</label>
 							<div className="mt-1 flex items-center">
 								<span className="inline-block bg-gray-100 rounded-full overflow-hidden h-12 w-12">
-									{currentUser.avatar ? (
+									{currentUser?.avatar ? (
 										<Image alt="Me" src={currentUser.avatar} width={48} height={48} />
 									) : (
 										<svg

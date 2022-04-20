@@ -116,7 +116,6 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Profile page",
 					type: "profile",
-					session: session,
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,

@@ -49,6 +49,19 @@ services:
       - "traefik.http.routers.docs_vactory_https.tls=true"
       - "traefik.http.routers.docs_vactory_https.tls.certresolver=k8spreprodchallenge"
 
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
 networks:
   internal:
     external: true
+
+volumes:
+  cache:
+    driver: local

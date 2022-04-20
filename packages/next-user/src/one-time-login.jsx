@@ -20,7 +20,7 @@ const OneTimeLoginPage = () => {
 		})
 		// @todo: handle failure
 		if (data?.ok) {
-			router.push(`/${locale}/user/profile`)
+			router.push(`/${locale}/user/profile-password`)
 		}
 	}
 

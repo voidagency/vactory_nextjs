@@ -2,6 +2,7 @@ import { Fragment } from "react"
 import classNames from "clsx"
 import { Menu } from "@vactory/headlessui/menu"
 import { Transition } from "@vactory/headlessui/transition"
+import Image from "next/image"
 
 const user = {
 	name: "Chelsea Hagon",
@@ -22,11 +23,23 @@ const UserMenu = ({ data, signOut }) => {
 			<div>
 				<Menu.Button className="bg-gray-800 rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
 					<span className="sr-only">Open user menu</span>
-					<img
-						className="h-8 w-8 rounded-full"
-						src={user.imageUrl}
-						alt={data.user.email}
-					/>
+					{data.user?.avatar ? (
+						<Image
+							alt="Me"
+							src={data.user.avatar}
+							width={32}
+							height={32}
+							className="h-8 w-8 rounded-full"
+						/>
+					) : (
+						<svg
+							className="h-full w-full text-gray-300"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+						</svg>
+					)}
 				</Menu.Button>
 			</div>
 			<Transition
