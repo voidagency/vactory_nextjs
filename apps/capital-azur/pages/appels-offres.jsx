@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { Header } from "@/components/header/header"
 import { Footer } from "@/components/footer/footer"
@@ -7,6 +7,7 @@ import { Container } from "@vactory/ui/container"
 import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { Card } from "@vactory/ui/card"
 import { Button } from "@vactory/ui/button"
+import { Layer } from "@vactory/ui/layer"
 
 import { theme } from "../theme/theme"
 
@@ -36,6 +37,13 @@ const cards = [
 ]
 
 const AppelsOffres = () => {
+	const [isModalVisible, setIsModalVisible] = useState(false)
+	const handleCloseButton = () => {
+		setIsModalVisible(false)
+	}
+	const openModal = () => {
+		setIsModalVisible(true)
+	}
 	return (
 		<AppWrapper theme={theme}>
 			<Header />
@@ -70,6 +78,12 @@ const AppelsOffres = () => {
 					)
 				})}
 			</Container>
+			<Layer isShow={isModalVisible} onClose={handleCloseButton}>
+				<div className="bg-white w-96 h-96 rounded-md"></div>
+			</Layer>
+			<button onClick={openModal} className="bg-black px-8 py-3 text-white rounded-md">
+				click here
+			</button>
 			<Footer />
 		</AppWrapper>
 	)

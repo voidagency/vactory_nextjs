@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useContext } from "react"
+import React, { useCallback, useEffect, useContext, useRef } from "react"
 import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { Icon } from "@vactory/ui/icon"
+import e from "express"
 
 const Layer = ({
 	variant = "default",
@@ -18,17 +19,25 @@ const Layer = ({
 	showCloseBtn = true,
 	closeButton,
 }) => {
+	const overlayRef = useRef()
+
 	// close on ESC press
 	const { layer } = useContext(ThemeContext)
+
 	const escFunction = useCallback((event) => {
 		if (event.key === "Escape") {
 			onClose()
 		}
 	}, [])
 
+	const handleOutsideClick = (e) => {
+		if (overlayRef.current && !e.target.contains(overlayRef.current)) {
+			onClose()
+		}
+	}
+
 	useEffect(() => {
 		document.addEventListener("keydown", escFunction, false)
-
 		return () => {
 			document.removeEventListener("keydown", escFunction, false)
 		}
@@ -45,6 +54,7 @@ const Layer = ({
 			{overlay && (
 				<Transition.Child {...layer[variant]["opacity"].animation}>
 					<div
+						ref={overlayRef}
 						className={clsx(
 							overlay && baseClasses,
 							overlay && backgroundClass,
