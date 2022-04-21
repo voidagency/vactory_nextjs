@@ -3,7 +3,6 @@ import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { Icon } from "@vactory/ui/icon"
-import e from "express"
 
 const Layer = ({
 	variant = "default",
@@ -20,10 +19,8 @@ const Layer = ({
 	closeButton,
 }) => {
 	const overlayRef = useRef()
-
 	// close on ESC press
 	const { layer } = useContext(ThemeContext)
-
 	const escFunction = useCallback((event) => {
 		if (event.key === "Escape") {
 			onClose()
@@ -38,7 +35,9 @@ const Layer = ({
 
 	useEffect(() => {
 		document.addEventListener("keydown", escFunction, false)
+		document.addEventListener("click", handleOutsideClick, true)
 		return () => {
+			document.removeEventListener("click", handleOutsideClick, true)
 			document.removeEventListener("keydown", escFunction, false)
 		}
 	}, [])
