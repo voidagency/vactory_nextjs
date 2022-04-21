@@ -1,5 +1,5 @@
 export const button = {
-	base: "focus:outline-none transition ease-in-out duration-300 ", // delete border border from base end add to specific variant --> to use for nav button
+	base: "focus:outline-none transition ease-in-out duration-300 whitespace-nowrap", // delete border border from base end add to specific variant --> to use for nav button
 	disabled: "opacity-50 cursor-not-allowed",
 	pill: "rounded-full",
 	icon: "flex items-center gap-2",
