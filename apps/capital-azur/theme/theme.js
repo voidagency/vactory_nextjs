@@ -9,6 +9,7 @@ import { link } from "./link"
 import { toolbox } from "./toolbox"
 import { socialmediabox } from "./socialmediabox"
 import { slider } from "./slider"
+import { accordion } from "./accordion"
 
 export const theme = {
 	arrows,
@@ -22,4 +23,5 @@ export const theme = {
 	toolbox,
 	socialmediabox,
 	slider,
+	accordion,
 }
