@@ -1,7 +1,6 @@
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Slider } from "@vactory/ui/slider"
-import { Arrow } from "@vactory/ui/arrows"
 import { cardSliderData } from "./data"
 import { SliderCardSettings } from "./data"
 import { CardTemplate } from "./template"
