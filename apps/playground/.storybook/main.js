@@ -1,4 +1,17 @@
 const path = require("path")
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin")
+const uiJson = require("../../../packages/ui/package.json")
+const uiModulesKey = Object.keys(uiJson.browser)
+let uiAliasModules = {}
+uiModulesKey.forEach((key, index) => {
+	if (key.includes("@vactory/ui")) {
+		uiAliasModules[key] = path.resolve(
+			__dirname,
+			`../../../packages/ui/${uiJson.browser[key]}`
+		)
+	}
+})
+
 module.exports = {
 	stories: ["../**/*.stories.@(js|jsx|ts|tsx)"],
 	staticDirs: ["../public"],
@@ -36,4 +49,19 @@ module.exports = {
 		"storybook-addon-rtl",
 	],
 	framework: "@storybook/react",
+	webpackFinal: async (config, { configType }) => {
+		config.resolve.alias = {
+			...config.resolve.alias,
+			...uiAliasModules,
+		}
+
+		config.resolve.plugins = [
+			...(config.resolve.plugins || []),
+			new TsconfigPathsPlugin({
+				extensions: config.resolve.extensions,
+			}),
+		]
+
+		return config
+	},
 }

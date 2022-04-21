@@ -5,7 +5,8 @@
 		"paths": {
 			"@/components/*": ["components/*"],
 			"@/lib/*": ["lib/*"],
-			"@vactory/ui/link": ["components/link/link.js"]
+			"@vactory/ui/link": ["components/link/link.js"],
+			"@vactory/ui/button": ["components/button/button.js"]
 		}
 	}
 }

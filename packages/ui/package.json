@@ -26,7 +26,9 @@
     "@vactory/ui/socialmediabox": "./src/socialmedia-Box/socialmediabox.js",
     "@vactory/ui/layer": "./src/layer/layer.js",
     "@vactory/ui/heading": "./src/heading/heading.js",
-    "@vactory/ui/slider": "./src/slider/slider.js"
+    "@vactory/ui/slider": "./src/slider/slider.js",
+    "@vactory/ui/theme": "./src/theme/theme.js",
+    "@vactory/ui/theme-context": "./src/context/theme-context.js"
   },
   "exports": {
     ".": "./index.js",
