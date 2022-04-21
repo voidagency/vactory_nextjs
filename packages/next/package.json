@@ -20,6 +20,8 @@
     "./i18n/handler": "./src/i18n/handler.js",
     "./wysiwyg": "./src/wysiwyg.jsx",
     "./utils": "./src/utils/index.js",
+    "./utils/ssr": "./src/utils/ssr.js",
+    "./hooks": "./src/hooks/index.js",
     "./webpack-modules-loader": "./src/webpack-modules-loader.js"
   }
 }

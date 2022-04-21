@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useI18n } from "@vactory/next/i18n"
 import { useSession } from "next-auth/react"
 import { useResetUserPassword } from "@vactory/next-user"
@@ -9,10 +9,17 @@ const ReCaptcha = dynamic(() => import("react-google-recaptcha"), {
 	ssr: false,
 })
 
+const Modal = dynamic(() => import("./modal.jsx"), {
+	ssr: false,
+})
+
 const ResetPasswordPage = ({ node }) => {
 	const { t } = useI18n()
 	const { data: session, status } = useSession()
-	const loading = status === "loading"
+	const userLoading = status === "loading"
+	const [loading, setLoading] = useState(false)
+	const [isModalOpen, setModalOpen] = useState(false)
+
 	const { csrfToken } = node
 	const recaptchaRef = React.createRef()
 	const resetUserPassword = useResetUserPassword()
@@ -26,17 +33,29 @@ const ResetPasswordPage = ({ node }) => {
 	} = useForm()
 
 	// When rendering client side don't display anything until loading is complete
-	if (typeof window !== "undefined" && loading) return null
+	if (typeof window !== "undefined" && userLoading) return null
 
 	if (session) {
 		return <h1>Already logged in</h1>
 	}
 
 	const onSubmit = async (data) => {
-		const res = await resetUserPassword(data)
-		// recaptchaRef.current.reset()
-		console.log(data)
-		console.log(res)
+		const Toast = (await import("cogo-toast")).default
+		setLoading(true)
+		const { hide } = Toast.loading("Loading...", { hideAfter: 0 })
+		try {
+			const res = await resetUserPassword(data)
+			setLoading(false)
+			hide()
+			setModalOpen(true)
+			// recaptchaRef.current.reset()
+			console.log(data)
+			console.log(res)
+		} catch (err) {
+			hide()
+			Toast.error(t("Une erreur s'est produite"))
+			console.error(err)
+		}
 	}
 
 	return (
@@ -112,11 +131,13 @@ const ResetPasswordPage = ({ node }) => {
 					<button
 						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 						type="submit"
+						disabled={loading}
 					>
 						{t("webform:Submit")}
 					</button>
 				</div>
 			</form>
+			<Modal open={isModalOpen} setOpen={setModalOpen} />
 		</div>
 	)
 }
