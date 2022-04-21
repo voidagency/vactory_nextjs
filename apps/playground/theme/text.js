@@ -14,6 +14,4 @@ export const text = {
 	overline: "",
 }
 
-const span = () => {
-	return <span cla></span>
-}
+const span = () => <p className=""></p>

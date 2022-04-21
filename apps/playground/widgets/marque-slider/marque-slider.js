@@ -11,7 +11,7 @@ import { cards } from "./data"
 export const MarqueSlider = ({}) => {
 	return (
 		<Container className="py-14">
-			<Heading level="2" className="text-center mb-9">
+			<Heading level="3" className="text-center mb-9">
 				Offres populaires
 			</Heading>
 

@@ -12,7 +12,7 @@
     "serve": "serve .next/analyze",
     "lint": "next lint",
     "storybook:dev": "start-storybook -p 6006",
-    "storybook:no-cache": "start-storybook -p 6006 --no-manager-cache",
+    "storybook:no-cache": "start-storybook -p 8082 --no-manager-cache",
     "storybook:build": "build-storybook",
     "tailwind:build": "npx tailwindcss -i ./styles/globals.css -o ./.storybook/style.css --watch"
   },

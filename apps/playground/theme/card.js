@@ -19,4 +19,13 @@ export const card = {
 		excerpt: "text-sm leading-5 text-gray-500",
 		link: "absolute bottom-6 right-4",
 	},
+	cardImagetitle: {
+		wrapper:
+			"flex flex-col items-center overflow-hidden text-left rtl:text-right text-black bg-[#F2F4F7]",
+		image: "h-[279px] w-full",
+		body: "py-[19px] px-[25px]", // @TODO: A voir avec soulayman les code coleur gray-100
+		title: "text-xl leading-[30px] font-semibold",
+	},
 }
+
+const span = () => <span className="text-white text-xl leading-[30px] px-"></span>

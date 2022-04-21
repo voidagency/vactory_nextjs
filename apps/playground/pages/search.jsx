@@ -10,19 +10,13 @@ import { CardVehicule } from "../widgets/card-vehicule/card-vehicule"
 
 import { Banner } from "../widgets/banner/banner"
 
-export default function Index() {
+export default function Search() {
 	return (
 		<div>
 			<Header />
 			<Banner />
-			<SliderHp />
 			<FilterSection />
-			<LogoSlider />
-			<CardWithPicto title="Comment ça marche" />
-			<TypeBlock />
-			<CardImageTitle />
 			<CardVehicule />
-			<MarqueSlider />
 		</div>
 	)
 }

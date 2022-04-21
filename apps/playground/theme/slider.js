@@ -2,7 +2,7 @@ const span = () => <psna className="text-[44px] left-11"></psna>
 
 export const slider = {
 	default: {
-		wrapper: "h-96 md:h-[693px] w-full",
+		wrapper: "h-[693px] w-full",
 		slide: {
 			wrapper:
 				"h-full w-full flex relative text-white before:content-['-__'] before:bg-black/40 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:z-[1]",
@@ -14,7 +14,7 @@ export const slider = {
 		},
 		arrows: {
 			wrapper:
-				"text-[44px] absolute top-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer h-[72px] w-[72px] bg-white/30 hover:bg-primary-500/100 text-white rounded-full  transition transition-all ease-in-out delay-500 rtl:rotate-180",
+				"text-[44px] absolute top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center cursor-pointer h-[72px] w-[72px] bg-white/30 hover:bg-primary-500/100 text-white rounded-full  transition transition-all ease-in-out delay-500 rtl:rotate-180",
 			left: "left-11 rtl:left-auto rtl:right-11 ",
 			right: "right-11 rtl:right-auto rtl:left-11",
 		},

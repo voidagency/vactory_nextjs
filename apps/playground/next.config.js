@@ -5,6 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
 	webpack: (config) => {
+		console.log("CONFIG", config)
 		//config.resolve.alias["@vactory/ui/button"] = "@/components/button/button.js" // Example overide
 		return config
 	},
