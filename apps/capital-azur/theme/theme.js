@@ -1,4 +1,3 @@
-import { arrows } from "./arrows"
 import { button } from "./button"
 import { backTotop } from "./back-to-top"
 import { card } from "./card"
@@ -11,7 +10,6 @@ import { socialmediabox } from "./socialmediabox"
 import { slider } from "./slider"
 
 export const theme = {
-	arrows,
 	backTotop,
 	button,
 	card,
