@@ -2,7 +2,7 @@ import { Heading } from "@vactory/ui/heading"
 import { Container } from "@vactory/ui/container"
 import { Button } from "@vactory/ui/button"
 
-export const Container1 = ({ data, containerTheme }) => {
+export const Container2 = ({ data, containerTheme }) => {
 	return (
 		<Container layout="full" id="container2" className={containerTheme.wrapper}>
 			<div className="Container px-4 lg:px-32">
