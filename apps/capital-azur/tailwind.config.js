@@ -12,6 +12,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			transitionProperty: {
+				height: "height",
+			},
 			spacing: {
 				128: "32rem",
 			},

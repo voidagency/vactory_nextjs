@@ -5,14 +5,16 @@ import { Listbox } from "@vactory/headlessui/listbox"
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { Icon } from "@vactory/ui/icon"
 
-export const Select = ({ list, variant = "default" }) => {
+export const Select = ({ list, variant = "default", className }) => {
 	const [selected, setSelected] = useState(list[0])
 	const { select } = useContext(ThemeContext)
 	return (
 		<Listbox value={selected} onChange={setSelected}>
 			<div className={select[variant].wrapper}>
-				<Listbox.Button className={select[variant].button.base}>
-					{selected.content}
+				<Listbox.Button className={clsx(select[variant].button.base, className)}>
+					<div class="overflow-hidden">
+						<span className="truncate">{selected.content}</span>
+					</div>
 					<Icon
 						id={select[variant].button.icon.id}
 						className={select[variant].button.icon.className}

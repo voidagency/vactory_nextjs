@@ -13,12 +13,14 @@ const Layer = ({
 	position = "modal",
 	children,
 	onClose,
+	onCloseCallback,
 	isShow,
 	overlayClasses,
 	showCloseBtn = true,
 	closeButton,
 }) => {
 	const overlayRef = useRef()
+
 	// close on ESC press
 	const { layer } = useContext(ThemeContext)
 	const escFunction = useCallback((event) => {
@@ -70,6 +72,9 @@ const Layer = ({
 				)}
 			>
 				<Transition.Child
+					afterLeave={() => {
+						onCloseCallback()
+					}}
 					className="relative max-w-fit"
 					{...layer[variant][position].animation}
 				>

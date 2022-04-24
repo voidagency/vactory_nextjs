@@ -1,6 +1,6 @@
 export const accordion = {
 	default: {
-		wrapper: "",
+		wrapper: "overflow-y-hidden z-50",
 		element: "mb-3",
 		button: {
 			base: "flex justify-between w-full px-4 py-2 text-sm font-medium ltr:text-left rtl-text-right rounded-lg",

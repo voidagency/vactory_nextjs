@@ -79,7 +79,7 @@ export const layer = {
 			position:
 				"fixed top-0 left-0 h-screen w-screen flex items-center justify-center z-50",
 			animation: {
-				enter: "transition-all duration-500",
+				enter: "transition-[max-height] duration-500",
 				enterFrom: "translate-y-40 opacity-0 scale-0",
 				enterTo: "translate-y-0 opacity-1 scale-1",
 				leave: "transition-all duration-500",
