@@ -24,7 +24,7 @@ export const FilterSection = () => {
 		<Container layout="full" className="py-14">
 			<Container layout="small" className="bg-[#F9FAFB] py-[42px] px-[53px]">
 				<div className="mb-[22px]">
-					<Heading level="4" className="mb-[22px] text-gray-900">
+					<Heading level="3" className="mb-[22px] text-gray-900">
 						Trouver une voiture
 					</Heading>
 					<Text className="text-gray-400 max-w-[336px]" varinat="body1">

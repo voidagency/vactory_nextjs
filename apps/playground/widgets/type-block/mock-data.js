@@ -8,20 +8,20 @@ export const data = [
 		title: "Voitures",
 		url: "/",
 		urlTitle: "découvrir",
-		image: voitureImg,
+		image: voitureImg.src,
 	},
 	{
 		id: 2,
 		title: "Motos",
 		url: "/",
 		urlTitle: "découvrir",
-		image: motosImg,
+		image: motosImg.src,
 	},
 	{
 		id: 3,
 		title: "Trucks",
 		url: "/",
 		urlTitle: "découvrir",
-		image: trucksImg,
+		image: trucksImg.src,
 	},
 ]

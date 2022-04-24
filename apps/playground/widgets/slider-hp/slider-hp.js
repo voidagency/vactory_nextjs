@@ -4,7 +4,7 @@ import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Text } from "@vactory/ui/text"
 
-const data = [
+const defaultData = [
 	{
 		id: 1,
 		title: "Bienvenue sur votre nouveau site de véhicules d'occasion en ligne",
@@ -51,7 +51,7 @@ const sliderSettings = {
 	opacity: false,
 }
 
-export const SliderHp = () => {
+export const SliderHp = ({ data = defaultData }) => {
 	return (
 		<Container layout="full">
 			<Slider settings={sliderSettings} variant="default">

@@ -1,6 +1,10 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport"
 import { initializeRTL } from "storybook-addon-rtl"
-
+//import "keen-slider/keen-slider.min.css" //comment this to run it in apps
+import { AppWrapper } from "@vactory/ui/app-wrapper"
+import { theme } from "../theme/theme"
+import "keen-slider/keen-slider.min.css"
+import "../styles/globals.css"
 initializeRTL()
 
 export const parameters = {
@@ -38,10 +42,12 @@ export const parameters = {
 	setLocaleToKnob: true,
 }
 
-// export const decorators = [
-//   (Story) => (
-//     <div dir="ltr">
-//       <Story />
-//     </div>
-//   ),
-// ];
+export const decorators = [
+	(Story) => (
+		<div dir="ltr">
+			<AppWrapper theme={theme}>
+				<Story />
+			</AppWrapper>
+		</div>
+	),
+]

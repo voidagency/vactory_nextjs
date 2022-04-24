@@ -1,4 +1,3 @@
-import { arrows } from "./arrows"
 import { button } from "./button"
 import { backTotop } from "./back-to-top"
 import { card } from "./card"
@@ -12,7 +11,6 @@ import { slider } from "./slider"
 import { accordion } from "./accordion"
 
 export const theme = {
-	arrows,
 	backTotop,
 	button,
 	card,

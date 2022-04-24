@@ -2,6 +2,7 @@
 import { Fragment } from "react"
 import { Disclosure } from "@vactory/headlessui/disclosure"
 import { Icon } from "@vactory/ui/icon"
+import { Link } from "@vactory/ui/link"
 import { Button } from "@vactory/ui/button"
 import { Select } from "@vactory/ui/select"
 
@@ -10,26 +11,22 @@ function classNames(...classes) {
 }
 
 //To add in UI packages
-const ButtonWithHref = ({ item }) => {
-	return (
-		<Button
+
+// this Nav list contains both mobile and desktop version
+export const NavigationList = ({ navigation }) => {
+	return navigation.map((item) => (
+		<Link
 			key={item.name}
-			variant={"nav"}
 			href={item.href}
 			className={classNames(
 				item.current ? "text-blue-500 font-bold" : "text-gray-900 font-normal",
-				"block px-1 py-2  rounded-md  text-xs hover:text-blue-500 active:bg-blue-700 active:text-white"
+				"block px-4 py-1  text-xs hover:text-blue-500 after:inline-block active:text-white active:bg-blue-1000"
 			)}
 			aria-current={item.current ? "page" : undefined}
 		>
 			{item.name}
-		</Button>
-	)
-}
-
-// this Nav list contains both mobile and desktop version
-export const NavigationList = ({ navigation }) => {
-	return navigation.map((item, index) => <ButtonWithHref key={index} item={item} />)
+		</Link>
+	))
 }
 
 //To add in UI packages
@@ -103,7 +100,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 						/>
 					</div>
 					<div className="hidden md:block sm:ml-24 md:ml-32 lg:ml-64">
-						<div className="flex space-x-4">
+						<div className="flex space-x-4 divide-x mt-6">
 							<NavigationList navigation={navigation} />
 						</div>
 					</div>
@@ -112,7 +109,8 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					<Button
 						className="mr-4"
 						variant={"primary"}
-						icon={<Icon id="lock-closed-solid" width="15" height="15" />}
+						className="bg-blue-1200 hover:bg-white hover:text-blue-1200 border border-blue-1200"
+						icon={<Icon id="lock-closed-solid" width="30" height="30" />}
 					>
 						BANQUE DIGITAL
 					</Button>

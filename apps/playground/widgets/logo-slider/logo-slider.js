@@ -4,7 +4,7 @@ import Slide from "@vactory/ui/slide"
 import { Container } from "@vactory/ui/container"
 import { Link } from "@vactory/ui/link"
 
-import { data } from "./mock-data"
+import { data as defaultData } from "./mock-data"
 
 const SliderSettings = {
 	loop: true,
@@ -22,7 +22,7 @@ const SliderSettings = {
 	opacity: false,
 }
 
-export const LogoSlider = () => {
+export const LogoSlider = ({ data = defaultData }) => {
 	return (
 		<Container layout="full" className="py-16">
 			<Slider variant="logoSlider" className="items-center" settings={SliderSettings}>
@@ -31,12 +31,7 @@ export const LogoSlider = () => {
 						<Slide key={item.id} variant="logoSlider">
 							{item.url ? (
 								<Link href={item.url}>
-									<img
-										src={item.image.src}
-										width={item.image.width}
-										height={item.image.height}
-										className="mx-auto w-auto"
-									/>
+									<img src={item.image} className="mx-auto w-auto" />
 								</Link>
 							) : (
 								<img src={item.image.src} className="mx-auto w-auto" />
