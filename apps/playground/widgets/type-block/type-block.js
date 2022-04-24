@@ -3,9 +3,9 @@ import { Heading } from "@vactory/ui/heading"
 import { Link } from "@vactory/ui/link"
 import { Icon } from "@vactory/ui/icon"
 
-import { data } from "./mock-data"
+import { data as defaultData } from "./mock-data"
 
-export const TypeBlock = (props) => {
+export const TypeBlock = ({ data = defaultData }) => {
 	return (
 		<Container className="py-16">
 			<Heading level="2" className="text-black mb-10 text-center">
@@ -16,12 +16,7 @@ export const TypeBlock = (props) => {
 				{data.map((item) => {
 					return (
 						<div className="relative" key={item.id}>
-							<img
-								src={item.image.src}
-								width={item.image.width}
-								height={item.image.height}
-								className="w-full h-full object-cover"
-							/>
+							<img src={item.image} className="w-full h-full object-cover" />
 							<div className="text-white bg-gradient-to-b from-black/30 to-black/100 hover:to-black/80  absolute top-0 left-0 rtl:left-auto rtl:right-0 flex flex-row justify-between items-end w-full h-full px-10 py-[38px] transition transition-all ease-in duration-300">
 								<Heading level={3} className="">
 									{item.title}

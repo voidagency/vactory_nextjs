@@ -1,7 +1,6 @@
 import React from "react"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
-import { Card } from "@vactory/ui/card"
 import { cards } from "./data"
 import { Link } from "@vactory/ui/link"
 
@@ -45,7 +44,7 @@ export const CardWithPicto = ({ title, items = cards, ...props }) => {
 							title={item.title}
 							description={item.excerpt}
 							url="/"
-							image={<img src={item.icon} className="mx-auto" alt={item.iconalt} />}
+							image={<img src={item.icon} className="mx-auto h-20" alt={item.iconalt} />}
 						/>
 					)
 				})}

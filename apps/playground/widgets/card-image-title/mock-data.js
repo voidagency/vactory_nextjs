@@ -5,20 +5,20 @@ import accompagnementImg from "../../public/img/confiance/accompagnement.png"
 export const data = [
 	{
 		id: 1,
-		image: expertiseImg,
+		image: expertiseImg.src,
 		title: "Groupe Chaabi, l'expertise d'un groupe historique",
 		url: "/about",
 	},
 	{
 		id: 2,
-		image: vehiculeImg,
+		image: vehiculeImg.src,
 		title:
 			"Des véhicules passée au peigne fin pour vous offrir le meilleur de l'occasion",
 		url: "/about",
 	},
 	{
 		id: 3,
-		image: accompagnementImg,
+		image: accompagnementImg.src,
 		title: "Un accompagnement personnalisé tout au long de l'opération",
 		url: "/about",
 	},

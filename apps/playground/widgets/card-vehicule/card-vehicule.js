@@ -3,7 +3,7 @@ import { Heading } from "@vactory/ui/heading"
 import { Icon } from "@vactory/ui/icon"
 import { Button } from "@vactory/ui/button"
 
-import { data } from "./mock-data"
+import { data as defaultData } from "./mock-data"
 
 const Card = ({
 	logo,
@@ -21,7 +21,7 @@ const Card = ({
 	return (
 		<div className="bg-gray-50 text-gray-900 hover:text-primary-500 ease-in transition transition-all duration-300 cursor-pointer">
 			<div className="h-[200px] bg-gray-200 flex items-center justify-center">
-				<img src={logo.src} width={logo.width} height={logo.height} className="" />
+				<img src={logo} className="" />
 			</div>
 			<div className="p-8">
 				{reference && (
@@ -72,7 +72,7 @@ const Card = ({
 	)
 }
 
-export const CardVehicule = () => {
+export const CardVehicule = ({ data = defaultData }) => {
 	return (
 		<Container className="py-16">
 			<Heading level="3" className="text-center text-gray-900 mb-[52px]">

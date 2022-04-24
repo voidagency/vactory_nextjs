@@ -8,6 +8,7 @@ module.exports = {
 		"./widgets/**/*.{js,ts,jsx,tsx}",
 		"./theme/**/*.{js,ts,jsx,tsx}",
 		"../../packages/**/*.{js,ts,jsx,tsx}",
+		"./.storybook/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
 		screens: {

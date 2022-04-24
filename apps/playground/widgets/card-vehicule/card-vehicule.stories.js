@@ -1,11 +1,14 @@
+import React from "react"
+import { CardVehicule } from "./card-vehicule"
+
 import hundaiImg from "../../public/img/offres/hundai.png"
 import audiImg from "../../public/img/offres/audi.png"
 import citroenImg from "../../public/img/offres/citroen.png"
 
-export const data = [
+const data = [
 	{
 		id: 1,
-		logo: hundaiImg.src,
+		logo: hundaiImg,
 		reference: "CL2542AZ",
 		title: "DACIA DOKKER VP Ambiance Glace MY 1,5 dCi 85 ch 1PLC",
 		vitesse: "Manuelle",
@@ -19,7 +22,7 @@ export const data = [
 	},
 	{
 		id: 2,
-		logo: audiImg.src,
+		logo: audiImg,
 		reference: "CL2542AZ",
 		title: "DACIA DOKKER VP Ambiance Glace MY 1,5 dCi 85 ch 1PLC",
 		vitesse: "Manuelle",
@@ -33,7 +36,7 @@ export const data = [
 	},
 	{
 		id: 3,
-		logo: citroenImg.src,
+		logo: citroenImg,
 		reference: "CL2542AZ",
 		title: "DACIA DOKKER VP Ambiance Glace MY 1,5 dCi 85 ch 1PLC",
 		vitesse: "Manuelle",
@@ -46,3 +49,9 @@ export const data = [
 		readMoreTitle: "Voir Détails",
 	},
 ]
+
+export const Default = () => <CardVehicule data={data} />
+
+export default {
+	title: "Dynamic Fields/Card Vehicule",
+}

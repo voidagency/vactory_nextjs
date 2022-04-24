@@ -1,9 +1,9 @@
 import { Card } from "@vactory/ui/card"
 import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
-import { data } from "./mock-data"
+import { data as defaultData } from "./mock-data"
 
-export const CardImageTitle = (props) => {
+export const CardImageTitle = ({ data = defaultData }) => {
 	return (
 		<Container className="py-16">
 			<Heading level={3} className="text-center mb-[52px] text-gray-900">
@@ -11,20 +11,14 @@ export const CardImageTitle = (props) => {
 			</Heading>
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{data.map((item) => {
+					console.log("IMAGE", item.image.src)
 					return (
 						<Card
 							key={item.id}
 							variant="cardImagetitle"
 							title={item.title}
 							url={item.url}
-							image={
-								<img
-									src={item.image.src}
-									className="h-full object-cover w-full"
-									width={item.image.width}
-									height={item.image.height}
-								/>
-							}
+							image={<img src={item.image} className="h-full object-cover w-full" />}
 						/>
 					)
 				})}

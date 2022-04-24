@@ -11,11 +11,11 @@ export const card = {
 	},
 	marque: {
 		wrapper:
-			"flex flex-col items-center shadow-lg overflow-hidden ltr:text-left rtl:text-right",
-		image: "flex justify-center items-center h-52",
-		body: "relative w-full px-6 pb-5 pt-3 hover:bg-primary-500 transition-all ease-in duration-300",
+			"flex flex-col items-center shadow-lg overflow-hidden ltr:text-left rtl:text-right bg-white hover:bg-primary-500 text-black hover:text-white transition-all ease-in duration-300",
+		image: "flex justify-center items-center h-52 w-full bg-white",
+		body: "relative w-full px-6 pb-5 pt-3",
 		tag: "text-xl leading-8 font-semibold",
-		title: "text-base leading-6 font-semibold text-black mb-5",
+		title: "text-base leading-6 font-semibold mb-5",
 		excerpt: "text-sm leading-5 text-gray-500",
 		link: "absolute bottom-6 right-4",
 	},
