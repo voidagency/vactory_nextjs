@@ -3,12 +3,20 @@ import PropTypes from "prop-types"
 import clsx from "clsx"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
-const Heading = ({ children, className = "", level = 2, ...props }) => {
+const Heading = ({ children, className = "", level = 2, variant = null, ...props }) => {
+	const levels = [1, 2, 3, 4, 5, 6]
 	const Component = level ? `h${level}` : "h2"
 	const { heading } = useContext(ThemeContext)
 
 	return (
-		<Component className={clsx(heading[level], className)} {...props}>
+		<Component
+			className={clsx(
+				variant === null && heading[level],
+				variant && heading[variant],
+				className
+			)}
+			{...props}
+		>
 			{children}
 		</Component>
 	)

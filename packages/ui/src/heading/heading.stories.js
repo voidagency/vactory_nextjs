@@ -7,41 +7,30 @@ export default {
 	component: Heading,
 }
 
-const Template = (args) => <Heading {...args} />
+export const h1 = () => (
+	<Heading level={1} className="text-black">
+		This is the h1
+	</Heading>
+)
 
-export const h1 = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-h1.args = {
-	level: 1,
-	children: "This is the h1",
-}
+export const h2 = () => <Heading level={2}>This is the h2</Heading>
 
-export const h2 = Template.bind({})
-h2.args = {
-	level: 2,
-	children: "This is the h2",
-}
+export const h3 = () => <Heading level={3}>This is the h3</Heading>
 
-export const h3 = Template.bind({})
-h3.args = {
-	level: 3,
-	children: "This is the h3",
-}
+export const h4 = () => <Heading level={4}>This is the h4</Heading>
 
-export const h4 = Template.bind({})
-h4.args = {
-	level: 4,
-	children: "This is the h4",
-}
+export const h5 = () => <Heading level={5}>This is the h5</Heading>
 
-export const h5 = Template.bind({})
-h5.args = {
-	level: 5,
-	children: "This is the h5",
-}
+export const h6 = () => <Heading level={6}>This is the h6</Heading>
 
-export const h6 = Template.bind({})
-h6.args = {
-	level: 6,
-	children: "This is the h6",
-}
+export const title = () => (
+	<Heading level={2} variant="title">
+		This is the title of the paragraph
+	</Heading>
+)
+
+export const h1WithH2Style = () => (
+	<Heading level={1} variant="2">
+		This is heading level 1 with style of heading level 2
+	</Heading>
+)

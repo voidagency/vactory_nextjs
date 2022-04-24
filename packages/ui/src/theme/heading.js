@@ -1,8 +1,9 @@
 export const heading = {
-	1: `text-2xl lg:text-3xl font-bold`,
-	2: `text-xl font-medium leading-7 font-helvetica-400 lg:text-3xl lg:leading-8 font-bold`,
-	3: `text-lg font-medium leading-6 font-helvetica-400 lg:text-2xl lg:leading-7 font-semibold`,
-	4: `text-base font-medium leading-5 font-helvetica-400 lg:text-xl lg:leading-6`,
-	5: `text-base font-normal leading-4 font-helvetica-400 lg:text-lg lg:leading-5`,
-	6: `text-base font-normal leading-3 font-helvetica-400 lg:text-base lg:leading-4`,
+	1: `text-[32px] leading-[48px] lg:text-5xl lg:leading-normal font-semibold -tracking-[1px]`,
+	2: `text-[40px] leading-[56px] font-semibold -tracking-[1px]`,
+	3: `text-[32px] leading-[48px] font-semibold -tracking-[1px]`,
+	4: `text-[28px] leading-[38px] font-semibold`,
+	5: `text-2xl leading-[32px] font-semibold`,
+	6: `text-xl leading-[30px] font-semibold`,
+	title: `text-[40px] leading-[56px] font-semibold -tracking-[1px] text-indigo-500 pb-3 relative before:content-[''] before:bg-black/40 before:absolute before:bg-indigo-500 before:bottom-0 before:left-0 before:w-24 before:h-1`,
 }
