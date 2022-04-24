@@ -59,7 +59,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 					<div className="block  rounded-md text-base font-medium">
 						<Button
 							variant={"primary"}
-							icon={<Icon id="lock-closed-solid" width="30" height="30" />}
+							icon={<Icon id="lock-closed-solid" width="15" height="15" />}
 						>
 							BANQUE DIGITAL
 						</Button>
@@ -93,7 +93,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 	return (
 		<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 h-24 ">
 			<div className="hidden md:flex items-center justify-between px-6 py-4">
-				<div className="flex justify-center md:items-stretch md:justify-start">
+				<div className="flex justify-center md:items-center md:justify-start">
 					<div className="flex-shrink-0 flex items-center">
 						{image}
 						<img
@@ -110,8 +110,9 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 				</div>
 				<div className="hidden py-0 inset-y-0 md:flex sm:items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-2">
 					<Button
+						className="mr-4"
 						variant={"primary"}
-						icon={<Icon id="lock-closed-solid" width="30" height="30" />}
+						icon={<Icon id="lock-closed-solid" width="15" height="15" />}
 					>
 						BANQUE DIGITAL
 					</Button>
