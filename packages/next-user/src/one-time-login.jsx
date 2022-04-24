@@ -34,12 +34,18 @@ const OneTimeLoginPage = () => {
 				</h1>
 			</div>
 
+			<p>
+				{
+					"This is a one-time login for admin and will expire on sam, 04/23/2022 - 20:45. Click on this button to log in to the site and change your password. Cet identifiant ne peut être utilisé qu'une fois."
+				}
+			</p>
+
 			<div className="flex items-center justify-between">
 				<button
 					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 					onClick={login}
 				>
-					Login
+					Se connecter
 				</button>
 			</div>
 		</div>

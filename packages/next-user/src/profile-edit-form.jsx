@@ -1,21 +1,40 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useI18n } from "@vactory/next/i18n"
 import Image from "next/image"
 import axios from "axios"
 import { useRouter } from "next/router"
-import { getSession } from "next-auth/react"
+import {
+	useUpdateUser,
+	useUpdateUserSession,
+	useUpdateUserPicture,
+} from "@vactory/next-user"
 
-const EditProfilePage = ({ node, user, accessToken }) => {
+import { useFileUpload } from "@vactory/next/hooks"
+
+const errorFields = {
+	"/data/attributes/mail": "email",
+	"/data/attributes/mail/value": "email",
+	"/data/attributes/field_first_name": "first_name",
+	"/data/attributes/field_last_name": "last_name",
+}
+
+const EditProfilePage = ({ user, accessToken }) => {
+	const { t } = useI18n()
 	const currentUser = user
 	const router = useRouter()
 	const locale = router.locale
 	const [loading, setLoading] = useState(false)
+	const [loadingPhoto, setLoadingPhoto] = useState(false)
+	const updateUser = useUpdateUser()
+	const updateUserSession = useUpdateUserSession()
+	const updateUserPicture = useUpdateUserPicture()
+	const fileUpload = useFileUpload()
+
 	const {
 		register,
 		handleSubmit,
 		setError,
-		setValue,
-		clearErrors,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
@@ -29,8 +48,91 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 		const Toast = (await import("cogo-toast")).default
 		setLoading(true)
 		const { hide } = Toast.loading("Loading...", { hideAfter: 0 })
-		console.log(input)
+
+		try {
+			const response = await updateUser(input)
+			const data = await response.json()
+			if (response.ok) {
+				await updateUserSession()
+			} else {
+				const errors = data?.errors || []
+				errors.forEach((item) => {
+					const field = errorFields[item?.source?.pointer] || undefined
+					if (field) {
+						setError(field, {
+							type: "manual",
+							message: item.detail,
+						})
+					} else {
+						console.warn(item)
+					}
+				})
+			}
+			setLoading(false)
+			hide()
+		} catch (err) {
+			setLoading(false)
+			hide()
+			Toast.error(t("Une erreur s'est produite"))
+			console.error(err)
+		}
 	}
+
+	// const fileUploadHandler = (e) => {
+	// 	const file = e.target.files[0]
+	// 	const filename = file?.name
+	// 	if (!filename || filename.length <= 0) {
+	// 		return
+	// 	}
+	// 	const reader = new FileReader()
+	// 	reader.readAsArrayBuffer(file)
+	// 	reader.onabort = () => console.log("file reading was aborted")
+	// 	reader.onerror = () => console.log("file reading has failed")
+
+	// 	reader.onload = () => {
+	// 		setLoadingPhoto(true)
+	// 		const binaryFile = reader.result
+	// 		axios
+	// 			.post(
+	// 				`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}/api/user/user/${currentUser.uuid}/user_picture`,
+	// 				binaryFile,
+	// 				{
+	// 					headers: {
+	// 						"Content-Type": "application/octet-stream",
+	// 						"Content-Disposition": 'file; filename="' + filename + '"',
+	// 						Accept: "application/vnd.api+json",
+	// 						Authorization: `Bearer ${accessToken}`,
+	// 					},
+	// 				}
+	// 			)
+	// 			.then(({ data }) => {
+	// 				console.log(data.data.attributes.uri.value._default)
+	// 				// Now we cause the jwt callback handler to retrieve the new user data and save it in the session
+	// 				updateUserSession()
+	// 			})
+	// 			.catch((error) => {
+	// 				if (error.response) {
+	// 					const errors = error.response?.data?.errors || []
+	// 					errors.forEach((item) => {
+	// 						const field = errorFields[item?.source?.pointer] || undefined
+	// 						if (field) {
+	// 							setError(field, {
+	// 								type: "manual",
+	// 								message: item.detail,
+	// 							})
+	// 						} else {
+	// 							console.warn(item)
+	// 						}
+	// 					})
+	// 				} else {
+	// 					console.log(error)
+	// 				}
+	// 			})
+	// 			.finally(() => {
+	// 				setLoadingPhoto(false)
+	// 			})
+	// 	}
+	// }
 
 	const fileUploadHandler = (e) => {
 		const file = e.target.files[0]
@@ -38,38 +140,66 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 		if (!filename || filename.length <= 0) {
 			return
 		}
-		const reader = new FileReader()
-		reader.readAsArrayBuffer(file)
-		reader.onabort = () => console.log("file reading was aborted")
-		reader.onerror = () => console.log("file reading has failed")
 
-		reader.onload = () => {
-			const binaryFile = reader.result
-			axios
-				.post(
-					`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}/api/user/user/${currentUser.uuid}/user_picture`,
-					binaryFile,
-					{
-						headers: {
-							"Content-Type": "application/octet-stream",
-							"Content-Disposition": 'file; filename="' + filename + '"',
-							Accept: "application/vnd.api+json",
-							Authorization: `Bearer ${accessToken}`,
-						},
-					}
-				)
-				.then(({ data }) => {
-					console.log(data.data.attributes.uri.value._default)
-					// Now we cause the jwt callback handler to retrieve the new user data and save it in the session
-					fetch("/api/auth/session?update", {
-						method: "GET",
-						credentials: "include",
-					}).then(() => {
-						const event = new Event("visibilitychange")
-						document.dispatchEvent(event)
-					})
+		const blobData = new FormData()
+		blobData.append("image", file)
+		setLoadingPhoto(true)
+		fileUpload(filename, blobData)
+			.then(() => {
+				updateUserSession().finally(() => {
+					setLoadingPhoto(false)
 				})
-		}
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+		// updateUserPicture(filename, blobData)
+		// 	.then(() => {
+		// 		updateUserSession()
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error)
+		// 	})
+		// 	.finally(() => {
+		// 		setLoadingPhoto(false)
+		// 	})
+
+		// const reader = new FileReader()
+		// reader.readAsArrayBuffer(file)
+		// reader.onabort = () => console.log("file reading was aborted")
+		// reader.onerror = () => console.log("file reading has failed")
+
+		// reader.onload = () => {
+		// 	setLoadingPhoto(true)
+		// 	const binaryFile = reader.result
+		// 	updateUserPicture(filename, blobData)
+		// 		.then(() => {
+		// 			updateUserSession()
+		// 		})
+		// 		.catch((error) => {
+		// 			console.log(error)
+		// 		})
+		// 		.finally(() => {
+		// 			setLoadingPhoto(false)
+		// 		})
+		// }
+	}
+
+	const removePicture = () => {
+		setLoadingPhoto(true)
+
+		updateUser({
+			remove_user_picture: true,
+		})
+			.then(() => {
+				updateUserSession()
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+			.finally(() => {
+				setLoadingPhoto(false)
+			})
 	}
 
 	return (
@@ -149,7 +279,7 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 						<div className="col-span-3">
 							<label className="block text-sm font-medium text-gray-700">Photo</label>
 							<div className="mt-1 flex items-center">
-								<span className="inline-block bg-gray-100 rounded-full overflow-hidden h-12 w-12">
+								<span className="inline-block relative bg-gray-100 rounded-full overflow-hidden h-12 w-12">
 									{currentUser?.avatar ? (
 										<Image alt="Me" src={currentUser.avatar} width={48} height={48} />
 									) : (
@@ -168,12 +298,13 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 											htmlFor="user-photo"
 											className="relative text-sm font-medium text-blue-gray-900 pointer-events-none"
 										>
-											<span>Change</span>
+											<span>{loadingPhoto ? "Uploading..." : "Change"}</span>
 											<span className="sr-only"> user photo</span>
 										</label>
 										<input
 											id="user-photo"
 											name="user-photo"
+											disabled={loadingPhoto}
 											type="file"
 											onChange={fileUploadHandler}
 											className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
@@ -181,6 +312,7 @@ const EditProfilePage = ({ node, user, accessToken }) => {
 									</div>
 									<button
 										type="button"
+										onClick={removePicture}
 										className="ml-3 bg-transparent py-2 px-3 border border-transparent rounded-md text-sm font-medium text-blue-gray-900 hover:text-blue-gray-700 focus:outline-none focus:border-blue-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-gray-50 focus:ring-blue-500"
 									>
 										Remove
