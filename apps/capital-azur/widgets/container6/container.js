@@ -10,7 +10,7 @@ export const Container6 = ({}) => {
 					<div className="my-10">
 						<Heading
 							level={2}
-							className="text-left text-black mb-12 mt-10 before:content-['-__'] before:text-blue-400"
+							className="text-left tracking-widest text-black mb-12 mt-10 before:content-['-__'] before:text-blue-400"
 						>
 							ACCÉDEZ À NOS SERVICES, OÙ QUE VOUS SOYEZ.
 						</Heading>
@@ -19,7 +19,7 @@ export const Container6 = ({}) => {
 							dans les prochains mois !
 						</p>
 						<div className="flex items-start py-6">
-							<Button outline="true">EN SAVOIR PLUS</Button>
+							<Button outline="true">NOTRE PRESENCE EN AFRIQUE</Button>
 						</div>
 					</div>
 					<div className="image my-10">

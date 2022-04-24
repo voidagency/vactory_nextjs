@@ -22,6 +22,9 @@ module.exports = {
 			fontFamily: {
 				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
 			},
+			letterSpacing: {
+				widest: ".10em",
+			},
 			colors: {
 				primary: {
 					25: "#FAE4D3",
@@ -38,6 +41,7 @@ module.exports = {
 				},
 				blue: {
 					1000: "#017cfe",
+					1200: "#08286a",
 				},
 				gray: {
 					25: "#D4D5D5",
@@ -52,6 +56,10 @@ module.exports = {
 					800: "#101213",
 					900: "#080909",
 					1000: "#f4f8f8",
+					1200: "#C9DBDB",
+				},
+				pink: {
+					10: "#e2c6cd",
 				},
 				error: {
 					25: "#FCE8EA",
