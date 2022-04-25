@@ -59,6 +59,6 @@ export const card = {
 			"sm:text-3xl text-xl font-bold text-gray-900 text-black hover:text-indigo-600 mb-8",
 		excerpt: "mt-3 sm:text-base text-sm text-gray-500 dark:text-gray-400",
 		link: "text-primary underline",
-		date: "sm:text-base text:sm text-slate-400 mb-6",
+		date: "sm:text-base text-sm text-slate-400 mb-6",
 	},
 }

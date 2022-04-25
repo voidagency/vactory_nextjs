@@ -36,9 +36,9 @@ export const select = {
 	},
 
 	filterSelect: {
-		wrapper: "relative w-full",
+		wrapper: "relative inline-block w-full",
 		button: {
-			base: "relative flex flex-items-center px-4 py-3 pr-8 overflow-hidden w-full text-left bg-white border border-slate-300 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm",
+			base: "relative flex flex-items-center px-4 py-3 pr-8 overflow-hidden w-full text-left bg-white border border-slate-300 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm ",
 			icon: {
 				id: "chevron-down",
 				width: "30",

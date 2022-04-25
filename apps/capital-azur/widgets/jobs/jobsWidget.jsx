@@ -1,7 +1,7 @@
 import React from "react"
 
-import JobFilter from "../../components/job/job-filter"
-import JobList from "../../components/job/job-list"
+import JobFilter from "../../components/job/job_filter"
+import JobList from "../../components/job/job_list"
 
 const jobs = [
 	{

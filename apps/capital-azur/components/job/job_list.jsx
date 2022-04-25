@@ -1,5 +1,5 @@
 import React from "react"
-import JobCard from "../../components/card/JobCard"
+import JobCard from "../card/JobCard"
 
 export const jobList = ({ jobs }) => {
 	return (

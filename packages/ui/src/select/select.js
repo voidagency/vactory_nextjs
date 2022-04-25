@@ -13,7 +13,7 @@ export const Select = ({ list, variant = "default", className }) => {
 			<div className={select[variant].wrapper}>
 				<Listbox.Button className={clsx(select[variant].button.base, className)}>
 					<div class="overflow-hidden">
-						<span className="truncate">{selected.content}</span>
+						<p className="truncate">{selected.content}</p>
 					</div>
 					<Icon
 						id={select[variant].button.icon.id}
