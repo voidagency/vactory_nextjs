@@ -1,7 +1,7 @@
-export const data = {
+export const dataCard = {
 	Title: "INSIGHTS",
 	paragraph: "Découvrez nos actualités, nos analyses et les points de vue de nos experts",
-	cardData: [
+	dataCard: [
 		{
 			title: "What Blockchain Could Mean for Your Health Data",
 			excerpt: "LIRE PLUS",

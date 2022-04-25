@@ -2,7 +2,7 @@ import { Container } from "@vactory/ui/container"
 import { Heading } from "@vactory/ui/heading"
 import { Button } from "@vactory/ui/button"
 
-export const Container1 = ({ data }) => {
+export const BlogContainer = ({ data }) => {
 	return (
 		<Container layout="full" className="flex-col">
 			<Container className="py-16">

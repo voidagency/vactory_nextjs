@@ -1,4 +1,4 @@
-export const SliderCardSettings = {
+export const sliderSettings = {
 	loop: true,
 	rtl: false,
 	breakpoints: {
@@ -15,14 +15,20 @@ export const SliderCardSettings = {
 	opacity: false,
 }
 
-export const cardSliderData = [
-	{
-		id: 0,
-	},
-	{
-		id: 1,
-	},
-	{
-		id: 3,
-	},
-]
+export const dataSlider = {
+	title: "",
+	paragraph: "",
+	dataSlider: [
+		{
+			id: 0,
+		},
+		{
+			id: 1,
+		},
+		{
+			id: 2,
+		},
+	],
+	button: "Communication financiere 2019",
+	buttonIcon: "lock-closed-solid",
+}
