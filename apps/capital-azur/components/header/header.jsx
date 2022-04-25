@@ -107,9 +107,8 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 				</div>
 				<div className="hidden py-0 inset-y-0 md:flex sm:items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-2">
 					<Button
-						className="mr-4"
 						variant={"primary"}
-						className="bg-blue-1200 hover:bg-white hover:text-blue-1200 border border-blue-1200"
+						className="bg-blue-1200 hover:bg-white hover:text-blue-1200 border border-blue-1200 mr-4"
 						icon={<Icon id="lock-closed-solid" width="30" height="30" />}
 					>
 						BANQUE DIGITAL

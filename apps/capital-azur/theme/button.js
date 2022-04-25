@@ -1,5 +1,5 @@
 export const button = {
-	base: "focus:outline-none transition ease-in-out duration-300 whitespace-nowrap", // delete border border from base end add to specific variant --> to use for nav button
+	base: "focus:outline-none transition ease-in-out duration-300 whitespace-nowrap rounded-md", // delete border border from base end add to specific variant --> to use for nav button
 	disabled: "opacity-50 cursor-not-allowed",
 	pill: "rounded-full",
 	icon: "flex items-center gap-2",
@@ -11,9 +11,9 @@ export const button = {
 	},
 	variant: {
 		primary:
-			"bg-blue-1000 hover:bg-white hover:bg-border border border-solid border-blue-1000 text-white hover:text-blue-1000 rounded-md",
+			"bg-blue-1000 hover:bg-white hover:bg-border border border-solid border-blue-1000 text-white hover:text-blue-1000 ",
 		secondary:
-			"bg-gray-200 border-gray-200  border border-solid hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-gray-900 hover:text-white",
+			"bg-gray-200 border-gray-200 border border-solid hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-gray-900 hover:text-white",
 		danger:
 			"bg-red-500 border-red-500  border border-solid hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white",
 		// costum for the nav bar

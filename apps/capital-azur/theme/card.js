@@ -49,4 +49,16 @@ export const card = {
 		excerpt: "mt-3 text-base text-gray-500 dark:text-gray-400",
 		link: "text-primary underline",
 	},
+	jobCard: {
+		wrapper:
+			"flex flex-col rounded-lg shadow-md overflow-hidden text-black lrt:text-left rtl:text-right mb-12 border border-slate-300",
+		image: "flex-shrink-0",
+		body: "lg:p-12 md:p-10 sm:px-10 sm:py-12 p-6",
+		tag: "text-sm font-medium text-indigo-600",
+		title:
+			"sm:text-3xl text-xl font-bold text-gray-900 text-black hover:text-indigo-600 mb-8",
+		excerpt: "mt-3 sm:text-base text-sm text-gray-500 dark:text-gray-400",
+		link: "text-primary underline",
+		date: "sm:text-base text-sm text-slate-400 mb-6",
+	},
 }
