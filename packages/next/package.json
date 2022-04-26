@@ -9,6 +9,8 @@
   "exports": {
     ".": "./index.js",
     "./api/client": "./src/api/client.js",
+    "./api/drupal-client": "./src/api/drupal-client.js",
+    "./api/drupal": "./src/api/drupal.js",
     "./api/handler": "./src/api/handler.js",
     "./app": "./src/app/handler.jsx",
     "./node": "./src/node/node.jsx",

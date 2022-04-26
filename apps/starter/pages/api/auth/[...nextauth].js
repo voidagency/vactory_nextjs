@@ -59,7 +59,10 @@ async function refreshAccessTokenForDrupal(token) {
 	const refreshedTokens = await response.json()
 
 	if (!response.ok) {
-		throw refreshedTokens
+		return {
+			...token,
+			error: "RefreshAccessTokenError",
+		}
 	}
 
 	const decoded = jwt_decode(refreshedTokens.access_token)
@@ -73,13 +76,6 @@ async function refreshAccessTokenForDrupal(token) {
 	}
 }
 
-// @todo
-async function refreshAccessToken(token) {
-	return {
-		...token,
-		error: "RefreshAccessTokenError",
-	}
-}
 export default async function handler(req, res) {
 	return NextAuth(req, res, {
 		pages: {

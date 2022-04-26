@@ -15,16 +15,6 @@ module.exports = {
 				handler: "resetPasswordHandler",
 				file: "src/api/reset-password.js",
 			},
-			{
-				path: "/update",
-				handler: "updateHandler",
-				file: "src/api/update.js",
-			},
-			{
-				path: "/update-picture",
-				handler: "updateHandler",
-				file: "src/api/update-picture.js",
-			},
 		],
 	},
 }

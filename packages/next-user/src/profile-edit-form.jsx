@@ -2,15 +2,10 @@ import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useI18n } from "@vactory/next/i18n"
 import Image from "next/image"
-import axios from "axios"
 import { useRouter } from "next/router"
-import {
-	useUpdateUser,
-	useUpdateUserSession,
-	useUpdateUserPicture,
-} from "@vactory/next-user"
-
-import { useFileUpload } from "@vactory/next/hooks"
+import { useUpdateUserSession } from "@vactory/next-user"
+import { drupal } from "@vactory/next/api/drupal"
+// import { useFileUpload } from "@vactory/next/hooks"
 
 const errorFields = {
 	"/data/attributes/mail": "email",
@@ -26,10 +21,8 @@ const EditProfilePage = ({ user, accessToken }) => {
 	const locale = router.locale
 	const [loading, setLoading] = useState(false)
 	const [loadingPhoto, setLoadingPhoto] = useState(false)
-	const updateUser = useUpdateUser()
 	const updateUserSession = useUpdateUserSession()
-	const updateUserPicture = useUpdateUserPicture()
-	const fileUpload = useFileUpload()
+	// const fileUpload = useFileUpload()
 
 	const {
 		register,
@@ -50,7 +43,25 @@ const EditProfilePage = ({ user, accessToken }) => {
 		const { hide } = Toast.loading("Loading...", { hideAfter: 0 })
 
 		try {
-			const response = await updateUser(input)
+			// const response = await updateUser(input)
+			const response = await drupal.fetch(
+				`/${locale}/api/user/user/${currentUser.uuid}`,
+				{
+					withAuth: () => `Bearer ${accessToken}`,
+					method: "PATCH",
+					body: JSON.stringify({
+						data: {
+							type: "user--user",
+							id: currentUser.uuid,
+							attributes: {
+								mail: input.email,
+								field_first_name: input.first_name,
+								field_last_name: input.last_name,
+							},
+						},
+					}),
+				}
+			)
 			const data = await response.json()
 			if (response.ok) {
 				await updateUserSession()
@@ -78,62 +89,6 @@ const EditProfilePage = ({ user, accessToken }) => {
 		}
 	}
 
-	// const fileUploadHandler = (e) => {
-	// 	const file = e.target.files[0]
-	// 	const filename = file?.name
-	// 	if (!filename || filename.length <= 0) {
-	// 		return
-	// 	}
-	// 	const reader = new FileReader()
-	// 	reader.readAsArrayBuffer(file)
-	// 	reader.onabort = () => console.log("file reading was aborted")
-	// 	reader.onerror = () => console.log("file reading has failed")
-
-	// 	reader.onload = () => {
-	// 		setLoadingPhoto(true)
-	// 		const binaryFile = reader.result
-	// 		axios
-	// 			.post(
-	// 				`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${locale}/api/user/user/${currentUser.uuid}/user_picture`,
-	// 				binaryFile,
-	// 				{
-	// 					headers: {
-	// 						"Content-Type": "application/octet-stream",
-	// 						"Content-Disposition": 'file; filename="' + filename + '"',
-	// 						Accept: "application/vnd.api+json",
-	// 						Authorization: `Bearer ${accessToken}`,
-	// 					},
-	// 				}
-	// 			)
-	// 			.then(({ data }) => {
-	// 				console.log(data.data.attributes.uri.value._default)
-	// 				// Now we cause the jwt callback handler to retrieve the new user data and save it in the session
-	// 				updateUserSession()
-	// 			})
-	// 			.catch((error) => {
-	// 				if (error.response) {
-	// 					const errors = error.response?.data?.errors || []
-	// 					errors.forEach((item) => {
-	// 						const field = errorFields[item?.source?.pointer] || undefined
-	// 						if (field) {
-	// 							setError(field, {
-	// 								type: "manual",
-	// 								message: item.detail,
-	// 							})
-	// 						} else {
-	// 							console.warn(item)
-	// 						}
-	// 					})
-	// 				} else {
-	// 					console.log(error)
-	// 				}
-	// 			})
-	// 			.finally(() => {
-	// 				setLoadingPhoto(false)
-	// 			})
-	// 	}
-	// }
-
 	const fileUploadHandler = (e) => {
 		const file = e.target.files[0]
 		const filename = file?.name
@@ -144,53 +99,57 @@ const EditProfilePage = ({ user, accessToken }) => {
 		const blobData = new FormData()
 		blobData.append("image", file)
 		setLoadingPhoto(true)
-		fileUpload(filename, blobData)
+		drupal
+			.upload(
+				{
+					withAuth: () => `Bearer ${accessToken}`,
+					method: "POST",
+					headers: {
+						"x-language": locale,
+						"x-path": `/api/user/user/${currentUser.uuid}/user_picture`,
+					},
+				},
+				filename,
+				blobData
+			)
+			.then((response) => {
+				return response.json()
+			})
 			.then(() => {
-				updateUserSession().finally(() => {
-					setLoadingPhoto(false)
-				})
+				updateUserSession()
+					.finally(() => {
+						setLoadingPhoto(false)
+					})
+					.catch((error) => {
+						setLoadingPhoto(false)
+						console.log(error)
+					})
 			})
 			.catch((error) => {
+				setLoadingPhoto(false)
 				console.log(error)
 			})
-		// updateUserPicture(filename, blobData)
-		// 	.then(() => {
-		// 		updateUserSession()
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error)
-		// 	})
-		// 	.finally(() => {
-		// 		setLoadingPhoto(false)
-		// 	})
-
-		// const reader = new FileReader()
-		// reader.readAsArrayBuffer(file)
-		// reader.onabort = () => console.log("file reading was aborted")
-		// reader.onerror = () => console.log("file reading has failed")
-
-		// reader.onload = () => {
-		// 	setLoadingPhoto(true)
-		// 	const binaryFile = reader.result
-		// 	updateUserPicture(filename, blobData)
-		// 		.then(() => {
-		// 			updateUserSession()
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(error)
-		// 		})
-		// 		.finally(() => {
-		// 			setLoadingPhoto(false)
-		// 		})
-		// }
 	}
 
 	const removePicture = () => {
 		setLoadingPhoto(true)
 
-		updateUser({
-			remove_user_picture: true,
-		})
+		drupal
+			.fetch(`/${locale}/api/user/user/${currentUser.uuid}`, {
+				withAuth: () => `Bearer ${accessToken}`,
+				method: "PATCH",
+				body: JSON.stringify({
+					data: {
+						type: "user--user",
+						id: currentUser.uuid,
+						relationships: {
+							user_picture: {
+								data: {},
+							},
+						},
+					},
+				}),
+			})
 			.then(() => {
 				updateUserSession()
 			})
