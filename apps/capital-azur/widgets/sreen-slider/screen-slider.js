@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { data } from "./data"
 import { defaultSettings } from "./data"
 import { Slider } from "@vactory/ui/slider"
-import { Template } from "./template"
+import { Template } from "../../components/screen-slider/template"
 import { Arrow } from "@vactory/ui/arrows"
 import Slide from "@vactory/ui/slide"
 

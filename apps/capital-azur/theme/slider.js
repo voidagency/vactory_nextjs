@@ -64,6 +64,21 @@ export const slider = {
 				"active bg-blue-700 p-2  sm:transition sm:ring-2 sm:ring-slate-50 sm:ease-in-out sm:delay-100 ",
 		},
 	},
+	chiffreSlider: {
+		wrapper: "navigation-wrapper w-full w-full h-full",
+		slide: {
+			wrapper: "h-full w-full",
+			content: "",
+		},
+		arrows: {
+			wrapper: "hidden",
+			left: " ",
+			right: "",
+		},
+		dots: {
+			wrapper: "hidden",
+			dot: "",
+			dotActive: "",
+		},
+	},
 }
-
-//iconSlider
