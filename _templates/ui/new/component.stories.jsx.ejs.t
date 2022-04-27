@@ -9,5 +9,5 @@ export const Default = () => {
 }
 
 export default {
-	title: "<%= name %>",
+	title: "Components/<%= name %>",
 }
