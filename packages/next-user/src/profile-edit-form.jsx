@@ -5,7 +5,8 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { useUpdateUserSession } from "@vactory/next-user"
 import { drupal } from "@vactory/next/api/drupal"
-// import { useFileUpload } from "@vactory/next/hooks"
+import { Input } from "@vactory/ui/input"
+import { Button } from "@vactory/ui/button"
 
 const errorFields = {
 	"/data/attributes/mail": "email",
@@ -182,17 +183,15 @@ const EditProfilePage = ({ user, accessToken }) => {
 							>
 								First name
 							</label>
-							<input
+							<Input
 								type="text"
 								name="first-name"
 								id="first-name"
-								autoComplete="given-name"
-								className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+								autoComplete="first-name"
 								{...register("first_name", { required: "First name is required" })}
+								hasError={errors.first_name}
+								msgValidation={errors?.first_name?.message}
 							/>
-							{errors.first_name && (
-								<p className="text-red text-xs italic">{errors.first_name.message}</p>
-							)}
 						</div>
 
 						<div className="col-span-6 sm:col-span-3">
@@ -202,17 +201,15 @@ const EditProfilePage = ({ user, accessToken }) => {
 							>
 								Last name
 							</label>
-							<input
+							<Input
 								type="text"
 								name="last-name"
 								id="last-name"
-								autoComplete="family-name"
-								className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+								autoComplete="last-name"
 								{...register("last_name", { required: "Last name is required" })}
+								hasError={errors.last_name}
+								msgValidation={errors?.last_name?.message}
 							/>
-							{errors.last_name && (
-								<p className="text-red text-xs italic">{errors.last_name.message}</p>
-							)}
 						</div>
 
 						<div className="col-span-6 sm:col-span-4">
@@ -222,17 +219,15 @@ const EditProfilePage = ({ user, accessToken }) => {
 							>
 								Email address
 							</label>
-							<input
+							<Input
 								type="text"
 								name="email-address"
 								id="email-address"
 								autoComplete="email"
 								{...register("email", { required: "Email is required" })}
-								className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+								hasError={errors.email}
+								msgValidation={errors?.email?.message}
 							/>
-							{errors.email && (
-								<p className="text-red text-xs italic">{errors.email.message}</p>
-							)}
 						</div>
 
 						<div className="col-span-3">
@@ -282,13 +277,9 @@ const EditProfilePage = ({ user, accessToken }) => {
 					</div>
 				</div>
 				<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-					<button
-						type="submit"
-						disabled={loading}
-						className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-					>
+					<Button type="submit" disabled={loading}>
 						Save
-					</button>
+					</Button>
 				</div>
 			</div>
 		</form>
