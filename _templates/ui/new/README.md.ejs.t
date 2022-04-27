@@ -3,13 +3,13 @@ to: packages/ui/src/<%= h.changeCase.lower(name) %>/README.md
 ---
 # <%= name %>
 ```
-import {<%= name %>} from '@vactory/ui/<%=  h.changeCase.lower(name) %>';
+import { <%= name %> } from '@vactory/ui/<%=  h.changeCase.lower(name) %>';
 ```
 
 # Example 
 
 ```
-import {<%= name %>} from '@vactory/ui/<%=  h.changeCase.lower(name) %>';
+import { <%= name %> } from '@vactory/ui/<%=  h.changeCase.lower(name) %>';
 
 const Page = () => {
     return <<%= name %> />
