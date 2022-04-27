@@ -9,6 +9,8 @@
   "exports": {
     ".": "./index.js",
     "./api/client": "./src/api/client.js",
+    "./api/drupal-client": "./src/api/drupal-client.js",
+    "./api/drupal": "./src/api/drupal.js",
     "./api/handler": "./src/api/handler.js",
     "./app": "./src/app/handler.jsx",
     "./node": "./src/node/node.jsx",
@@ -20,6 +22,9 @@
     "./i18n/handler": "./src/i18n/handler.js",
     "./wysiwyg": "./src/wysiwyg.jsx",
     "./utils": "./src/utils/index.js",
-    "./webpack-modules-loader": "./src/webpack-modules-loader.js"
+    "./utils/ssr": "./src/utils/ssr.js",
+    "./hooks": "./src/hooks/index.js",
+    "./webpack-modules-loader": "./src/webpack-modules-loader.js",
+    "./utils/api/*": "./src/utils/api/*.js"
   }
 }

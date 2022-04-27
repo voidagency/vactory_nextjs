@@ -1,3 +1,4 @@
+const path = require("path")
 const withPlugins = require("next-compose-plugins")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
@@ -33,7 +34,7 @@ const nextConfig = {
 	},
 	reactStrictMode: true,
 	// distDir: "build",
-	swcMinify: true,
+	swcMinify: false,
 	poweredByHeader: false,
 	trailingSlash: false,
 	webpack: (config) => {
@@ -89,6 +90,8 @@ const nextConfig = {
 	},
 	experimental: {
 		externalDir: true,
+		outputStandalone: true,
+		outputFileTracingRoot: path.join(__dirname, "../../"),
 	},
 }
 

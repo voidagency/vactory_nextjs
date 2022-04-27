@@ -5,9 +5,11 @@ import { useSignUp } from "@vactory/next-user"
 import { useRouter } from "next/router"
 import { Icon } from "@vactory/ui/icon"
 import { useForm } from "react-hook-form"
+import Link from "next/link"
 
 const LoginPage = ({ node }) => {
 	const router = useRouter()
+	const { locale } = router
 	const { t } = useI18n()
 	const { data: session, status } = useSession()
 	const loading = status === "loading"
@@ -101,12 +103,12 @@ const LoginPage = ({ node }) => {
 					>
 						{t("webform:Submit")}
 					</button>
-					<a
-						className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-						href="#"
-					>
-						Forgot Password?
-					</a>
+					<Link href={`/${locale}/user/reset-password`} passHref>
+						<a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+							Forgot Password?
+						</a>
+					</Link>
+
 					<a
 						className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
 						onClick={signUp}

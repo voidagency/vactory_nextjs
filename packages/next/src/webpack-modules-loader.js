@@ -270,9 +270,9 @@ const withNodeTemplatePlugin = (nextConfig = {}) => {
 		webpack(config, options) {
 			// next calls webpack twice: once for the server and once for the client
 			// https://github.com/vercel/next.js/issues/4023#issuecomment-374011455
-			if (!options.isServer) {
-				return config
-			}
+			// if (!options.isServer) {
+			// 	return config
+			// }
 
 			if (!options.defaultLoaders) {
 				throw new Error(

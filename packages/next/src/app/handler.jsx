@@ -1,9 +1,10 @@
 import { SessionProvider } from "next-auth/react"
 import dynamic from "next/dynamic"
-import Head from "next/head"
+// import Head from "next/head"
 import { MenuProvider } from "../menus/menus"
 import { getDefaultLanguage } from "../utils"
 import { I18n } from "../i18n"
+import RefreshTokenHandler from "./refreshTokenHandler"
 
 const TopProgressBar = dynamic(
 	() => {
@@ -25,6 +26,7 @@ export const AppHandler = ({ children, pageProps: { session, ...pageProps } }) =
 				>
 					<MenuProvider menus={pageProps?.menus || []}>{children}</MenuProvider>
 				</I18n>
+				<RefreshTokenHandler />
 			</SessionProvider>
 		</>
 	)

@@ -1,8 +1,9 @@
 import { deserialise } from "kitsu-core"
 import csrf from "@vactory/next/csrf"
+import { getApiURL, getRequestLanguage } from "@vactory/next/utils/ssr"
 
-const resetUserPassword = async (email) => {
-	const CREATE_USER_ENDPOINT = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/api/user/password/reset`
+const resetUserPassword = async (language, email) => {
+	const CREATE_USER_ENDPOINT = `${getApiURL(language)}/api/user/password/reset`
 	return fetch(CREATE_USER_ENDPOINT, {
 		method: "post",
 		headers: {
@@ -56,7 +57,7 @@ export const resetPasswordHandler = async (req, res) => {
 		return
 	}
 
-	const response = await resetUserPassword(email)
+	const response = await resetUserPassword(getRequestLanguage(req), email)
 	const json = await response.json()
 	const result = deserialise(json)
 
