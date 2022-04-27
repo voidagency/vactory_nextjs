@@ -21,6 +21,9 @@ export const Modal = () => {
 				overlay={true}
 				onEsc={() => setShowLayer(false)}
 				onClose={() => setShowLayer(false)}
+				onCloseCallback={() => {
+					console.log("this get executed after the unmount of the layer")
+				}}
 				isShowing={showLayer}
 			>
 				<div className="bg-white shadow shadow-black text-center px-8 py-10 w-[500px]">

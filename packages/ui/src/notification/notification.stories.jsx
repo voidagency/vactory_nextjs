@@ -19,6 +19,15 @@ export const Variant2 = () => {
 	)
 }
 
+export const notificationDisappear = () => {
+	return (
+		<div className="relative">
+			<PlaceholderSections />
+			<Notification shouldDisappear={true} disappearAfter={3000}></Notification>
+		</div>
+	)
+}
+
 export default {
 	title: "Components/Notifications",
 }

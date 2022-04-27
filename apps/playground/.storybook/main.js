@@ -1,4 +1,17 @@
 const path = require("path")
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin")
+const uiJson = require("../../../packages/ui/package.json")
+const uiModulesKey = Object.keys(uiJson.browser)
+let uiAliasModules = {}
+uiModulesKey.forEach((key, index) => {
+	if (key.includes("@vactory/ui")) {
+		uiAliasModules[key] = path.resolve(
+			__dirname,
+			`../../../packages/ui/${uiJson.browser[key]}`
+		)
+	}
+})
+
 module.exports = {
 	stories: ["../**/*.stories.@(js|jsx|ts|tsx)"],
 	staticDirs: ["../public"],
@@ -34,6 +47,35 @@ module.exports = {
 			},
 		},
 		"storybook-addon-rtl",
+		{
+			name: "@storybook/addon-postcss",
+			options: {
+				cssLoaderOptions: {
+					// When you have splitted your css over multiple files
+					// and use @import('./other-styles.css')
+					importLoaders: 1,
+				},
+				postcssLoaderOptions: {
+					// When using postCSS 8
+					implementation: require("postcss"),
+				},
+			},
+		},
 	],
 	framework: "@storybook/react",
+	webpackFinal: async (config, { configType }) => {
+		config.resolve.alias = {
+			...config.resolve.alias,
+			...uiAliasModules,
+		}
+
+		config.resolve.plugins = [
+			...(config.resolve.plugins || []),
+			new TsconfigPathsPlugin({
+				extensions: config.resolve.extensions,
+			}),
+		]
+
+		return config
+	},
 }

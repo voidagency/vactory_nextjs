@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind base;
+
+.bg-primary-500 {
+	background-color: #e67a22;
+}

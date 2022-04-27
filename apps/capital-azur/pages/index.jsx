@@ -1,33 +1,56 @@
-import Header from "../components/header/header"
-import { AppWrapper } from "@vactory/ui/app-wrapper"
-import { theme } from "../theme/theme"
-import { Container } from "@vactory/ui/container"
-import { Heading } from "@vactory/ui/heading"
-import { Card } from "@vactory/ui/card"
+import { Header } from "../components/header/header"
 import { Footer } from "@/components/footer/footer"
+import { ToolBox } from "@vactory/ui/toolbox"
+import { MediaBox } from "@vactory/ui/socialmediabox"
+import { BackToTop } from "@vactory/ui/back-to-top"
+import { ScreenSlider } from "../widgets/sreen-slider/screen-slider"
+import { Container1 } from "../widgets/votre-satisfaction-notre-passion/container"
+import { Container2 } from "../widgets/les-fintechs-au-service-de-la-croissance-en-afrique/container"
+import { InsightCard as Container4 } from "../widgets/insights/insightWidght"
+import { AccederService } from "../widgets/acceder-nos-services/container"
+import { ServiceSlider } from "@/widgets/des-servicesinnovants-slider/serviceSliderWidget"
+import { EvenementSlider } from "@/widgets/nos-evenement-slider/evenementSliderWidget"
+
+const tools = [
+	{
+		name: "OUVRIR UN COMPTE",
+		href: "#",
+		icon: "",
+	},
+	{
+		name: "RECLAMATION",
+		href: "#",
+		icon: "",
+	},
+	{
+		name: "FAQ",
+		href: "#",
+		icon: "",
+	},
+]
+
+const socialmedia = [
+	{ id: "youtube-solid", href: "#" },
+	{ id: "twitter-solid", href: "#" },
+	{ id: "linkedin-solid", href: "#" },
+	{ id: "facebook-solid", href: "#" },
+]
+
 export default function Index() {
 	return (
-		<AppWrapper theme={theme}>
+		<div>
 			<Header />
-			<Container className="py-10 flex-col">
-				<Heading level={1} className="text-center mb-3">
-					This is the index page
-				</Heading>
-				<Card
-					title="This is playground project"
-					excerpt="lorem ipsum dolor sit amet, consectetur adip"
-					image={
-						<img
-							className="w-full h-52 object-cover"
-							src="https://place-hold.it/100x150"
-						/>
-					}
-					url="/about"
-					category="VOID"
-					className="max-w-sm"
-				/>
-			</Container>
+			<ScreenSlider />
+			<Container1 />
+			<Container2 />
+			<ServiceSlider />
+			<Container4 />
+			<EvenementSlider />
+			<AccederService />
 			<Footer />
-		</AppWrapper>
+			<MediaBox list={socialmedia} />
+			<ToolBox list={tools} />
+			<BackToTop />
+		</div>
 	)
 }

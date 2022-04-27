@@ -16,7 +16,7 @@ export const box = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 box.args = {
 	title: "This is the title of the card",
-	escerpt:
+	excerpt:
 		"lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adip ",
 	image: <img className="w-full h-52 object-cover" src="https://place-hold.it/100x150" />,
 	urlTag: "/about",

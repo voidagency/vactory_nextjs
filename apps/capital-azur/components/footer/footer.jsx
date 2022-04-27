@@ -1,5 +1,6 @@
 import { NavigationList } from "../header/header"
-import { IconHref } from "../IconHref"
+import { Link } from "@vactory/ui/link"
+import { Icon } from "@vactory/ui/icon"
 
 export const Footer = () => {
 	const navigation = [
@@ -28,7 +29,13 @@ export const Footer = () => {
 						<ul className="flex space-x-4 py-4">
 							{socialmedia.map((media, index) => (
 								<li key={index}>
-									<IconHref media={media} />
+									<Link href={media.href}>
+										<Icon
+											id={media.id}
+											className="h-6 w-6 text-blue-1000"
+											aria-hidden="true"
+										/>
+									</Link>
 								</li>
 							))}
 						</ul>
@@ -40,11 +47,11 @@ export const Footer = () => {
 				</div>
 
 				<div className="hidden lg:flex lg:items-center lg:justify-between py-6">
-					<span className="self-center text-sm text-indigo-500">
+					<span className="self-center text-sm text-blue-1000">
 						Capital Azur 2020 © All rights reserved
 					</span>
 
-					<span className="block text-sm sm:text-center text-indigo-500">
+					<span className="block text-sm sm:text-center text-blue-1000">
 						Conception et Developement{" "}
 						<a href="#" className="hover:underline">
 							VOID
