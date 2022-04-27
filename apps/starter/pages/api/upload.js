@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import isHttpMethod from "@vactory/next/utils/api/isHttpMethod"
 import Busboy from "busboy"
 import { getApiURL, getRequestLanguage } from "@vactory/next/utils/ssr"

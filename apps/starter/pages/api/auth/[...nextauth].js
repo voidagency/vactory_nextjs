@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import KeycloakProvider from "next-auth/providers/keycloak"
