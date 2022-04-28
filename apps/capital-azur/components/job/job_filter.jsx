@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button } from "@vactory/ui/button"
 import { Select } from "@vactory/ui/select"
 
@@ -39,14 +39,35 @@ const professions = [
 	{ value: "4", content: "SI & Data" },
 ]
 export const JobFilter = () => {
+	const [selectedCities, setSelectedCities] = useState(cities[0])
+	const [selectedContractType, setSelectedContractType] = useState(contractType[0])
+	const [selectedProfessions, setSelectedProfessions] = useState(professions[0])
 	return (
-		<div class="flex lg:flex-nowrap flex-wrap gap-x-4 gap-y-4 mb-12">
-			<div class="w-full flex md:flex-nowrap flex-wrap gap-x-4 gap-y-4">
-				<Select list={cities} variant="filterSelect" className="grow" />
-				<Select list={contractType} variant="filterSelect" className="grow" />
-				<Select list={professions} variant="filterSelect" className="grow" />
+		<div className="flex lg:flex-nowrap flex-wrap gap-x-4 gap-y-4 mb-12">
+			<div className="w-full flex md:flex-nowrap flex-wrap gap-x-4 gap-y-4">
+				<Select
+					list={cities}
+					variant="filterSelect"
+					selected={selectedCities}
+					setSelected={setSelectedCities}
+					className="grow"
+				/>
+				<Select
+					list={contractType}
+					variant="filterSelect"
+					selected={selectedContractType}
+					setSelected={setSelectedContractType}
+					className="grow"
+				/>
+				<Select
+					list={professions}
+					variant="filterSelect"
+					selected={selectedProfessions}
+					setSelected={setSelectedProfessions}
+					className="grow"
+				/>
 			</div>
-			<div class="w-full flex md:flex-nowrap flex-wrap gap-x-4 gap-y-4">
+			<div className="w-full flex md:flex-nowrap flex-wrap gap-x-4 gap-y-4">
 				<Button
 					variant={"primary"}
 					size={"normal"}

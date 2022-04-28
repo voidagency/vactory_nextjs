@@ -1,11 +1,11 @@
 import { Heading } from "@vactory/ui/heading"
 import { Container } from "@vactory/ui/container"
 import { Button } from "@vactory/ui/button"
-import { data, themeContainer } from "./data"
+import { data } from "./data"
 
-export const Vision = ({}) => {
+export const Vision = ({ containerId }) => {
 	return (
-		<Container layout="full" className="bg-blue-1000">
+		<Container layout="full" className="bg-blue-1000" id={containerId}>
 			<div className="Container px-4 lg:px-32">
 				<div className="grid md:grid-cols-2">
 					<div className="pt-4">
