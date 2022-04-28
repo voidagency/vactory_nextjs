@@ -5,6 +5,8 @@ import dynamic from "next/dynamic"
 const LoginPage = dynamic(() => import("./login"))
 const RegisterPage = dynamic(() => import("./register"))
 const ResetPasswordPage = dynamic(() => import("./reset-password"))
+const OneTimeLogin = dynamic(() => import("./one-time-login"))
+const Profile = dynamic(() => import("./profile"))
 
 export const UserPageHandler = ({ node, params }) => {
 	if (!node) return null
@@ -19,6 +21,8 @@ export const UserPageHandler = ({ node, params }) => {
 			{node.type === "reset-password" && (
 				<ResetPasswordPage node={node} params={params} />
 			)}
+			{node.type === "one-time-login" && <OneTimeLogin node={node} params={params} />}
+			{node.type === "profile" && <Profile node={node} params={params} />}
 		</>
 	)
 }

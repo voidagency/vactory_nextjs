@@ -1,4 +1,5 @@
 import { isEmpty } from "../utils"
+import { lruCache } from "../cache/lru"
 
 const fetchTranslations = async () => {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/_translations`)
@@ -24,10 +25,20 @@ const formatTranslationsForNextIntlProvider = (resources = []) => {
 }
 
 export const getTranslations = async (locale) => {
+	const cacheKey = `i18n:${locale}`
+
 	if (isEmpty(locale)) {
 		const message = `[getTranslations] An error has occured: Missing locale parameter`
 		throw new Error(message)
 	}
+
+	// Cache-first
+	if (lruCache.has(cacheKey)) {
+		return new Promise((resolve) => {
+			resolve(lruCache.get(cacheKey))
+		})
+	}
+
 	let translations = {}
 	const response = await fetchTranslations()
 	return new Promise((resolve, reject) => {
@@ -37,6 +48,7 @@ export const getTranslations = async (locale) => {
 		} catch (error) {
 			reject(error)
 		}
+		lruCache.set(cacheKey, translations)
 		resolve(translations)
 	})
 }

@@ -52,3 +52,44 @@ export const useResetUserPassword = () => {
 			body: JSON.stringify(body),
 		})
 }
+
+export const useUpdateUser = () => {
+	const router = useRouter()
+	return async (body) =>
+		fetch("/api/user/update", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"x-language": router.locale,
+			},
+			body: JSON.stringify(body),
+		})
+}
+
+export const useUpdateUserPicture = () => {
+	const router = useRouter()
+	return async (filename, binary) =>
+		fetch("/api/user/update-picture", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Disposition": 'file; filename="' + filename + '"',
+				// "Content-Type": "application/octet-stream",
+				"x-language": router.locale,
+			},
+			body: binary,
+		})
+}
+
+// Now we cause the jwt callback handler to retrieve the new user data and save it in the session
+export const useUpdateUserSession = () => {
+	return async () =>
+		fetch("/api/auth/session?update", {
+			method: "GET",
+			credentials: "include",
+		}).then(() => {
+			const event = new Event("visibilitychange")
+			document.dispatchEvent(event)
+		})
+}

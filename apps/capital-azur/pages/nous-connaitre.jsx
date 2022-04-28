@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer/footer"
 import { ToolBox } from "@vactory/ui/toolbox"
 import { MediaBox } from "@vactory/ui/socialmediabox"
 import { BackToTop } from "@vactory/ui/back-to-top"
-import { BlockBanner } from "../widgets/nous-connaitre-block-banner/block-banner"
+import { BlockBanner } from "../widgets/block-banner-nous-connaitre/block-banner"
 import { MenuNav } from "../widgets/menu-nav-nous-connaitre/menuNav"
 import { BlogImgContainer as Container1 } from "../widgets/capital-azur-content-nous-connaitre/container"
 import { ProfileContainer as Container3 } from "../widgets/mot-du-president/container"
@@ -49,7 +49,7 @@ export default function NousConnaitre() {
 			<ChiffreSlider containerId="#container2" variant="chiffreSlider" />
 			<Container3 containerId="#container3" />
 			<Vision containerId="#container4" />
-			<Conseil containerId="#container4" />
+			<Conseil containerId="#container5" />
 			<AccederService />
 			<MediaBox list={socialmedia} />
 			<ToolBox list={tools} />

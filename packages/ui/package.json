@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "browser": {
+    "@vactory/ui/avatar": "./src/avatar/avatar.js",
     "@vactory/headlessui/combobox": "../headlessui/src/components/combobox/combobox.tsx",
     "@vactory/headlessui/dialog": "../headlessui/src/components/dialog/dialog.tsx",
     "@vactory/headlessui/disclosure": "../headlessui/src/components/disclosure/disclosure.tsx",
@@ -20,6 +21,7 @@
     "@vactory/ui/button": "./src/button/button.js",
     "@vactory/ui/card": "./src/card/card.js",
     "@vactory/ui/icon": "./src/icon/icon.js",
+    "@vactory/ui/input": "./src/input/input.js",
     "@vactory/ui/link": "./src/link/link.js",
     "@vactory/ui/offline": "./src/offline/offline.js",
     "@vactory/ui/toolbox": "./src/tool-box/toolBox.js",
@@ -37,11 +39,13 @@
     "@vactory/ui/text": "./src/text/text.js"
   },
   "exports": {
+    "./avatar": "./src/avatar/avatar.js",
     ".": "./index.js",
     "./back-to-top": "./src/back-to-top/back-to-top.container.js",
     "./button": "./src/button/button.js",
     "./card": "./src/card/card.js",
     "./icon": "./src/icon/icon.js",
+    "./input": "./src/input/input.js",
     "./link": "./src/link/link.js",
     "./offline": "./src/offline/offline.js",
     "./heading": "./src/heading/heading.js",

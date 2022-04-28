@@ -62,7 +62,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 						</Button>
 						<Select
 							list={lang}
-							selected={"FR"}
+							selected={lang[0]}
 							chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 						/>
 					</div>
@@ -115,7 +115,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					</Button>
 					<Select
 						list={lang}
-						selected={"FR"}
+						selected={lang[0]}
 						chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 					/>
 				</div>
@@ -134,15 +134,15 @@ export const Header = () => {
 
 	const lang = [
 		{
-			value: "FR",
+			value: 0,
 			content: "FR",
 		},
 		{
-			value: "EN",
+			value: 1,
 			content: "EN",
 		},
 		{
-			value: "AR",
+			value: 2,
 			content: "AR",
 		},
 	]

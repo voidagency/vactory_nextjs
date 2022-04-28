@@ -1,18 +1,24 @@
-import { Fragment, useState, useContext } from "react"
+import { Fragment, useContext, useState } from "react"
 import clsx from "clsx"
 import { Transition } from "@vactory/headlessui/transition"
 import { Listbox } from "@vactory/headlessui/listbox"
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { Icon } from "@vactory/ui/icon"
 
-export const Select = ({ list, variant = "default", className }) => {
-	const [selected, setSelected] = useState(list[0])
+export const Select = ({
+	list,
+	//selected,
+	//setSelected,
+	variant = "default",
+	className,
+}) => {
 	const { select } = useContext(ThemeContext)
+	const [selected, setSelected] = useState(list[0]) // To hide here and parse it from the parent component
 	return (
 		<Listbox value={selected} onChange={setSelected}>
 			<div className={select[variant].wrapper}>
 				<Listbox.Button className={clsx(select[variant].button.base, className)}>
-					<div class="overflow-hidden">
+					<div className="overflow-hidden">
 						<p className="truncate">{selected.content}</p>
 					</div>
 					<Icon
