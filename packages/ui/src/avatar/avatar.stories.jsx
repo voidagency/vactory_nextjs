@@ -46,7 +46,7 @@ export const Initials = () => {
 	return (
 		<div className="p-8 flex items-center justify-center bg-white">
 			<div className="flex justify-around items-end w-full max-w-lg mx-auto">
-				<Avatar variant="initials" sizes="h-6 w-6">
+				<Avatar variant="initials" size="small">
 					TW
 				</Avatar>
 				<Avatar variant="initials" size="normal">
