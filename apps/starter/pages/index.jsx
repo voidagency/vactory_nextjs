@@ -7,7 +7,7 @@ export const config = { amp: "hybrid" }
 
 export default function IndexPage(props) {
 	return (
-		<Layout>
+		<Layout {...props}>
 			<Node {...props} />
 		</Layout>
 	)

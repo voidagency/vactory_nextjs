@@ -1,10 +1,46 @@
 import { createContext, useContext, useState, useRef, useEffect } from "react"
-import rosetta from "rosetta"
-// import rosetta from 'rosetta/debug';
 import { getDefaultLanguage } from "../utils"
+import dlv from "dlv"
+import tmpl from "templite"
+
+function rosetta(obj) {
+	var locale = "",
+		tree = obj || {}
+
+	return {
+		set(lang, table) {
+			tree[lang] = Object.assign(tree[lang] || {}, table)
+		},
+
+		locale(lang) {
+			return (locale = lang || locale)
+		},
+
+		table(lang) {
+			return tree[lang]
+		},
+
+		t(key, params, lang) {
+			if (
+				process.env.NODE_ENV !== "production" &&
+				val == dlv(tree[lang || locale], key)
+			) {
+				console.warn(
+					`[i18n] Missing the "${[].concat(key).join(".")}" key within the "${
+						lang || locale
+					}" dictionary`
+				)
+			}
+
+			var val = dlv(tree[lang || locale], key, key)
+			if (typeof val === "function") return val(params)
+			if (typeof val === "string") return tmpl(val, params)
+			return val
+		},
+	}
+}
 
 const i18n = rosetta()
-
 export const defaultLanguage = getDefaultLanguage()
 
 export const I18nContext = createContext()

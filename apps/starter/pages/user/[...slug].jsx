@@ -4,7 +4,7 @@ import { getUserServerSideProps } from "../../../../packages/next-user/src/page-
 
 export default function UserPage(props) {
 	return (
-		<Layout>
+		<Layout {...props}>
 			<UserPageHandler {...props} />
 		</Layout>
 	)

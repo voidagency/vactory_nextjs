@@ -7,6 +7,7 @@ const internalNodeField = [
 	"internal_node_banner",
 	"internal_blocks",
 	"internal_breadcrumb",
+	"internal_extra",
 	"node_settings",
 ]
 

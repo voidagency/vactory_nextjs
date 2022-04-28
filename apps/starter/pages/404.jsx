@@ -5,9 +5,9 @@ import { getTranslations } from "@vactory/next/i18n/handler"
 
 const enabledMenus = getEnabledMenus()
 
-export default function Custom404() {
+export default function Custom404(props) {
 	return (
-		<Layout>
+		<Layout {...props}>
 			<h1>404 - This page could not be found.</h1>
 		</Layout>
 	)

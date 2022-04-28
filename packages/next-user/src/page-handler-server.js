@@ -1,6 +1,6 @@
 import { getProviders, getCsrfToken } from "next-auth/react"
 import { getMenus } from "@vactory/next/menus/handler"
-import { getEnabledMenus } from "@vactory/next/utils"
+import { getEnabledMenus, generateTranslationForStaticRoute } from "@vactory/next/utils"
 import { getTranslations } from "@vactory/next/i18n/handler"
 import csrf from "@vactory/next/csrf"
 import { getSession } from "next-auth/react"
@@ -19,7 +19,6 @@ export async function getUserServerSideProps(context) {
 		.reduce((cur, key) => {
 			return Object.assign(cur, { [key]: providers[key] })
 		}, {})
-	console.log(providers)
 
 	if (
 		session &&
@@ -41,6 +40,9 @@ export async function getUserServerSideProps(context) {
 					type: "login",
 					providers: providers, // @todo: move outisde node
 					csrfToken: await getCsrfToken(context), // @todo: move outisde node
+					internal_extra: {
+						translations: generateTranslationForStaticRoute(`/user/${joinedSlug}`),
+					},
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
@@ -59,6 +61,9 @@ export async function getUserServerSideProps(context) {
 					type: "register",
 					providers: providers,
 					csrfToken: context.req.csrfToken(),
+					internal_extra: {
+						translations: generateTranslationForStaticRoute(`/user/${joinedSlug}`),
+					},
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
@@ -77,6 +82,9 @@ export async function getUserServerSideProps(context) {
 					type: "reset-password",
 					providers: providers,
 					csrfToken: context.req.csrfToken(),
+					internal_extra: {
+						translations: generateTranslationForStaticRoute(`/user/${joinedSlug}`),
+					},
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
@@ -97,6 +105,9 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "One time login",
 					type: "one-time-login",
+					internal_extra: {
+						translations: generateTranslationForStaticRoute(`/user/${joinedSlug}`),
+					},
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,
@@ -122,6 +133,9 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Profile page",
 					type: "profile",
+					internal_extra: {
+						translations: generateTranslationForStaticRoute(`/user/${joinedSlug}`),
+					},
 				},
 				params: Object.keys(query).length > 0 ? query : null,
 				i18n: i18n,

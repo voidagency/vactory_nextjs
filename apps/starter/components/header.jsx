@@ -1,3 +1,4 @@
+import { Fragment, useContext } from "react"
 import { Link } from "@vactory/ui/link"
 import { useSession } from "next-auth/react"
 import { useMenu } from "@vactory/next/menus"
@@ -6,8 +7,16 @@ import { useSignIn, useSignOut } from "@vactory/next-user"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import logoImg from "../public/logo.png"
+import { Icon } from "@vactory/ui/icon"
+import { Menu } from "@vactory/headlessui/menu"
+import { Transition } from "@vactory/headlessui/transition"
+import { getEnabledLanguages } from "@vactory/next/utils"
+import { PageContext } from "@/context/page-context"
 
 const UserMenu = dynamic(() => import("./user-menu"))
+const languages = getEnabledLanguages({
+	withLabels: true,
+})
 
 const UserInfo = () => {
 	const { data, status } = useSession()
@@ -62,12 +71,9 @@ export const Header = () => {
 						</div>
 					</div>
 					<div className="ml-10 space-x-4 flex items-center">
-						<a
-							href="#"
-							className="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
-						>
-							{locale}
-						</a>
+						<div>
+							<SwitchLocale />
+						</div>
 						<UserInfo />
 					</div>
 				</div>
@@ -84,5 +90,62 @@ export const Header = () => {
 				</div>
 			</nav>
 		</header>
+	)
+}
+
+const SwitchLocale = () => {
+	const router = useRouter()
+	const locale = router.locale
+	const { translations } = useContext(PageContext)
+
+	return (
+		<Menu as="div" className="relative inline-block text-left">
+			<div>
+				<Menu.Button className="focus:outline-none inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+					{locale.toUpperCase()}
+					<Icon
+						id="chevron-down"
+						className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+						aria-hidden="true"
+					/>
+				</Menu.Button>
+			</div>
+			<Transition
+				as={Fragment}
+				enter="transition ease-out duration-100"
+				enterFrom="transform opacity-0 scale-95"
+				enterTo="transform opacity-100 scale-100"
+				leave="transition ease-in duration-75"
+				leaveFrom="transform opacity-100 scale-100"
+				leaveTo="transform opacity-0 scale-95"
+			>
+				<Menu.Items className="focus:outline-none absolute right-0 mt-2 w-20 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-10">
+					<div className="px-1 py-1 ">
+						{languages.map((language) => (
+							<Menu.Item key={language.code}>
+								{({ active }) => {
+									const url = translations[language.code] || "#."
+									return (
+										<a
+											href={url}
+											className={`${
+												active ? "bg-violet-500 text-white" : "text-gray-900"
+											} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+										>
+											{/* {active ? (
+										<EditActiveIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+									) : (
+										<EditInactiveIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+									)} */}
+											{language.label}
+										</a>
+									)
+								}}
+							</Menu.Item>
+						))}
+					</div>
+				</Menu.Items>
+			</Transition>
+		</Menu>
 	)
 }

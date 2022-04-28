@@ -114,7 +114,11 @@ export const getI18nConfig = () => {
 	return publicRuntimeConfig.i18n
 }
 
-export const getEnabledLanguages = () => {
+export const getEnabledLanguages = (config = {}) => {
+	const { withLabels = false } = config
+	if (withLabels) {
+		return getI18nConfig().labels
+	}
 	return getI18nConfig().enabled
 }
 
@@ -124,4 +128,14 @@ export const getDefaultLanguage = () => {
 
 export const getEnabledMenus = () => {
 	return publicRuntimeConfig.menus
+}
+
+export const generateTranslationForStaticRoute = (route) => {
+	const languages = getEnabledLanguages()
+	const translations = {}
+
+	languages.forEach((locale) => {
+		translations[locale] = `/${locale}${route}`
+	})
+	return translations
 }
