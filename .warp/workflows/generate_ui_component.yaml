@@ -1,0 +1,13 @@
+---
+name: Generate a new ui component
+command: "yarn ui:new -- {{component_name}}"
+tags:
+  - Generator
+arguments:
+  - name: component_name
+    description: The name of the component that should be created
+    default_value: ~
+source_url: "https://stackoverflow.com/questions/41864099/how-do-i-force-yarn-to-reinstall-a-package"
+author: Ilia Liachin
+author_url: "https://stackoverflow.com/users/858602/ilia-liachin"
+shells: []

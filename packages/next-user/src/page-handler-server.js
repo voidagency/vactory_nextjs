@@ -9,11 +9,17 @@ export async function getUserServerSideProps(context) {
 	const enabledMenus = getEnabledMenus()
 	const { slug, ...query } = context.query
 	const { locale } = context
-	let joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
-
-	let i18n = await getTranslations(locale)
-	let menus = await getMenus(enabledMenus, locale)
+	const joinedSlug = Array.isArray(slug) ? slug.join("/") : slug
+	const i18n = await getTranslations(locale)
+	const menus = await getMenus(enabledMenus, locale)
 	const session = await getSession({ req: context.req })
+	let providers = await getProviders()
+	providers = Object.keys(providers)
+		.filter((key) => !key.includes("credentials") && !key.includes("one-time-login"))
+		.reduce((cur, key) => {
+			return Object.assign(cur, { [key]: providers[key] })
+		}, {})
+	console.log(providers)
 
 	if (
 		session &&
@@ -33,7 +39,7 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Login page",
 					type: "login",
-					providers: await getProviders(), // @todo: move outisde node
+					providers: providers, // @todo: move outisde node
 					csrfToken: await getCsrfToken(context), // @todo: move outisde node
 				},
 				params: Object.keys(query).length > 0 ? query : null,
@@ -51,7 +57,7 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Register page",
 					type: "register",
-					providers: await getProviders(),
+					providers: providers,
 					csrfToken: context.req.csrfToken(),
 				},
 				params: Object.keys(query).length > 0 ? query : null,
@@ -69,7 +75,7 @@ export async function getUserServerSideProps(context) {
 				node: {
 					title: "Reset password page",
 					type: "reset-password",
-					providers: await getProviders(),
+					providers: providers,
 					csrfToken: context.req.csrfToken(),
 				},
 				params: Object.keys(query).length > 0 ? query : null,
