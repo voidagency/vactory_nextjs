@@ -41,9 +41,9 @@ export const FilterSection = () => {
 					<Select className="space-x-6" list={listItems} />
 					<Select className="space-x-6" list={listItems} />
 				</div>
-				<div className="text-right rtl:text-left mt-10">
-					<Button variant="primary" type="submit" className="text-white w-32">
-						Valider
+				<div className="flex justify-end mt-10">
+					<Button variant="primary" type="submit" className="text-white min-w-[132px]">
+						Rechercher
 					</Button>
 				</div>
 			</Container>

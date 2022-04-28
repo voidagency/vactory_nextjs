@@ -5,7 +5,7 @@ export const button = {
 		small:
 			"px-[12px] py-[12px] text-base leading-6 rounded-[4px] transition transition-all ease-in-out duration-300",
 		normal:
-			"text-base leading-6 text-center px-5 py-[10px] rounded-[4px] transition transition-all ease-in-out duration-300 flex items-center justify-center flex-row gap-[10px]",
+			"text-base leading-[20px] text-center px-[20px] py-[12px] rounded-[4px] transition transition-all ease-in-out duration-300 inline-flex items-center justify-center flex-row gap-[8px]",
 		large: "px-8 py-3 text-lg",
 		xlarge: "px-10 py-5 text-3xl",
 	},

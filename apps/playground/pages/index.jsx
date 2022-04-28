@@ -7,14 +7,14 @@ import { LogoSlider } from "../widgets/logo-slider/logo-slider"
 import { TypeBlock } from "../widgets/type-block/type-block"
 import { CardImageTitle } from "../widgets/card-image-title/card-image-title"
 import { CardVehicule } from "../widgets/card-vehicule/card-vehicule"
+import { BlockMap } from "../widgets/block-map/block-map"
 
-import { Banner } from "../widgets/banner/banner"
+import { Footer } from "../widgets/footer/footer"
 
 export default function Index() {
 	return (
 		<div>
 			<Header />
-			<Banner />
 			<SliderHp />
 			<FilterSection />
 			<LogoSlider />
@@ -23,6 +23,8 @@ export default function Index() {
 			<CardImageTitle />
 			<CardVehicule />
 			<MarqueSlider />
+			<BlockMap />
+			<Footer />
 		</div>
 	)
 }

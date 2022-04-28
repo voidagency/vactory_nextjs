@@ -3,7 +3,7 @@ export const select = {
 	default: {
 		wrapper: "w-full relative",
 		button: {
-			base: "relative w-full py-[11px] pl-[14px] pr-[30px] text-base leading-6 text-gray-500 bg-white text-left rtl:text-right cursor-default border boder-gray-300 border-solid focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
+			base: "relative w-full py-[11px] pl-[14px] pr-[30px] rounded-[4px] text-base leading-6 text-gray-500 bg-white text-left rtl:text-right cursor-default border boder-gray-300 border-solid focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
 			icon: {
 				id: "chevron-down",
 				width: "16",

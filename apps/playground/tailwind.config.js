@@ -20,7 +20,7 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+				sans: ["Inter", ...defaultTheme.fontFamily.sans], //["Inter var", ...defaultTheme.fontFamily.sans],
 			},
 			colors: {
 				primary: {
@@ -88,6 +88,10 @@ module.exports = {
 					800: "#05603A",
 					900: "#054F31",
 				},
+			},
+			backgroundImage: {
+				"gradient-white-left":
+					"linear-gradient(270deg, rgba(255, 249, 249, 0.0695203) 0%, #FFFFFF 98.96%)",
 			},
 		},
 	},
