@@ -1,4 +1,5 @@
 import { button } from "../button/theme"
+import { avatar } from "../avatar/theme"
 import { heading } from "../heading/theme"
 import { text } from "../text/theme"
 import { accordion } from "../accordion/theme"
@@ -21,6 +22,7 @@ import { toolbox } from "../tool-box/theme"
 import { slider } from "../slider/theme"
 
 export const theme = {
+	avatar,
 	socialmediabox,
 	toolbox,
 	button,

@@ -7,6 +7,7 @@ import { useUpdateUserSession } from "@vactory/next-user"
 import { drupal } from "@vactory/next/api/drupal"
 import { Input } from "@vactory/ui/input"
 import { Button } from "@vactory/ui/button"
+import { Avatar } from "@vactory/ui/avatar"
 
 const errorFields = {
 	"/data/attributes/mail": "email",
@@ -233,17 +234,11 @@ const EditProfilePage = ({ user, accessToken }) => {
 						<div className="col-span-3">
 							<label className="block text-sm font-medium text-gray-700">Photo</label>
 							<div className="mt-1 flex items-center">
-								<span className="inline-block relative bg-gray-100 rounded-full overflow-hidden h-12 w-12">
+								<span className="inline-block relative">
 									{currentUser?.avatar ? (
-										<Image alt="Me" src={currentUser.avatar} width={48} height={48} />
+										<Avatar src={currentUser.avatar} size="xxlarge" alt="Me" />
 									) : (
-										<svg
-											className="h-full w-full text-gray-300"
-											fill="currentColor"
-											viewBox="0 0 24 24"
-										>
-											<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-										</svg>
+										<Avatar variant="placeholder" size="xxlarge" />
 									)}
 								</span>
 								<div className="ml-4 flex">
