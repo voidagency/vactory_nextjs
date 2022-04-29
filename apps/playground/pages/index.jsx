@@ -6,7 +6,7 @@ import { SliderHp } from "../widgets/slider-hp/slider-hp"
 import { LogoSlider } from "../widgets/logo-slider/logo-slider"
 import { TypeBlock } from "../widgets/type-block/type-block"
 import { CardImageTitle } from "../widgets/card-image-title/card-image-title"
-import { CardVehicule } from "../widgets/card-vehicule/card-vehicule"
+import { BlockCardVehicule } from "../widgets/block-card-vehicule/block-card-vehicule"
 import { BlockMap } from "../widgets/block-map/block-map"
 
 import { Footer } from "../widgets/footer/footer"
@@ -14,17 +14,15 @@ import { Footer } from "../widgets/footer/footer"
 export default function Index() {
 	return (
 		<div>
-			<Header />
 			<SliderHp />
 			<FilterSection />
 			<LogoSlider />
 			<CardWithPicto title="Comment ça marche" />
 			<TypeBlock />
 			<CardImageTitle />
-			<CardVehicule />
+			<BlockCardVehicule />
 			<MarqueSlider />
 			<BlockMap />
-			<Footer />
 		</div>
 	)
 }

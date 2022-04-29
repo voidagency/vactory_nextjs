@@ -7,34 +7,42 @@ import { data as defaultData } from "./mock-data"
 
 export const BlockMap = ({ data = defaultData }) => {
 	return (
-		<Container className="py-16 grid grid-cols-1 gap-5 md:gap-[59px] sm:grid-cols-2 items-center">
-			<div>
-				<img src={data.image} alt={data.image_alt} />
+		<Container className="py-16">
+			<div className="text-center mb-[52px]">
+				<Heading level="2" varinat="4" className="text-center mb-8 last:mb-0">
+					{data.title}
+				</Heading>
+				{data.content && <div className="max-w-[518px] mx-auto">{data.content}</div>}
 			</div>
-			<div>
-				<Heading level="3" variant="5" className="mb-[29px]">
-					{data.meeting_title}
-				</Heading>
-				<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
-					<Icon id="phone" width="24" height="24" className="text-primary-500" />
-					<Link href={"tel:" + data.tel}>{data.tel}</Link>
-				</Text>
-				<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
-					<Icon id="mail" width="24" height="24" className="text-primary-500" />
-					<Link href={"mailto:" + data.email}>{data.email}</Link>
-				</Text>
-				<Heading level="3" variant="5" className="mb-[29px]">
-					{data.adressTitle}
-				</Heading>
-				<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
-					<Icon
-						id="location-marker"
-						width="24"
-						height="24"
-						className="text-primary-500"
-					/>
-					{data.adress}
-				</Text>
+			<div className="grid grid-cols-1 gap-5 md:gap-[59px] sm:grid-cols-2 items-center">
+				<div>
+					<img src={data.image} alt={data.image_alt} />
+				</div>
+				<div>
+					<Heading level="3" variant="5" className="mb-[29px]">
+						{data.meeting_title}
+					</Heading>
+					<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
+						<Icon id="phone" width="24" height="24" className="text-primary-500" />
+						<Link href={"tel:" + data.tel}>{data.tel}</Link>
+					</Text>
+					<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
+						<Icon id="mail" width="24" height="24" className="text-primary-500" />
+						<Link href={"mailto:" + data.email}>{data.email}</Link>
+					</Text>
+					<Heading level="3" variant="5" className="mb-[29px]">
+						{data.adressTitle}
+					</Heading>
+					<Text className="text-gray-900 text-sm leading-[21px] mb-[23px] gap-[18px] flex items-center">
+						<Icon
+							id="location-marker"
+							width="24"
+							height="24"
+							className="text-primary-500"
+						/>
+						{data.adress}
+					</Text>
+				</div>
 			</div>
 		</Container>
 	)

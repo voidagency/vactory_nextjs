@@ -1,5 +1,5 @@
 import React from "react"
-import { CardVehicule } from "./card-vehicule"
+import { BlockCardVehicule } from "./block-card-vehicule"
 
 import hundaiImg from "../../public/img/offres/hundai.png"
 import audiImg from "../../public/img/offres/audi.png"
@@ -50,7 +50,9 @@ const data = [
 	},
 ]
 
-export const Default = () => <CardVehicule data={data} />
+export const Default = () => (
+	<BlockCardVehicule data={data} url="/" urlTitle="En savoir plus" />
+)
 
 export default {
 	title: "Dynamic Fields/Card Vehicule",

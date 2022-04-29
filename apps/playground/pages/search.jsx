@@ -1,7 +1,5 @@
-import { Header } from "../components/chaibi-header/chaibi-header"
 import { FilterSection } from "../widgets/filter-section/filter-section"
-import { CardVehicule } from "../widgets/card-vehicule/card-vehicule"
-import { Footer } from "../widgets/footer/footer"
+import { BlockCardVehicule } from "../widgets/block-card-vehicule/block-card-vehicule"
 import { Banner } from "../widgets/banner/banner"
 
 import hundaiImg from "../public/img/offres/hundai.png"
@@ -11,11 +9,9 @@ import citroenImg from "../public/img/offres/citroen.png"
 export default function Search() {
 	return (
 		<div>
-			<Header />
 			<Banner />
 			<FilterSection />
-			<CardVehicule data={cardVehiculeData} url="/" urlTitle="Afficher Plus" />
-			<Footer />
+			<BlockCardVehicule data={cardVehiculeData} url="/" urlTitle="Afficher Plus" />
 		</div>
 	)
 }

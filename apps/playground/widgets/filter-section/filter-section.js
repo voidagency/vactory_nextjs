@@ -32,17 +32,28 @@ export const FilterSection = () => {
 						votre besoin
 					</Text>
 				</div>
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					<Select className="space-x-6" list={listItems} />
-					<Select className="space-x-6" list={listItems} />
-					<Select className="space-x-6" list={listItems} />
+				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+					<Select className="space-x-6" list={listItems} label="Marque" />
+					<Select className="space-x-6" list={listItems} label="Modéle" />
+					<Select className="space-x-6" list={listItems} label="Transmission" />
 
-					<Select className="space-x-6" list={listItems} />
-					<Select className="space-x-6" list={listItems} />
-					<Select className="space-x-6" list={listItems} />
+					<Select className="space-x-6" list={listItems} label="Carburant" />
+					<Select className="space-x-6" list={listItems} label="Kilométrage" />
+					<Select
+						className="space-x-6"
+						list={listItems}
+						label="Date de mise en circulation"
+					/>
 				</div>
-				<div className="flex justify-end mt-10">
-					<Button variant="primary" type="submit" className="text-white min-w-[132px]">
+				<div className="flex items-center md:justify-end flex-col md:flex-row mt-10 gap-9 gap-10">
+					<Button variant="secondary" className="md:min-w-[132px] min-w-[245px] w-auto">
+						Réinitialiser
+					</Button>
+					<Button
+						variant="primary"
+						type="submit"
+						className="md:min-w-[132px] min-w-[245px] w-auto"
+					>
 						Rechercher
 					</Button>
 				</div>

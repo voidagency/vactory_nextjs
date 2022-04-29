@@ -6,5 +6,3 @@ export const heading = {
 	5: `text-2xl leading-[32px] font-semibold`,
 	6: `text-xl leading-[30px] font-semibold`,
 }
-
-const p = () => <p class="text-[32px] leading-[48px]"></p>
