@@ -1,8 +1,8 @@
 export const card = {
 	default: {
 		wrapper: "flex flex-col shadow-lg bg-white overflow-hidden text-indigo-500",
-		image: "flex flex-shrink-0",
-		body: "px-5 py-5 ",
+		image: "flex flex-shrink-0 overflow-hidden",
+		body: "px-5 py-5",
 		tag: "text-xs mb-4 text-white",
 		title:
 			"block text-sm font-semibold text-gray-900 text-black group-hover:text-blue-1000 mb-10",

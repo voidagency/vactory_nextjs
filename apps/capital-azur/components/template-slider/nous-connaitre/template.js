@@ -16,13 +16,15 @@ export const Template = ({ item }) => {
 	}, [counter])
 
 	return (
-		<div className="flex flex-col items-center justify-center bg-white rounded-xl border border-blue-1000">
-			<div className="h-full mb-6">
+		<div className="flex flex-col items-center justify-center bg-white rounded-xl border border-blue-1000 mb-6">
+			<div className="mb-4">
 				<span className="text-8xl text-blue-1000 font-black">{counter}</span>
 			</div>
-			<Heading level={5} className="text-center mb-6">
-				{item.title}
-			</Heading>
+			<div className="mb-12">
+				<Heading level={5} className="text-center h-full ">
+					{item.title}
+				</Heading>
+			</div>
 		</div>
 	)
 }

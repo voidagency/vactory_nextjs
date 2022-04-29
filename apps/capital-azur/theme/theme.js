@@ -9,6 +9,7 @@ import { toolbox } from "./toolbox"
 import { socialmediabox } from "./socialmediabox"
 import { slider } from "./slider"
 import { accordion } from "./accordion"
+import { container } from "./container"
 
 export const theme = {
 	backTotop,
@@ -22,4 +23,5 @@ export const theme = {
 	socialmediabox,
 	slider,
 	accordion,
+	container,
 }

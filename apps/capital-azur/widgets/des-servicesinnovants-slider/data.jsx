@@ -36,7 +36,7 @@ export const sliderSettings = {
 			slides: { perView: 1 },
 		},
 		"(min-width: 900px)": {
-			slides: { perView: 4, spacing: 10 },
+			slides: { perView: 4, spacing: 20 },
 		},
 	},
 	defaultAnimation: {

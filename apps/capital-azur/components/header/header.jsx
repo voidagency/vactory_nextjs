@@ -20,7 +20,7 @@ export const NavigationList = ({ navigation }) => {
 			href={item.href}
 			className={classNames(
 				item.current ? "text-blue-500 font-bold" : "text-gray-900 font-normal",
-				"block px-4 py-1  text-xs hover:text-blue-500 after:inline-block active:text-white active:bg-blue-1000"
+				"block py-1  text-xs hover:text-blue-500 after:inline-block before:px-2 active:text-white "
 			)}
 			aria-current={item.current ? "page" : undefined}
 		>
@@ -56,6 +56,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 					<div className="block  rounded-md text-base font-medium">
 						<Button
 							variant={"primary"}
+							className="bg-blue-1000"
 							icon={<Icon id="lock-closed-solid" width="15" height="15" />}
 						>
 							BANQUE DIGITAL
@@ -75,7 +76,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 const HeaderMobile = ({ open, navigation, lang, image }) => {
 	return (
 		<>
-			<div className="fixed z-10 items-center md:hidden right-4 top-6 ">
+			<div className="absolute z-10 items-center md:hidden right-4 top-6 ">
 				<ButtonIcon open={open} />
 			</div>
 			<div className="absolute items-center md:hidden left-4 top-6 ">
@@ -88,19 +89,19 @@ const HeaderMobile = ({ open, navigation, lang, image }) => {
 
 const HeaderDefault = ({ navigation, lang, image }) => {
 	return (
-		<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 h-24 ">
-			<div className="hidden md:flex items-center justify-between px-6 py-4">
+		<div className="flex flex-row max-w-7xl  mx-auto px-2 sm:px-4 h-28 ">
+			<div className="hidden md:flex items-center justify-between px-6 pb-2">
 				<div className="flex justify-center md:items-center md:justify-start">
 					<div className="flex-shrink-0 flex items-center">
 						{image}
 						<img
-							className="hidden lg:block h-16  w-auto"
+							className="hidden lg:block h-24 w-auto"
 							src="https://capital-azur.com/themes/capital_azur/logo.png"
 							alt="Workflow"
 						/>
 					</div>
 					<div className="hidden md:block sm:ml-24 md:ml-32 lg:ml-64">
-						<div className="flex space-x-4 divide-x mt-6">
+						<div className="flex space-x-4 divide-x  mt-2">
 							<NavigationList navigation={navigation} />
 						</div>
 					</div>
@@ -108,8 +109,8 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 				<div className="hidden py-0 inset-y-0 md:flex sm:items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-2">
 					<Button
 						variant={"primary"}
-						className="bg-blue-1200 hover:bg-white hover:text-blue-1200 border border-blue-1200 mr-4"
-						icon={<Icon id="lock-closed-solid" width="30" height="30" />}
+						className="bg-blue-1200 hover:bg-white hover:text-blue-1200 border border-blue-1200 mr-4 font-semibold shadow-lg"
+						icon={<Icon id="lock-closed-solid" width="20" height="20" />}
 					>
 						BANQUE DIGITAL
 					</Button>

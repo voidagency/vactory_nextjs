@@ -13,7 +13,11 @@ export const CardTemplate = ({ item, variant }) => {
 				}
 				excerpt={item.excerpt}
 				urlContent={
-					<Button Variant="primary" size="large" className="group-hover:bg-indigo-700">
+					<Button
+						Variant="primary"
+						size="large"
+						className="bg-blue-1000 group-hover:bg-indigo-700"
+					>
 						{item.urlContent}
 					</Button>
 				}
@@ -24,7 +28,7 @@ export const CardTemplate = ({ item, variant }) => {
 						<span className="bg-blue-900 rounded-md px-3 py-1 mx-1 text-white">
 							{item.category[0]}
 						</span>
-						<span className="bg-red-400 rounded-md px-3 py-1 mx-1 text-white">
+						<span className="bg-red-500 rounded-md px-3 py-1 mx-1 text-white">
 							{item.category[1]}
 						</span>
 					</a>

@@ -18,6 +18,12 @@ module.exports = {
 			spacing: {
 				128: "32rem",
 			},
+			maxWidth: {
+				1200: "1200px",
+			},
+			content: {
+				minus: 'url("./public/minus.svg")',
+			},
 			transitionDelay: {
 				0: "0ms",
 				5000: "5000ms",
