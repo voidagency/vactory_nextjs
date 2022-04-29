@@ -13,5 +13,3 @@ export const text = {
 	caption: "text-xs leading-[18px]",
 	overline: "text-[10px] leading-[15px]",
 }
-
-const span = () => <p className="text-white text-[10px] leading-[15px]"></p>

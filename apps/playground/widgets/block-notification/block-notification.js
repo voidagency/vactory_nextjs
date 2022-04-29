@@ -8,7 +8,7 @@ import { data as defaultData } from "./mock-data"
 
 export const CardNotification = ({ reference, title, time, url, urlTitle }) => {
 	return (
-		<div className="bg-gray-100 py-6 px-10 max-w-[800px] mx-auto">
+		<div className="bg-gray-100 py-6 px-10 w-full max-w-[800px] mx-auto">
 			{reference && (
 				<p className="text-gray-900 text-xs leading-[21px] mb-6 px-[14px] py-1 bg-gray-300 rounded-full inline-block">
 					<span>N°</span>

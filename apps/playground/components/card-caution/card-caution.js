@@ -4,15 +4,29 @@ import { Button } from "@vactory/ui/button"
 import logoLld from "../../public/img/logo-vehicule.png"
 import logoTruck from "../../public/img/logo-truck.png"
 
-export const CardCaution = ({ title, amount, type = "lld", url }) => {
+export const CardCaution = ({
+	title,
+	amount,
+	type = "lld",
+	url,
+	chaibiLogo = logoLld,
+}) => {
 	return (
 		<div className="bg-gray-100 p-[30px]">
 			<div className="flex flex-col md:flex-row-reverse gap-6 md:items-start md:justify-between mb-5">
 				{type == "lld" && (
-					<img src={logoLld.src} alt={title} className="h-[41px] w-auto" />
+					<img
+						src={chaibiLogo ? chaibiLogo : logoLld.src}
+						alt={title}
+						className="h-[41px] w-auto"
+					/>
 				)}
 				{type == "truck" && (
-					<img src={logoTruck.src} alt={title} className="h-[41px] w-auto" />
+					<img
+						src={chaibiLogo ? chaibiLogo : logoTruck.src}
+						alt={title}
+						className="h-[41px] w-auto"
+					/>
 				)}
 				<Text
 					as="h3"
