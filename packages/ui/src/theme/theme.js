@@ -19,6 +19,9 @@ import { layer } from "../layer/theme"
 import { socialmediabox } from "../socialmedia-box/theme"
 import { toolbox } from "../tool-box/theme"
 import { slider } from "../slider/theme"
+import { textarea } from "../textarea/theme"
+import { inputRadio } from "../radio/theme"
+import { range } from "../range/theme"
 
 export const theme = {
 	socialmediabox,
@@ -42,4 +45,7 @@ export const theme = {
 	input,
 	layer,
 	slider,
+	textarea,
+	inputRadio,
+	range,
 }
