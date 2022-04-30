@@ -15,7 +15,6 @@ export const Textarea = ({
 	const [length, setLength] = useState(0)
 	const onTextareaChange = (e) => {
 		var inputValue = e.target.value
-		console.log()
 		setLength(inputValue.split("").length)
 		handleTextareaChange?.(e)
 	}

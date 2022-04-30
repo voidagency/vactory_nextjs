@@ -2,11 +2,8 @@ import React, { useContext } from "react"
 import "./styles.css"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
-export const InputRange = ({ label, max, min, thumb }) => {
+export const InputRange = ({ label, max, min, thumb, handleInputChange }) => {
 	const { range } = useContext(ThemeContext)
-	const handleInputChange = (e) => {
-		console.log(e.target.value)
-	}
 
 	return (
 		<div className={range.container}>
@@ -18,7 +15,9 @@ export const InputRange = ({ label, max, min, thumb }) => {
 			<div className={range.wrapper}>
 				<span className={range.intervalIndicator}>{min}</span>
 				<input
-					onChange={handleInputChange}
+					onChange={(e) => {
+						handleInputChange?.(e.target.value)
+					}}
 					type="range"
 					className={range.input[thumb]}
 					min={min}
