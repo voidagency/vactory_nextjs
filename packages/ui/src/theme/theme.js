@@ -1,4 +1,5 @@
 import { button } from "../button/theme"
+import { avatar } from "../avatar/theme"
 import { heading } from "../heading/theme"
 import { text } from "../text/theme"
 import { accordion } from "../accordion/theme"
@@ -24,6 +25,7 @@ import { inputRadio } from "../radio/theme"
 import { range } from "../range/theme"
 
 export const theme = {
+	avatar,
 	socialmediabox,
 	toolbox,
 	button,

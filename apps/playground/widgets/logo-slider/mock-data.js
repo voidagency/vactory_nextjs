@@ -7,37 +7,37 @@ import daciaLogo from "../../public/img/marque-slider/dacia.png"
 export const data = [
 	{
 		id: 1,
-		image: scaniaLogo,
+		image: scaniaLogo.src,
 		url: "/",
 	},
 	{
 		id: 2,
-		image: chevroletLogo,
+		image: chevroletLogo.src,
 		url: "/",
 	},
 	{
 		id: 3,
-		image: scaniaLogo,
+		image: scaniaLogo.src,
 		url: "/",
 	},
 	{
 		id: 4,
-		image: renaultLogo,
+		image: renaultLogo.src,
 		url: "/",
 	},
 	{
 		id: 5,
-		image: daciaLogo,
+		image: daciaLogo.src,
 		url: "/",
 	},
 	{
 		id: 6,
-		image: nissanLogo,
+		image: nissanLogo.src,
 		url: "/",
 	},
 	{
 		id: 7,
-		image: chevroletLogo,
+		image: chevroletLogo.src,
 		url: "/",
 	},
 ]

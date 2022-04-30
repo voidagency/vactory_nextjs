@@ -24,6 +24,7 @@ const PasswordSufix = () => {
 	)
 }
 
+// Actual password input component
 export const InputPassword = ({ handlePasswordChange, sufix, ...props }) => {
 	const [showPassword, setShowPassword] = useState(false)
 	useEffect(() => {

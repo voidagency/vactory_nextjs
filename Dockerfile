@@ -1,53 +1,84 @@
+FROM node:16-alpine AS packages
+WORKDIR /app
+COPY ["package.json", "yarn.lock", "./"]
+COPY packages ./packages
+# Find and remove non-package.json files
+RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+
 # Install dependencies only when needed
 FROM node:16-alpine AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY --from=packages /app ./
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn install
 
-# If using npm with a `package-lock.json` comment out above and use below instead
-# COPY package.json package-lock.json ./ 
-# RUN npm ci
-
-# Rebuild the source code only when needed
-FROM node:16-alpine AS builder
+FROM node:16-alpine AS builder_starter
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app ./
 COPY . .
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN yarn build
-
-# Production image, copy all the files and run next
-FROM node:16-alpine AS runner
-WORKDIR /app
-
+# Restore workspaces symlinks && build fresh packages (Sharp)
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn add -W sharp
 ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED 1
+RUN yarn workspace starter build
 
+# App - Production image
+FROM node:16-alpine AS runner_starter
+RUN yarn global add pm2
+WORKDIR /app
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# You only need to copy next.config.js if you are NOT using the default configuration
-# COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-
-# Automatically leverage output traces to reduce image size 
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder_starter --chown=nextjs:nodejs /app/apps/starter/.next/standalone ./
+COPY --from=builder_starter --chown=nextjs:nodejs /app/apps/starter/next.config.js ./apps/starter
+COPY --from=builder_starter --chown=nextjs:nodejs /app/apps/starter/.next/static ./apps/starter/.next/static
+COPY --from=builder_starter --chown=nextjs:nodejs /app/apps/starter/public ./apps/starter/public
+# # @TODO: this is causing trouble with the standalone version.
+COPY --from=builder_starter --chown=nextjs:nodejs /app/packages/ui/public/icons.svg ./apps/starter/public/icons.svg
 
 USER nextjs
+EXPOSE 8080
+ENV PORT 8080
+CMD [ "pm2-runtime", "start", "apps/starter/server.js"]
 
-EXPOSE 3000
+# UI - Rebuild the source code only when needed
+FROM node:16-alpine AS builder_ui
+WORKDIR /app
+COPY --from=deps /app ./
+COPY . .
+# Restore workspaces symlinks && build fresh packages (Sharp)
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn install
+ENV NODE_ENV production
+RUN yarn workspace @vactory/ui build
 
-ENV PORT 3000
+# UI - Production image
+FROM node:16-alpine AS runner_ui
+RUN yarn global add http-server pm2
+WORKDIR /app
+ENV NODE_ENV production
+COPY --from=builder_ui /app/packages/ui/storybook-static ./public
+EXPOSE 8080
+ENV PORT 8080
+CMD ["pm2-runtime", "http-server", "./public"]
 
-CMD ["node", "server.js"]
+# DOCS - Rebuild the source code only when needed
+FROM node:16-alpine AS builder_docs
+WORKDIR /app
+COPY --from=deps /app ./
+COPY . .
+# Restore workspaces symlinks && build fresh packages (Sharp)
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn install
+ENV NODE_ENV production
+RUN yarn workspace docs build
+
+# DOCS - Production image
+FROM node:16-alpine AS runner_docs
+RUN yarn global add http-server pm2
+WORKDIR /app
+ENV NODE_ENV production
+COPY --from=builder_docs /app/apps/docs/build ./public
+EXPOSE 8080
+ENV PORT 8080
+CMD ["pm2-runtime", "http-server", "./public"]

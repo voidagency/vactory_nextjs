@@ -48,7 +48,7 @@ const ButtonIcon = ({ open }) => {
 const NavPanel = ({ navigation, lang, image }) => {
 	return (
 		<>
-			<Disclosure.Panel className="md:hidden w-64 h-full shadow-md bg-white fixed z-10">
+			<Disclosure.Panel className="md:hidden w-64 h-full shadow-md bg-white fixed z-50">
 				<div className="px-2 pt-2 pb-3 space-y-1">
 					<div className="flex-shrink-0 flex items-center px-2 py-6">{image}</div>
 					<hr className="my-6 border-indigo-700 sm:mx-auto dark:border-indigo-700 lg:my-8" />
@@ -62,7 +62,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 						</Button>
 						<Select
 							list={lang}
-							selected={"FR"}
+							selected={lang[0]}
 							chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 						/>
 					</div>
@@ -115,7 +115,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					</Button>
 					<Select
 						list={lang}
-						selected={"FR"}
+						selected={lang[0]}
 						chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 					/>
 				</div>
@@ -134,15 +134,15 @@ export const Header = () => {
 
 	const lang = [
 		{
-			value: "FR",
+			value: 0,
 			content: "FR",
 		},
 		{
-			value: "EN",
+			value: 1,
 			content: "EN",
 		},
 		{
-			value: "AR",
+			value: 2,
 			content: "AR",
 		},
 	]

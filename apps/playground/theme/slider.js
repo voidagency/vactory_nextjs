@@ -27,7 +27,8 @@ export const slider = {
 		},
 	},
 	logoSlider: {
-		wrapper: "flex items-center",
+		wrapper:
+			"flex items-center before:content-['-'] before:absolute before:top-0 before:left-0 before:w-[89px] before:h-full before:bg-gradient-white-left before:z-10 after:content-['-'] after:absolute after:top-0 after:right-0 after:w-[89px] after:h-full after:bg-gradient-white-left after:z-10 after:rotate-180",
 		slide: {
 			wrapper: "",
 			content: "",
@@ -95,3 +96,6 @@ export const slider = {
 		},
 	},
 }
+
+const p =
+	"after:top-0 after:right-0 after:w-[89px] after:h-full after:bg-gradient-white-left after:z-10 after:rotate-180"

@@ -4,15 +4,9 @@ import logger from "../logger/logger"
 import { getEnabledMenus } from "../utils"
 import { getTranslations } from "../i18n/handler"
 import { getMenus } from "../menus/handler"
-import LRUCache from "lru-cache"
+import { lruCache } from "../cache/lru"
 
 const enabledMenus = getEnabledMenus()
-
-// @todo: disable dev ? used only in routing ?
-const ssrCache = new LRUCache({
-	max: 100,
-	ttl: 1000 * 60 * 60, // 1 hour
-})
 
 export async function ssrHandler(context) {
 	const { slug, ...query } = context.query
@@ -24,25 +18,8 @@ export async function ssrHandler(context) {
 		joinedSlug = "/"
 	}
 
-	// @todo: find a better way to handle such cases.
-	const cacheI18nKey = locale
-	const cacheMenusKey = `${enabledMenus.join("_")}-${locale}`
-	let i18n = {}
-	let menus = []
-
-	if (ssrCache.has(cacheI18nKey)) {
-		i18n = ssrCache.get(cacheI18nKey)
-	} else {
-		i18n = await getTranslations(locale)
-		ssrCache.set(cacheI18nKey, i18n)
-	}
-
-	if (ssrCache.has(cacheMenusKey)) {
-		menus = ssrCache.get(cacheMenusKey)
-	} else {
-		menus = await getMenus(enabledMenus, locale)
-		ssrCache.set(cacheMenusKey, menus)
-	}
+	let i18n = await getTranslations(locale)
+	let menus = await getMenus(enabledMenus, locale)
 
 	// const locale = getLocaleFromPath(joinedSlug, enabledLanguages)
 	const langprefix = locale ? `${locale}/` : ``
@@ -51,8 +28,8 @@ export async function ssrHandler(context) {
 		const cacheRouterKey = `${locale}-${joinedSlug}`
 		let router
 
-		if (ssrCache.has(cacheRouterKey)) {
-			router = ssrCache.get(cacheRouterKey)
+		if (lruCache.has(cacheRouterKey)) {
+			router = lruCache.get(cacheRouterKey)
 		} else {
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${langprefix}router/translate-path?path=${joinedSlug}`
@@ -65,7 +42,7 @@ export async function ssrHandler(context) {
 			}
 
 			router = await response.json()
-			ssrCache.set(cacheRouterKey, router)
+			lruCache.set(cacheRouterKey, router)
 		}
 
 		// Check for redirect.
