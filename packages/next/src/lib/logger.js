@@ -44,6 +44,6 @@
 
 export const log = (msg) => console.info(msg)
 const logger = {
-  info: (msg) => console.info(msg),
+	info: (msg) => console.info(msg),
 }
 export default logger

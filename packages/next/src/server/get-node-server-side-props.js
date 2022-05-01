@@ -1,14 +1,14 @@
-import { fetcher } from "../api/client"
+import { fetcher } from "../lib/client"
 import { NodeParamsMapping } from "../../.tmp/node-params"
-import logger from "../logger/logger"
-import { getEnabledMenus } from "../utils"
-import { getTranslations } from "../i18n/handler"
-import { getMenus } from "../menus/handler"
-import { lruCache } from "../cache/lru"
+import logger from "../lib/logger"
+import { getEnabledMenus } from "../lib/utils"
+import { getTranslations } from "./get-i18n"
+import { getMenus } from "./get-menus"
+import { lruCache } from "../lib/cache"
 
 const enabledMenus = getEnabledMenus()
 
-export async function ssrHandler(context) {
+export async function getNodeServerSideProps(context) {
 	const { slug, ...query } = context.query
 	const { locale } = context
 	let joinedSlug = Array.isArray(slug) ? slug.join("/") : slug

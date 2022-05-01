@@ -1,7 +1,7 @@
 import { deserialise } from "kitsu-core"
 import { getSession } from "next-auth/react"
 import { logger as defaultLogger } from "./logger"
-import Router from "next/router"
+// import Router from "next/router"
 
 // See https://jsonapi.org/format/#content-negotiation.
 const DEFAULT_HEADERS = {

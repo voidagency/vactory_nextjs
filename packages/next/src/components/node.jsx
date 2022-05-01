@@ -3,7 +3,7 @@ import Head from "next/head"
 import { TemplatesMapping } from "../../.tmp/node-templates"
 import dynamic from "next/dynamic"
 
-const NodeDefault = dynamic(() => import("./default"))
+const NodeDefault = dynamic(() => import("./node-default"))
 
 export const Node = ({ node, params }) => {
 	const NodeComponent = TemplatesMapping[node.type] || NodeDefault

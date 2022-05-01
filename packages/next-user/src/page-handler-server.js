@@ -1,8 +1,6 @@
 import { getProviders, getCsrfToken } from "next-auth/react"
-import { getMenus } from "@vactory/next/menus/handler"
-import { getEnabledMenus, generateTranslationForStaticRoute } from "@vactory/next/utils"
-import { getTranslations } from "@vactory/next/i18n/handler"
-import csrf from "@vactory/next/csrf"
+import { getMenus, getTranslations, csrf } from "@vactory/next/server"
+import { getEnabledMenus, generateTranslationForStaticRoute } from "@vactory/next"
 import { getSession } from "next-auth/react"
 
 export async function getUserServerSideProps(context) {

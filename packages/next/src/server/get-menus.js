@@ -1,5 +1,5 @@
-import { lruCache } from "../cache/lru"
-import { getEnabledMenus } from "../utils"
+import { lruCache } from "../lib/cache"
+import { getEnabledMenus } from "../lib/utils"
 
 const enabledMenus = getEnabledMenus().join("_")
 

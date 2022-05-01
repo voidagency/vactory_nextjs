@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react"
 import { Link } from "@vactory/ui/link"
 import { useSession } from "next-auth/react"
-import { useMenu } from "@vactory/next/menus"
+import { useMenu, getEnabledLanguages } from "@vactory/next"
 import { useRouter } from "next/router"
 import { useSignIn, useSignOut } from "@vactory/next-user"
 import dynamic from "next/dynamic"
@@ -10,7 +10,6 @@ import logoImg from "../public/logo.png"
 import { Icon } from "@vactory/ui/icon"
 import { Menu } from "@vactory/headlessui/menu"
 import { Transition } from "@vactory/headlessui/transition"
-import { getEnabledLanguages } from "@vactory/next/utils"
 import { PageContext } from "@/context/page-context"
 
 const UserMenu = dynamic(() => import("./user-menu"))

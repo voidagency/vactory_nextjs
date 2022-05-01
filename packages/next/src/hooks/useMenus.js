@@ -1,10 +1,5 @@
-import React, { createContext, useContext } from "react"
-
-const MenuContext = createContext()
-
-export const MenuProvider = ({ children, menus = [] }) => {
-	return <MenuContext.Provider value={{ menus }}>{children}</MenuContext.Provider>
-}
+import { useContext } from "react"
+import { MenuContext } from "../context/menus"
 
 const useMenuContext = () => {
 	const context = useContext(MenuContext)

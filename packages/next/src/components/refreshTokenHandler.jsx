@@ -4,6 +4,7 @@ import { useSignIn } from "@vactory/next-user"
 
 const RefreshTokenHandler = () => {
 	const { data: session } = useSession()
+	// @todo: signIn need to be a prop
 	const signIn = useSignIn()
 
 	useEffect(() => {

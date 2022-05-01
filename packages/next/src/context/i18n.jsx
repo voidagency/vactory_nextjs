@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useRef, useEffect } from "react"
-import { getDefaultLanguage } from "../utils"
+import { createContext, useState, useRef, useEffect } from "react"
+import { getDefaultLanguage } from "../lib/utils"
 import dlv from "dlv"
 import tmpl from "templite"
 
@@ -48,7 +48,7 @@ export const I18nContext = createContext()
 // default language
 i18n.locale(defaultLanguage)
 
-export const I18n = ({ children, locale, lngDict }) => {
+export const I18nProvider = ({ children, locale, lngDict }) => {
 	const activeLocaleRef = useRef(locale || defaultLanguage)
 	const [, setTick] = useState(0)
 	const firstRender = useRef(true)
@@ -82,9 +82,4 @@ export const I18n = ({ children, locale, lngDict }) => {
 	}, [lngDict, locale])
 
 	return <I18nContext.Provider value={i18nWrapper}>{children}</I18nContext.Provider>
-}
-
-export const useI18n = () => {
-	const i18n = useContext(I18nContext)
-	return i18n
 }

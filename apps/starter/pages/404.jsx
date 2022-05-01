@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout"
-import { getMenus } from "@vactory/next/menus/handler"
-import { getEnabledMenus } from "@vactory/next/utils"
-import { getTranslations } from "@vactory/next/i18n/handler"
+import { getMenus } from "@vactory/next/server"
+import { getTranslations } from "@vactory/next/server"
+import { getEnabledMenus } from "@vactory/next"
 
 const enabledMenus = getEnabledMenus()
 

@@ -1,6 +1,6 @@
 import { deserialise } from "kitsu-core"
-import csrf from "@vactory/next/csrf"
-import { getApiURL, getRequestLanguage } from "@vactory/next/utils/ssr"
+import { csurf, getRequestLanguage } from "@vactory/next/server"
+import { getApiURL } from "@vactory/next"
 
 const resetUserPassword = async (language, email) => {
 	const CREATE_USER_ENDPOINT = `${getApiURL(language)}/api/user/password/reset`

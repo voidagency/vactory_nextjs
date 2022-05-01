@@ -1,5 +1,5 @@
-import { isEmpty } from "../utils"
-import { lruCache } from "../cache/lru"
+import { isEmpty } from "../lib/utils"
+import { lruCache } from "../lib/cache"
 
 const fetchTranslations = async () => {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/_translations`)
