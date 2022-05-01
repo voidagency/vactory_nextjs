@@ -4,7 +4,6 @@ import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const InputRange = ({ label, max, min, thumb, handleInputChange }) => {
 	const { range } = useContext(ThemeContext)
-
 	return (
 		<div className={range.container}>
 			{label && (

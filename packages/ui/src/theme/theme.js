@@ -23,6 +23,7 @@ import { slider } from "../slider/theme"
 import { textarea } from "../textarea/theme"
 import { inputRadio } from "../radio/theme"
 import { range } from "../range/theme"
+import { checkbox } from "../checkbox/theme"
 
 export const theme = {
 	avatar,
@@ -50,4 +51,5 @@ export const theme = {
 	textarea,
 	inputRadio,
 	range,
+	checkbox,
 }

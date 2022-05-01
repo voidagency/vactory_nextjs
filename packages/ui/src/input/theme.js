@@ -12,7 +12,7 @@ export const input = {
 		addonBefore: "bg-gray-200 bg-gray-200 flex items-center max-w-[30%]",
 		addonAfter: "bg-gray-200 flex items-center max-w-[30%]",
 		input:
-			"py-3 px-3 w-full placeholder-gray-500 outline-none grow border-none focus:ring-0",
+			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow border-none focus:ring-0",
 		prefix: "pr-3",
 		sufix: "pl-3",
 		errorMessage: "text-sm text-red-600 mt-1",
@@ -34,7 +34,7 @@ export const input = {
 		addonBefore: "bg-gray-200 rounded-l-lg bg-gray-200 flex items-center max-w-[30%]",
 		addonAfter: "bg-gray-200 rounded-r-lg flex items-center max-w-[30%]",
 		input:
-			"py-3 px-3 w-full placeholder-gray-500 outline-none grow rounded-md border-none focus:ring-0",
+			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow rounded-md border-none focus:ring-0",
 		prefix: "pr-3",
 		sufix: "pl-3",
 		errorMessage: "text-sm text-red-600 mt-1",
