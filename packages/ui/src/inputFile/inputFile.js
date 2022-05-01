@@ -57,8 +57,8 @@ export const InputFile = ({
 							: inputFile[variant].inputWrapper.full
 					)}
 				>
-					{prefix && <div className="flex items-center pl-3">{prefix}</div>}
-					<div className="grow-0 relative">
+					{prefix && <div className={clsx(inputFile[variant].prefix)}>{prefix}</div>}
+					<div className="min-w-0 relative">
 						<input
 							ref={inputRef}
 							onChange={onInputChange}
@@ -68,11 +68,11 @@ export const InputFile = ({
 							{...props}
 						/>
 
-						<p className="py-3 px-4 text-gray-400 truncate">{choosedFile}</p>
+						<p className={clsx(inputFile[variant].file)}>{choosedFile}</p>
 					</div>
 				</span>
 
-				{sufix && <div className="flex items-center pr-3">{sufix}</div>}
+				{sufix && <div className={clsx(inputFile[variant].sufix)}>{sufix}</div>}
 
 				<div className={clsx("flex", inputFile[variant].addonAfter)}>
 					<Button onClick={handleButtonClick} className="h-full">

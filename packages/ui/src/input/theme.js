@@ -13,8 +13,8 @@ export const input = {
 		addonAfter: "bg-gray-200 flex items-center max-w-[30%]",
 		input:
 			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow border-none focus:ring-0",
-		prefix: "pr-3",
-		sufix: "pl-3",
+		prefix: "flex items-center pr-3",
+		sufix: "flex items-center pl-3",
 		errorMessage: "text-sm text-red-600 mt-1",
 		hasError: "border-red-500 hover:border-red-600 focus-within:ring-red-400",
 		description: "text-base text-gray-600 mt-1",
@@ -35,8 +35,8 @@ export const input = {
 		addonAfter: "bg-gray-200 rounded-r-lg flex items-center max-w-[30%]",
 		input:
 			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow rounded-md border-none focus:ring-0",
-		prefix: "pr-3",
-		sufix: "pl-3",
+		prefix: "flex items-center pr-3",
+		sufix: "flex items-center pl-3",
 		errorMessage: "text-sm text-red-600 mt-1",
 		hasError: "border-red-500 hover:border-red-600 focus-within:ring-red-400",
 		description: "text-base text-gray-600 mt-1",

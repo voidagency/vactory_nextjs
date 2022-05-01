@@ -3,7 +3,7 @@ import { Icon } from "@vactory/ui/icon"
 
 export const defaultInputFile = () => {
 	return (
-		<div className="container">
+		<div className="max-w-sm mx-auto">
 			<InputFile
 				variant="default"
 				label={"File"}
@@ -16,7 +16,7 @@ export const defaultInputFile = () => {
 
 export const roundedInputFile = () => {
 	return (
-		<div className="container">
+		<div className="max-w-xl mx-auto">
 			<InputFile
 				variant="rounded"
 				label={"File"}

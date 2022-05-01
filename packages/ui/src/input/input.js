@@ -44,7 +44,7 @@ export const Input = forwardRef(
 							hasError && input[variant].hasError
 						)}
 					>
-						{prefix && <div className="flex items-center pl-3">{prefix}</div>}
+						{prefix && <div className={clsx(input[variant].prefix)}>{prefix}</div>}
 						<input
 							ref={ref}
 							onChange={(e) => handleInputChange?.(e.target.value)}
@@ -55,7 +55,7 @@ export const Input = forwardRef(
 						/>
 						{sufix && (
 							<div
-								className="flex items-center pr-3"
+								className={clsx(input[variant].sufix)}
 								onClick={() => {
 									handleSufixClick?.()
 								}}
