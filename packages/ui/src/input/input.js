@@ -13,7 +13,7 @@ export const Input = forwardRef(
 			prefix,
 			sufix,
 			type = "text",
-			handleSufixClick = null,
+			handleSufixClick = null, // this only used in password case and it maight be optimized
 			handleInputChange,
 			hasError,
 			errorMessage,
