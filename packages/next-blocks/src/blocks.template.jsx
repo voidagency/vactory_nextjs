@@ -8,7 +8,7 @@ export const BlocksTemplate = ({ widget, ...rest }) => {
 	if (!Component) {
 		return (
 			<div className="alert alert-danger" role="alert">
-				Caught an error. Banner Template {widget_id} is not mapped!
+				Caught an error. Block Template {widget_id} is not mapped!
 			</div>
 		)
 	}
