@@ -87,5 +87,5 @@ export const defaultTooltip = () => {
 }
 
 export default {
-	title: "Components/tooltip ",
+	title: "Primitives/tooltip ",
 }

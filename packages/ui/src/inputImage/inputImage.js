@@ -50,7 +50,7 @@ export const InputImage = () => {
 							<Icon id="upload" className="w-8 h-8 text-gray-400"></Icon>
 						</div>
 						<button
-							className="absolute right-0 bottom-3 h-6 w-6 p-1 rounded-full bg-gray-700"
+							className="absolute right-0 bottom-1 h-7 w-7 p-1 rounded-full border-2 border-white bg-gray-700"
 							onClick={openGallery}
 						>
 							<Icon id="plus" className="w-full h-full text-white"></Icon>
@@ -58,7 +58,7 @@ export const InputImage = () => {
 					</>
 				) : (
 					<button
-						className="absolute z-10 right-0 bottom-3 h-6 w-6 p-1 rounded-full bg-red-600"
+						className="absolute z-10 right-0 bottom-1 h-7 w-7 p-1 rounded-full bg-red-600 border-2 border-white bg-gray-700"
 						onClick={resetInput}
 					>
 						<Icon id="trash" className="w-full h-full text-white"></Icon>
