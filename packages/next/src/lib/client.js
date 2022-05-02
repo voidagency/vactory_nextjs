@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-import { query, cleanup } from "./utils"
+import { query } from "./utils"
 
 export const fetcher = async (url, config = {}) => {
 	const params = config?.params || {}
@@ -14,5 +14,5 @@ export const fetcher = async (url, config = {}) => {
 	})
 		.then((res) => res.json())
 		.then((res) => deserialise(res))
-		.then((res) => cleanup(res))
+		.then((res) => res.data)
 }

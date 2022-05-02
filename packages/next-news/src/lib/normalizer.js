@@ -8,8 +8,8 @@ export const normalizeNodes = (nodes) => {
 		title: post.title,
 		url: get(post, "path.alias", "#."),
 		excerpt: truncate(stripHtml(get(post, "field_vactory_excerpt.processed", "")), 100),
-		category: get(post, "field_vactory_taxonomy_1.name", null),
-		image: get(post, "field_vactory_media_image.thumbnail.uri.value", null),
+		category: get(post, "field_vactory_news_theme.name", null),
+		image: get(post, "field_vactory_media.thumbnail.uri.value", null),
 	}))
 }
 

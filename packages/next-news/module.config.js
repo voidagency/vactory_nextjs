@@ -19,8 +19,8 @@ const nodeParams = {
 					"body",
 					"created",
 					"field_vactory_excerpt",
-					"field_vactory_media_image",
-					"field_vactory_taxonomy_1",
+					"field_vactory_media",
+					"field_vactory_news_theme",
 					"field_vactory_date",
 				],
 				internalNodeField
@@ -31,9 +31,9 @@ const nodeParams = {
 		"taxonomy_term--vactory_news_theme": "name",
 	},
 	include: [
-		"field_vactory_media_image",
-		"field_vactory_media_image.thumbnail",
-		"field_vactory_taxonomy_1",
+		"field_vactory_media",
+		"field_vactory_media.thumbnail",
+		"field_vactory_news_theme",
 	].join(","),
 }
 
