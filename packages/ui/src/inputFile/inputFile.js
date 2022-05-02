@@ -1,6 +1,7 @@
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { useContext, useRef, useState } from "react"
 import { Button } from "@vactory/ui/button"
+import { Icon } from "@vactory/ui/icon"
 import clsx from "clsx"
 
 export const InputFile = ({
@@ -20,7 +21,7 @@ export const InputFile = ({
 	const { inputFile } = useContext(ThemeContext)
 	const inputRef = useRef()
 
-	const [choosedFile, setChoosedFile] = useState("Choose a file")
+	const [choosedFile, setChoosedFile] = useState(null)
 
 	const onInputChange = (e) => {
 		handleInputChange?.(e.target.files[0])
@@ -29,6 +30,10 @@ export const InputFile = ({
 
 	const handleButtonClick = () => {
 		inputRef.current.click()
+	}
+
+	const handleDeleteSelectedFile = () => {
+		setChoosedFile(null)
 	}
 
 	return (
@@ -68,16 +73,26 @@ export const InputFile = ({
 							{...props}
 						/>
 
-						<p className={clsx(inputFile[variant].file)}>{choosedFile}</p>
+						<p className={clsx(inputFile[variant].file)}>
+							{choosedFile !== null ? choosedFile : "Choose a file"}
+						</p>
 					</div>
 				</span>
 
 				{sufix && <div className={clsx(inputFile[variant].sufix)}>{sufix}</div>}
 
 				<div className={clsx("flex", inputFile[variant].addonAfter)}>
-					<Button onClick={handleButtonClick} className="h-full">
-						Browse
-					</Button>
+					{choosedFile !== null ? (
+						<Icon
+							id="trash"
+							className="w-5 h-5 mx-3"
+							onClick={handleDeleteSelectedFile}
+						/>
+					) : (
+						<Button onClick={handleButtonClick} className="h-full">
+							Browse
+						</Button>
+					)}
 				</div>
 			</div>
 			{errorMessage && hasError && (
