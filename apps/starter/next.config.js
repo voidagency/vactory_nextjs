@@ -80,6 +80,7 @@ const nextConfig = {
 	// },
 	async rewrites() {
 		// @todo: download rewrites
+		// @todo: even better, use node field settings for this.
 		return [
 			{
 				source: "/fr/actualites/:pays/:theme",
