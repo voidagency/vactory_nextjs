@@ -25,6 +25,7 @@ import { inputRadio } from "../radio/theme"
 import { range } from "../range/theme"
 import { checkbox } from "../checkbox/theme"
 import { inputFile } from "../inputFile/theme"
+import { tooltip } from "../tooltip/theme"
 
 export const theme = {
 	avatar,
@@ -54,4 +55,5 @@ export const theme = {
 	range,
 	checkbox,
 	inputFile,
+	tooltip,
 }
