@@ -45,12 +45,17 @@ export const InputImage = () => {
 				className="h-24 w-24 bg-gray-300 rounded-full cursor-pointer relative"
 			>
 				{selectedImage === null ? (
-					<button
-						className="absolute right-0 bottom-3 h-6 w-6 p-1 rounded-full bg-gray-700"
-						onClick={openGallery}
-					>
-						<Icon id="plus" className="w-full h-full text-white"></Icon>
-					</button>
+					<>
+						<div className="flex items-center justify-center w-full h-full p-1">
+							<Icon id="upload" className="w-8 h-8 text-gray-400"></Icon>
+						</div>
+						<button
+							className="absolute right-0 bottom-3 h-6 w-6 p-1 rounded-full bg-gray-700"
+							onClick={openGallery}
+						>
+							<Icon id="plus" className="w-full h-full text-white"></Icon>
+						</button>
+					</>
 				) : (
 					<button
 						className="absolute z-10 right-0 bottom-3 h-6 w-6 p-1 rounded-full bg-red-600"
