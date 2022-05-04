@@ -22,8 +22,10 @@ import { toolbox } from "../tool-box/theme"
 import { slider } from "../slider/theme"
 import { textarea } from "../textarea/theme"
 import { inputRadio } from "../radio/theme"
+import { radioV2 } from "../radioV2/themeV2"
 import { range } from "../range/theme"
 import { checkbox } from "../checkbox/theme"
+import { checkboxV2 } from "../checkboxV2/themeV2"
 import { inputFile } from "../inputFile/theme"
 import { tooltip } from "../tooltip/theme"
 
@@ -56,4 +58,6 @@ export const theme = {
 	checkbox,
 	inputFile,
 	tooltip,
+	radioV2,
+	checkboxV2,
 }

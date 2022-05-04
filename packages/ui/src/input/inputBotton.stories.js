@@ -5,6 +5,8 @@ export const defaultInputButton = () => {
 	return (
 		<div className="container">
 			<InputButton
+				label="input with button"
+				description="by clicking on the button you would you ave access to the value of the input"
 				buttonClasses={"px-6 h-full"}
 				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
 				placeholder="Search..."
@@ -18,6 +20,8 @@ export const roundedInputButton = () => {
 		<div className="container">
 			<InputButton
 				variant="rounded"
+				label="input with button"
+				description="by clicking on the button you would you ave access to the value of the input"
 				buttonClasses={"px-6 h-full"}
 				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
 				placeholder="Search..."
@@ -30,6 +34,8 @@ export const InputButtonWithSufix = () => {
 	return (
 		<div className="container">
 			<InputButton
+				label="input with button"
+				description="by clicking on the button you would you ave access to the value of the input"
 				buttonClasses={"px-6 h-full"}
 				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
 				placeholder="Search..."
@@ -43,6 +49,8 @@ export const InputButtonWithPrefix = () => {
 	return (
 		<div className="container">
 			<InputButton
+				label="input with button"
+				description="by clicking on the button you would you ave access to the value of the input"
 				buttonClasses={"px-6 h-full"}
 				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
 				placeholder="Search..."
