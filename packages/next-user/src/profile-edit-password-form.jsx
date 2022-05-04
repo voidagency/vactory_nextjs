@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useI18n } from "@vactory/next/i18n"
+import { useI18n } from "@vactory/next"
 import { useRouter } from "next/router"
-import { drupal } from "@vactory/next/api/drupal"
+import { drupal } from "@vactory/next/lib"
 import { signOut } from "next-auth/react"
 
 const errorFields = {

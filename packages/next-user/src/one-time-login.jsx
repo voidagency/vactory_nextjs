@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/router"
 import { Button } from "@vactory/ui/button"
-import { useI18n } from "@vactory/next/i18n"
+import { useI18n } from "@vactory/next"
 import * as dayjs from "dayjs"
 
 const OneTimeLoginPage = () => {

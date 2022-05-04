@@ -42,6 +42,7 @@ const config = {
 	themeConfig:
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		({
+			autoCollapseSidebarCategories: false,
 			navbar: {
 				title: "",
 				logo: {
@@ -51,14 +52,25 @@ const config = {
 				items: [
 					{
 						type: "doc",
-						docId: "intro",
+						docId: "learn/introduction",
 						position: "left",
-						label: "Documentation",
+						label: "Get started",
+					},
+					{
+						type: "doc",
+						docId: "develop/introduction",
+						position: "left",
+						label: "Develop",
 					},
 					{ to: "/blog", label: "Blog", position: "left" },
 					{
-						href: "https://github.com/facebook/docusaurus",
-						label: "GitHub",
+						href: "https://github.com/voidagency/vactory_nextjs",
+						label: "Next.js",
+						position: "right",
+					},
+					{
+						href: "https://github.com/voidagency/vactory_starter_kit",
+						label: "Drupal",
 						position: "right",
 					},
 				],
@@ -71,7 +83,7 @@ const config = {
 						items: [
 							{
 								label: "Tutorial",
-								to: "/docs/intro",
+								to: "/learn/intro",
 							},
 						],
 					},
@@ -101,7 +113,11 @@ const config = {
 							},
 							{
 								label: "GitHub",
-								href: "https://github.com/facebook/docusaurus",
+								href: "https://github.com/voidagency/vactory_nextjs",
+							},
+							{
+								label: "GitHub",
+								href: "https://github.com/voidagency/vactory_starter_kit",
 							},
 						],
 					},

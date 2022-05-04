@@ -1,17 +1,15 @@
 import { Fragment, useContext } from "react"
 import { Link } from "@vactory/ui/link"
 import { useSession } from "next-auth/react"
-import { useMenu } from "@vactory/next/menus"
+import { useMenu, getEnabledLanguages, NodePageContext } from "@vactory/next"
 import { useRouter } from "next/router"
 import { useSignIn, useSignOut } from "@vactory/next-user"
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import logoImg from "../public/logo.png"
 import { Icon } from "@vactory/ui/icon"
 import { Menu } from "@vactory/headlessui/menu"
 import { Transition } from "@vactory/headlessui/transition"
-import { getEnabledLanguages } from "@vactory/next/utils"
-import { PageContext } from "@/context/page-context"
+import logoImg from "../public/logo.png"
 
 const UserMenu = dynamic(() => import("./user-menu"))
 const languages = getEnabledLanguages({
@@ -96,7 +94,7 @@ export const Header = () => {
 const SwitchLocale = () => {
 	const router = useRouter()
 	const locale = router.locale
-	const { translations } = useContext(PageContext)
+	const { path_18n } = useContext(NodePageContext)
 
 	return (
 		<Menu as="div" className="relative inline-block text-left">
@@ -124,7 +122,7 @@ const SwitchLocale = () => {
 						{languages.map((language) => (
 							<Menu.Item key={language.code}>
 								{({ active }) => {
-									const url = translations[language.code] || "#."
+									const url = path_18n[language.code] || "#."
 									return (
 										<a
 											href={url}

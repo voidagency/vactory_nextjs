@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { GTM_ID } from "../lib/gtm"
-import { getDefaultLanguage } from "@vactory/next/utils"
+import { getDefaultLanguage } from "@vactory/next"
 
 const defaultLanguage = getDefaultLanguage()
 // @TODO: add an option to add more RTL languages; ar is not the only one

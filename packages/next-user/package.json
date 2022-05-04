@@ -6,6 +6,7 @@
   "license": "MIT",
   "exports": {
     ".": "./index.js",
-    "./api/*": "./src/api/*"
+    "./api/*": "./src/api/*",
+    "./server": "./src/server-export.js"
   }
 }
