@@ -5,50 +5,36 @@ const fse = require("fs-extra")
 
 const tmpFolderPath = path.resolve(__dirname, "../", ".tmp")
 const resolveModulePath = (name) => `../../${name}`
+const watchedFiles = new Set()
+const addWatchedFile = (path) => {
+	watchedFiles.add(path)
+}
 
-// const resolveOverrideFile = (packageName, fileName) => {
-// 	const modulePath = resolveModulePath(packageName)
-// 	const processCWD = process.cwd()
-// 	const packagesFolderName = "packages"
+function requireUncached(module) {
+	delete require.cache[require.resolve(module)]
+	return require(module)
+}
 
-// 	const fileInPackages = path.dirname(`${modulePath}/${fileName}`)
-// 	const fileInProject = `${processCWD}/${packagesFolderName}/${packageName}/${fileName}`
-// 	const file = path.relative(fileInPackages, fileInProject)
-// 	let exist
-
-// 	try {
-// 		fse.statSync(fileInProject)
-// 		exist = true
-// 	} catch {
-// 		exist = false
-// 	}
-
-// 	return {
-// 		file,
-// 		fileInPackages,
-// 		fileInProject,
-// 		exist,
-// 	}
-// }
-
-const getOverrideConfigFile = async (fileName) => {
-	const appPath = path.relative(__dirname, process.cwd())
+const getOverrideConfigFile = (fileName) => {
+	const appPath = path.resolve(__dirname, process.cwd())
 	const configPathInProject = `${process.cwd()}/config/${fileName}`
 	const configPath = `${appPath}/config/${fileName}`
 	let config = {}
+	addWatchedFile(configPath)
 	try {
 		fse.statSync(configPathInProject)
-		config = (await import(configPath)).default
-	} catch {
+		config = requireUncached(configPath)
+	} catch (err) {
+		console.warn(err)
 		config = {}
 	}
 
 	return config
 }
 
-const getOverridesImportsFromConfigFileBase = async (fileName, cb = (v) => v) => {
+const getOverridesImportsFromConfigFileBase = (fileName, cb = (v) => v) => {
 	let indexes = {}
-	const config = await getOverrideConfigFile(fileName)
+	const config = getOverrideConfigFile(fileName)
 
 	for (const [key, value] of Object.entries(config)) {
 		const overrideFile = cb(value)
@@ -58,13 +44,14 @@ const getOverridesImportsFromConfigFileBase = async (fileName, cb = (v) => v) =>
 	return indexes
 }
 
-const getOverridesImportsFromConfigFile = async (fileName) => {
+const getOverridesImportsFromConfigFile = (fileName) => {
 	return getOverridesImportsFromConfigFileBase(fileName, (value) =>
 		path.relative(__dirname, `${process.cwd()}/config/${value}`)
 	)
 }
 
-const generateModulesIndex = async (options) => {
+const generateModulesIndex = (options, isServer) => {
+	const logLabel = isServer ? "Server" : "Client"
 	const modules = options?.enabledModules || []
 	const packagesFolder = path.resolve(__dirname, "../../")
 	const modulesConfig = modules
@@ -79,19 +66,20 @@ const generateModulesIndex = async (options) => {
 			}
 			return ret
 		})
-		.map((filePath) => require(filePath))
+		.map((filePath) => {
+			addWatchedFile(filePath)
+			return requireUncached(filePath)
+		})
 
-	await Promise.all([
-		generateNodeTemplatesIndex(modulesConfig),
-		generateNodeParamsIndex(modulesConfig),
-		generateApiRoutesIndex(modulesConfig),
-		generateDynamicFieldTemplatesIndex(modulesConfig),
-	])
+	generateNodeTemplatesIndex(modulesConfig)
+	generateNodeParamsIndex(modulesConfig)
+	generateApiRoutesIndex(modulesConfig)
+	generateDynamicFieldTemplatesIndex(modulesConfig)
 
-	Log.info("Compiled successfully templates")
+	Log.info(`[${logLabel}] Successfully built mapping configuration`)
 }
 
-const generateNodeTemplatesIndex = async (modules) => {
+const generateNodeTemplatesIndex = (modules) => {
 	let mappings = [],
 		indexes = {}
 
@@ -105,7 +93,7 @@ const generateNodeTemplatesIndex = async (modules) => {
 		indexes[node.id] = `${modulePath}/${node.file}`
 	})
 
-	const indexesOverride = await getOverridesImportsFromConfigFile("node-templates.mjs")
+	const indexesOverride = getOverridesImportsFromConfigFile("node-templates.js")
 	indexes = { ...indexes, ...indexesOverride }
 
 	for (const [key, value] of Object.entries(indexes)) {
@@ -113,7 +101,7 @@ const generateNodeTemplatesIndex = async (modules) => {
 	}
 
 	const exportPath = path.resolve(tmpFolderPath, "node-templates.js")
-	await fse.ensureFile(exportPath)
+	fse.ensureFileSync(exportPath)
 
 	fs.writeFileSync(
 		exportPath,
@@ -121,11 +109,9 @@ const generateNodeTemplatesIndex = async (modules) => {
 			",\n"
 		)},\n}\n`
 	)
-
-	Log.info("Successfully compiled nodes templates")
 }
 
-const generateNodeParamsIndex = async (modules) => {
+const generateNodeParamsIndex = (modules) => {
 	let mappings = [],
 		indexes = {}
 
@@ -137,7 +123,7 @@ const generateNodeParamsIndex = async (modules) => {
 		indexes[node.id] = node.params
 	})
 
-	const indexesOverride = await getOverridesImportsFromConfigFileBase("node-params.mjs")
+	const indexesOverride = getOverridesImportsFromConfigFileBase("node-params.js")
 	indexes = { ...indexes, ...indexesOverride }
 
 	for (const [key, value] of Object.entries(indexes)) {
@@ -145,17 +131,15 @@ const generateNodeParamsIndex = async (modules) => {
 	}
 
 	const exportPath = path.resolve(tmpFolderPath, "node-params.js")
-	await fse.ensureFile(exportPath)
+	fse.ensureFileSync(exportPath)
 
 	fs.writeFileSync(
 		exportPath,
 		`export const NodeParamsMapping = {\n${mappings.join(",\n")},\n}\n`
 	)
-
-	Log.info("Successfully compiled nodes params")
 }
 
-const generateApiRoutesIndex = async (modules) => {
+const generateApiRoutesIndex = (modules) => {
 	let mappings = [],
 		indexes = {}
 
@@ -171,15 +155,12 @@ const generateApiRoutesIndex = async (modules) => {
 		})
 	})
 
-	const indexesOverride = await getOverridesImportsFromConfigFileBase(
-		"apis.mjs",
-		(value) => {
-			return {
-				...value,
-				loader: path.relative(__dirname, `${process.cwd()}/config/${value.loader}`),
-			}
+	const indexesOverride = getOverridesImportsFromConfigFileBase("apis.js", (value) => {
+		return {
+			...value,
+			loader: path.relative(__dirname, `${process.cwd()}/config/${value.loader}`),
 		}
-	)
+	})
 
 	indexes = { ...indexes, ...indexesOverride }
 
@@ -190,17 +171,15 @@ const generateApiRoutesIndex = async (modules) => {
 	}
 
 	const exportPath = path.resolve(tmpFolderPath, "api-routes.js")
-	await fse.ensureFile(exportPath)
+	fse.ensureFileSync(exportPath)
 
 	fs.writeFileSync(
 		exportPath,
 		`export const ApiRoutesMapping = {\n${mappings.join(",\n")},\n}\n`
 	)
-
-	Log.info("Successfully compiled api routes")
 }
 
-const generateDynamicFieldTemplatesIndex = async (modules) => {
+const generateDynamicFieldTemplatesIndex = (modules) => {
 	let mappings = [],
 		indexes = {}
 
@@ -213,7 +192,7 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
 		})
 	})
 
-	const indexesOverride = await getOverridesImportsFromConfigFile("widgets.mjs")
+	const indexesOverride = getOverridesImportsFromConfigFile("widgets.js")
 	indexes = { ...indexes, ...indexesOverride }
 
 	for (const [key, value] of Object.entries(indexes)) {
@@ -221,20 +200,20 @@ const generateDynamicFieldTemplatesIndex = async (modules) => {
 	}
 
 	const exportPath = path.resolve(tmpFolderPath, "df-templates.js")
-	await fse.ensureFile(exportPath)
+	fse.ensureFileSync(exportPath)
 
 	fs.writeFileSync(
 		exportPath,
 		`import dynamic from "next/dynamic"\n
      export const Widgets = {\n${mappings.join(",\n")},\n}\n`
 	)
-
-	Log.info("Successfully compiled dynamic field templates")
 }
 
 class VactoryModulesPlugin {
-	constructor(options) {
+	constructor(options, isServer) {
 		this.options = options
+		this.isServer = isServer
+		this.firstRun = false
 	}
 
 	getChangedFiles(compiler) {
@@ -245,22 +224,40 @@ class VactoryModulesPlugin {
 	}
 
 	apply(compiler) {
-		// console.log(compiler)
+		const pluginOptions = this.options
 		// Set up mapping index at start
 		compiler.hooks.environment.tap("VactoryModulesPlugin", () => {
-			generateModulesIndex(this.options)
+			if (!this.firstRun) {
+				generateModulesIndex(pluginOptions, this.isServer)
+				this.firstRun = true
+			}
 		})
 
-		// Re generate mapping index when node template files change
-		// compiler.hooks.watchRun.tapPromise("VactoryModulesPlugin", async () => {
-		//   // console.log(compiler.watchFileSystem)
-		//   // process.exit(1)
-		//   const changedFile = this.getChangedFiles(compiler)
+		compiler.hooks.afterCompile.tapAsync(
+			"VactoryModulesPlugin",
+			(compilation, callback) => {
+				const files = Array.from(watchedFiles)
+				if (Array.isArray(compilation.fileDependencies)) {
+					files.map((file) => compilation.fileDependencies.push(file))
+				} else {
+					files.map((file) => compilation.fileDependencies.add(file))
+				}
 
-		//   if (changedFile.find((file) => file.includes("Node.jsx"))) {
-		//     generateNodeTemplatesIndex(this.options)
-		//   }
-		// })
+				callback()
+			}
+		)
+
+		// Re generate mapping index when node template files change
+		compiler.hooks.watchRun.tap("VactoryModulesPlugin", (_compiler) => {
+			if (_compiler.modifiedFiles) {
+				const files = Array.from(watchedFiles)
+				const changedFiles = Array.from(_compiler.modifiedFiles)
+				const intersection = changedFiles.filter((file) => files.includes(file))
+				if (intersection.length > 0) {
+					generateModulesIndex(pluginOptions, this.isServer)
+				}
+			}
+		})
 	}
 }
 
@@ -280,7 +277,7 @@ const withNodeTemplatePlugin = (nextConfig = {}) => {
 				)
 			}
 
-			config.plugins.push(new VactoryModulesPlugin(nextConfig))
+			config.plugins.push(new VactoryModulesPlugin(nextConfig, options.isServer))
 
 			if (typeof nextConfig.webpack === "function") {
 				return nextConfig.webpack(config, options)
