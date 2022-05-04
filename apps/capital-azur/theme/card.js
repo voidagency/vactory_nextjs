@@ -41,11 +41,12 @@ export const card = {
 	},
 	cardAppelOffre: {
 		wrapper:
-			"flex flex-col rounded-lg shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right",
+			"flex flex-col rounded-lg  shadow-lg overflow-hidden text-black lrt:text-left rtl:text-right group",
 		image: "flex-shrink-0",
 		body: "px-4 py-3",
 		tag: "text-sm font-medium text-indigo-600",
-		title: "text-xl font-semibold text-gray-900 text-black hover:text-indigo-600 mb-5",
+		title:
+			"text-xl font-semibold text-gray-900 text-black group-hover:text-blue-1000 mb-5",
 		excerpt: "mt-3 text-base text-gray-500 dark:text-gray-400",
 		link: "text-primary underline",
 	},

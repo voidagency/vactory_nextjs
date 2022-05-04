@@ -1,10 +1,11 @@
+import { React } from "react"
 import { Heading } from "@vactory/ui/heading"
 import { Container } from "@vactory/ui/container"
 import { Button } from "@vactory/ui/button"
 import { Icon } from "@vactory/ui/icon"
 import { data } from "./data"
 
-export const Vision = ({ href }) => {
+export const Vision = ({}) => {
 	return (
 		<Container layout="full" id="container4" className="bg-blue-1000">
 			<Container className="Container md:px-6">

@@ -44,7 +44,7 @@ export const JobCard = ({
 					<Link href={url} className={card[variant].link}>
 						<Button
 							size={"large"}
-							className="mt-10 px-10 uppercase shadow-md font-semibold"
+							className="mt-10 px-10 bg-blue-1000 uppercase shadow-md font-semibold"
 						>
 							Read more
 						</Button>

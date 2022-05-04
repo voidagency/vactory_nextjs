@@ -1,16 +1,14 @@
-import React from "react"
-
-import { Header } from "@/components/header/header"
-import { Footer } from "@/components/footer/footer"
+import { SearchWidget } from "@/widgets/search/searchWidget"
+import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { ToolBox } from "@vactory/ui/toolbox"
 import { MediaBox } from "@vactory/ui/socialmediabox"
-import { BlockBanner } from "@/widgets/block-banner-insights/block-banner"
 import { BackToTop } from "@vactory/ui/back-to-top"
-import { Container1 } from "@/widgets/insights-header/header"
-import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { Icon } from "@vactory/ui/icon"
 import { theme } from "../theme/theme"
-import InsightsWidget from "@/widgets/insights/insightsWidget"
+import { Container } from "@vactory/ui/container"
+import { Header } from "@/components/header/header"
+import { BlockBanner } from "@/widgets/block-banner-search/block-banner"
+import { Footer } from "@/components/footer/footer"
 
 const tools = [
 	{
@@ -37,13 +35,14 @@ const socialmedia = [
 	{ id: "linkedin-solid", href: "#" },
 ]
 
-export default function Insights() {
+export const Search = () => {
 	return (
 		<AppWrapper theme={theme}>
 			<Header />
 			<BlockBanner />
-			<Container1 />
-			<InsightsWidget />
+			<Container layout="full" className="py-10 bg-gray-10">
+				<SearchWidget />
+			</Container>
 			<Footer />
 			<MediaBox list={socialmedia} />
 			<ToolBox list={tools} />
@@ -51,3 +50,5 @@ export default function Insights() {
 		</AppWrapper>
 	)
 }
+
+export default Search

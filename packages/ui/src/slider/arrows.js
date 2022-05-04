@@ -4,9 +4,9 @@ import { Button } from "@vactory/ui/button"
 import { ThemeContext } from "@vactory/ui/theme-context"
 import { Icon } from "@vactory/ui/icon"
 
-const IconLeft = () => <Icon id="chevron-left" width="30" height="30" />
+const IconLeft = () => <Icon id="chevron-left" width="50" height="50" />
 
-const IconRight = () => <Icon id="chevron-right" width="30" height="30" />
+const IconRight = () => <Icon id="chevron-right" width="50" height="50" />
 
 export const Arrows = forwardRef(
 	(

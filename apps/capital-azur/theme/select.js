@@ -53,13 +53,7 @@ export const select = {
 			base: "cursor-default truncate select-none relative py-2 pl-10 pr-4 relative",
 			active: "font-medium text-blue-900 bg-blue-100",
 			inactive: "font-normal text-gray-900",
-			icon: {
-				id: "check-solid",
-				width: "15",
-				height: "15",
-				className:
-					"absolute -translate-y-1/2 top-1/2 ltr:left-3 rtl:right-3 flex items-center text-amber-600",
-			},
+			icon: {},
 		},
 		animation: {
 			enter: "transition ease-in duration-300",

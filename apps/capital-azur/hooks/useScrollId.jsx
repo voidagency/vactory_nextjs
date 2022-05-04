@@ -1,19 +1,36 @@
 import { useEffect, useState } from "react"
 
 export const useScrollId = (id) => {
-	const [scrollId, setScrollId] = useState("")
+	const [scrollId, setScrollId] = useState(null)
 
 	useEffect(() => {
-		window.onload = () => {
-			setScrollId(document.getElementById(id))
+		const updateScrollId = () => {
+			var element = document.querySelector(id)
+			var position = element.getBoundingClientRect()
+
+			// checking whether fully visible
+			if (position.top >= 0 && position.bottom <= window.innerHeight) {
+				console.log("Element is fully visible in screen")
+			}
+
+			// checking for partial visibility
+			if (position.top < window.innerHeight && position.bottom >= 0) {
+				console.log(`Element is partially visible in screen ${element.id}`)
+				setScrollId(element.id)
+				{
+					console.log(scrollId)
+				}
+			}
 		}
 
-		window.addEventListener("scroll", window.onload)
+		updateScrollId()
 
-		window.onload()
+		window.addEventListener("scroll", updateScrollId)
 
-		return () => window.removeEventListener("scroll", window.onload)
-	}, [])
+		updateScrollId()
+
+		return () => window.removeEventListener("scroll", updateScrollId)
+	}, [scrollId, id])
 
 	return scrollId
 }

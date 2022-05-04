@@ -94,11 +94,13 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 				<div className="flex justify-center md:items-center md:justify-start">
 					<div className="flex-shrink-0 flex items-center">
 						{image}
-						<img
-							className="hidden lg:block h-24 w-auto"
-							src="https://capital-azur.com/themes/capital_azur/logo.png"
-							alt="Workflow"
-						/>
+						<a href="">
+							<img
+								className="hidden lg:block h-24 w-auto"
+								src="https://capital-azur.com/themes/capital_azur/logo.png"
+								alt="Workflow"
+							/>
+						</a>
 					</div>
 					<div className="hidden md:block sm:ml-24 md:ml-32 lg:ml-64">
 						<div className="flex space-x-4 divide-x  mt-2">
@@ -127,10 +129,10 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 
 export const Header = () => {
 	const navigation = [
-		{ name: "NOS PRODUITS", href: "#", current: false },
-		{ name: "NOUS CONNAITRE", href: "#", current: false },
-		{ name: "NEWS", href: "#", current: false },
-		{ name: "RECHERCHE", href: "#", current: true },
+		{ name: "NOS PRODUITS", href: "produits-services", current: false },
+		{ name: "NOUS CONNAITRE", href: "nous-connaitre", current: false },
+		{ name: "NEWS", href: "insights", current: false },
+		{ name: "RECHERCHE", href: "search", current: true },
 	]
 
 	const lang = [
