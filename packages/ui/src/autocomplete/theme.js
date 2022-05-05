@@ -1,7 +1,7 @@
 export const comboxOption = {
 	default: {
 		className: "cursor-default select-none relative py-2 pl-10 pr-4",
-		active: "text-white bg-teal-600",
+		active: "text-white bg-teal-600 rounded-md",
 		notActive: "text-gray-900",
 		span: {
 			className: "block truncate",
@@ -35,7 +35,7 @@ export const autocomplete = {
 				leaveTo: "opacity-0",
 				comboboxoptions: {
 					className:
-						"absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm",
+						"absolute w-full p-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm",
 					div: {
 						className: "cursor-default select-none relative py-2 px-4 text-gray-700",
 					},

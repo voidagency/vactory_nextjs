@@ -1,18 +1,18 @@
-export const input = {
+export const inputFile = {
 	default: {
-		wrapper: "relative flex w-full border border-gray-200 hover:border-gray-300",
+		wrapper: "relative flex w-full border border-gray-200 hover:border-gray-300 min-w-0",
 		inputWrapper: {
-			full: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
-			right: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
-			left: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
+			full: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 min-w-0",
+			right:
+				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 min-w-0",
+			left: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 min-w-0",
 			inside:
-				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
+				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 min-w-0",
 		},
 		label: "text-sm font-medium text-gray-700 pb-1",
+		file: "py-3 px-4 text-gray-400 truncate",
 		addonBefore: "bg-gray-200 bg-gray-200 flex items-center max-w-[30%]",
 		addonAfter: "bg-gray-200 flex items-center max-w-[30%]",
-		input:
-			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow border-none focus:ring-0",
 		prefix: "flex items-center pl-3",
 		sufix: "flex items-center pr-3",
 		errorMessage: "text-sm text-red-600 mt-1",
@@ -31,10 +31,9 @@ export const input = {
 				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
 		},
 		label: "text-sm font-medium text-gray-700 pb-1",
+		file: "py-3 px-4 text-gray-400 truncate",
 		addonBefore: "bg-gray-200 rounded-l-lg bg-gray-200 flex items-center max-w-[30%]",
 		addonAfter: "bg-gray-200 rounded-r-lg flex items-center max-w-[30%]",
-		input:
-			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow rounded-md border-none focus:ring-0",
 		prefix: "flex items-center pl-3",
 		sufix: "flex items-center pr-3",
 		errorMessage: "text-sm text-red-600 mt-1",
