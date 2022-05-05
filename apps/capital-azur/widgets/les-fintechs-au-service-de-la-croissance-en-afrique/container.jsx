@@ -1,36 +1,36 @@
 import { Heading } from "@vactory/ui/heading"
 import { Container } from "@vactory/ui/container"
 import { Button } from "@vactory/ui/button"
-import { data, themeContainer } from "./data"
+import { data } from "./data"
 
 export const Container2 = ({}) => {
 	return (
 		<Container layout="full" className="bg-blue-1000">
-			<div className="Container px-4 lg:px-32">
+			<Container className="Container px-4 lg:px-auto ">
 				<div className="grid md:grid-cols-2">
-					<div className="md:order-last pt-4">
+					<div className="md:order-last py-8 pr-12">
 						<Heading
 							level={2}
-							className="text-left tracking-widest text-white mb-12 mt-10 before:content-['-__'] before:text-white"
+							className="text-left tracking-widest text-white mb-12 md:mt-10 before:content-['-__'] before:text-white"
 						>
 							{data.title}
 						</Heading>
-						<p className="text-white tracking-wide antialiased mb-8 text-xl font-sans">
+						<p className="text-white tracking-wide antialiased mb-8 text-md font-sans">
 							{data.description}
 						</p>
 						{data.button && (
-							<div className="flex items-center justify-center py-6">
-								<Button outline="true" size="large">
+							<div className="flex pt-6">
+								<Button outline="true" size="large" className="font-semibold">
 									{data.button}
 								</Button>
 							</div>
 						)}
 					</div>
-					<div className="mt-16">
+					<div className="md:mt-20 md:mx-auto">
 						{data.image && <div className="">{data.image && data.image}</div>}
 					</div>
 				</div>
-			</div>
+			</Container>
 		</Container>
 	)
 }

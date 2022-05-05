@@ -10,7 +10,7 @@ export const InsightsWidget = () => {
 	const [filtredList, setFiltredList] = useState(data)
 
 	return (
-		<Container layout="full" className="py-10 px-12 bg-gray-1000">
+		<Container layout="full" className="py-10 bg-gray-1000">
 			<InsightFilter
 				ordre={ordre}
 				terms={terms}
