@@ -6,7 +6,7 @@ const Alert = ({ children }) => (
 	<div className="max-w-4xl mx-auto bg-yellow-50 ltr:border-l-4 rtl:border-r-4 border-yellow-400 p-4 my-2.5">
 		<div className="flex">
 			<div className="flex-shrink-0">
-				<Icon id="bullhorn-marketing-affiliate-broadcast" width="24" height="24" />
+				<Icon id="exclamation-circle" width="24" height="24" />
 			</div>
 			<div className="ltr:ml-3 rtl:mr-3">
 				<p className="text-sm text-yellow-700">{children}</p>

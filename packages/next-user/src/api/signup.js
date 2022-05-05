@@ -1,5 +1,5 @@
 import { deserialise } from "kitsu-core"
-import csrf from "@vactory/next/csrf"
+import { csurf } from "@vactory/next/server"
 
 // @todo: test: upload picture & docs
 // @todo: case: verify_mail

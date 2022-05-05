@@ -4,6 +4,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/components/*": ["components/*"],
+			"@/context/*": ["context/*"],
 			"@/lib/*": ["lib/*"],
 			"@vactory/ui/link": ["components/link/link.js"],
 			"@vactory/ui/button": ["components/button/button.js"]

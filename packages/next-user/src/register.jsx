@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useI18n } from "@vactory/next/i18n"
+import { useI18n } from "@vactory/next"
 import { useSession } from "next-auth/react"
 import { useSignUp, useCreateUser } from "@vactory/next-user"
 import { useForm } from "react-hook-form"

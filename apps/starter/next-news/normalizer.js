@@ -1,5 +1,5 @@
 import get from "lodash.get"
-import { stripHtml } from "@vactory/next/utils"
+import { stripHtml } from "@vactory/next"
 import truncate from "truncate"
 
 export const normalizeNodes = (nodes) => {

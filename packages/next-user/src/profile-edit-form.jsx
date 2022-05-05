@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useI18n } from "@vactory/next/i18n"
-import Image from "next/image"
+import { useI18n } from "@vactory/next"
 import { useRouter } from "next/router"
 import { useUpdateUserSession } from "@vactory/next-user"
-import { drupal } from "@vactory/next/api/drupal"
+import { drupal } from "@vactory/next/lib"
 import { Input } from "@vactory/ui/input"
 import { Button } from "@vactory/ui/button"
 import { Avatar } from "@vactory/ui/avatar"
@@ -24,7 +23,6 @@ const EditProfilePage = ({ user, accessToken }) => {
 	const [loading, setLoading] = useState(false)
 	const [loadingPhoto, setLoadingPhoto] = useState(false)
 	const updateUserSession = useUpdateUserSession()
-	// const fileUpload = useFileUpload()
 
 	const {
 		register,
@@ -45,7 +43,6 @@ const EditProfilePage = ({ user, accessToken }) => {
 		const { hide } = Toast.loading("Loading...", { hideAfter: 0 })
 
 		try {
-			// const response = await updateUser(input)
 			const response = await drupal.fetch(
 				`/${locale}/api/user/user/${currentUser.uuid}`,
 				{
