@@ -51,10 +51,16 @@ export const Footer = () => {
 						Capital Azur 2020 © All rights reserved
 					</span>
 
-					<span className="block text-sm sm:text-center text-blue-1000">
-						Conception et Developement{" "}
+					<span className="block flex-row text-sm sm:text-center text-blue-1000">
 						<a href="#" className="hover:underline">
-							VOID
+							<p>Conception et Developement </p>
+							<img
+								className="hidden lg:block"
+								src="https://capital-azur.com/themes/capital_azur/assets/img/void-logo-footer.png"
+								alt="Workflow"
+								width="50px"
+								height="50px"
+							/>
 						</a>
 					</span>
 				</div>

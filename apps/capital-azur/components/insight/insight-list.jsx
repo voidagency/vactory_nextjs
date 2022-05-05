@@ -1,18 +1,25 @@
 import React, { useState } from "react"
 import { Card } from "@vactory/ui/card"
+import { Container } from "@vactory/ui/container"
 
 export const InsightList = ({ insights }) => {
 	const [items, setItems] = useState(insights)
 
 	return (
-		<div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+		<Container className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full">
 			{items.map((item, index) => {
 				return (
-					<a href={item.url} className="flex group block px-4 py-4" key={index}>
+					<a
+						href={item.url}
+						className="flex flex-col sm:flex-row group block px-4 py-4 w-full"
+						key={index}
+					>
 						<Card
 							title={
 								<a href={item.url}>
-									<span className="group-hover:text-blue-1000 py-6 ">{item.title}</span>
+									<span className="group-hover:text-blue-1000 py-6 font-bold ">
+										{item.title}
+									</span>
 								</a>
 							}
 							urlContent={item.urlContent}
@@ -32,7 +39,7 @@ export const InsightList = ({ insights }) => {
 					</a>
 				)
 			})}
-		</div>
+		</Container>
 	)
 }
 

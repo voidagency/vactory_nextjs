@@ -1,7 +1,13 @@
 import React, { useContext } from "react"
 import clsx from "clsx"
 import { Link } from "@vactory/ui/link"
-import { ThemeContext } from "@vactory/ui/theme-context"
+
+const date = {
+	debutDay: "22",
+	debutMonth: "May",
+	finDay: "30",
+	finMonth: "May",
+}
 
 const Card = ({
 	variant = "default",
@@ -16,17 +22,27 @@ const Card = ({
 	category,
 	...props
 }) => {
-	const { card } = useContext(ThemeContext)
 	return (
 		<div
-			className="flex flex-row h-80 rounded-lg shadow-lg overflow-hidden bg-white text-black lrt:text-left rtl:text-right"
+			className="flex flex-col md:flex-row h-[600px] md:h-80 rounded-lg shadow-lg overflow-hidden bg-white text-black lrt:text-left rtl:text-right"
 			{...props}
 		>
-			<div className="flex-shrink-0 h-full w-1/3">
+			<div className="flex-shrink-0 h-1/2 w-full md:h-full md:w-2/5 overflow-hidden">
 				{image}
-				<div className="flex top-0"></div>
+				<div>
+					{date && (
+						<div className="flex flex-col relative -top-72 left-3/4 w-16 h-32 bg-red-500 rounded-lg text-white font-semobold items-center justify-center">
+							<span className="pt-2">{date.debutDay}</span>
+							<span>{date.debutMonth}</span>
+							<span>-</span>
+							<span>{date.finDay}</span>
+							<span className="pb-2">{date.finMonth}</span>
+						</div>
+					)}
+				</div>
 			</div>
-			<div className="px-4 py-3 w-2/3 flex flex-col z-10">
+
+			<div className="px-4 py-3 h-1/2 md:w-2/3 flex flex-col">
 				<Link href={url} className="block">
 					<>
 						{title && (

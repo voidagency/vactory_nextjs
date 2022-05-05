@@ -3,48 +3,33 @@ import React from "react"
 //import {ChiffreCleWrapper} from "../chiffreCleWrapper";
 //import {Banner} from '../banner'
 import { Input } from "./input"
+import { InputPassword } from "./inputPassword"
+import { Icon } from "@vactory/ui/icon"
 
-const colors = ["primary", "secondary", "success", "danger"]
-
-export const input = () => {
+export const defaultInput = () => {
 	return (
 		<div className="container">
-			<Input type="text" />
+			<Input variant="default" placeholder="Email..." />
 		</div>
 	)
 }
 
-export const inputWithPlaceholder = () => {
+export const roundedInput = () => {
 	return (
 		<div className="container">
-			<Input type="text" placeholder="input with placeholder" />
-		</div>
-	)
-}
-export const inputWithDescription = () => {
-	return (
-		<div className="container">
-			<Input type="text" description="input with Description" />
+			<Input variant="rounded" placeholder="Email..." />
 		</div>
 	)
 }
 
-export const inputWithDefaultValue = () => {
-	return (
-		<div className="container">
-			<Input type="text" value="input with default value" />
-		</div>
-	)
-}
-
-export const inputHasError = () => {
+export const inputWithLabelAndDescription = () => {
 	return (
 		<div className="container">
 			<Input
-				type="text"
-				placeholder="input has error"
-				hasError={true}
-				msgValidation="Your password must be less than 4 characters."
+				variant="rounded"
+				label="Email"
+				placeholder="Email..."
+				description="This is the description of the input"
 			/>
 		</div>
 	)
@@ -53,11 +38,69 @@ export const inputHasError = () => {
 export const inputWithPrefix = () => {
 	return (
 		<div className="container">
-			<Input type="text" placeholder="input with Prefix" prefix="http://" />
+			<Input
+				label="First name"
+				placeholder="Firstname..."
+				description="This is the description of the input"
+				prefix={<Icon id="user" className="w-5 h-5" />}
+			/>
+		</div>
+	)
+}
+
+export const inputWithSufix = () => {
+	return (
+		<div className="container">
+			<Input
+				label="First name"
+				placeholder="Firstname..."
+				description="This is the description of the input"
+				sufix={<Icon id="user" className="w-5 h-5" />}
+			/>
+		</div>
+	)
+}
+
+export const inputWithAddonAfter = () => {
+	return (
+		<div className="container">
+			<Input
+				label="First name"
+				placeholder="Firstname..."
+				description="This is the description of the input"
+				addonAfter={<Icon id="user" className="w-5 h-5 mx-3" />}
+			/>
+		</div>
+	)
+}
+
+export const inputWithAddonBefore = () => {
+	return (
+		<div className="container">
+			<Input
+				label="Domaine name"
+				placeholder="Enter your domaine"
+				description="This is the description of the input"
+				addonBefore={<span className="mx-3">https://</span>}
+			/>
+		</div>
+	)
+}
+
+export const inputHasError = () => {
+	return (
+		<div className="container">
+			<Input
+				label="City"
+				type="text"
+				placeholder="input has error"
+				hasError={true}
+				errorMessage="Your password must be less than 4 characters."
+			/>
 		</div>
 	)
 }
 
 export default {
-	title: "Primitives/inputs",
+	title: "Primitives/inputText",
 }
