@@ -1,7 +1,9 @@
+import { React } from "react"
 import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { theme } from "../theme/theme"
 import { Header } from "../components/header/header"
 import { Footer } from "@/components/footer/footer"
+import { Icon } from "@vactory/ui/icon"
 import { ToolBox } from "@vactory/ui/toolbox"
 import { MediaBox } from "@vactory/ui/socialmediabox"
 import { BackToTop } from "@vactory/ui/back-to-top"
@@ -33,10 +35,10 @@ const tools = [
 ]
 
 const socialmedia = [
-	{ id: "youtube-solid", href: "#" },
-	{ id: "twitter-solid", href: "#" },
-	{ id: "linkedin-solid", href: "#" },
 	{ id: "facebook-solid", href: "#" },
+	{ id: "twitter-solid", href: "#" },
+	{ id: "youtube-solid", href: "#" },
+	{ id: "linkedin-solid", href: "#" },
 ]
 
 export default function NousConnaitre() {
@@ -45,15 +47,22 @@ export default function NousConnaitre() {
 			<Header />
 			<BlockBanner />
 			<MenuNav />
-			<Container1 containerId="#container1" />
-			<ChiffreSlider containerId="#container2" variant="chiffreSlider" />
-			<Container3 containerId="#container3" />
-			<Vision containerId="#container4" />
-			<Conseil containerId="#container5" />
+			<div
+				data-mdb-spy="scroll"
+				data-mdb-target="#scrollspy1"
+				data-mdb-offset="0"
+				className="scrollspy-example"
+			>
+				<Container1 href="#container1" />
+				<ChiffreSlider href="#container2" variant="chiffreSlider" />
+				<Container3 href="#container3" />
+				<Vision href="#container4" />
+				<Conseil href="#container5" />
+			</div>
 			<AccederService />
 			<MediaBox list={socialmedia} />
 			<ToolBox list={tools} />
-			<BackToTop />
+			<BackToTop icon={<Icon id="chevron-up" width="30" height="30" />} />
 			<Footer />
 		</AppWrapper>
 	)

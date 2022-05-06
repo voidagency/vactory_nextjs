@@ -6,7 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const withPWA = require("next-pwa")
 const runtimeCaching = require("next-pwa/cache")
 // const { createLoader } = require("simple-functional-loader")
-const withModulesPlugin = require("@vactory/next/webpack-modules-loader")
+const withModulesPlugin = require("@vactory/next/webpack")
 // const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin")
 // const path = require("path")
 // const aliasOverrides = require("./config/alias-overrides")
@@ -80,6 +80,7 @@ const nextConfig = {
 	// },
 	async rewrites() {
 		// @todo: download rewrites
+		// @todo: even better, use node field settings for this.
 		return [
 			{
 				source: "/fr/actualites/:pays/:theme",

@@ -1,6 +1,6 @@
 import { deserialise } from "kitsu-core"
-import csrf from "@vactory/next/csrf"
-import { getApiURL, getRequestLanguage } from "@vactory/next/utils/ssr"
+import { csurf, getRequestLanguage } from "@vactory/next/server"
+import { getApiURL } from "@vactory/next"
 
 const resetUserPassword = async (language, email) => {
 	const CREATE_USER_ENDPOINT = `${getApiURL(language)}/api/user/password/reset`
@@ -57,12 +57,23 @@ export const resetPasswordHandler = async (req, res) => {
 		return
 	}
 
-	const response = await resetUserPassword(getRequestLanguage(req), email)
+	let response
+	try {
+		response = await resetUserPassword(getRequestLanguage(req), email)
+	} catch (error) {
+		console.log(error.errors)
+		res.status(422).json({
+			status: false,
+			errors: error.errors,
+		})
+		return
+	}
+
 	const json = await response.json()
 	const result = deserialise(json)
 
 	if (result.errors) {
-		res.status(200).json({
+		res.status(422).json({
 			status: false,
 			errors: normalizeErrors(result.errors),
 		})

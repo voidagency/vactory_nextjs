@@ -71,7 +71,7 @@ export const JobFilter = () => {
 				<Button
 					variant={"primary"}
 					size={"normal"}
-					className="grow uppercase shadow-md font-semibold"
+					className="grow uppercase bg-blue-1000 shadow-md font-semibold"
 				>
 					Appliquer
 				</Button>

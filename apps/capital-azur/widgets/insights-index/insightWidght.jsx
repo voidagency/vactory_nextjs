@@ -10,14 +10,18 @@ export const InsightCard = () => {
 			<TemplateWrapper data={data}>
 				{data.dataCard && (
 					<div className="">
-						<div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+						<div className="grid gap-x-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
 							{data.dataCard.map((item, index) => {
 								return (
-									<a href={item.url} className="flex group block px-4 py-4" key={index}>
+									<a
+										href={item.url}
+										className="flex group block px-auto py-4"
+										key={index}
+									>
 										<Card
 											title={
 												<a href={item.url}>
-													<span className="group-hover:text-blue-1000 py-6 ">
+													<span className="group-hover:text-blue-1000 py-6">
 														{item.title}
 													</span>
 												</a>

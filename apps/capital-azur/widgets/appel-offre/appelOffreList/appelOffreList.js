@@ -50,7 +50,7 @@ export const AppelOffreList = () => {
 						className="p-5 pb-8 border border-gray-100 dark:border-gray-600 mb-8"
 						category={
 							<div className="flex items-center mb-6">
-								<span className="inline mr-4 bg-blue-500 rounded-2xl leading-4 text-white text-[0.6rem] px-4 py-0.5">
+								<span className="inline mr-4 bg-blue-1200 rounded-2xl leading-4 text-white text-[0.6rem] px-4 py-0.5">
 									{card.tag}
 								</span>
 								<span className="text-gray-400 text-sm">{card.date}</span>

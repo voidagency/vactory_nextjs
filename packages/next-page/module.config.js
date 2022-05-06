@@ -23,6 +23,7 @@ const nodeParams = {
 			"node_settings",
 			"internal_blocks",
 			"internal_breadcrumb",
+			"internal_extra",
 		].join(","),
 		"paragraph--vactory_component": [
 			"drupal_internal__id",

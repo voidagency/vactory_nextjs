@@ -4,9 +4,9 @@ import { Card } from "@vactory/ui/card"
 import { TemplateWrapper } from "@/components/template-wrapper/templateWrapper"
 import { data } from "./data"
 
-export const Conseil = ({ containerId }) => {
+export const Conseil = () => {
 	return (
-		<Container layout="full" id={containerId} className="">
+		<Container layout="full" id="container5" className="">
 			<TemplateWrapper data={data}>
 				{data.dataCard && (
 					<div className="">

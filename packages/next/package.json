@@ -8,24 +8,10 @@
   },
   "exports": {
     ".": "./index.js",
-    "./api/client": "./src/api/client.js",
-    "./api/drupal-client": "./src/api/drupal-client.js",
-    "./api/drupal": "./src/api/drupal.js",
-    "./api/handler": "./src/api/handler.js",
-    "./app": "./src/app/handler.jsx",
-    "./node": "./src/node/node.jsx",
-    "./cache/lru": "./src/cache/lru.js",
-    "./node/handler": "./src/node/handler.js",
-    "./menus": "./src/menus/menus.jsx",
-    "./menus/handler": "./src/menus/handler.js",
-    "./csrf": "./src/security/csrf.js",
-    "./i18n": "./src/i18n/index.js",
-    "./i18n/handler": "./src/i18n/handler.js",
-    "./wysiwyg": "./src/wysiwyg.jsx",
-    "./utils": "./src/utils/index.js",
-    "./utils/ssr": "./src/utils/ssr.js",
+    "./server": "./src/server/index.js",
+    "./lib": "./src/lib/index.js",
+    "./wysiwyg": "./src/components/wysiwyg.jsx",
     "./hooks": "./src/hooks/index.js",
-    "./webpack-modules-loader": "./src/webpack-modules-loader.js",
-    "./utils/api/*": "./src/utils/api/*.js"
+    "./webpack": "./src/webpack.js"
   }
 }

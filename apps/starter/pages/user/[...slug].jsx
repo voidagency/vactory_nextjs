@@ -1,10 +1,10 @@
 import { UserPageHandler } from "@vactory/next-user"
+import { getUserServerSideProps } from "@vactory/next-user/server"
 import { Layout } from "@/components/layout"
-import { getUserServerSideProps } from "../../../../packages/next-user/src/page-handler-server"
 
 export default function UserPage(props) {
 	return (
-		<Layout>
+		<Layout {...props}>
 			<UserPageHandler {...props} />
 		</Layout>
 	)

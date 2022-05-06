@@ -11,7 +11,7 @@ export const button = {
 	},
 	variant: {
 		primary:
-			"bg-blue-1000 hover:bg-white hover:bg-border border border-solid border-blue-1000 text-white hover:text-blue-1000 ",
+			"hover:bg-white hover:bg-border border border-solid border-blue-1000 text-white hover:text-blue-1000 ",
 		secondary:
 			"bg-gray-200 border-gray-200 border border-solid hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-gray-900 hover:text-white",
 		danger:

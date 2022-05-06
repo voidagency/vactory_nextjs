@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { useI18n } from "@vactory/next/i18n"
+import { useI18n } from "@vactory/next"
 import { useSession } from "next-auth/react"
 import { useResetUserPassword } from "@vactory/next-user"
 import { useForm } from "react-hook-form"
 import dynamic from "next/dynamic"
+import { Input } from "@vactory/ui/input"
+import { Button } from "@vactory/ui/button"
 
 const ReCaptcha = dynamic(() => import("react-google-recaptcha"), {
 	ssr: false,
@@ -45,12 +47,24 @@ const ResetPasswordPage = ({ node }) => {
 		const { hide } = Toast.loading("Loading...", { hideAfter: 0 })
 		try {
 			const res = await resetUserPassword(data)
-			setLoading(false)
-			hide()
-			setModalOpen(true)
-			// recaptchaRef.current.reset()
-			console.log(data)
-			console.log(res)
+			if (res?.ok) {
+				setLoading(false)
+				hide()
+				setModalOpen(true)
+			} else {
+				setLoading(false)
+				hide()
+				setError(
+					"email",
+					{
+						type: "manual",
+						message: "Nom d'utilisateur ou adresse e-mail non reconnu.",
+					},
+					{
+						shouldFocus: true,
+					}
+				)
+			}
 		} catch (err) {
 			hide()
 			Toast.error(t("Une erreur s'est produite"))
@@ -81,17 +95,16 @@ const ResetPasswordPage = ({ node }) => {
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
 						E-mail
 					</label>
-					<input
-						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="email"
-						name="email"
+					<Input
 						type="text"
-						placeholder="foo@bar.com"
-						{...register("email", { required: true })}
+						name="email"
+						id="email"
+						autoComplete="email"
+						placeholder="Saisissez votre adresse mail."
+						{...register("email", { required: "Email is required" })}
+						hasError={errors.email}
+						msgValidation={errors?.email?.message}
 					/>
-					{errors.email && (
-						<p className="text-red text-xs italic">Please choose an email.</p>
-					)}
 				</div>
 				<div className="relative my-4 flex flex-col items-end">
 					<input
@@ -128,13 +141,9 @@ const ResetPasswordPage = ({ node }) => {
 					)}
 				</div>
 				<div className="flex items-center justify-between">
-					<button
-						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-						type="submit"
-						disabled={loading}
-					>
+					<Button type="submit" disabled={loading}>
 						{t("webform:Submit")}
-					</button>
+					</Button>
 				</div>
 			</form>
 			<Modal open={isModalOpen} setOpen={setModalOpen} />

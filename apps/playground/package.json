@@ -14,7 +14,8 @@
     "storybook:dev": "start-storybook -p 6006",
     "storybook:no-cache": "start-storybook -p 8082 --no-manager-cache",
     "storybook:build": "build-storybook",
-    "tailwind:build": "npx tailwindcss -i ./styles/globals.css -o ./.storybook/style.css --watch"
+    "tailwind:build": "npx tailwindcss -i ./styles/globals.css -o ./.storybook/style.css --watch",
+    "build:icons": "svg-spreact ./components/icon/icons --optimize true --tidy true > ./public/icons.svg"
   },
   "peerDependencies": {
     "@vactory/ui": "*",

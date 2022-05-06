@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
+import { NodePageContext } from "@vactory/next"
 import { BlocksTemplate } from "./blocks.template"
 
-export const BlocksController = ({ blocks = [], region = "" }) => {
+export const BlocksController = ({ region = "" }) => {
+	const { blocks } = useContext(NodePageContext)
+
 	const regionBlocks = blocks.filter((block) => block.region === region)
 
 	if (regionBlocks.length <= 0) {

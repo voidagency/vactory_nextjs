@@ -4,6 +4,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 
 const nextConfig = {
+	webpack: (config) => {
+		config.resolve.alias["@vactory/ui/icon"] = "@/components/icon/icon.js" // Example overide
+		return config
+	},
 	experimental: {
 		externalDir: true,
 	},
