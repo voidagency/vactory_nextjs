@@ -47,18 +47,11 @@ export default function NousConnaitre() {
 			<Header />
 			<BlockBanner />
 			<MenuNav />
-			<div
-				data-mdb-spy="scroll"
-				data-mdb-target="#scrollspy1"
-				data-mdb-offset="0"
-				className="scrollspy-example"
-			>
-				<Container1 href="#container1" />
-				<ChiffreSlider href="#container2" variant="chiffreSlider" />
-				<Container3 href="#container3" />
-				<Vision href="#container4" />
-				<Conseil href="#container5" />
-			</div>
+			<Container1 href="#container1" />
+			<ChiffreSlider href="#container2" variant="chiffreSlider" />
+			<Container3 href="#container3" />
+			<Vision href="#container4" />
+			<Conseil href="#container5" />
 			<AccederService />
 			<MediaBox list={socialmedia} />
 			<ToolBox list={tools} />

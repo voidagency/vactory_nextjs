@@ -10,17 +10,17 @@ export const useScrollId = (id) => {
 
 			// checking whether fully visible
 			if (position.top >= 0 && position.bottom <= window.innerHeight) {
-				console.log("Element is fully visible in screen")
+				// return scrollId
 			}
 
 			// checking for partial visibility
-			if (position.top < window.innerHeight && position.bottom >= 0) {
-				console.log(`Element is partially visible in screen ${element.id}`)
+			if (
+				(position.top < window.innerHeight / 2 ||
+					window.innerHeight / 2 > position.bottom) &&
+				position.bottom > 10
+			) {
 				setScrollId(element.id)
-				{
-					console.log(scrollId)
-				}
-			}
+			} else setScrollId("")
 		}
 
 		updateScrollId()
