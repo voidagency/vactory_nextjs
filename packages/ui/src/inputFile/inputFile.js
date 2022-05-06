@@ -37,7 +37,7 @@ export const InputFile = ({
 	}
 
 	return (
-		<div>
+		<div className="w-full">
 			{label && <label className={clsx(inputFile[variant].label)}>{label}</label>}
 			<div
 				className={clsx(

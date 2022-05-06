@@ -1,106 +1,76 @@
 import React from "react"
-//import { withKnobs, boolean } from "@storybook/addon-knobs";
-//import {ChiffreCleWrapper} from "../chiffreCleWrapper";
-//import {Banner} from '../banner'
 import { Input } from "./input"
-import { InputPassword } from "./inputPassword"
 import { Icon } from "@vactory/ui/icon"
+import { divide } from "lodash"
 
-export const defaultInput = () => {
+const Template = (args) => {
+	const prefix = args.prefix === null ? null : <Icon id="user" className="w-5 h-5" />
+	const sufix =
+		args.sufix === null ? null : <Icon id="question-mark-circle" className="w-5 h-5" />
 	return (
-		<div className="container">
-			<Input variant="default" placeholder="Email..." />
+		<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
+			<Input {...args} prefix={prefix} sufix={sufix}></Input>
 		</div>
 	)
 }
 
-export const roundedInput = () => {
-	return (
-		<div className="container">
-			<Input variant="rounded" placeholder="Email..." />
-		</div>
-	)
+export const InputText = Template.bind({})
+
+InputText.argTypes = {
+	variant: {
+		defaultValue: "default",
+		control: { type: "select" },
+		options: ["default", "rounded"],
+	},
+	label: {
+		defaultValue: "Label",
+		control: { type: "text" },
+	},
+	placeholder: {
+		defaultValue: "Placeholder",
+		control: { type: "text" },
+	},
+	description: {
+		defaultValue: "This could be the description of your input",
+		control: { type: "text" },
+	},
+	hasError: {
+		defaultValue: false,
+		control: { type: "boolean" },
+	},
+	errorMessage: {
+		defaultValue: "This could be the error message of your input",
+		control: { type: "text" },
+	},
+	prefix: {
+		defaultValue: null,
+		control: { type: "radio" },
+		options: {
+			null: null,
+			icon: "prefix",
+		},
+	},
+	sufix: {
+		defaultValue: null,
+		control: { type: "radio" },
+		options: {
+			null: null,
+			icon: "sufix",
+		},
+	},
 }
 
-export const inputWithLabelAndDescription = () => {
-	return (
-		<div className="container">
-			<Input
-				variant="rounded"
-				label="Email"
-				placeholder="Email..."
-				description="This is the description of the input"
-			/>
-		</div>
-	)
+export const InputTextWithAddons = Template.bind({})
+
+InputTextWithAddons.args = {
+	addonBefore: <span className="mx-3 truncate">https://</span>,
+	addonAfter: <Icon id="user" className="w-5 h-5 mx-3" />,
 }
 
-export const inputWithPrefix = () => {
-	return (
-		<div className="container">
-			<Input
-				label="First name"
-				placeholder="Firstname..."
-				description="This is the description of the input"
-				prefix={<Icon id="user" className="w-5 h-5" />}
-			/>
-		</div>
-	)
-}
-
-export const inputWithSufix = () => {
-	return (
-		<div className="container">
-			<Input
-				label="First name"
-				placeholder="Firstname..."
-				description="This is the description of the input"
-				sufix={<Icon id="user" className="w-5 h-5" />}
-			/>
-		</div>
-	)
-}
-
-export const inputWithAddonAfter = () => {
-	return (
-		<div className="container">
-			<Input
-				label="First name"
-				placeholder="Firstname..."
-				description="This is the description of the input"
-				addonAfter={<Icon id="user" className="w-5 h-5 mx-3" />}
-			/>
-		</div>
-	)
-}
-
-export const inputWithAddonBefore = () => {
-	return (
-		<div className="container">
-			<Input
-				label="Domaine name"
-				placeholder="Enter your domaine"
-				description="This is the description of the input"
-				addonBefore={<span className="mx-3">https://</span>}
-			/>
-		</div>
-	)
-}
-
-export const inputHasError = () => {
-	return (
-		<div className="container">
-			<Input
-				label="City"
-				type="text"
-				placeholder="input has error"
-				hasError={true}
-				errorMessage="Your password must be less than 4 characters."
-			/>
-		</div>
-	)
+InputTextWithAddons.argTypes = {
+	...InputText.argTypes,
 }
 
 export default {
-	title: "Primitives/inputText",
+	title: "Primitives/Input",
 }

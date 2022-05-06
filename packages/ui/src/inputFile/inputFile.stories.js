@@ -1,32 +1,24 @@
-import InputFile from "./inputFile"
+import { InputFile } from "./inputFile"
 import { Icon } from "@vactory/ui/icon"
+import { InputText } from "../input/input.stories"
 
-export const defaultInputFile = () => {
+const Template = (args) => {
+	const prefix = args.prefix === null ? null : <Icon id="user" width="15" height="15" />
+	const sufix =
+		args.sufix === null ? null : <Icon id="question-mark-circle" width="15" height="15" />
 	return (
-		<div className="max-w-sm mx-auto">
-			<InputFile
-				variant="default"
-				label={"File"}
-				description={"iliu iuoiuoiuoiu oui iou oiu oiu oulu pou poopi"}
-				sufix={<Icon id="user" className="w-5 h-5 text-black" />}
-			/>
+		<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
+			<InputFile {...args} prefix={prefix} sufix={sufix}></InputFile>
 		</div>
 	)
 }
 
-export const roundedInputFile = () => {
-	return (
-		<div className="max-w-xl mx-auto">
-			<InputFile
-				variant="rounded"
-				label={"File"}
-				description={"iliu iuoiuoiuoiu oui iou oiu oiu oulu pou poopi"}
-				sufix={<Icon id="user" className="w-5 h-5 text-black" />}
-			/>
-		</div>
-	)
+export const InputFileStories = Template.bind({})
+
+InputFileStories.argTypes = {
+	...InputText.argTypes,
 }
 
 export default {
-	title: "Primitives/inputFile",
+	title: "Primitives/InputFile",
 }

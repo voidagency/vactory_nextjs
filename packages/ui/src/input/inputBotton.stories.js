@@ -1,76 +1,31 @@
 import InputButton from "./inputButton"
+import { InputText } from "./input.stories"
 import { Icon } from "@vactory/ui/icon"
 
-export const defaultInputButton = () => {
+const Template = (args) => {
+	const prefix = args.prefix === null ? null : <Icon id="user" className="w-5 h-5" />
+	const sufix =
+		args.sufix === null ? null : <Icon id="question-mark-circle" className="w-5 h-5" />
 	return (
-		<div className="container">
+		<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
 			<InputButton
-				label="input with button"
-				description="by clicking on the button you would you ave access to the value of the input"
-				buttonClasses={"px-6 h-full"}
-				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
-				placeholder="Search..."
-			/>
+				buttonClasses={"truncate h-full"}
+				{...args}
+				prefix={prefix}
+				sufix={sufix}
+			></InputButton>
 		</div>
 	)
 }
 
-export const roundedInputButton = () => {
-	return (
-		<div className="container">
-			<InputButton
-				variant="rounded"
-				label="input with button"
-				description="by clicking on the button you would you ave access to the value of the input"
-				buttonClasses={"px-6 h-full"}
-				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
-				placeholder="Search..."
-			/>
-		</div>
-	)
-}
+export const InputButtonStories = Template.bind({})
 
-export const InputButtonWithSufix = () => {
-	return (
-		<div className="container">
-			<InputButton
-				label="input with button"
-				description="by clicking on the button you would you ave access to the value of the input"
-				buttonClasses={"px-6 h-full"}
-				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
-				placeholder="Search..."
-				sufix={<Icon id="question-mark-circle" className="w-5 h-5" />}
-			/>
-		</div>
-	)
-}
-
-export const InputButtonWithPrefix = () => {
-	return (
-		<div className="container">
-			<InputButton
-				label="input with button"
-				description="by clicking on the button you would you ave access to the value of the input"
-				buttonClasses={"px-6 h-full"}
-				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
-				placeholder="Search..."
-				prefix={<Icon id="question-mark-circle" className="w-5 h-5" />}
-			/>
-		</div>
-	)
-}
-
-export const InputButtonWithAddonBefore = () => {
-	return (
-		<div className="container">
-			<InputButton
-				buttonClasses={"px-6 h-full"}
-				buttonContent={<Icon id="document-duplicate" className="w-5 h-5 text-white" />}
-				placeholder="Search..."
-				addonBefore={<Icon id="search" className="w-5 h-5 mx-4" />}
-			/>
-		</div>
-	)
+InputButtonStories.argTypes = {
+	...InputText.argTypes,
+	buttonContent: {
+		defaultValue: "Search",
+		control: { type: "text" },
+	},
 }
 
 export default {

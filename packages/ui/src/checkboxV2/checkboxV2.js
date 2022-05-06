@@ -13,7 +13,11 @@ export const CheckboxInput = forwardRef(
 		}
 
 		useEffect(() => {
-			onChange?.(checked)
+			onChange?.(isChecked)
+		}, [isChecked])
+
+		useEffect(() => {
+			setIsChecked(checked)
 		}, [checked])
 
 		return (

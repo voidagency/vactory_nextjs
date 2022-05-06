@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import clsx from "clsx"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
-export const CheckboxInput = ({ label, id, disabled = true, checked }) => {
+export const CheckboxInput = ({ label, id, disabled = false, checked = false }) => {
 	const { checkbox } = useContext(ThemeContext)
 	const [isChecked, setIsChecked] = useState(checked)
 	const handleInputChange = () => {
