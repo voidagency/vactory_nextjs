@@ -1,12 +1,8 @@
 export const select = {
 	default: {
-		wrapper: "w-full max-w-xs relative shadow-lg hover:shadow-none ",
+		wrapper: "w-full max-w-xs relative shadow-lg hover:shadow-none",
 		button: {
-<<<<<<< HEAD
 			base: "relative w-full py-3 pl-3 pr-10 text-left bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-600 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
-=======
-			base: "relative w-full py-3 pl-3 pr-10 text-left bg-gray-1000  rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm truncate",
->>>>>>> f51d032132d53b8e1fdb5d399c59ebb2a07c3393
 			icon: {
 				id: "chevron-down",
 				width: "30",
