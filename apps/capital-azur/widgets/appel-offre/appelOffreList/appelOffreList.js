@@ -1,6 +1,7 @@
 import React from "react"
 import { Card } from "../../../components/card/cardAppelOffer"
 import { Button } from "@vactory/ui/button"
+import ThemeToggler from "@/components/themeToggler"
 
 const cards = [
 	{
@@ -27,15 +28,26 @@ const cards = [
 	},
 ]
 
+const AppelOffreHeader = () => {
+	return (
+		<div className="w-full flex justify-between items-center mb-12">
+			<h1 className="text-3xl font-semibold">Appels d'offres</h1>
+			<ThemeToggler></ThemeToggler>
+		</div>
+	)
+}
+
 export const AppelOffreList = () => {
 	return (
 		<>
+			<AppelOffreHeader></AppelOffreHeader>
 			{cards.map((card) => {
 				return (
 					<Card
+						key={card.title}
 						title={card.title}
 						excerpt={card.excerpt}
-						className="p-5 pb-8 border border-slate-100 mb-8"
+						className="p-5 pb-8 border border-gray-100 dark:border-gray-600 mb-8"
 						category={
 							<div className="flex items-center mb-6">
 								<span className="inline mr-4 bg-blue-500 rounded-2xl leading-4 text-white text-[0.6rem] px-4 py-0.5">
@@ -55,7 +67,7 @@ export const AppelOffreList = () => {
 							</Button>
 						}
 						url="/about"
-						variant={"cardAppelOffre"}
+						variant={"appelOffre"}
 					/>
 				)
 			})}

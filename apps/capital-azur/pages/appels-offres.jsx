@@ -7,6 +7,8 @@ import { Container } from "@vactory/ui/container"
 import { AppWrapper } from "@vactory/ui/app-wrapper"
 import { Layer } from "@vactory/ui/layer"
 
+import { ThemeToggler } from "@/components/themeToggler"
+
 import AppelOffreList from "../widgets/appel-offre/appelOffreList/appelOffreList"
 
 import { theme } from "../theme/theme"

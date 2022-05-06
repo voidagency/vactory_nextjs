@@ -208,12 +208,26 @@
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="calendar">
     <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
   </symbol>
+  <symbol viewBox="0 0 42 40" xmlns="http://www.w3.org/2000/svg" id="call-center">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M25.238 37.163a2.629 2.629 0 0 0-2.629-2.628h-3.218a2.629 2.629 0 0 0 0 5.257h3.218a2.628 2.628 0 0 0 2.629-2.629zM5.526 30.385c.439.034.97.053 1.503.022a7.462 7.462 0 0 0 7.32 6.018h1.004a4.108 4.108 0 0 0-.001 1.476H14.35a8.938 8.938 0 0 1-8.824-7.516zm-.751-1.57A5.727 5.727 0 0 1 0 23.166v-3.49a5.727 5.727 0 0 1 5.727-5.726h.38C6.718 6.26 13.153.208 21 .208c7.848 0 14.283 6.052 14.892 13.743h.381A5.727 5.727 0 0 1 42 19.677v3.49a5.726 5.726 0 0 1-5.727 5.727h-1.69a1.27 1.27 0 0 1-1.269-1.269V15.147c0-6.8-5.513-12.314-12.314-12.314S8.686 8.346 8.686 15.147v12.478c0 .495-.284.924-.697 1.133-1.138.395-2.902.109-3.214.056z" fill="currentColor"></path>
+  </symbol>
   <symbol viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="camera-solid">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1.586a1 1 0 0 1-.707-.293l-1.121-1.121A2 2 0 0 0 11.172 3H8.828a2 2 0 0 0-1.414.586L6.293 4.707A1 1 0 0 1 5.586 5H4zm6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="currentColor"></path>
   </symbol>
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="camera">
     <path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
     <path d="M15 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
+  </symbol>
+  <symbol viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" id="carburant">
+    <g clip-path="url(#clip0_1132_20386)" fill="#667085">
+      <path d="M13.942 4.15l1.188-1.19h.924c.28 0 .506-.226.506-.506V.866a.506.506 0 0 0-.506-.506h-2.408a.506.506 0 0 0-.358.148l-1.494 1.494-.239-.239a.506.506 0 0 0-.715 0L9.756 2.847A1.842 1.842 0 0 0 8.61 2.45H2.216A1.858 1.858 0 0 0 .36 4.306v11.478c0 1.023.833 1.856 1.856 1.856h9.421a1.858 1.858 0 0 0 1.857-1.856v-8.45c0-.421-.14-.82-.397-1.146l1.084-1.084a.506.506 0 0 0 0-.716l-.239-.238zm-.087-2.777h1.693v.576h-.627a.506.506 0 0 0-.358.148l-1.337 1.337-.716-.716 1.345-1.345zm-1.374 14.41a.845.845 0 0 1-.844.845h-9.42a.845.845 0 0 1-.844-.844V4.306c0-.465.378-.843.843-.843H8.61c.225 0 .437.087.596.247l3.028 3.027c.16.16.247.372.247.597v8.45zm-.09-10.32l-1.91-1.91.717-.716 1.909 1.91-.716.715z"></path>
+      <path d="M8.688 4.623a.506.506 0 0 0-.358-.148H3.89c-.83 0-1.505.675-1.505 1.504 0 .83.675 1.505 1.504 1.505h6.437a.506.506 0 0 0 .358-.865L8.688 4.623zM3.89 6.471a.492.492 0 0 1 0-.983h4.232l.983.983H3.89zm13.16.084c-.263-.4-.523-.726-.534-.74a.506.506 0 0 0-.79 0c-.011.014-.271.34-.535.74-.528.805-.589 1.184-.589 1.399a1.52 1.52 0 0 0 1.519 1.519 1.52 1.52 0 0 0 1.519-1.519c0-.215-.061-.594-.59-1.399zm-.93 1.905a.507.507 0 0 1-.505-.505c.004-.146.218-.544.506-.97.288.426.501.823.506.97a.507.507 0 0 1-.506.505zM9.967 9.732a.506.506 0 0 0-.716-.716l-.864.864h-2.92l-.864-.864a.506.506 0 0 0-.716.716l.865.864v2.92l-.865.864a.506.506 0 0 0 .716.716l.864-.865h2.92l.864.865a.505.505 0 0 0 .716 0 .506.506 0 0 0 0-.716l-.864-.865v-2.92l.864-.863zM8.09 13.219H5.764v-2.327H8.09v2.327z"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_1132_20386">
+        <path fill="currentColor" transform="translate(.36 .36)" d="M0 0h17.28v17.28H0z"></path>
+      </clipPath>
+    </defs>
   </symbol>
   <symbol viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="cash-solid">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2V6h10a2 2 0 0 0-2-2H4zm2 6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4zm6 4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="currentColor"></path>
@@ -475,6 +489,10 @@
   </symbol>
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="database">
     <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
+  </symbol>
+  <symbol viewBox="0 0 20 18" xmlns="http://www.w3.org/2000/svg" id="date">
+    <path d="M17.871 5.067l.696-.696a.57.57 0 1 0-.805-.805l-.713.714a7.242 7.242 0 0 0-2.595-1.361V1.567h.483a.57.57 0 1 0 0-1.139h-4.95a.57.57 0 0 0 0 1.139h.483v1.352a7.261 7.261 0 0 0-2.595 1.36l-.714-.713a.57.57 0 1 0-.805.805l.697.696a7.224 7.224 0 0 0-1.844 4.827c0 3.999 3.254 7.252 7.253 7.252s7.253-3.253 7.253-7.252a7.223 7.223 0 0 0-1.844-4.827zm-6.263-3.5h1.708V2.69a7.301 7.301 0 0 0-1.708 0V1.567zm.854 14.441a6.121 6.121 0 0 1-6.114-6.114 6.121 6.121 0 0 1 6.114-6.115 6.121 6.121 0 0 1 6.114 6.115 6.121 6.121 0 0 1-6.114 6.114z" fill="currentColor"></path>
+    <path d="M12.462 4.917h-.57v4.74l-3.35 3.351.403.403a4.944 4.944 0 0 0 3.517 1.459 4.982 4.982 0 0 0 4.976-4.977 4.982 4.982 0 0 0-4.976-4.976zm0 8.814a3.805 3.805 0 0 1-2.28-.752l2.849-2.85V6.098a3.844 3.844 0 0 1 3.268 3.795 3.842 3.842 0 0 1-3.837 3.838zM1.424 8.755a.57.57 0 0 1 .57-.569H3.13a.57.57 0 1 1 0 1.138H1.993a.57.57 0 0 1-.569-.569zM.286 6.099a.57.57 0 0 1 .57-.57H4.17a.57.57 0 1 1 0 1.14H.855a.57.57 0 0 1-.57-.57zm0 4.933a.57.57 0 0 1 .57-.57H3.13a.57.57 0 1 1 0 1.14H.855a.57.57 0 0 1-.57-.57zm1.138 2.656a.57.57 0 0 1 .57-.569H4.17a.57.57 0 0 1 0 1.139H1.993a.57.57 0 0 1-.569-.57z" fill="currentColor"></path>
   </symbol>
   <symbol viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="desktop-computer-solid">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.22l.123.489.804.804A1 1 0 0 1 13 18H7a1 1 0 0 1-.707-1.707l.804-.804L7.22 15H5a2 2 0 0 1-2-2V5zm5.771 7H5V5h10v7H8.771z" fill="currentColor"></path>
@@ -770,6 +788,10 @@
   </symbol>
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="key">
     <path d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 1 1 21 9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
+  </symbol>
+  <symbol viewBox="0 0 18 15" xmlns="http://www.w3.org/2000/svg" id="km">
+    <path d="M15.153 3.172a.677.677 0 0 0-.86-.08c-1.013.69-6.092 4.16-6.638 4.707a2.033 2.033 0 0 0 0 2.87c.396.397.916.595 1.436.595.52 0 1.04-.198 1.435-.594.546-.546 4.017-5.625 4.707-6.638a.677.677 0 0 0-.08-.86zm-5.584 6.54a.677.677 0 0 1-.957-.956c.212-.21 1.654-1.238 3.428-2.472-1.233 1.776-2.26 3.217-2.47 3.429z" fill="currentColor"></path>
+    <path d="M3.55 12.382l-.836.408a7.274 7.274 0 0 1-.456-6.15l.957.459a.674.674 0 0 0 .903-.318.677.677 0 0 0-.318-.903l-.945-.453a7.319 7.319 0 0 1 5.56-3.469v1.018a.677.677 0 1 0 1.353 0V1.956a7.225 7.225 0 0 1 2.327.613.677.677 0 0 0 .557-1.234 8.597 8.597 0 0 0-3.56-.763c-2.315 0-4.49.9-6.126 2.537A8.606 8.606 0 0 0 .428 9.234c0 1.71.508 3.373 1.468 4.81a.677.677 0 0 0 .86.231l1.387-.677a.677.677 0 1 0-.594-1.216zm13.44-6.709a.677.677 0 1 0-1.233.557c.427.946.643 1.957.643 3.004a7.258 7.258 0 0 1-.934 3.56l-.873-.415a.677.677 0 0 0-.582 1.222l1.422.677a.675.675 0 0 0 .853-.235 8.629 8.629 0 0 0 1.468-4.809c0-1.24-.257-2.438-.764-3.56z" fill="currentColor"></path>
   </symbol>
   <symbol viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="library-solid">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M10.496 2.132a1 1 0 0 0-.992 0l-7 4A1 1 0 0 0 3 8v7a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2V8a1 1 0 0 0 .496-1.868l-7-4zM6 9a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0v-3a1 1 0 0 0-1-1zm3 1a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0v-3zm5-1a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0v-3a1 1 0 0 0-1-1z" fill="currentColor"></path>
@@ -1405,6 +1427,9 @@
   <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="view-list">
     <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="transparent"></path>
   </symbol>
+  <symbol viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" id="vitesse">
+    <path d="M17.16 2.744a1.904 1.904 0 1 0-2.72 1.72v2.632c0 .601-.487 1.088-1.088 1.088H10.72a1.911 1.911 0 0 0-.904-.904V4.465a1.904 1.904 0 1 0-1.632 0V7.28a1.911 1.911 0 0 0-.905.904H3.56v-3.72a1.904 1.904 0 1 0-1.631 0v9.072a1.904 1.904 0 1 0 1.632 0v-3.72h3.72c.187.396.508.716.904.905v2.815a1.904 1.904 0 1 0 1.632 0V10.72c.396-.188.716-.51.904-.905h2.632a2.72 2.72 0 0 0 2.72-2.72v-2.63a1.904 1.904 0 0 0 1.088-1.72z" fill="currentColor"></path>
+  </symbol>
   <symbol viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="volume-off-solid">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.383 3.076A1 1 0 0 1 10 4v12a1 1 0 0 1-1.707.707L4.586 13H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2.586l3.707-3.707a1 1 0 0 1 1.09-.217zm2.91 4.217a1 1 0 0 1 1.414 0L15 8.586l1.293-1.293a1 1 0 1 1 1.414 1.414L16.414 10l1.293 1.293a1 1 0 0 1-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 0 1-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 0 1 0-1.414z" fill="currentColor"></path>
   </symbol>
@@ -1595,9 +1620,13 @@
 </svg><svg>
   <use xlink:href="#calendar"></use>
 </svg><svg>
+  <use xlink:href="#call-center"></use>
+</svg><svg>
   <use xlink:href="#camera-solid"></use>
 </svg><svg>
   <use xlink:href="#camera"></use>
+</svg><svg>
+  <use xlink:href="#carburant"></use>
 </svg><svg>
   <use xlink:href="#cash-solid"></use>
 </svg><svg>
@@ -1762,6 +1791,8 @@
   <use xlink:href="#database-solid"></use>
 </svg><svg>
   <use xlink:href="#database"></use>
+</svg><svg>
+  <use xlink:href="#date"></use>
 </svg><svg>
   <use xlink:href="#desktop-computer-solid"></use>
 </svg><svg>
@@ -1950,6 +1981,8 @@
   <use xlink:href="#key-solid"></use>
 </svg><svg>
   <use xlink:href="#key"></use>
+</svg><svg>
+  <use xlink:href="#km"></use>
 </svg><svg>
   <use xlink:href="#library-solid"></use>
 </svg><svg>
@@ -2362,6 +2395,8 @@
   <use xlink:href="#view-list-solid"></use>
 </svg><svg>
   <use xlink:href="#view-list"></use>
+</svg><svg>
+  <use xlink:href="#vitesse"></use>
 </svg><svg>
   <use xlink:href="#volume-off-solid"></use>
 </svg><svg>

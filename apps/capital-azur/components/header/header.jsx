@@ -19,8 +19,10 @@ export const NavigationList = ({ navigation }) => {
 			key={item.name}
 			href={item.href}
 			className={classNames(
-				item.current ? "text-blue-500 font-bold" : "text-gray-900 font-normal",
-				"block px-4 py-1  text-xs hover:text-blue-500 after:inline-block active:text-white active:bg-blue-1000"
+				item.current
+					? "text-blue-500 font-bold"
+					: "text-gray-900 dark:text-gray-300 font-normal",
+				"block px-4 py-1  text-xs hover:text-blue-500 after:inline-block active:text-white active:bg-blue-1000 whitespace-nowrap"
 			)}
 			aria-current={item.current ? "page" : undefined}
 		>
@@ -100,7 +102,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 						/>
 					</div>
 					<div className="hidden md:block sm:ml-24 md:ml-32 lg:ml-64">
-						<div className="flex space-x-4 divide-x mt-6">
+						<div className="flex space-x-4 divide-x">
 							<NavigationList navigation={navigation} />
 						</div>
 					</div>
@@ -156,7 +158,7 @@ export const Header = () => {
 	)
 
 	return (
-		<Disclosure as="nav" className="bg-white">
+		<Disclosure as="nav" className="bg-white dark:bg-black">
 			{({ open }) => (
 				<>
 					<HeaderMobile navigation={navigation} lang={lang} image={Image} open={open} />

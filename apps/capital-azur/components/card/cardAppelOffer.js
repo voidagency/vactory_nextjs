@@ -4,7 +4,7 @@ import { Link } from "@vactory/ui/link"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
 const Card = ({
-	variant = "default",
+	variant = "appelOffre",
 	title,
 	excerpt,
 	image,
@@ -29,9 +29,15 @@ const Card = ({
 								{category}
 							</Link>
 						) : (
-							<p className={card[variant].tag}>{category}</p>
+							<p>
+								<span className={card[variant].tag}>{category}</span>
+							</p>
 						)}
-						{excerpt && <p className={card[variant].excerpt}>{excerpt}</p>}
+						{excerpt && (
+							<p>
+								<span className={card[variant].excerpt}>{excerpt}</span>
+							</p>
+						)}
 					</>
 				</Link>
 				{url && urlContent && (
