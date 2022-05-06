@@ -77,30 +77,6 @@ AncreFixedBox.args = {
 	//icon: <Icon id="check-solid" width="30" height="30" />,
 }
 
-export const AncreFill = Template.bind({})
-AncreFill.args = {
-	variant: "Ancrefill",
-	navigation: [
-		{ name: "", id: "#container1", current: true },
-		{ name: "", id: "#container2", current: false },
-		{ name: "", id: "#container3", current: false },
-		{ name: "", id: "#container4", current: false },
-	],
-	//icon: <Icon id="check-solid" width="30" height="30" />,
-}
-
-export const AncreDots = Template.bind({})
-AncreDots.args = {
-	variant: "Ancredots",
-	navigation: [
-		{ name: "", id: "#container1", current: true },
-		{ name: "", id: "#container2", current: false },
-		{ name: "", id: "#container3", current: false },
-		{ name: "", id: "#container4", current: false },
-	],
-	//icon: <Icon id="check-solid" width="30" height="30" />,
-}
-
 export default {
 	title: "Components/Ancre",
 	component: Ancre,
