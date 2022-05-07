@@ -8,10 +8,10 @@ export const Input = forwardRef(
 			label,
 			variant = "default",
 			placeholder,
-			addonAfter,
-			addonBefore,
-			prefix,
-			sufix,
+			addonAfter = null,
+			addonBefore = null,
+			prefix = null,
+			sufix = null,
 			type = "text",
 			handleSufixClick = null, // this only used in password case and it maight be optimized
 			handleInputChange,
@@ -24,7 +24,7 @@ export const Input = forwardRef(
 	) => {
 		const { input } = useContext(ThemeContext)
 		return (
-			<div>
+			<div className="w-full">
 				{label && <label className={clsx(input[variant].label)}>{label}</label>}
 				<div
 					className={clsx(input[variant].wrapper, hasError && input[variant].hasError)}

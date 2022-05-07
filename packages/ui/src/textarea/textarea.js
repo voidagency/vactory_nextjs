@@ -7,7 +7,7 @@ export const Textarea = ({
 	placeholder,
 	handleTextareaChange,
 	rows = 1,
-	resize = false,
+	resize = true,
 	showCounter = false,
 	maxLength = null,
 }) => {
@@ -19,15 +19,15 @@ export const Textarea = ({
 		handleTextareaChange?.(e)
 	}
 	return (
-		<div className="relative">
+		<div className="relative w-full">
 			<textarea
-				className={clsx(textarea[variant].base, resize && textarea[variant].resize)}
+				className={clsx(textarea[variant].base, !resize && textarea[variant].resize)}
 				placeholder={placeholder}
 				onChange={(e) => {
 					onTextareaChange(e)
 				}}
 				rows={rows}
-				maxLength={maxLength}
+				maxLength={showCounter ? maxLength : null}
 			></textarea>
 			{showCounter && maxLength !== null && (
 				<span className="absolute bottom-2 right-2 text-sm">{`${length}/${maxLength}`}</span>

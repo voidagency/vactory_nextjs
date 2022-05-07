@@ -1,35 +1,26 @@
 import CheckboxInput from "./checkboxV2"
 
-export const defaultCheckboxInput = () => {
-	return (
-		<div className="container">
-			<CheckboxInput disabled={false} checked={false} label="Checkbox" name="checkbox" />
-		</div>
-	)
-}
+const Template = (args) => (
+	<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
+		<CheckboxInput {...args} />
+	</div>
+)
 
-export const checkedCheckboxInput = () => {
-	return (
-		<div className="container">
-			<CheckboxInput disabled={false} checked={true} label="Checkbox" name="checkbox" />
-		</div>
-	)
-}
+export const CheckboxStories = Template.bind({})
 
-export const disabledCheckboxInput = () => {
-	return (
-		<div className="container">
-			<CheckboxInput disabled={true} checked={false} label="Checkbox" name="checkbox" />
-		</div>
-	)
-}
-
-export const checkedAndDisabledCheckboxInput = () => {
-	return (
-		<div className="container">
-			<CheckboxInput disabled={true} checked={true} label="Checkbox" name="checkbox" />
-		</div>
-	)
+CheckboxStories.argTypes = {
+	disabled: {
+		defaultValue: false,
+		control: { type: "boolean" },
+	},
+	checked: {
+		defaultValue: true,
+		control: { type: "boolean" },
+	},
+	label: {
+		defaultValue: "Label",
+		control: { type: "text" },
+	},
 }
 
 export default {

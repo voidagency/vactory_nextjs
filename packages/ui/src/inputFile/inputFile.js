@@ -37,7 +37,7 @@ export const InputFile = ({
 	}
 
 	return (
-		<div>
+		<div className="w-full">
 			{label && <label className={clsx(inputFile[variant].label)}>{label}</label>}
 			<div
 				className={clsx(
@@ -67,7 +67,7 @@ export const InputFile = ({
 						<input
 							ref={inputRef}
 							onChange={onInputChange}
-							className="absolute w-0 h-0 top-0 left-0 w-0 h-0"
+							className="absolute w-0 h-0 top-0 left-0"
 							type="file"
 							placeholder={placeholder}
 							{...props}

@@ -1,19 +1,31 @@
 import InputRange from "./inputRange"
 
-export const defaultInputRange = () => {
-	return (
-		<div className="container">
-			<InputRange thumb={"defaultThumb"} min={0} max={30} />
-		</div>
-	)
-}
+const Template = (args) => (
+	<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
+		<InputRange {...args} />
+	</div>
+)
 
-export const roundedInputRange = () => {
-	return (
-		<div className="container">
-			<InputRange thumb={"roundedThumb"} min={0} max={30} />
-		</div>
-	)
+export const InputRangeStories = Template.bind({})
+
+InputRangeStories.argTypes = {
+	thumb: {
+		defaultValue: "defaultThumb",
+		control: { type: "select" },
+		options: ["defaultThumb", "roundedThumb"],
+	},
+	min: {
+		defaultValue: "0",
+		control: { type: "text" },
+	},
+	max: {
+		defaultValue: "100",
+		control: { type: "text" },
+	},
+	label: {
+		defaultValue: "Label",
+		control: { type: "text" },
+	},
 }
 
 export default {

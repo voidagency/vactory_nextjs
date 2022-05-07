@@ -11,6 +11,8 @@ import { BackToTop } from "@vactory/ui/back-to-top"
 import { Icon } from "@vactory/ui/icon"
 import { BlockBanner } from "@/widgets/block-banner-appels-offres/block-banner"
 
+import { ThemeToggler } from "@/components/themeToggler"
+
 import AppelOffreList from "../widgets/appel-offre/appelOffreList/appelOffreList"
 
 import { theme } from "../theme/theme"

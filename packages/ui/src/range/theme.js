@@ -1,5 +1,5 @@
 export const range = {
-	container: "relative",
+	container: "relative w-full",
 	label: "text-sm font-medium text-gray-700",
 	wrapper: "flex items-center",
 	intervalIndicator: "text-lg font-medium",

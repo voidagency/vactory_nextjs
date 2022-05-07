@@ -1,48 +1,41 @@
 import { Textarea } from "./textarea"
 
-export const defaultTextarea = () => {
+const Template = (args) => {
 	return (
-		<div className="container">
-			<Textarea variant="default" placeholder="Textarea placeholder" rows={5}></Textarea>
+		<div className="max-w-lg h-screen mx-auto flex items-center justify-center">
+			<Textarea {...args} />
 		</div>
 	)
 }
 
-export const roundedTextarea = () => {
-	return (
-		<div className="container">
-			<Textarea variant="rounded" placeholder="Textarea placeholder" rows={5}></Textarea>
-		</div>
-	)
-}
+export const TextareaStories = Template.bind({})
 
-export const resizedTextarea = () => {
-	return (
-		<div className="container">
-			<Textarea variant="rounded" placeholder="Textarea placeholder" rows={5}></Textarea>
-		</div>
-	)
-}
-
-export const unresizedTextarea = () => {
-	return (
-		<div className="container">
-			<Textarea resize={true} placeholder="Textarea placeholder" rows={5}></Textarea>
-		</div>
-	)
-}
-
-export const TextareaWithCounter = () => {
-	return (
-		<div className="container">
-			<Textarea
-				placeholder="Textarea placeholder"
-				rows={5}
-				showCounter={true}
-				maxLength={600}
-			></Textarea>
-		</div>
-	)
+TextareaStories.argTypes = {
+	variant: {
+		defaultValue: "default",
+		control: { type: "select" },
+		options: ["default", "rounded"],
+	},
+	placeholder: {
+		defaultValue: "Placeholder",
+		control: { type: "text" },
+	},
+	rows: {
+		defaultValue: "default",
+		control: { type: "number" },
+	},
+	resize: {
+		defaultValue: true,
+		control: { type: "boolean" },
+	},
+	showCounter: {
+		defaultValue: false,
+		control: { type: "boolean" },
+	},
+	maxLength: {
+		defaultValue: 50,
+		control: { type: "number" },
+	},
 }
 
 export default {

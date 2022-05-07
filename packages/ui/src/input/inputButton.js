@@ -3,13 +3,13 @@ import { Button } from "@vactory/ui/button"
 import { useRef } from "react"
 
 export const InputButton = ({
-	buttonVariant,
 	buttonContent,
 	handleInputChange,
 	handleButtonClick,
 	buttonClasses,
 	...props
 }) => {
+	console.log(props)
 	const inputRef = useRef()
 	const _handleButtonClick = () => {
 		handleButtonClick?.(inputRef.current.value)
@@ -19,7 +19,11 @@ export const InputButton = ({
 			ref={inputRef}
 			handleInputChange={handleInputChange}
 			addonAfter={
-				<Button variant="primary" onClick={_handleButtonClick} className={buttonClasses}>
+				<Button
+					variant={props.variant === "rounded" ? "roundedAddonAfter" : "primary"}
+					onClick={_handleButtonClick}
+					className={buttonClasses}
+				>
 					{buttonContent}
 				</Button>
 			}
