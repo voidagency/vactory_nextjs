@@ -22,7 +22,7 @@ export const NavigationList = ({ navigation }) => {
 				item.current
 					? "text-blue-500 font-bold"
 					: "text-gray-900 dark:text-gray-300 font-normal",
-				"block px-4 py-1  text-xs hover:text-blue-500 after:inline-block active:text-white active:bg-blue-1000 whitespace-nowrap"
+				"block px-4 text-xs hover:text-blue-500 after:inline-block  whitespace-nowrap"
 			)}
 			aria-current={item.current ? "page" : undefined}
 		>
@@ -65,6 +65,7 @@ const NavPanel = ({ navigation, lang, image }) => {
 						</Button>
 						<Select
 							list={lang}
+							variant="HeaderLangSelect"
 							selected={lang[0]}
 							chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 						/>
@@ -120,6 +121,7 @@ const HeaderDefault = ({ navigation, lang, image }) => {
 					</Button>
 					<Select
 						list={lang}
+						variant="HeaderLangSelect"
 						selected={lang[0]}
 						chevronDownIcon={<Icon id="chevron-down" width="15" height="15" />}
 					/>
