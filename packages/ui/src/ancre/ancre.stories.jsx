@@ -1,6 +1,5 @@
 import React from "react"
 import { Ancre } from "./ancre"
-import { Icon } from "@vactory/ui/icon"
 import { Container } from "@vactory/ui/container"
 
 const Template = (args) => {

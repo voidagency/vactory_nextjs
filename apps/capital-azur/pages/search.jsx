@@ -10,19 +10,22 @@ import { Header } from "@/components/header/header"
 import { BlockBanner } from "@/widgets/block-banner-search/block-banner"
 import { Footer } from "@/components/footer/footer"
 
-const tools = [
+const items = [
 	{
-		name: "OUVRIR UN COMPTE",
+		id: 0,
+		title: "OUVRIR UN COMPTE",
 		href: "#",
 		icon: "",
 	},
 	{
-		name: "RECLAMATION",
+		id: 1,
+		title: "RECLAMATION",
 		href: "#",
 		icon: "",
 	},
 	{
-		name: "FAQ",
+		id: 2,
+		title: "FAQ",
 		href: "#",
 		icon: "",
 	},
@@ -45,7 +48,7 @@ export const Search = () => {
 			</Container>
 			<Footer />
 			<MediaBox list={socialmedia} />
-			<ToolBox list={tools} />
+			<ToolBox list={items} variant="default" />
 			<BackToTop icon={<Icon id="chevron-up" width="30" height="30" />} />
 		</AppWrapper>
 	)

@@ -1,3 +1,5 @@
+import { ancre } from "../ancre/theme"
+import { itemAncre } from "../ancre/theme"
 import { button } from "../button/theme"
 import { avatar } from "../avatar/theme"
 import { heading } from "../heading/theme"
@@ -31,6 +33,8 @@ import { tooltip } from "../tooltip/theme"
 
 export const theme = {
 	avatar,
+	ancre,
+	itemAncre,
 	socialmediabox,
 	toolbox,
 	button,

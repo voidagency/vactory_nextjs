@@ -19,17 +19,20 @@ import { theme } from "../theme/theme"
 
 const tools = [
 	{
-		name: "OUVRIR UN COMPTE",
+		id: 0,
+		title: "OUVRIR UN COMPTE",
 		href: "#",
 		icon: "",
 	},
 	{
-		name: "RECLAMATION",
+		id: 1,
+		title: "RECLAMATION",
 		href: "#",
 		icon: "",
 	},
 	{
-		name: "FAQ",
+		id: 2,
+		title: "FAQ",
 		href: "#",
 		icon: "",
 	},
@@ -51,7 +54,7 @@ const AppelsOffres = () => {
 			</Container>
 			<Footer />
 			<MediaBox list={socialmedia} />
-			<ToolBox list={tools} />
+			<ToolBox list={tools} variant="default" />
 			<BackToTop icon={<Icon id="chevron-up" width="30" height="30" />} />
 		</AppWrapper>
 	)

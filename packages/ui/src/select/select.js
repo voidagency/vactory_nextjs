@@ -9,7 +9,7 @@ export const Select = ({
 	list,
 	//selected,
 	//setSelected,
-	variant = "default",
+	variant,
 	label,
 	className,
 }) => {
