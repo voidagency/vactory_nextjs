@@ -1,5 +1,5 @@
 export const data = {
-	Title: "LE CONSEIL",
+	title: "LE CONSEIL",
 	description: "",
 	dataCard: [
 		{

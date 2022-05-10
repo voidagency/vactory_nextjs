@@ -27,6 +27,7 @@ export const LogoSlider = ({ data = defaultData }) => {
 		<Container layout="full" className="py-16">
 			<Slider variant="logoSlider" className="items-center" settings={SliderSettings}>
 				{data.map((item, index) => {
+					console.log("ITEM", item.image)
 					return (
 						<Slide key={item.id} variant="logoSlider">
 							{item.url ? (
@@ -34,7 +35,7 @@ export const LogoSlider = ({ data = defaultData }) => {
 									<img src={item.image} className="mx-auto w-auto" />
 								</Link>
 							) : (
-								<img src={item.image.src} className="mx-auto w-auto" />
+								<img src={item.image} className="mx-auto w-auto" />
 							)}
 						</Slide>
 					)

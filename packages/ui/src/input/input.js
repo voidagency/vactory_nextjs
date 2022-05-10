@@ -1,65 +1,81 @@
 import React, { useContext, forwardRef } from "react"
 import clsx from "clsx"
-import { Icon } from "@vactory/ui/icon"
 import { ThemeContext } from "@vactory/ui/theme-context"
 
 export const Input = forwardRef(
 	(
 		{
-			prefix,
-			value,
-			type = "text",
-			placeholder,
-			className = "",
-			description,
-			hasError = false,
-			msgValidation,
+			label,
 			variant = "default",
-			...props
+			placeholder,
+			addonAfter = null,
+			addonBefore = null,
+			prefix = null,
+			sufix = null,
+			type = "text",
+			handleSufixClick = null, // this only used in password case and it maight be optimized
+			handleInputChange,
+			hasError,
+			errorMessage,
+			description,
+			props,
 		},
 		ref
 	) => {
-		const [inputValue, handleChangeValue] = React.useState(value)
 		const { input } = useContext(ThemeContext)
-
 		return (
-			<div>
-				<div className={input[variant].wrapper}>
-					{prefix && (
-						<div className={input[variant].prefix}>
-							<span>{prefix}</span>
-						</div>
+			<div className="w-full">
+				{label && <label className={clsx(input[variant].label)}>{label}</label>}
+				<div
+					className={clsx(input[variant].wrapper, hasError && input[variant].hasError)}
+				>
+					{addonBefore && (
+						<div className={clsx("flex", input[variant].addonBefore)}>{addonBefore}</div>
 					)}
-					<input
-						ref={ref}
-						type={type}
-						value={inputValue}
+					<span
 						className={clsx(
-							input[variant].element.base,
-							prefix && input[variant].element.hasPrefix,
-							hasError
-								? input[variant].element.hasError
-								: input[variant].element.hasNotError,
-							className
+							addonBefore && addonAfter
+								? input[variant].inputWrapper.inside
+								: addonAfter
+								? input[variant].inputWrapper.left
+								: addonBefore
+								? input[variant].inputWrapper.right
+								: input[variant].inputWrapper.full,
+							hasError && input[variant].hasError
 						)}
-						onChange={(e) => handleChangeValue(e.target.value)}
-						placeholder={placeholder}
-						{...props}
-					/>
-					{hasError && (
-						<Icon
-							id={input[variant].icon.id}
-							width={input[variant].icon.width}
-							height={input[variant].icon.height}
-							className={input[variant].icon.className}
+					>
+						{prefix && <div className={clsx(input[variant].prefix)}>{prefix}</div>}
+						<input
+							ref={ref}
+							onChange={(e) => handleInputChange?.(e.target.value)}
+							className={clsx(input[variant].input)}
+							type={type}
+							placeholder={placeholder}
+							{...props}
 						/>
+						{sufix && (
+							<div
+								className={clsx(input[variant].sufix)}
+								onClick={() => {
+									handleSufixClick?.()
+								}}
+							>
+								{sufix}
+							</div>
+						)}
+					</span>
+
+					{addonAfter && (
+						<div className={clsx("flex", input[variant].addonAfter)}>{addonAfter}</div>
 					)}
 				</div>
-				{msgValidation && hasError && (
-					<p className={input[variant].msgError}>{msgValidation}</p>
+				{errorMessage && hasError && (
+					<p className={input[variant].errorMessage}>{errorMessage}</p>
 				)}
 				{description && <p className={input[variant].description}>{description}</p>}
 			</div>
 		)
 	}
 )
+
+export default Input

@@ -2,7 +2,7 @@ export const layer = {
 	default: {
 		btnClose: {
 			style:
-				"absolute top-4 ltr:right-4 rtl:left-4 text-black hover:text-indigo-500 transition-all ease-in duration-300",
+				"absolute top-4 right-4 rtl:right-auto rtl:left-4 text-black hover:text-indigo-500 transition-all ease-in duration-300",
 			icon: {
 				id: "x-solid",
 				width: "30",

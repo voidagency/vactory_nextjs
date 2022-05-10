@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
+	darkMode: "class",
 	mode: "jit",
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx}",
@@ -17,6 +18,12 @@ module.exports = {
 			},
 			spacing: {
 				128: "32rem",
+			},
+			maxWidth: {
+				1200: "1200px",
+			},
+			content: {
+				minus: 'url("./public/minus.svg")',
 			},
 			transitionDelay: {
 				0: "0ms",
@@ -50,6 +57,7 @@ module.exports = {
 					1200: "#08286a",
 				},
 				gray: {
+					10: "#f8f9fa",
 					25: "#D4D5D5",
 					50: "#D4D5D5",
 					100: "#D4D5D5",

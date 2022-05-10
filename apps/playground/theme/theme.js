@@ -5,6 +5,7 @@ import { heading } from "./heading"
 import { link } from "./link"
 import { slider } from "./slider"
 import { select } from "./select"
+import { text } from "./text"
 
 export const theme = {
 	button,
@@ -14,4 +15,5 @@ export const theme = {
 	link,
 	slider,
 	select,
+	text,
 }

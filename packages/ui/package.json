@@ -36,7 +36,8 @@
     "@vactory/ui/theme-context": "./src/context/theme-context.js",
     "@vactory/ui/accordion": "./src/accordion/accordion.js",
     "@vactory/ui/select": "./src/select/select.js",
-    "@vactory/ui/text": "./src/text/text.js"
+    "@vactory/ui/text": "./src/text/text.js",
+    "@vactory/ui/toggle":"./src/toggle/toggle.js"
   },
   "exports": {
     "./avatar": "./src/avatar/avatar.js",
@@ -63,7 +64,8 @@
     "./slider": "./src/slider/slider.js",
     "./slide": "./src/slider/slide.js",
     "./arrows": "./src/slider/arrows.js",
-    "./accordion" :"./src/accordion/accordion.js"
+    "./accordion" :"./src/accordion/accordion.js",
+    "./toggle": "./src/toggle/toggle.js"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",

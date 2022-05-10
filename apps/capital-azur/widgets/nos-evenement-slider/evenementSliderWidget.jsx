@@ -5,6 +5,7 @@ import { TemplateWrapper } from "@/components/template-wrapper/templateWrapper"
 import { data } from "./data"
 import { sliderSettings } from "./data"
 import { CardTemplate } from "@/components/template-slider/index/card-template"
+import { Button } from "@vactory/ui/button"
 
 export const EvenementSlider = ({ containerId, variant = "cardSlider" }) => {
 	return (
@@ -19,6 +20,13 @@ export const EvenementSlider = ({ containerId, variant = "cardSlider" }) => {
 						)
 					})}
 				</Slider>
+				{data.button && (
+					<div className="flex items-center justify-center my-8">
+						<Button outline="true" Variant="primary" size="large">
+							{data.button}
+						</Button>
+					</div>
+				)}
 			</TemplateWrapper>
 		</Container>
 	)

@@ -1,24 +1,44 @@
 export const input = {
 	default: {
-		wrapper: "relative",
-		prefix:
-			"absolute bg-gray-100 top-0 h-full flex items-center  pointer-events-none px-1 ltr:left-0 rtl:right-0 text-black sm:text-sm",
-		element: {
-			base: "mt-1 block w-full focus:outline-none sm:text-sm rounded-md shadow-sm",
-			hasNotError:
-				"text-black border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
-			hasError:
-				"block w-full ltr:pr-10 rtl:pl-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500",
-			hasPrefix: "pl-14",
+		wrapper: "relative flex w-full border border-gray-200 hover:border-gray-300",
+		inputWrapper: {
+			full: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
+			right: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
+			left: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
+			inside:
+				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
 		},
-		msgError: "sm:text-sm text-red-600",
-		description: "text-sm text-indigo-500",
-		icon: {
-			id: "paper-airplane",
-			width: 20,
-			height: 20,
-			className:
-				"absolute top-1/2 -translate-y-1/2 pointer-events-none rtl:left-1 ltr:right-1 text-red-500",
+		label: "text-sm font-medium text-gray-700 pb-1",
+		addonBefore: "bg-gray-200 bg-gray-200 flex items-center max-w-[30%]",
+		addonAfter: "bg-gray-200 flex items-center max-w-[30%]",
+		input:
+			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow border-none focus:ring-0",
+		prefix: "flex items-center pl-3",
+		sufix: "flex items-center pr-3",
+		errorMessage: "text-sm text-red-600 mt-1",
+		hasError: "border-red-500 hover:border-red-600 focus-within:ring-red-400",
+		description: "text-base text-gray-600 mt-1",
+	},
+	rounded: {
+		wrapper:
+			"relative flex w-full border border-gray-200 hover:border-gray-300 rounded-lg",
+		inputWrapper: {
+			full: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 rounded-lg",
+			right:
+				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 rounded-r-lg",
+			left: "flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400 rounded-l-lg",
+			inside:
+				"flex grow relative w-full focus-within:ring-1 focus-within:ring-yellow-400",
 		},
+		label: "text-sm font-medium text-gray-700 pb-1",
+		addonBefore: "bg-gray-200 rounded-l-lg bg-gray-200 flex items-center max-w-[30%]",
+		addonAfter: "bg-gray-200 rounded-r-lg flex items-center max-w-[30%]",
+		input:
+			"appearance-none py-3 px-3 w-full placeholder-gray-500 outline-none grow rounded-md border-none focus:ring-0",
+		prefix: "flex items-center pl-3",
+		sufix: "flex items-center pr-3",
+		errorMessage: "text-sm text-red-600 mt-1",
+		hasError: "border-red-500 hover:border-red-600 focus-within:ring-red-400",
+		description: "text-base text-gray-600 mt-1",
 	},
 }

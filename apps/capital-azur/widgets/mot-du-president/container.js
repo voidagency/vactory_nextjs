@@ -1,10 +1,11 @@
 import { Heading } from "@vactory/ui/heading"
 import { Container } from "@vactory/ui/container"
+import { Icon } from "@vactory/ui/icon"
 
 export const ProfileContainer = () => {
 	return (
-		<Container layout="full" id="container3" className="">
-			<div className="Container lg:px-32 px-2 py-16 md:mx-24">
+		<Container layout="fluid" id="container3" className="">
+			<Container className="Container lg:px-32 px-2 py-16 md:mx-auto">
 				<div className="grid md:grid-cols-3 w-full shadow-lg">
 					<div className="flex-col px-24 md:p-6 md:mx-0 ">
 						<div className="image mb-6 mx-4">
@@ -25,13 +26,18 @@ export const ProfileContainer = () => {
 					</div>
 
 					<div className="md:col-span-2 p-6">
-						<Heading
-							level={2}
-							className="text-left text-black before:content-['-__'] before:text-blue-1000 mb-6"
-						>
-							VOTRE SATISFACTION, NOTRE PASSION
-						</Heading>
-						<p className="text-left leading-relaxed">
+						<div className="flex flex-row">
+							<Icon
+								id="minus"
+								className="mb-6 mr-2 text-blue-1000"
+								width="30"
+								height="30"
+							/>
+							<Heading level={2} className="text-left text-black mb-6 tracking-wide">
+								VOTRE SATISFACTION, NOTRE PASSION
+							</Heading>
+						</div>
+						<p className="text-left  text-gray-400 leading-7">
 							Si le digital banking n'est pas né en Afrique, il y évolue à grande vitesse
 							grâce à la forte progression des réseaux mobiles et au déploiement du haut
 							débit. C’est dans ce contexte que Capital Azur a vu le jour, afin de piloter
@@ -69,7 +75,7 @@ export const ProfileContainer = () => {
 						</p>
 					</div>
 				</div>
-			</div>
+			</Container>
 		</Container>
 	)
 }

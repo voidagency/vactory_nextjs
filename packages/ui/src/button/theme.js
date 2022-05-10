@@ -18,6 +18,10 @@ export const button = {
 			"bg-red-500 border-red-500 hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white",
 		toolBox:
 			"relative w-full inline-flex items-center justify-center bg-white hover:bg-indigo-500 text-indigo-500 hover:text-white text-sm font-bold rounded-md",
+		roundedAddonAfter:
+			"bg-blue-600 border-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-white hover:text-white rounded-r-md",
+		roundedAddonBefore:
+			"bg-blue-600 border-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-white hover:text-white rounded-l-md",
 	},
 	outlineVariant: {
 		primary: `bg-transparent hover:bg-indigo-500 border-indigo-500 text-indigo-500 hover:text-white`,

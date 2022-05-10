@@ -4,6 +4,7 @@ import { defaultSettings } from "./data"
 import { Slider } from "@vactory/ui/slider"
 import { Template } from "../../components/screen-slider/template"
 import { Arrow } from "@vactory/ui/arrows"
+import { Container } from "@vactory/ui/container"
 import Slide from "@vactory/ui/slide"
 
 export const ScreenSlider = ({}) => {

@@ -24,7 +24,7 @@ const Button = forwardRef(
 			pill,
 			outline = false,
 			disabled = false,
-			onClick = null,
+			onClick,
 			icon,
 			href = null,
 			target = null,
