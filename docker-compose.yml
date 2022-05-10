@@ -10,9 +10,9 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.vactory_http.rule=Host(`vactory.k8s.lapreprod.com`)"
+      - "traefik.http.routers.vactory_http.rule=Host(`vactory.lecontenaire.com`)"
       - "traefik.http.routers.vactory_http.entrypoints=http"
-      - "traefik.http.routers.vactory_https.rule=Host(`vactory.k8s.lapreprod.com`)"
+      - "traefik.http.routers.vactory_https.rule=Host(`vactory.lecontenaire.com`)"
       - "traefik.http.routers.vactory_https.entrypoints=https"
       - "traefik.http.routers.vactory_https.tls=true"
       - "traefik.http.routers.vactory_https.tls.certresolver=k8spreprodchallenge"
@@ -26,28 +26,28 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ui_vactory_http.rule=Host(`ui.vactory.k8s.lapreprod.com`)"
+      - "traefik.http.routers.ui_vactory_http.rule=Host(`ui.vactory.lecontenaire.com`)"
       - "traefik.http.routers.ui_vactory_http.entrypoints=http"
-      - "traefik.http.routers.ui_vactory_https.rule=Host(`ui.vactory.k8s.lapreprod.com`)"
+      - "traefik.http.routers.ui_vactory_https.rule=Host(`ui.vactory.lecontenaire.com`)"
       - "traefik.http.routers.ui_vactory_https.entrypoints=https"
       - "traefik.http.routers.ui_vactory_https.tls=true"
       - "traefik.http.routers.ui_vactory_https.tls.certresolver=k8spreprodchallenge"
 
-  docs:
-    build:
-      context: .
-      target: runner_docs
-    restart: unless-stopped
-    networks:
-      - internal
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.docs_vactory_http.rule=Host(`docs.vactory.k8s.lapreprod.com`)"
-      - "traefik.http.routers.docs_vactory_http.entrypoints=http"
-      - "traefik.http.routers.docs_vactory_https.rule=Host(`docs.vactory.k8s.lapreprod.com`)"
-      - "traefik.http.routers.docs_vactory_https.entrypoints=https"
-      - "traefik.http.routers.docs_vactory_https.tls=true"
-      - "traefik.http.routers.docs_vactory_https.tls.certresolver=k8spreprodchallenge"
+  # docs:
+  #   build:
+  #     context: .
+  #     target: runner_docs
+  #   restart: unless-stopped
+  #   networks:
+  #     - internal
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.docs_vactory_http.rule=Host(`docs.vactory.lecontenaire.com`)"
+  #     - "traefik.http.routers.docs_vactory_http.entrypoints=http"
+  #     - "traefik.http.routers.docs_vactory_https.rule=Host(`docs.vactory.lecontenaire.com`)"
+  #     - "traefik.http.routers.docs_vactory_https.entrypoints=https"
+  #     - "traefik.http.routers.docs_vactory_https.tls=true"
+  #     - "traefik.http.routers.docs_vactory_https.tls.certresolver=k8spreprodchallenge"
 
   cache:
     image: redis:6.2-alpine
